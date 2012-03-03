@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Modern JavaScript - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="My presentation the jQuery Divide (video here) has been making the rounds on the internet again, six months after I delivered it at JSConf.eu in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2011/04/15/modern-javascript">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Modern JavaScript</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-15T11:16:00-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>My presentation <a href="http://www.slideshare.net/rmurphey/the-jquery-divide-5287573">the jQuery Divide</a> (<a href="http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html">video here</a>) has been <a href="http://news.ycombinator.com/item?id=2429411">making the rounds</a> on the internet again, six months after I delivered it at JSConf.eu in Berlin, and this time around, a colleague on IRC shared a link with me that drew from it: <a href="http://www.dagolden.com/index.php/1446/is-javascript-the-new-perl/">Is JavaScript the New Perl?</a></p>
+
+<p>Perl has a special place in my heart; it&#8217;s the first language I used to solve a real-world problem, and I still have the second edition Learning Perl that my good friend Marcus got for me at the time. These days I struggle for it not to look mostly like a lot of gibberish, but in the late 1990s it was funtimes.</p>
+
+<p>Anyway. The post that linked to my presentation asked if JavaScript might be going through some of the same pains that Perl has gone through, and linked to an eerily relevant presentation about Modern Perl, a movement &#8220;actively seeks to both to teach how to write good code and change perceptions of Perl that still linger from the dot.com 90s.&#8221; It talks about the void that Perl sought to fill way back in 1987, and then steps through the highs and lows of the intervening 23 years.</p>
+
+<p>One thing that struck me, reading the slides, is that Perl &#8211; like other open-source, server-side languages &#8211; has the distinct benefit of being community-driven. While, yes, JavaScript has a wonderful and vibrant community, the language itself is held hostage by browser vendors, some of whom have shown a strong inclination to not give a fuck about owning up to and fixing their egregious mistakes. Using new features of a language like Perl is, at the end of the day, a largely internal problem &#8211; given enough time and money, switching to a new version of the language that offers new features for code organization, testing, and abstraction is a thing a project can do. Indeed, Perl as a community can even make bold decisions like deciding that a new version simply won&#8217;t be back-compat with a version that came before, throwing away ideas that turned out to be duds; meanwhile, JavaScript web developers often must bend over backwards to ensure back-compat with decade-old technology, and the only way to transition away from that technology is to give up on a set of users entirely.</p>
+
+<p>We&#8217;ve already seen what this means for JavaScript as a language: it was years after JavaScript&#8217;s debut before we really started seeing <a href="http://www.yuiblog.com/blog/2007/06/12/module-pattern/">conversations</a> about what a module should look like in JavaScript, and <a href="http://tagneto.blogspot.com/2011/04/on-inventing-js-module-formats-and.html">we&#8217;re still fighting over it</a> today. Without a solid dependency management system &#8211; something you can take for granted in any 15-year-old community-driven language &#8211; dependency management often means sticking another script tag on the page, and even the most popular JavaScript library on the planet <a href="http://bugs.jquery.com/ticket/7102">struggles</a> with how to participate in a fledgling ecosystem. With no arbiter of common, tested, community-approved, community-vetted solutions &#8211; see Perl&#8217;s CPAN &#8211; it&#8217;s an environment that&#8217;s ripe for fragmentation, and shining examples of <a href="http://en.wikipedia.org/wiki/Not_Invented_Here">Not Invented Here (NIH)</a> litter the JavaScript landscape. Lacking even an agreed-upon method of expressing dependencies, the <em>findability</em> of good solutions is low, and coalescence only occurs around tools with extremely low barriers to entry and extremely high near-term reward.</p>
+
+<p>When Marcus was teaching me Perl, back in the dot com heyday of the late 1990s and before the world temporarily went to hell for a few years, there was great emphasis on TIMTOWTDI: there is more than one way to do it. That mantra made Perl beautiful and elegant and powerful. Too often, it also made it ridiculously hard for the next developer to build upon and maintain, especially as the problems developers were solving got more complicated than copying and pasting some code to support a contact form (sound familiar?). In the end, that mantra meant Perl&#8217;s reputation suffered, as the consequences of code written by developers with a whole lot of freedom and not so much skill became clear.</p>
+
+<p>This, in a nutshell, is what I was talking about in Berlin: that the reputation of this language we love stands to suffer if we don&#8217;t get around to working together to solve these larger problems, and educating the wider world of JavaScript developers as we figure it out. Unlike with Perl, the language itself isn&#8217;t going to evolve in time to help us here &#8211; unless and until we&#8217;re willing to give up on huge swaths of users, we will, generously, be <a href="http://infrequently.org/2010/09/but-ie-9-is-just-around-the-corner/">stuck with the browser technology of 2009</a> for a long time to come. Unlike the Modern Perl movement, <strong>the patterns and tools and practices that will form the foundation of Modern JavaScript are going to have to come from outside implementations of the language itself</strong>.</p>
+
+<p>Realizing that, it becomes clear just how imperative it is that we, as a community, figure out dependency management, modularization, and intentional interoperability so that these patterns, tools, and practices can start to emerge organically. James Burke, the creator of <a href="http://requirejs.org/">RequireJS</a>, is something of a hero to me, not for creating RequireJS, but for taking on the challenge of interacting calmly and level-headedly with all sorts of stakeholders to try to make <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD modules</a> a viable reality. Tool and library developers need to stop debating whether this is a good idea and get to work on making it happen.</p>
+
+<p>Tools and libraries also need to take seriously the need for modularization &#8211; though I confess I have many misgivings about the NIH aspect of Dustin Diaz&#8217;s <a href="https://github.com/ender-js/Ender">Ender.js</a>, and wish that the considerable effort involved had been directed toward an established project with similar features, I can&#8217;t help but hope it will pressure libraries like jQuery to make more efforts in the direction of modularization.</p>
+
+<p>An equally important aspect of modularization is ensuring minimal duplication of effort. As a community, we need to agree on a core set of functionality that ought to be provided by the language but isn&#8217;t, and implement that itself as an interchangeable module. A page with both Underscore.js and jQuery on it has tremendous duplication of functionality, for example. Interchangeability will allow end users to roll exactly the tool they need, no more and no less. Eventually, standard toolkits could emerge that draw on the best of all worlds, rather than one-size-fits-all tools that exist in isolation.</p>
+
+<p>While I agree with what Tom Dale wrote in his oddly controversial post &#8211; that <a href="http://tomdale.net/2011/04/imagine-a-beowulf-cluster-of-javascript-frameworks/">&#8220;unless it is designed to work well together, it usually won&rsquo;t&#8221;</a> &#8211; the more I think about it, the more I realize that the problem lies in our current inability to reliably isolate functionality and express dependencies across tools. It&#8217;s not that large tools like Dojo are the One True Way &#8211; it&#8217;s that large tools like Dojo are incredibly powerful precisely because they take seriously the need for a lightweight core leveraged by components that deliver specific, isolated functionality. JavaScript as a whole will become more powerful by embracing the pattern.</p>
+
+<p>The political problems here are obvious and several: such modularization will, by definition, lead to winners and losers; the identities of libraries as we know them stand to be diluted if it becomes trivial to use only parts of them. The emphasis will shift to curated toolkits that assemble best-of-breed solutions, and NIH efforts will compete on merit, not marketing. At the same time, though, trying new things will no longer involve learning a whole new set of tools, and developers won&#8217;t be as stuck with a solution that made sense once upon a time but not anymore.</p>
+
+<p>A final and important piece of the puzzle is actually educating people about the patterns that are enabled when we embrace these tools and practices. The wider community of everyday devs who are just trying to get their job done has hopefully graduated from copying and pasting scripts, but there&#8217;s a long path ahead, and part of the work of Modern JavaScript needs to be clearing that path for them.</p>
+
+<p>I said it in my Berlin talk, and I will say it again: <em>sharing what we know is as important as making new things</em>, even if it&#8217;s not always quite as fun. All the script loaders, build tools, inheritance systems, array utilities, templating frameworks, and data abstractions in the world are meaningless if we don&#8217;t help people understand how and why to use them.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-15T11:16:00-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>javascript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2011/04/15/modern-javascript/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2011/04/15/modern-javascript/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/04/04/a-dojo-boilerplate/" title="Previous Post: A Dojo Boilerplate">&laquo; A Dojo Boilerplate</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/04/25/objects-as-arguments/" title="Next Post: Objects as Arguments: Where do you draw the line?">Objects as Arguments: Where do you draw the line? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

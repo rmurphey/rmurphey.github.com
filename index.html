@@ -1,1 +1,1877 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;ll be getting on stage in a bit at CapitolJS, another
+great event from Chris Williams, the creator of JSConf and all-around
+conference &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A Development Framework for Mobile Apps</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-18T11:30:00-04:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/09/18/introducing-mulberry/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ll be getting on stage in a bit at <a href="http://capitoljs.com">CapitolJS</a>, another
+great event from Chris Williams, the creator of JSConf and all-around
+conference organizer extraordinaire. My schtick at conferences in the past has
+been to talk about the pain and pitfalls of large app development with
+JavaScript, but this time is a little different: I&#8217;ll be announcing that <a href="http://toura.com">Toura Mobile</a> has created a framework built on top of PhoneGap that
+aims eliminate some of those pains and pitfalls for mobile developers. We&#8217;re
+calling it <a href="http://mulberry.toura.com">Mulberry</a>, and you&#8217;ll be seeing it on GitHub in the next few weeks.</p>
+
+<p><strong>tl;dr</strong>: <a href="http://mulberry.toura.com">go here</a> and <a href="http://mulberry.toura.com/#tour">watch this video</a>.</p>
+
+<p>While the lawyers are dotting the i&#8217;s and crossing the t&#8217;s as far as getting the code in your hands &#8211; we&#8217;re aiming for a permissive license similar to the licenses for PhoneGap and Dojo &#8211; I wanted to tell you a little bit about it.</p>
+
+<p>Mulberry is two things. First, it&#8217;s command line tools (written in Ruby) that help you rapidly scaffold and configure an app, create content using simple Markdown and YAML, and test it in your browser, in a simulator, and on device. Second, and much more exciting to me as a JavaScript developer, it&#8217;s a framework built on top of the Dojo Toolkit for structuring an application and adding custom functionality in a sane way.</p>
+
+<p>Mulberry lets you focus on the things that are unique to your application. It provides an underlying framework that includes a &#8220;router&#8221; for managing application state; built-in components and templates for displaying standard content types like text, audios, videos, feeds, and images; a simple API for defining custom functionality and integrating it with the system; and an HTML/CSS framework that uses SASS and HAML templates to make it easy to style your apps.</p>
+
+<p>The basics of setting up an app are pretty well covered at the <a href="http://mulberry.toura.com">Mulberry
+site</a>, but if you&#8217;re reading this, you&#8217;re probably a JavaScript developer, so I want to focus here on what Mulberry can do for you. First, though, let me back up and cover some terminology: Mulberry apps consist of a set of &#8220;nodes&#8221;; each node is assigned a template, and each template consists of components arranged in a layout. Nodes can have assets associated with them &#8211; text, audio, images, video, feeds, and data.</p>
+
+<p>It&#8217;s the data asset that provides the most power to developers &#8211; you can create an arbitrary object, associate it with a node, and then any components that are in the template that&#8217;s being used to display the node will get access to that data.</p>
+
+<p>A Twitter component offers a simple example. A node might have a data asset like this associated with it:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span> <span class="nx">term</span> <span class="o">:</span> <span class="s1">&#39;capitoljs&#39;</span><span class="p">,</span> <span class="nx">type</span> <span class="o">:</span> <span class="s1">&#39;twitter&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We could define a custom template for this page (<code>mulberry create_template Twitter</code>), and tell that template to include a Twitter component:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">Twitter</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">screens</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">index</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">regions</span><span class="p-Indicator">:</span>
+</span><span class='line'>        <span class="p-Indicator">-</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">size</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">fixed</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">scrollable</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">components</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PageNav</span>
+</span><span class='line'>        <span class="p-Indicator">-</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">size</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">flex</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">scrollable</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">components</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PageHeaderImage</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom:Twitter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we&#8217;d define our Twitter component (<code>mulberry create_component Twitter</code>), which would create the skeleton of a component file:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;client.components.Twitter&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;Twitter&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">componentTemplate</span> <span class="o">:</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;client.components&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitter/Twitter.haml&#39;</span><span class="p">),</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">prep</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One of the things the skeleton contains is a reference to the template for the component. The <code>create_component</code> command creates this file, which defines the DOM structure for the component. For the sake of this component, that template will just need to contain one line:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%ul</span><span class="nc">.component.twitter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As I mentioned earlier, Mulberry components automatically get access to all of the assets that are attached to the node they&#8217;re displaying. This information is available as an object at <code>this.node</code>. Mulberry components also have two default methods that you can implement: the <code>prep</code> method and the <code>init</code> method.</p>
+
+<p>The <code>prep</code> method is an opportunity to prepare your data before it&#8217;s rendered using the template; we won&#8217;t use it for the Twitter component, because the Twitter component will go out and fetch its data <em>after</em> the template is rendered. This is where the <code>init</code> method comes in &#8211; this is where you can tell your component what to do. Here&#8217;s what our Twitter component ends up looking like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;client.components.Twitter&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">mulberry</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;Twitter&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">componentTemplate</span> <span class="o">:</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;client.components&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitter/Twitter.haml&#39;</span><span class="p">),</span>
+</span><span class='line'>  <span class="nx">tweetTemplate</span> <span class="o">:</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;client.components&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitter/Tweet.haml&#39;</span><span class="p">),</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;twitter&#39;</span>
+</span><span class='line'>        <span class="p">})[</span><span class="mi">0</span><span class="p">].</span><span class="nx">json</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://search.twitter.com/search.json?q=&#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">term</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span> <span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;_onLoad&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">_onLoad</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">tweets</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">results</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">tpl</span> <span class="o">=</span> <span class="nx">mulberry</span><span class="p">.</span><span class="nx">haml</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tweetTemplate</span><span class="p">),</span>
+</span><span class='line'>        <span class="nx">html</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">tweets</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tweet</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">tweet</span><span class="p">.</span><span class="nx">link</span> <span class="o">=</span> <span class="s1">&#39;http://twitter.com/capitoljs/status/&#39;</span> <span class="o">+</span> <span class="nx">tweet</span><span class="p">.</span><span class="nx">id_str</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">locale</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span>
+</span><span class='line'>            <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">),</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">datePattern</span> <span class="o">:</span> <span class="s1">&#39;EEE&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">timePattern</span> <span class="o">:</span> <span class="s1">&#39;h:m a&#39;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>          <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="nx">tweet</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">tweet</span><span class="p">.</span><span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span>
+</span><span class='line'>            <span class="sr">/@(\S+)/g</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;&lt;a href=&#39;http://twitter.com/#!/$1&#39;&gt;@$1&lt;/a&gt;&quot;</span>
+</span><span class='line'>          <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">return</span> <span class="nx">tpl</span><span class="p">(</span><span class="nx">tweet</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$domNode</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">refreshScroller</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that when we define the <code>data</code> variable in the init method, we look at <code>this.node.data</code>, which is an array of all of the data objects associated with the node. We filter this array to find the first data object that is the right type &#8211; this means we can have lots of different data objects associated with a given node.</p>
+
+<p>Note also that there&#8217;s a property <code>this.$domNode</code> that we&#8217;re calling jQuery methods on, and that we&#8217;re using jQuery&#8217;s <code>$.ajax</code> &#8211; Mulberry apps come with jQuery enabled by default, and if it&#8217;s enabled, helpers like <code>this.$domNode</code> become available to you. This means that very little knowledge of Dojo is required to start adding your own functionality to an app &#8211; if you need it, though, the full power of the Dojo Toolkit is available to you too.</p>
+
+<p>Here&#8217;s what our component ends up looking like, with a little bit of custom CSS applied to our app:</p>
+
+<p><img src="http://www.rebeccamurphey.com/i/4e760b2ff3b5b.jpg" title="A Mulberry app using a custom Twitter component" alt="screenshot" /></p>
+
+<p>This is a pretty basic demo &#8211; Twitter is, indeed, the new <code>hello world</code> &#8211; but I hope it gives you a little bit of an idea about what you might be able to build with Mulberry. We&#8217;ve been using it in production to create content-rich mobile apps for our users for months now (connected to a web-based CMS instead of the filesystem, of course), and we&#8217;ve designed it specifically to be flexible enough to meet arbitrary client requests without the need to re-architect the underlying application.</p>
+
+<p>If you know JavaScript, HTML, and CSS, Mulberry is a powerful tool to rapidly create a content-rich mobile application while taking advantage of an established infrastructure, rather than building it yourself. I&#8217;m excited to see what you&#8217;ll do with it!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-25T08:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/07/25/switching-to-octopress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m taking a stab at starting a new blog at
+<a href="http://rmurphey.com">rmurphey.com</a>, powered by
+<a href="http://octopress.org/">Octopress</a>, which is a set of tools, themes, and other
+goodness around a static site generator (SSG) called
+<a href="https://github.com/mojombo/jekyll">jekyll</a>. A couple of people have noticed
+the new site and wondered what I&#8217;m doing, so I thought I&#8217;d take a couple of
+minutes to explain.</p>
+
+<p>My old blog at <a href="http://blog.rebeccamurphey.com">blog.rebeccamurphey.com</a> is
+managed using <a href="http://posterous.com">Posterous</a>. It used to be a self-hosted
+WordPress site, but self-hosted WordPress sites are so 2009. One too many
+attacks by hackers made it way more trouble than it seemed to be worth.
+Posterous made switching from a WordPress install pretty easy, so, I did that.
+All told, it took a few hours, and I was pretty happy.</p>
+
+<p>For a few reasons, the old blog isn&#8217;t going anywhere:</p>
+
+<ul>
+<li>I ran into some trouble importing the old content into jekyll. I was tired
+and I didn&#8217;t investigate the issues too much, so they&#8217;re probably solveable,
+but &#8230;</li>
+<li>Some of the old content just isn&#8217;t that good, and since time is a finite
+resource, I don&#8217;t want to get too wrapped up in moving it over. Plus &#8230;</li>
+<li>Frighteningly or otherwise, some of my posts have become reference material
+on the internet. If I move them, I&#8217;ve got to deal with redirections, and I
+have a feeling that&#8217;s not going to be an easy task with Posterous.</li>
+</ul>
+
+
+<p>In hindsight, I should have switched directly from WordPress to an SSG. Despite
+my many complaints about Posterous &#8211; misformatted posts, lack of comment
+hyperlinks, a sign-in requirement for commenting, and lots more &#8211; in the end
+my decision to switch to a static site generator instead was more about having
+easy control over my content <em>on my filesystem</em>.</p>
+
+<p><a href="http://blog.guestlistapp.com/post/2304152860/five-reasons-to-use-a-static-site-generator-instead-of">This article</a>
+explains it well, but the bottom line, I think, is that static site generators
+are blogging tools for people who don&#8217;t need all the bullshit that&#8217;s been added
+to online tools in the interest of making them usable by people who don&#8217;t know
+wtf they&#8217;re doing. So, yes, to use an SSG, you have to know wtf you&#8217;re doing,
+and for me that&#8217;s a good thing: the tool gets out of my way and lets me focus
+on the writing.</p>
+
+<p>As for Octopress, it seems pretty damn nifty &#8211; the default theme looks gorgeous on my
+desktop and on my phone, and it seems they&#8217;ve taken care to put common
+customization points in a single sass file. All that aside, though, one of my favorite parts
+about it is that my content is truly my content. If Octopress pisses me off &#8211;
+though I hope it won&#8217;t! &#8211; then I can simply take my markdown files and put
+them in some other SSG, upload the whole thing to my GitHub pages, and be done
+with it. Win all around.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/24/object-literals/">Using Object Literals for Flow Control and Settings</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-24T00:00:00-04:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/07/24/object-literals/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I got an email the other day from someone reading through <a href="http://jqfundamentals.com">jQuery Fundamentals</a> &#8211; they&#8217;d come across the section
+about patterns for performance and compression, which is based on a
+presentation by <a href="http://paulirish.com">Paul Irish</a> gave back at the 2009 jQuery
+Conference in Boston.</p>
+
+<p>In that section, there&#8217;s a bit about alternative patterns for flow control &#8211;
+that is, deciding what a program should do next. We&#8217;re all familiar with the
+standard if statement:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isAnimal</span><span class="p">(</span><span class="nx">thing</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">thing</span> <span class="o">===</span> <span class="s1">&#39;dog&#39;</span> <span class="o">||</span> <span class="nx">thing</span> <span class="o">===</span> <span class="s1">&#39;cat&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;yes!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What stumped the person who emailed me, though, was when the same logic as we
+see above was written like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isAnimal</span><span class="p">(</span><span class="nx">thing</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(({</span> <span class="nx">cat</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dog</span> <span class="o">:</span> <span class="mi">1</span> <span class="p">})[</span> <span class="nx">thing</span> <span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;yes!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What&#8217;s happening here is that we&#8217;re using a throwaway object literal to express
+the conditions under which we will say a <code>thing</code> is an animal. We could have
+stored the object in a variable first:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isAnimal</span><span class="p">(</span><span class="nx">thing</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">animals</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">cat</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">dog</span> <span class="o">:</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">animals</span><span class="p">[</span> <span class="nx">thing</span> <span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;yes!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However, that variable&#8217;s only purpose would be to provide this one lookup, so
+it can be argued that the version that doesn&#8217;t bother setting the variable is
+more economical. Reasonable people can probably disagree about whether this
+economy of bytes is a good tradeoff for readability &#8211; something like this is
+perfectly readable to a seasoned developer, but potentially puzzling otherwise
+&#8211; but it&#8217;s an interesting example of how we can use literals in JavaScript
+without bothering to store a value in a variable.</p>
+
+<p>The pattern works with an array, too:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">animalByIndex</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">[</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span> <span class="p">][</span> <span class="nx">index</span> <span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;s also useful for looking up values generally, which is how I find myself
+using it most often these days in my work with <a href="http://toura.com">Toura</a>, where
+we routinely branch our code depending on the form factor of the device we&#8217;re
+targeting:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">getBlingLevel</span><span class="p">(</span><span class="nx">device</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">({</span>
+</span><span class='line'>    <span class="nx">phone</span> <span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tablet</span> <span class="o">:</span> <span class="mi">200</span>
+</span><span class='line'>  <span class="p">})[</span> <span class="nx">device</span><span class="p">.</span><span class="nx">type</span> <span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As an added benefit, constructs that use this pattern will return the
+conveniently falsy <code>undefined</code> if you try to look up a value that doesn&#8217;t have
+a corresponding property in the object literal.</p>
+
+<p>A great way to come across techniques like this is to read the source code of
+your favorite library (and other libraries too). Unfortunately, once
+discovered, these patterns can be difficult to decipher, even if you have
+pretty good Google fu. Just in case your neighborhood blogger isn&#8217;t available,
+IRC is alive and well in 2011, and it&#8217;s an excellent place to get access to
+smart folks eager to take the time to explain.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-06T10:50:00-04:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/07/06/lessons-from-a-rewrite/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MVC and friends have been around for decades, but it’s only in the last couple
+of years that broad swaths of developers have started applying those patterns
+to JavaScript. As that awareness spreads, developers eager to use their
+newfound insight are presented with a target-rich environment, and the
+temptation to rewrite can be strong.</p>
+
+<blockquote><p>There’s a subtle reason that programmers always want to throw away the code
+and start over. The reason is that they think the old code is a mess. … The reason
+that they think the old code is a mess is because of a cardinal, fundamental
+law of programming: It’s harder to read code than to write it. - <a href="http://www.joelonsoftware.com/articles/fog0000000069.html"> Joel Spolsky
+</a></p></blockquote>
+
+<p>When I started working with <a href="http://toura.com/"> Toura Mobile </a> late last year, they already had
+a product: a web-based CMS to create the structure of a mobile application and
+populate it with content, and a PhoneGap-based application to consume the
+output of the CMS inside a native application. Customers were paying, but the
+development team was finding that delivering new features was a struggle, and
+bug fixes seemed just as likely to break something else as not. They contacted
+me to see whether they should consider a rewrite.</p>
+
+<p>With due deference to Spolsky, I don’t think it was a lack of readability
+driving their inclination to rewrite. In fact, the code wasn’t all that
+difficult to read or follow. The problem was that the PhoneGap side of things
+had been written to solve the problems of a single-purpose, one-off
+application, and it was becoming clear that it needed to be a flexible,
+extensible delivery system for all of the content combinations clients could
+dream up. It wasn’t an app — it was an app that made there be an app.</p>
+
+<blockquote><p>Where a new system concept or new technology is used, one has to build a system
+to throw away, for even the best planning is not so omniscient as to get it
+right the first time. Hence plan to throw one away; you will, anyhow. - Fred
+Brooks, <a href="http://en.wikipedia.org/wiki/The_Mythical_Man-Month"> The Mythical Man Month </a></p></blockquote>
+
+<p>By the time I’d reviewed the code and started writing up my findings, the
+decision had already been made: Toura was going to throw one away and start
+from scratch. For four grueling and exciting months, I helped them figure out
+how to do it better the second time around. In the end, I like to think we’ve
+come up with a solid architecture that’s going to adapt well to clients’
+ever-changing needs. Here, then, are some of the lessons we learned along the
+way.</p>
+
+<h2>Understand what you’re rewriting</h2>
+
+<p>I had spent only a few days with the codebase when we decided that we were
+going to rewrite it. In some ways, this was good — I was a fresh set of eyes,
+someone who could think about the system in a new way — but in other ways, it
+was a major hindrance. We spent a lot of time at the beginning getting me up to
+speed on what, exactly, we were making; things that went without saying for
+existing team members did not, in fact, go without saying for me.</p>
+
+<p>This constant need for explanation and clarification was frustrating at times,
+both for me and for the existing team, but it forced us to state the problem in
+plain terms. The value of this was incredible — as a team, we were far less
+likely to accept assumptions from the original implementation, even assumptions
+that seemed obvious.</p>
+
+<p>One of the key features of Toura applications is the ability to update them
+“over the air” — it’s not necessary to put a new version in an app store in
+order to update an app’s content or even its structure. In the original app,
+this was accomplished via generated SQL diffs of the data. If the app was at
+version 3, and the data in the CMS was at version 10, then the app would
+request a patch file to upgrade version 3 to version 10. The CMS had to
+generate a diff for all possible combinations: version 3 to version 10, version
+4 to version 10, etc. The diff consisted of queries to run against an SQLite
+database on the device. Opportunities for failures or errors were rampant,
+a situation exacerbated by the async nature of the SQLite interface.</p>
+
+<p>In the new app, we replicated the feature with vastly less complexity
+— whenever there is an update, we just make the full data available at an
+app-specific URL as a JSON file, using the same format that we use to provide
+the initial data for the app on the device. The new data is stored on the
+device, but it’s also retained in memory while the application is running via
+Dojo’s Item File Read Store, which allows us to query it synchronously. The
+need for version-by-version diffs has been eliminated.</p>
+
+<p>Restating the problem led to a simpler, more elegant solution that greatly
+reduced the opportunities for errors and failure. As an added benefit, using
+JSON has allowed us to meet needs that we never anticipated — the flexibility
+it provides has become a valuable tool in our toolbox.</p>
+
+<h2>Identify pain points</h2>
+
+<p>If the point of a rewrite is to make development easier, then an important step
+is to figure out what, exactly, is making development hard. Again, this was
+a time to question assumptions — as it turned out, there were things that had
+come to be accepted burdens that were actually relatively easy to address.</p>
+
+<p>One of the biggest examples of this was the time required to develop and test
+anything that might behave differently on one operating system versus another.
+For example, the Android OS has limited support for the audio and video tags,
+so a native workaround is required to play media on Android that is not
+required on iOS.</p>
+
+<p>In the original code, this device-specific branching was handled in a way that
+undoubtedly made sense at the beginning but grew unwieldy over time. Developers
+would create Mustache templates, wrapping the template tags in <code>/* */</code> so the
+templates were actually executable, and then compile those templates into plain
+JavaScript files for production. Here are a few lines from one of those
+templates:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="s2">&quot;www/media/&quot;</span> <span class="o">+</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="p">[</span><span class="nx">Toura</span><span class="p">.</span><span class="nx">getTouraPath</span><span class="p">(),</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">imagesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">dimensionsList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">namesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">thumbsList</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These templates were impossible to check with a code quality tool like JSHint,
+because it was standard to declare the same variable multiple times. Multiple
+declarations of the same variable meant that the order of those declarations
+was important, which made the templates tremendously fragile. The theoretical
+payoff was smaller code in production, but the cost of that byte shaving was
+high, and the benefit somewhat questionable — after all, we’d be delivering the
+code directly from the device, not over HTTP.</p>
+
+<p>In the rewrite, we used a simple configuration object to specify information
+about the environment, and then we look at the values in that configuration
+object to determine how the app should behave. The configuration object is
+created as part of building a production-ready app, but in development we can
+alter configuration settings at will. Simple <code>if</code> statements replaced fragile
+template tags.</p>
+
+<p>Since Dojo allows specifying code blocks for exclusion based on the settings
+you provide to the build process, we could mark code for exclusion if we really
+didn’t want it in production.</p>
+
+<p>By using a configuration object instead of template tags for branching, we
+eliminated a major pain point in day-to-day development. While nothing matches
+the proving ground of the device itself, it’s now trivial to effectively
+simulate different device experiences from the comfort of the browser. We do
+the majority of our development there, with a high degree of confidence that
+things will work mostly as expected once we reach the device. If you’ve ever
+waited for an app to build and install to a device, then you know how much
+faster it is to just press Command-R in your browser instead.</p>
+
+<h2>Have a communication manifesto</h2>
+
+<p>Deciding that you’re going to embrace an MVC-ish approach to an application is
+a big step, but only a first step — there are a million more decisions you’re
+going to need to make, big and small. One of the widest-reaching decisions to
+make is how you’ll communicate among the various pieces of the application.
+There are all sorts of levels of communication, from application-wide state
+management — what page am I on? — to communication between UI components — when
+a user enters a search term, how do I get and display the results?</p>
+
+<p>From the outset, I had a fairly clear idea of how this should work based on
+past experiences, but at first I took for granted that the other developers
+would see things the same way I did, and I wasn’t necessarily consistent
+myself. For a while we had several different patterns of communication,
+depending on who had written the code and when. Every time you went to use
+a component, it was pretty much a surprise which pattern it would use.</p>
+
+<p>After one too many episodes of frustration, I realized that part of my job was
+going to be to lay down the law about this — it wasn’t that my way was more
+right than others, but rather that we needed to choose a way, or else reuse and
+maintenance was going to become a nightmare. Here’s what I came up with:</p>
+
+<ul>
+<li><code>myComponent.set(key, value)</code> to change state (with the help of setter
+methods from Dojo’s <a href="http://dojotoolkit.org/reference-guide/dijit/_Widget.html">dijit._Widget mixin</a>)</li>
+<li><code>myComponent.on&amp;lt;Event&amp;gt;(componentEventData)</code> to announce state changes
+and user interaction; Dojo lets us
+<a href="http://dojotoolkit.org/reference-guide/dojo/connect.html">connect</a> to the
+execution of arbitrary methods, so other pieces could listen for these
+methods to be executed.</li>
+<li><code>dojo.publish(topic, [ data ])</code> to announce occurrences of app-wide interest,
+such as when the window is resized</li>
+<li><code>myComponent.subscribe(topic)</code> to allow individual components react to
+published topics</li>
+</ul>
+
+
+<p>Once we spelled out the patterns, the immediate benefit
+wasn’t maintainability or reuse; rather, we found that we didn’t have to make
+these decisions on a component-by-component basis anymore, and we could focus
+on the questions that were actually unique to a component. With conventions
+we could rely on, we were constantly discovering new ways to abstract and DRY
+our code, and the consistency across components meant it was easier to work
+with code someone else had written.</p>
+
+<h2>Sanify asynchronicity</h2>
+
+<p>One of the biggest challenges of JavaScript development — well, besides working
+with the DOM — is managing the asynchronicity of it all. In the old system,
+this was dealt with in various ways: sometimes a method would take a success
+callback and a failure callback; other times a function would return an object
+and check one of its properties on an interval.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">images</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">sqlite</span><span class="p">.</span><span class="nx">getMedias</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">onGetComplete</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">incomplete</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">onGetComplete</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">showImagesHelper</span><span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">objs</span><span class="p">,</span> <span class="nx">choice</span><span class="p">)</span>
+</span><span class='line'><span class="p">},</span><span class="mi">10</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The problem here, of course, is that if <code>images.incomplete</code> never gets set to
+false — that is, if the <code>getMedias</code> method fails — then the interval will never
+get cleared. Dojo and now jQuery (since version 1.5) offer a facility for
+handling this situation in an elegant and powerful way. In the new version of
+the app, the above functionality looks something like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="err">‘</span><span class="nx">image</span><span class="err">’</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">showImages</span><span class="p">,</span> <span class="nx">showImagesFail</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>get</code> method of <code>toura.app.Data</code> returns an <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">immutable promise</a>
+— the promise’s then method makes the resulting value of the asynchronous get
+method available to <code>showImages</code>, but does not allow <code>showImages</code> to alter the
+value. The promise returned by the get method can also be stored in a variable,
+so that additional callbacks can be attached to it.</p>
+
+<p>Using promises vastly simplifies asynchronous code, which can be one of the
+biggest sources of complexity in a non-trivial application. By using promises,
+we got code that was easier to follow, components that were thoroughly
+decoupled, and new flexibility in how we responded to the outcome of an
+asynchronous operation.</p>
+
+<h2>Naming things is hard</h2>
+
+<p>Throughout the course of the rewrite we were constantly confronted with one of
+those pressing questions developers wrestle with: what should I name this
+variable/module/method/thing? Sometimes I would find myself feeling slightly
+absurd about the amount of time we’d spend naming a thing, but just recently
+I was reminded how much power those names have over our thinking.</p>
+
+<p>Every application generated by the Toura CMS consists of a set of “nodes,”
+organized into a hierarchy. With the exception of pages that are standard
+across all apps, such as the search page, the base content type for a page
+inside APP is always a node — or rather, it was, until the other day. I was
+working on a new feature and struggling to figure out how I’d display a piece
+of content that was unique to the app but wasn’t really associated with a node
+at all. I pored over our existing code, seeing the word node on what felt like
+every other line. As an experiment, I changed that word node to baseObj in
+a few high-level files, and suddenly a whole world of solutions opened up to me
+— the name of a thing had limiting my thinking.</p>
+
+<p>The lesson here, for me, is that the time we spent (and spend) figuring out
+what to name a thing is not lost time; perhaps even more importantly, the goal
+should be to give a thing the most generic name that still conveys what the
+thing’s job — in the context in which you’ll use the thing — actually is.</p>
+
+<h2>Never write large apps</h2>
+
+<p>I touched on this earlier, but if there is one lesson I take from every large
+app I’ve worked on, it is this:</p>
+
+<blockquote><p>The secret to building large apps is never build large apps. Break up your
+applications into small pieces. Then, assemble those testable, bite-sized
+pieces into your big application. - Justin Meyer</p></blockquote>
+
+<p>The more tied components are to each other, the less reusable they will be, and
+the more difficult it becomes to make changes to one without accidentally
+affecting another. Much like we had a manifesto of sorts for communication
+among components, we strived for a clear delineation of responsibilities among
+our components. Each one should do one thing and do it well.</p>
+
+<p>For example, simply rendering a page involves several small, single-purpose
+components:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">nodeRoute</span><span class="p">(</span><span class="nx">route</span><span class="p">,</span> <span class="nx">nodeId</span><span class="p">,</span> <span class="nx">pageState</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">pageState</span> <span class="o">=</span> <span class="nx">pageState</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">nodeModel</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">getModel</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">getCurrentPage</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">nodeModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">home</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">page</span> <span class="o">||</span> <span class="o">!</span><span class="nx">page</span><span class="p">.</span><span class="nx">node</span> <span class="o">||</span> <span class="nx">nodeId</span> <span class="o">!==</span> <span class="nx">page</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">PageFactory</span><span class="p">.</span><span class="nx">createPage</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">page</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">back</span><span class="p">();</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">showPage</span><span class="p">(</span><span class="nx">pf</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">pageState</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// record node pageview if it is node-only</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">nodeId</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">pageState</span><span class="p">.</span><span class="nx">assetType</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dojo</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;/node/view&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="nx">route</span><span class="p">.</span><span class="nx">hash</span> <span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The router observes a URL change, parses the parameters for the route from the
+URL, and passes those parameters to a function. The Data component gets the
+relevant data, and then hands it to the PageFactory component to generate the
+page. As the page is generated, the individual components for the page are also
+created and placed in the page. The PageFactory component returns the generated
+page, but at this point the page is not in the DOM. The UI component receives
+it, places it in the DOM, and handles the animation from the old page to the
+new one.</p>
+
+<p>Every step is its own tiny app, making the whole process tremendously testable.
+The output of one step may become the input to another step, but when input and
+output are predictable, the questions our tests need to answer are trivial:
+“When I asked the Data component for the data for node123, did I get the data
+for node123?”</p>
+
+<p>Individual UI components are their own tiny apps as well. On a page that
+displays a videos node, we have a video player component, a video list
+component, and a video caption component. Selecting a video in the list
+announces the selection via the list’s onSelect method. Dojo allows us to
+connect to the execution of object methods, so in the page controller, we have
+this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">videoList</span><span class="p">,</span> <span class="s1">&#39;onSelect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">assetId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">video</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="err">\</span><span class="nx">_videoById</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoCaption</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="nx">video</span><span class="p">.</span><span class="nx">caption</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoPlayer</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The page controller receives the message and passes it along to the other
+components that need to know about it — components don’t communicate directly
+with one another. This means the component that lists the videos can list
+anything, not just videos — its only job is to announce a selection, not to do
+anything as a result.</p>
+
+<h2>Keep rewriting</h2>
+
+<blockquote><p>It takes confidence to throw work away … When people first start drawing,
+they’re often reluctant to redo parts that aren’t right … they convince
+themselves that the drawing is not that bad, really — in fact, maybe they meant
+it to look that way. - <a href="http://www.paulgraham.com/taste.html">Paul Graham, “Taste for Makers”</a></p></blockquote>
+
+<p>The blank slate offered by a rewrite allows us to fix old mistakes, but
+inevitably we will make new ones in the process. As good stewards of our code,
+we must always be open to the possibility of a better way of doing a thing. “It
+works” should never be mistaken for “it’s done.”</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/31/a-new-chapter/">A New Chapter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-31T00:00:00-04:00" pubdate data-updated="true">May 31<span>st</span>, 2011</time>
+        
+         | <a href="/blog/2011/05/31/a-new-chapter/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It was three years ago this summer that I <a href="http://blog.rebeccamurphey.com/2-years-in-some-thoughts-on-working-for-mysel">got the call, bought the Yuengling, smoked the cigarettes</a>, and began life as an independent consultant. It&rsquo;s been (almost) three years of ups and downs, and, eventually, among the most rewarding experiences of my life. Day by day, I wrote my own job description, found my own clients, set my own schedule, and set my own agenda.</p>
+
+
+
+
+<p>Starting tomorrow, it&rsquo;s time for a new chapter in my working life: I&rsquo;ll be joining <a href="http://toura.com">Toura Mobile</a> full-time as their lead JavaScript developer, continuing my work with them on creating a PhoneGap- and Dojo-based platform for the rapid creation of content-rich mobile applications.</p>
+
+
+
+
+<p>I&rsquo;ve been working with Toura for about six months now, starting shortly after I met <a href="http://twitter.com/MattRogish">Matt Rogish</a>, their director of development, at a JavaScript event in New York. They brought me on as a consultant to review their existing application, and the eventual decision was to rewrite it from the ground up, using the lessons learned and knowledge gained from the first version to inform the second. It was a risky decision, but it&rsquo;s paid off: earlier this year, Toura started shipping apps built with the rewritten system, and the care we took to create modular, loosely coupled components from the get-go has paid off immensely, meeting current needs while making it easier to develop new features. With the rewrite behind us, these days we&rsquo;re using the solid foundation we built to allow users of the platform to create ever more customized experiences in their applications.</p>
+
+
+
+
+<p>If you know me at all, you know that I&rsquo;ve been pretty die-hard about being an independent consultant, so you might think this was a difficult decision. Oddly, it wasn&rsquo;t &mdash; I&rsquo;ve enjoyed these last several months immensely, the team I work with is fantastic, and I&rsquo;ve never felt more proud of work I&rsquo;ve done. Whenever I found myself wondering whether Toura might eventually tire of paying my consulting rates, I&rsquo;d get downright mopey. Over the course of three years, I&rsquo;ve worked hard for all of my clients, but this is the first time I&rsquo;ve felt so invested in a project&rsquo;s success or failure, like there was a real and direct correlation between my efforts and the outcome. It&rsquo;s a heady feeling, and I hope and expect it to continue for a while.</p>
+
+
+
+
+<p>By the way, I&rsquo;ll be talking about the rewrite at both <a href="http://2011.texasjavascript.com">TXJS</a> and <a href="http://gothamjs.com">GothamJS</a> in the next few weeks.</p>
+
+
+
+
+<p>Also: <a href="http://toura.com/about/jobs/">we&rsquo;re hiring</a> :)</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/20/getting-better-at-javascript/">Getting Better at JavaScript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-20T00:00:00-04:00" pubdate data-updated="true">May 20<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/05/20/getting-better-at-javascript/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I seem to be getting a lot of emails these days asking a deceptively simple
+question: “How do I get better at JavaScript?” What follows are some
+semi-random thoughts on the subject:</p>
+
+<p>The thing that I’ve come to realize about these questions is that some things
+just take time. I wish I could write down “Ten Things You Need to Know to Make
+You Amazing at the JavaScript,” but it doesn’t work that way. Books are
+fantastic at exposing you to guiding principles and patterns, but if your brain
+isn’t ready to connect them with real-world problems, it won’t.</p>
+
+<p><strong>The number one thing that will make you better at writing JavaScript is writing
+JavaScript.</strong> It’s OK if you cringe at it six months from now. It’s OK if you
+know it could be better if you only understood X, Y, or Z a little bit better.
+<a href="http://www.paulgraham.com/taste.html"> Cultivate dissatisfaction </a>, and fear the day when you aren’t disappointed with
+the code you wrote last month.</p>
+
+<p>Encounters with new concepts are almost always eventually rewarding, but in the
+short term I’ve found they can be downright demoralizing if you’re not aware of
+the bigger picture. The first step to being better at a thing is realizing you
+could be better at that thing, and initially that realization tends to involve
+being overwhelmed with all you don’t know. The first <a href="http://jsconf.us/2009/"> JSConf </a>, in 2009, was
+exactly this for me. I showed up eager to learn but feeling pretty cocky about
+my skills. I left brutally aware of the smallness of my knowledge, and it was a
+transformational experience: getting good at a thing involves seeking out
+opportunities to feel small.</p>
+
+<p>One of the most helpful things in my learning has been having access to smart
+people who are willing to answer my questions and help me when I get stuck.
+Meeting these people and maintaining relationships with them is hard work, and
+it generally involves interacting with them in real life, not just on the
+internet, but the dividends of this investment are unfathomable.</p>
+
+<p>To that end, attend conferences. Talk to the speakers and ask them questions.
+Write them emails afterwards saying that it was nice to meet them. Subscribe to
+their blogs. Pay attention to what they’re doing and evangelize their good
+work.</p>
+
+<p>Remember, too, that local meetups can be good exposure to new ideas too, even
+if on a smaller scale. The added bonus of local meetups is that the people
+you’ll meet there are … local! It’s easy to maintain relationships with them
+and share in learning with them in real life.</p>
+
+<p>(An aside: If your company won’t pay for you to attend any conferences, make
+clear how short-sighted your company’s decision is and start looking for a new
+job, because your company does not deserve you. Then, if you can, cough up the
+money and go anyway. As a self-employed consultant, I still managed to find
+something like $10,000 to spend on travel- and conference-related expenses last
+year, and I consider every penny of it to be money spent on being better at
+what I do. When I hear about big companies that won’t fork over even a fraction
+of that for an employee who is raising their hand and saying “help me be better
+at what I do!”, I rage.)</p>
+
+<p>Make a point of following the bug tracker and repository for an active
+open-source project. Read the bug reports. Try the test cases. Understand the
+commits. I admit that I have never been able to make myself do this for
+extended periods of time, but I try to drop in on certain projects now and then
+because it exposes me to arbitrary code and concepts that I might not otherwise
+run into.</p>
+
+<p>Read the source for your favorite library, and refer to it when you need to
+know how a method works. Consult the documentation when there’s some part of
+the source you don’t understand. When choosing tools and plugins, read the
+source, and see whether there are things you’d do differently.</p>
+
+<p>Eavesdrop on communities, and participate when you have something helpful to
+add. Lurk on a mailing list or a forum or in an IRC channel, help other people
+solve problems. If you’re not a <a href="http://slash7.com/2006/12/22/vampires/"> help vampire </a> — if you give more than you take —
+the “elders” of a community will notice, and you will be rewarded with their
+willingness to help you when it matters.</p>
+
+<p>Finally, books:</p>
+
+<ul>
+<li>JavaScript: The Good Parts, by Douglas Crockford. It took me more than one
+try to get through this not-very-thick book, and it is not gospel. However,
+it is mandatory reading for any serious JavaScript developer.</li>
+<li><a href="http://eloquentjavascript.net/"> Eloquent JavaScript </a>, Marijn Haverbeke (also in print). This is another book
+that I consider mandatory; you may not read straight through it, but you
+should have it close at hand. I like it so much that I actually bought the
+print version, and then was lucky enough to get a signed copy from Marijn at
+JSConf 2011.</li>
+<li>JavaScript Patterns, by Stoyan Stefanov. This was the book that showed me
+there were names for so many patterns that I’d discovered purely through
+fumbling around with my own code. I read it on the flight to the 2010 Boston
+jQuery Conference, and it’s definitely the kind of book that I wouldn’t have
+gotten as much out of a year earlier, when I had a lot less experience with
+the kinds of problems it addresses.</li>
+<li>Object-Oriented JavaScript, by Stoyan Stefanov. It’s been ages since I read
+this book, and so I confess that I don’t have a strong recollection of it,
+but it was probably the first book I read that got me thinking about
+structuring JavaScript code beyond the “get some elements, do something with
+them” paradigm of jQuery.</li>
+</ul>
+
+
+<p>Good luck.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/25/objects-as-arguments/">Objects as Arguments: Where Do You Draw the Line?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-25T11:16:00-04:00" pubdate data-updated="true">Apr 25<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/04/25/objects-as-arguments/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was reviewing some code last week and came across a snippet that looked a lot like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">someObject</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">onSuccess</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">someMethod</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">secret</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">someMethod</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>My immediate response was to suggest that it didn&#8217;t make sense to be passing
+four separate arguments to <code>someMethod</code>, especially when the arguments were
+being &#8220;unpacked&#8221; from an already-existing object. Certainly we could just pass
+the <code>resp</code> object directly to <code>someMethod</code>, and let <code>someMethod</code> unpack it as
+necessary &#8211; we&#8217;d save some bytes, and we&#8217;d also leave ourselves some room to
+grow. &#8220;I&#8217;m not a big fan of functions that take four arguments,&#8221; I said in my
+GitHub comment.</p>
+
+<p>To the original author&#8217;s credit, &#8220;because I say so&#8221; wasn&#8217;t sufficient reason to
+rewrite code that was working just fine, thank you very much. If four arguments
+was too many, was two arguments too many? Why draw the line at four? Surely the
+four-argument signature helped indicate to future developers what was required
+in order for the function to &#8230; function. Right? My hackles momentarily
+raised, I parried by pointing out that if the arguments were actually required
+by the function, maybe the function ought to actually check for their presence
+before using them. Ha! While the original author was distracted by my disarming
+logic, I fretted over the fact that I use a function that take four arguments
+every day: <code>dojo.connect(node, 'click', contextObj, 'handlerMethod')</code>. Ohnoes.</p>
+
+<p>So where do you draw the line? Certainly you could write that <code>dojo.connect</code>
+call like so:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">node</span> <span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">event</span> <span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">context</span> <span class="o">:</span> <span class="nx">contextObj</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;handlerMethod&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This, though, might make you poke your eyes out. It certainly isn&#8217;t as concise
+as the four-argument approach, and it makes a lot of things like
+<a href="http://ejohn.org/blog/partial-functions-in-javascript/">partial</a>
+<a href="http://dojotoolkit.org/reference-guide/dojo/partial.html#dojo-partial">application</a>
+a lot harder. Clearly there&#8217;s more to this than &#8220;if there&#8217;s more than four
+arguments, put them in an object&#8221; &#8230; but what are the rules?</p>
+
+<h2>Optional Arguments</h2>
+
+<p>Probably the most compelling reason to use an object is when there are several
+optional arguments. For example, last fall I was reviewing some code from a
+potential training client, and I came across this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;done!&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>No one can argue that this is not terrible, and yet every experienced
+JavaScript developer knows how the developer(s) who wrote it arrived there. At
+first, the function needed three arguments, and all was good with the world.
+But then, it seemed like the same function could be used to do another thing by
+just passing two more arguments &#8211; no big deal, because if those two arguments
+weren&#8217;t present, then just the first three would suffice. Five arguments
+certainly isn&#8217;t <em>that</em> bad, right? After that, though, things went south: for
+whatever undoubtedly marketing-department-driven reason, suddenly both the
+original three-argument case and the later five-argument case both needed to
+receive two more arguments, and these two new arguments were mandatory. Now
+both cases had seven-argument signatures, and in some cases, two of those seven
+arguments needed to be null so nothing would break.</p>
+
+<p>This case demonstrates the most compelling reason to switch to using an object
+instead: optional arguments. When the developer discovered that the original,
+three-argument <code>addBling</code> could be used for the five-argument case as well, it
+was probably time to refactor:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// original</span>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// new hotness</span>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, the same function could be used while passing it more information about
+how to behave in the five-argument case:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#omgSoAwesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">unicorns</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">rainbows</span> <span class="o">:</span> <span class="mi">5</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, when it came time to add yet more bling, the function signature wouldn&#8217;t need to change,</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timesToBlink</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">alertOnSuccess</span> <span class="o">:</span> <span class="s1">&#39;done!&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#omgSoAwesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;fast&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">unicorns</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">rainbows</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timesToBlink</span> <span class="o">:</span> <span class="mi">9001</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">alertOnSuccess</span> <span class="o">:</span> <span class="s1">&#39;woohoo!&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Extensibility and Future-Proofing</h2>
+
+<p>Another case for passing in an object is when you want the flexibility that an
+object provides, even if your code doesn&#8217;t require it for now:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">firstName</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For now, you only want to be able to provide the first and last name of the
+person &#8211; it would work just fine to create a function signature for the
+<code>Person</code> constructor that took exactly those two arguments, because indeed they
+are required. On the other hand, though, this is incredibly short-sighted &#8211;
+while first and last name may be all that you care about now, there&#8217;s obviously
+more to a person than those two attributes, and eventually you may want to
+provide attributes such as age, occupation, etc. Doing this with individual
+arguments quickly becomes unsustainable. Besides that, though, it also makes
+assigning instance properties a pain in the ass. By passing an object, we can
+rewrite the above code as such:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</span><span class='line'>  <span class="c1">// jQuery: $.extend(this, args);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now &#8211; assuming this is what we want &#8211; we can mix in <em>any</em> settings we provide
+in the <code>args</code> argument. Dojo, for example, bakes this ability in to anything
+that inherits from <code>dijit._Widget</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">thinger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">my</span><span class="p">.</span><span class="nx">Thinger</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Favorite Animals&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">animals</span> <span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;Narwhal&#39;</span><span class="p">,</span> <span class="s1">&#39;Lemur&#39;</span><span class="p">,</span> <span class="s1">&#39;Honey Badger&#39;</span> <span class="p">]</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Use Objects for Related Data</h2>
+
+<p>An important qualifier here is that all of the properties of an object that
+we&#8217;ve talked about passing to our <code>Person</code> constructor are related &#8211; they all
+are saying something about the Person you&#8217;re creating. What if creating our
+Person was asynchronous, and we wanted to run a function once our Person was
+created? In a (contrived) case like that, I think it does make sense to pass in
+a separate argument:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">configObj</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this particular example, we still only have two arguments &#8211; we haven&#8217;t
+wandered into that muddy realm of four or more. That said, I think this
+distinction is part of what makes <code>dojo.connect(node, 'click', contextObj,
+'handlerMethod')</code> OK: the arguments are four distinctly different types of
+information. Taken together, they have an almost narrative quality: when this
+node receives a click, use the context object&#8217;s <code>handlerMethod</code>. A signature
+like <code>new Person('Rebecca', 'Murphey', 34, 'web developer', 2 /*cats*/, 2
+/*dogs*/)</code> doesn&#8217;t <em>feel</em> the same as the <code>dojo.connect</code> example &#8211; it&#8217;s
+information that&#8217;s too related to be expressed as independent arguments.</p>
+
+<h2>Four or More, Time to Refactor?</h2>
+
+<p>I think the bottom line here is a) it&#8217;s complicated, and b) if your function
+signature has four or more arguments, you should almost certainly consider
+whether there&#8217;s a better way to do it. If the arguments are super-related, it
+may be they belong in an object, so you get the benefit of easy extensibility
+down the road. If there are optional arguments, you almost certainly want to
+wrap those in an object to avoid passing <code>null</code> over and over again.</p>
+
+<p>Personally, my threshold is actually closer to two arguments &#8211; if I find
+myself wanting a third argument, I question whether my function is trying to do
+more than it should be doing &#8211; maybe I should do some pre-processing of the
+input so I can get away with just passing in two arguments. Every additional
+argument is an indication of additional complexity, which means an additional
+opportunity for things to go wrong.</p>
+
+<h2>Other Considerations</h2>
+
+<p>I posed this question to
+<a href="http://twitter.com/#!/rmurphey/status/62172041037623296">Twitter</a> and got a
+ton of interesting feedback. Here are some of the highlights that I didn&#8217;t
+cover above:</p>
+
+<ul>
+<li><a href="https://twitter.com/raydaly/status/62320791232069632">@raydaly</a> no new nouns
+is my principle. If unrelated data needs to be passed, diff args.</li>
+<li><a href="https://twitter.com/dadaxl/status/62308649699250176">@dadaxl</a> I would pass
+an obj if I&#8217;ve a dynamic bunch of args containing functions.</li>
+<li><a href="https://twitter.com/sh1mmer/status/62308597153021952">@sh1mmer</a> omg! Objects
+for the love of god! No one likes immutable APIs. Just ask @ls_n</li>
+<li><a href="https://twitter.com/mattrogish/status/62307288597266432">@MattRogish</a> Rails
+tends to do required things are named args, optional things are a hash</li>
+<li><a href="https://twitter.com/ryanflorence/status/62511600837468161">@ryanflorence</a>
+obfuscation often influences me, objects don&#8217;t compress as well as multiple
+args.</li>
+<li><a href="https://twitter.com/getify/status/62512606132449280">@getify</a> if more than
+half of the args are optional&#8230;or if there are several boolean params which
+without names can be confusing</li>
+<li><a href="https://twitter.com/jcoglan/status/62253184369954816">@jcoglan</a> When further
+args are optional, or args.length&gt;3. Need to spot when options merit a
+refactoring, though.</li>
+<li><a href="https://twitter.com/digitalicarus/status/62247330354692096">@digitalicarus</a>
+A combo of sheer length, amount of reuse, if it&#8217;s an API, and/or if it&#8217;s
+designed to be called a variety of ways to a similar end.</li>
+<li><a href="https://twitter.com/bryanforbes/status/62237053148086272">@BryanForbes</a> If I
+have to start swapping arguments and type checking, it&#8217;s time for one object
+or reworking my function.</li>
+<li><a href="https://twitter.com/myfreeweb/status/62229278581993472">@myfreeweb</a> I use an
+object when I start forgetting the order of args &#8230; or there is no logical
+order like (key, value, callback) at all</li>
+<li><a href="https://twitter.com/zetafleet/status/62209835097268224">@zetafleet</a> When
+many of the arguments are optional or they&rsquo;re all getting stored or
+copied directly over to the object.</li>
+<li><a href="https://twitter.com/maravillas/status/62176422877335552">@maravillas</a> I
+usually don&#8217;t make an obj just for passing data; if arglist is too long,
+maybe the function does too much and needs refactoring.</li>
+</ul>
+
+
+<h2>Postscript</h2>
+
+<p>We ended up leaving the code that spurred this whole conversation exactly as it
+was.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/15/modern-javascript/">Modern JavaScript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-15T11:16:00-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/04/15/modern-javascript/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My presentation <a href="http://www.slideshare.net/rmurphey/the-jquery-divide-5287573">the jQuery Divide</a> (<a href="http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html">video here</a>) has been <a href="http://news.ycombinator.com/item?id=2429411">making the rounds</a> on the internet again, six months after I delivered it at JSConf.eu in Berlin, and this time around, a colleague on IRC shared a link with me that drew from it: <a href="http://www.dagolden.com/index.php/1446/is-javascript-the-new-perl/">Is JavaScript the New Perl?</a></p>
+
+<p>Perl has a special place in my heart; it&#8217;s the first language I used to solve a real-world problem, and I still have the second edition Learning Perl that my good friend Marcus got for me at the time. These days I struggle for it not to look mostly like a lot of gibberish, but in the late 1990s it was funtimes.</p>
+
+<p>Anyway. The post that linked to my presentation asked if JavaScript might be going through some of the same pains that Perl has gone through, and linked to an eerily relevant presentation about Modern Perl, a movement &#8220;actively seeks to both to teach how to write good code and change perceptions of Perl that still linger from the dot.com 90s.&#8221; It talks about the void that Perl sought to fill way back in 1987, and then steps through the highs and lows of the intervening 23 years.</p>
+
+<p>One thing that struck me, reading the slides, is that Perl &#8211; like other open-source, server-side languages &#8211; has the distinct benefit of being community-driven. While, yes, JavaScript has a wonderful and vibrant community, the language itself is held hostage by browser vendors, some of whom have shown a strong inclination to not give a fuck about owning up to and fixing their egregious mistakes. Using new features of a language like Perl is, at the end of the day, a largely internal problem &#8211; given enough time and money, switching to a new version of the language that offers new features for code organization, testing, and abstraction is a thing a project can do. Indeed, Perl as a community can even make bold decisions like deciding that a new version simply won&#8217;t be back-compat with a version that came before, throwing away ideas that turned out to be duds; meanwhile, JavaScript web developers often must bend over backwards to ensure back-compat with decade-old technology, and the only way to transition away from that technology is to give up on a set of users entirely.</p>
+
+<p>We&#8217;ve already seen what this means for JavaScript as a language: it was years after JavaScript&#8217;s debut before we really started seeing <a href="http://www.yuiblog.com/blog/2007/06/12/module-pattern/">conversations</a> about what a module should look like in JavaScript, and <a href="http://tagneto.blogspot.com/2011/04/on-inventing-js-module-formats-and.html">we&#8217;re still fighting over it</a> today. Without a solid dependency management system &#8211; something you can take for granted in any 15-year-old community-driven language &#8211; dependency management often means sticking another script tag on the page, and even the most popular JavaScript library on the planet <a href="http://bugs.jquery.com/ticket/7102">struggles</a> with how to participate in a fledgling ecosystem. With no arbiter of common, tested, community-approved, community-vetted solutions &#8211; see Perl&#8217;s CPAN &#8211; it&#8217;s an environment that&#8217;s ripe for fragmentation, and shining examples of <a href="http://en.wikipedia.org/wiki/Not_Invented_Here">Not Invented Here (NIH)</a> litter the JavaScript landscape. Lacking even an agreed-upon method of expressing dependencies, the <em>findability</em> of good solutions is low, and coalescence only occurs around tools with extremely low barriers to entry and extremely high near-term reward.</p>
+
+<p>When Marcus was teaching me Perl, back in the dot com heyday of the late 1990s and before the world temporarily went to hell for a few years, there was great emphasis on TIMTOWTDI: there is more than one way to do it. That mantra made Perl beautiful and elegant and powerful. Too often, it also made it ridiculously hard for the next developer to build upon and maintain, especially as the problems developers were solving got more complicated than copying and pasting some code to support a contact form (sound familiar?). In the end, that mantra meant Perl&#8217;s reputation suffered, as the consequences of code written by developers with a whole lot of freedom and not so much skill became clear.</p>
+
+<p>This, in a nutshell, is what I was talking about in Berlin: that the reputation of this language we love stands to suffer if we don&#8217;t get around to working together to solve these larger problems, and educating the wider world of JavaScript developers as we figure it out. Unlike with Perl, the language itself isn&#8217;t going to evolve in time to help us here &#8211; unless and until we&#8217;re willing to give up on huge swaths of users, we will, generously, be <a href="http://infrequently.org/2010/09/but-ie-9-is-just-around-the-corner/">stuck with the browser technology of 2009</a> for a long time to come. Unlike the Modern Perl movement, <strong>the patterns and tools and practices that will form the foundation of Modern JavaScript are going to have to come from outside implementations of the language itself</strong>.</p>
+
+<p>Realizing that, it becomes clear just how imperative it is that we, as a community, figure out dependency management, modularization, and intentional interoperability so that these patterns, tools, and practices can start to emerge organically. James Burke, the creator of <a href="http://requirejs.org/">RequireJS</a>, is something of a hero to me, not for creating RequireJS, but for taking on the challenge of interacting calmly and level-headedly with all sorts of stakeholders to try to make <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD modules</a> a viable reality. Tool and library developers need to stop debating whether this is a good idea and get to work on making it happen.</p>
+
+<p>Tools and libraries also need to take seriously the need for modularization &#8211; though I confess I have many misgivings about the NIH aspect of Dustin Diaz&#8217;s <a href="https://github.com/ender-js/Ender">Ender.js</a>, and wish that the considerable effort involved had been directed toward an established project with similar features, I can&#8217;t help but hope it will pressure libraries like jQuery to make more efforts in the direction of modularization.</p>
+
+<p>An equally important aspect of modularization is ensuring minimal duplication of effort. As a community, we need to agree on a core set of functionality that ought to be provided by the language but isn&#8217;t, and implement that itself as an interchangeable module. A page with both Underscore.js and jQuery on it has tremendous duplication of functionality, for example. Interchangeability will allow end users to roll exactly the tool they need, no more and no less. Eventually, standard toolkits could emerge that draw on the best of all worlds, rather than one-size-fits-all tools that exist in isolation.</p>
+
+<p>While I agree with what Tom Dale wrote in his oddly controversial post &#8211; that <a href="http://tomdale.net/2011/04/imagine-a-beowulf-cluster-of-javascript-frameworks/">&#8220;unless it is designed to work well together, it usually won&rsquo;t&#8221;</a> &#8211; the more I think about it, the more I realize that the problem lies in our current inability to reliably isolate functionality and express dependencies across tools. It&#8217;s not that large tools like Dojo are the One True Way &#8211; it&#8217;s that large tools like Dojo are incredibly powerful precisely because they take seriously the need for a lightweight core leveraged by components that deliver specific, isolated functionality. JavaScript as a whole will become more powerful by embracing the pattern.</p>
+
+<p>The political problems here are obvious and several: such modularization will, by definition, lead to winners and losers; the identities of libraries as we know them stand to be diluted if it becomes trivial to use only parts of them. The emphasis will shift to curated toolkits that assemble best-of-breed solutions, and NIH efforts will compete on merit, not marketing. At the same time, though, trying new things will no longer involve learning a whole new set of tools, and developers won&#8217;t be as stuck with a solution that made sense once upon a time but not anymore.</p>
+
+<p>A final and important piece of the puzzle is actually educating people about the patterns that are enabled when we embrace these tools and practices. The wider community of everyday devs who are just trying to get their job done has hopefully graduated from copying and pasting scripts, but there&#8217;s a long path ahead, and part of the work of Modern JavaScript needs to be clearing that path for them.</p>
+
+<p>I said it in my Berlin talk, and I will say it again: <em>sharing what we know is as important as making new things</em>, even if it&#8217;s not always quite as fun. All the script loaders, build tools, inheritance systems, array utilities, templating frameworks, and data abstractions in the world are meaningless if we don&#8217;t help people understand how and why to use them.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/04/a-dojo-boilerplate/">A Dojo Boilerplate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-04T00:00:00-04:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/04/04/a-dojo-boilerplate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I first started playing with the <a href="http://dojotoolkit.org">Dojo Toolkit</a>, it was easy enough to <a href="http://dojotoolkit.org/documentation/tutorials/1.6/hello_dojo/">use the CDN-hosted <code>dojo.js</code> and get started</a>, but before long I wanted to make use of one of the features that drew me to Dojo in the first place: the build system that parses your code&rsquo;s dependencies as expressed by <code>dojo.require()</code> statements and creates production-ready files.</p>
+
+
+<p>Coming from a world where this was entirely a DIY affair, the patterns I should follow for taking advantage of Dojo&rsquo;s system were, shall we say, less than clear. There was a lot of frustration, a lot of swearing, and a lot of pleas for help in #dojo on Freenode.</p>
+
+
+<p>These days, I&rsquo;m talking about Dojo a lot, and I&rsquo;ve gotten pretty comfortable with how to set up a project &mdash; I even wrote a post about <a href="http://blog.rebeccamurphey.com/scaffolding-a-buildable-dojo-application">scaffolding a Dojo app</a> once I felt like I had the basics down &mdash; but for a long time I&rsquo;ve wanted to release a ready-made starter project, rather than making people follow seven lengthy steps.</p>
+
+
+<p>With the help of <a href="http://zetafleet.com">Colin Snover</a>, I&rsquo;m pleased to release the <a href="https://github.com/csnover/dojo-boilerplate">Dojo Boilerplate</a>, a simple starter project if you&rsquo;d like to get your feet wet with Dojo and the power of its dependency management and build system. It comes with a bare-bones do-nothing app, a shell script for downloading the Dojo SDK and getting it in the right place, and a shell script and profile file for actually creating a built version. For the brave, it also includes a work-in-progress router for single-page apps &mdash; one of the few features that I feel Dojo itself is missing. Everything you should need to know is documented in the README.</p>
+
+
+<p>I&rsquo;ve also created a <a href="https://github.com/rmurphey/dojo-demo">small demo app</a> that uses the boilerplate and shows some of the basic concepts of MVC development using Dojo, including separating your code into models, views, controllers, and third-party services. It includes an example of templated widgets, which are one of the biggest selling points of Dojo for me, as well as an uber-basic example of object stores, new in Dojo 1.6.</p>
+
+
+<p>The goal of the boilerplate and the demo app is to eliminate some of that pain and WTF that I went through &mdash; while Dojo is ridiculously powerful, the barrier to entry can seem daunting. Over and over again, though, I am grateful that I took the time to overcome it.</p>
+
+
+<p>Finally: as always, pull requests and issues are welcome. Enjoy.</p>
+
+
+<p>Update: Colin is now the maintainer of the boilerplate; I&#8217;ve updated the links above accordingly.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/">When You&#8217;re Building a Non-trivial JS Application &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-30T00:00:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I sense another round of discussion of this is <a href="http://twitter.com/slightlylate/status/52924409509445632">about to begin</a>, and 140 characters isn&#8217;t quite enough to say what I want to say, so:</p>
+
+
+<p>When you&#8217;re building a non-trivial JS application, you don&#8217;t want a jQuery developer, or a Dojo developer, or a YUI developer, or, frankly, any developer who chooses their tool before they evaluate the problem. <strong>For god&#8217;s sake, you want a JavaScript developer.</strong> Can you roll your own solution with jQuery as the base? Yes! Should you? I don&#8217;t think so, and I advise my clients against it for reasons I&#8217;ve <a href="http://blog.rebeccamurphey.com/on-rolling-your-own">written about</a> <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">at length</a>, but I&#8217;m open to hearing compelling, articulate, fact-based arguments in favor of it!</p>
+
+
+<p>But do me a favor, OK? Don&#8217;t base your arguments solely on the winner of a popularity contest. Don&#8217;t tell me how easy it is to find developers familiar with one library or another, because I&#8217;ll come right back and ask you just how good those developers will be at solving problems that aren&#8217;t addressed by said library. And please tell me you&#8217;ve at least explored some of the other options besides [insert the library you&#8217;re advocating here].&nbsp;</p>
+
+
+<p>People read what I write about JavaScript libraries and they write me heartfelt tweets and e-mails saying OMG YOU HATE JQUERY NOW WHAT HAPPENEDDDDD? I don&#8217;t hate jQuery! It is a perfectly viable and valuable tool for so many things! But when people argue not just its viability but its absolute <em>supremacy</em>, when people get defensive and possibly even angry that I suggest there are solutions that are vastly better suited to a certain set of problems, when people contort themselves into pretzels to make their case and their case is &#8220;well, it&#8217;s not <em>that</em> bad&#8221; &#8230; well, that smacks of blind loyalty, not a thoughtful weighing of the tradeoffs and challenges we face as developers, and I question how those people would fare if actually confronted with the needs of a non-trivial application.&nbsp;</p>
+
+
+<p>So, please: Tell me what solutions you&#8217;ve looked at for non-trivial application development. Tell me where they work, tell me where they fall short. Tell me what you&#8217;re working on and how you chose the tools. Don&#8217;t tell me why I&#8217;m wrong &#8211; tell me why you&#8217;re right. Deal? Discuss.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

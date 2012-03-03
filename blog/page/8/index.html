@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="Forgot about coming across DateJS in one of my feeds the other day. Haven&#8217;t used it yet, but expect I will next time I have to do much of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/8">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/09/datejs/">DateJS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-09T00:00:00-05:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/09/datejs/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Forgot about coming across <a href="http://www.datejs.com/">DateJS</a> in one of my feeds the other day. Haven&#8217;t used it yet, but expect I will next time I have to do much of anything with user date input. I&#8217;ll be especially happy if it does end up getting <a href="http://marcgrabanski.com/article/90/DateJS-JavaScript-Library">integrated with the  jQuery UI datepicker &#8230;</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/07/standards-for-html-emails/">Standards for HTML Emails?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/07/standards-for-html-emails/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After a couple of attempts that ended not-so-well, I gave up on HTML emails. I advise people to work with someone who&#8217;s an expert with them, or to at least <a href="http://www.campaignmonitor.com/resources/">use templates that are known to work</a>, and then I wish them well. At a job interview I actually proclaimed my active dislike of HTML emails and general unwillingness to muck with them &#8211; I&#8217;m not sure that went over so well. The news that <a href="http://www.campaignmonitor.com/blog/archives/2007/01/microsoft_takes_email_design_b.html">Outlook 2007 actually took a giant leap backwards in HTML support</a> seals the deal for me. Still, it&#8217;s good to read that <a href="http://www.456bereastreet.com/archive/200712/the_email_standards_project_launches/">some people are trying to bring some sanity to the situation</a>. I wish them luck.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/07/more-on-jquery-selectors/">More on jQuery Selectors</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/07/more-on-jquery-selectors/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Following up on my 13 seconds of selection hell:</p>
+
+<p><a href="http://benjaminsterling.com/jquery-what-are-the-fastest-selector/">jQuery: what are the fastest selectors?</a></p>
+
+<p>Turns out that, as you might expect, <code>$('div.class')</code> is faster than <code>$('.class')</code>, and so is <code>$('div').filter('.class')</code>. Knowing where <em>not</em> to look (&#8220;skip anything that&#8217;s not a div&#8221;) helps make jQuery faster. To which you might say, &#8220;well duh.&#8221; Regardless, the post above does a nice job of demonstrating it pretty plainly, and it&#8217;s a good reminder that, if I&#8217;d wanted to stick with my attribute-based selection, I could have helped my code a little bit by telling it where I expected to find those attributes so it wouldn&#8217;t have had to look through every element on a ridiculously huge page.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#data_entry input, #data_entry select&#39;</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;[name=value]&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/pre&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job/">Software Without Which I&#8217;d Be Hard-pressed to Do My Job</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>
+<strong>vim</strong> A sophisticated text editor with no GUI &#8211; everything is text-based, and all commands are issued from the keyboard. Frightening at first, and then so ridiculously efficient that nothing else makes sense.</li>
+<li>
+<strong>Firefox</strong> Great in and of itself, and the ability to add extensions makes it priceless.</li>
+<li>
+<strong>Firebug</strong> One of said Firefox extensions &#8211; as <a href="http://marcus.org/blog/">Marcus</a> said recently, it&#8217;s hard to imagine how Web 2.0 would have happened without it. The Inspect function, the console, the Net view &#8230; without it I&#8217;d be utterly lost.</li>
+<li>
+<strong>Filezilla</strong> I booted up an old computer of mine and found an FTP client I think I had to either pay for or steal, and it wasn&#8217;t half as good as this. I wish it had bookmarks for moving around servers easily &#8230; alas.</li>
+<li>
+<strong>Pidgin</strong> All my instant messaging personas in one application, with pounces, fine-grained status control and logging. Plus: file transfers seem to work better now. Woo.</li>
+<li>
+<strong>cygwin</strong> In an alternate universe, I get to use a Mac. Until that alternate reality arrives, cygwin gives me the power of the terminal in Windows. These days, I always have at least one cygwin window open most of the time, because sometimes, things are just easier on the command line.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/">13 Seconds: Attribute vs. ID Selectors in jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Before:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// select all elements with an id or name attribute of fieldName;</span>
+</span><span class='line'><span class="c1">// some are inputs (name attribute), some are td&#39;s (id attribute)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span> <span class="o">+</span> <span class="s1">&#39;, [name=&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// give inputs both a name and an id attribute,</span>
+</span><span class='line'><span class="c1">// and then just select fields and td&#39;s via id</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Savings: 13 seconds over the course of selecting &gt; 100 elements. Thank god for Firebug&#8217;s profiler, which pointed me to the problem in a few seconds. Attribute selectors in jQuery are handy, OK, but they don&#8217;t seem to work for large-scale selections.</p>
+
+<p>A side note: vim made the HTML change easy, once I worked through its quirky regexp syntax which requires you to escape the +:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>s/name="\([^"]\+\)" /name="\1" id="\1" /g</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/">Getting Non-developers on the Subversion Bandwagon</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-04T00:00:00-05:00" pubdate data-updated="true">Dec 4<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://marcus.net/blog/">Marcus</a> turned me on to subversion when I was working on a project earlier this year and wanted a way to revisit old versions of files. <a href="http://marcus.net/blog/2007/01/19/creating-a-subversion-repository/">Setting up a subversion repository</a> was easy, and while I did download the Tortoise GUI for Windows, I found the command line was pretty easy too.</p>
+
+<p>A few months later, we were wrestling at work with an issue I&#8217;ve confronted at every job I&#8217;ve had: how to maintain a filesystem that &#8230;</p>
+
+<ul>
+<li>allows everyone to have access to any file they might need</li>
+<li>promotes the concept that files are associated with a <em>client</em>, not with a person</li>
+<li>facilitates regular and thorough backups</li>
+<li>provides versioning more sophisticated than multiple files with names like <code>project_outline_rev2.html</code>
+</li>
+<li>does all this without intimidating the hell out of people who aren&#8217;t on good terms with the command line</li>
+</ul>
+
+
+<p>It wasn&#8217;t a typical use for subversion, which is more normally (in my mind) used for version control with straight-up development projects, but the more I thought about it and talked about it with people who had used subversion, the more it seemed to make sense. We&#8217;d be using it to manage an infinite number of concurrent projects related to maintaining a large client&#8217;s web content, and that meant we&#8217;d have to agree on a directory structure beyond the standard branches/tags/trunk. For it to work at all, I was also going to have to convince people &#8211; some of whom were scarred by cvs &#8211; to actually use it. I braced for a full-fledged campaign: sure, it&#8217;s more complex than no system at all, I would argue, but writing HTML is more complex than writing in Notepad, too, and we seem to handle that OK, right?</p>
+
+<p>As it turned out, my campaign lasted all of a day, and wasn&#8217;t much of a campaign at all. One designer suggested using Dreamweaver or VersionCue to address these concerns, to which I said:</p>
+
+<blockquote>
+one of the things i like about subversion (svn) is that it&#8217;s a platform/software agnostic tool. if we used dw for site management, everyone would have to use dw &#8211; for the homepage update i just did, i hardly touched dreamweaver, preferring to do most everything in vim/command line because it was just so much easier for the sort of work i was doing.
+
+i know that at least on the pc side, there is a subversion extension for dreamweaver. i also know on the pc side there&#8217;s a pretty decent gui svn client. i imagine, since macs are getting pretty popular with devs, that there&#8217;s something similar on that side.
+
+i don&#8217;t mean to shoot down dw/vc out of hand, but i think that it would introduce some real limitations vs svn, even though it is tempting because it is a tool we already use. another thing that is great about svn is that it&#8217;s integrated with the whole trac system that stancil has set up, which also includes a wiki and a ticketing system, all of which are linked together. i see *huge* potential here in terms of project management, documentation, and file management that we aren&#8217;t taking advantage of, and that wouldn&#8217;t be available with a dw solution.
+
+&#8230;
+
+it&#8217;s possible that we don&#8217;t need svn for everything, but honestly i think it&#8217;s easy enough to use once you get the hang of it that it would be just as easy as the fileserver approach, with a ton of added benefits. perhaps the only true drawback is the disk space that would be required for versioning psd&#8217;s and such. but disk space is cheap, and it think the extra storage we&#8217;d need would be worth its small cost if we had constant access to everything.
+</blockquote>
+
+
+<p>Our sysadmin already had some repositories set up that weren&#8217;t getting wide use, so setting up another one was trivial. He added a bunch of disk space in anticipation of the new storage demands (while subversion just stores diffs for text files, it stores full copies of each binary file, and we were going to have a lot of those), and I wrote up some instructions for getting people started:</p>
+
+<h3>Download and install the subversion binaries</h3>
+
+
+<ul>
+<li>
+<a href="http://downloads.open.collab.net/binaries.html">for mac</a> (click the download button)</li>
+<li>
+<a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91">for pc</a> (choose the latest .exe file)</li>
+</ul>
+
+
+
+
+<h3>Download the GUI</h3>
+
+
+<ul>
+<li><a href="http://scplugin.tigris.org/servlets/ProjectDocumentList">scplugin for mac</a></li>
+<li><a href="http://tortoisesvn.net/downloads">TortoiseSVN for pc</a></li>
+</ul>
+
+
+
+
+<h3>Mac folk: update your path to include svn</h3>
+
+
+<ul>
+<li>open terminal</li>
+<li><code>cd ~</code></li>
+<li><code>pico .bash_profile</code></li>
+<li>enter the following:
+<div class="CodeRay">
+  <div class="code"><pre>PATH=&quot;/usr/local/bin:/usr/local/subversion/bin:$PATH&quot;
+export PATH</pre></div>
+</div>
+
+</li>
+<li>press CTRL-O to save</li>
+<li>restart terminal</li>
+</ul>
+
+
+
+
+<h3>Establish ssl certification</h3>
+
+
+<ul>
+<li>open a Terminal window (mac) or Start &gt; Run &gt; cmd.exe (windows)</li>
+<li>type <code>svn ls https://www.svnserver.com/repository/trunk/</code> and hit enter (get the exact URL for your repository; this is just an example)</li>
+<li>enter user/password
+<ul>
+<li>if your username on your machine is the same as your svn username, enter your password.</li>
+<li>otherwise, press enter and you&#8217;ll be prompted for your svn username. enter it.</li>
+<li>enter your svn password.</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+<h3>Getting started and basic workflow</h3>
+
+
+<p>I sat down with a group of initial users to do the initial checkout of the repository and show them the basic workflow. TortoiseSVN makes things especially easy, while scplugin is a bit more rudimentary. Here&#8217;s the workflow I explained:</p>
+
+<ul>
+<li>
+<code>update</code> a folder before you begin work in it; to save time, just update the specific folder, not the whole repo</li>
+<li>make your changes</li>
+<li>
+<code>add</code> any new folders and files you create to the repo &#8211; they won&#8217;t be added automatically!
+</li>
+<li>if you change the structure of a dir, or remove a file, you have to do it via svn!</li>
+<ul>
+<li>
+<code>rename</code> to change a file name or move a file</li>
+<li>
+<code>delete</code> to remove a file</li>
+</ul>
+
+<li>
+<code>update</code> folder prior to commit to receive others&#8217; changes</li>
+<li>
+<code>commit</code> (check in) whenever you reach a milestone or stop work. enter a message with your commit to indicate what you did.</li>
+</ul>
+
+
+
+
+<h3>File structure</h3>
+
+
+<p>Subversion is usually used for managing development projects, but we wanted us to use it to manage an infinite number of small, concurrent projects related to our work maintaining the content on a large client&#8217;s web site. The branches/tags/trunk paradigm didn&#8217;t quite fit here. We ended up keeping the b/t/t setup, but most people just check out the trunk, which contains the following folders:</p>
+
+<ul>
+<li>
+<strong>client_site</strong>, with a directory structure that mirrors the structure of our client&#8217;s web site. This is where we keep most of our files. By mirroring the directory structure of the client&#8217;s web site, we make it easy to find a file if we know the URL of the file on the site.</li>
+<li>
+<strong>projects</strong>, for files related to projects that don&#8217;t fit neatly into the site structure.</li>
+<li>
+<strong>resources</strong>, for image templates, HTML templates, fonts, logos, etc.</li>
+</ul>
+
+
+
+
+<h3>To do</h3>
+
+
+<p>Because we are constantly creating new files and adding them to the repository, some directories are getting unduly large, making <code>update</code>s take a long time, and forcing users to store a lot of unnecessary files locally once they do an <code>update</code>. We need to work out a way to age files so they are still available and easy to locate, but don&#8217;t get picked up as part of the <code>update</code> process.</p>
+
+<h3>Further reading</h3>
+
+
+<ul>
+<li><a href="http://svnbook.red-bean.com/en/1.2/svn.tour.cycle.html">Basic Work Cycle</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/03/remixing-trac-with-jquery/">Remixing Trac With jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-03T00:00:00-05:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/03/remixing-trac-with-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I love <a href="http://trac.edgewall.org/">trac</a>, and I&#8217;ve been doing lots of work lately to customize it so our clients can use it to send us requests. With the configurable workflow option offered in <a href="http://trac.edgewall.org/milestone/0.11">version 0.11</a>, it became the perfect way for us to manage and track client requests. By connecting it to the subversion repository we use for version control of client files, we&#8217;ve virtually eliminated the need for back-and-forth emails &#8211; everything is in one place.</p>
+
+<p>Since trac is intended more for managing a development project than for managing an ongoing client relationship, I&#8217;ve had to make some changes to the out-of-the-box version. I don&#8217;t know Python, and I was having a hard time getting a developer to dive in at the level I needed on a non-billable project. Lucky for me, version 0.11 also includes jQuery (version 1.1.3.1). After a couple of chats with a developer and a few &#8220;duh&#8221; moments, it became clear that I could do most of what I needed without messing around under the hood.</p>
+
+<p>The story so far:</p>
+
+<ul>
+<li>Our clients use trac for internal approval of a request before it gets sent to us &#8211; a content provider can enter a request, which then gets reviewed by a manager. We needed a way to assign this manager to the ticket, without the manager becoming the &#8220;owner&#8221; of the ticket. Initially, we had content providers entering their manager&#8217;s email address into the Cc: field, but that didn&#8217;t go over well. Now, jQuery reuses the existing Assign to menu to build a manager dropdown, with the usernames of our employees removed. When the ticket is submitted, the manager is added to the Cc: field automatically.
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// build the new dropdown</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">custom_cc_select</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-form&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">custom_cc_select</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-owner option&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">excludedManagers</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-cc&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// add the selected manager to the cc field on ticket submit</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.ticket form&#39;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">oldCc</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">manager</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-cc option:selected&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">oldCc</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">oldCC</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">manager</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">manager</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</li>
+
+<li>The standard trac ticket fields were exactly what we needed, but the labels for them were a little confusing to client users. Plus, the form was ugly. A few lines of jQuery created a new section in the form, moved the fields to that section without their table-based layout, reordered the fields and and relabeled them. For example:
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-component&#39;</span><span class="p">).</span> <span class="c1">// get the component dropdown</span>
+</span><span class='line'><span class="nx">remove</span><span class="p">().</span> <span class="c1">// remove it from the DOM but maintain access to it</span>
+</span><span class='line'><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#custom-form&#39;</span><span class="p">).</span> <span class="c1">// put it at the end of the #custom-form div</span>
+</span><span class='line'><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;Request Type&#39;</span><span class="p">);</span> <span class="c1">// put a new label before it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+The new form makes more sense to the client users, reduces errors and omissions, and looks better too.</li>
+
+<li>For certain client requests, a more complex form is required. Trac offers custom fields, but that solution seemed too limiting. With a few more lines of jQuery, I set up a system that watches the Component dropdown. When certain components are chosen, the standard submission form is hidden, and a new form is put in its place using jQuery&#8217;s load() method. The replacement content can include HTML, standard form elements and javascript; when the form is submitted, javascript assembles the field values into a well-formatted description.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/03/my-case-for-standards-based-web-layouts/">My Case for Standards-based Web Layouts</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-03T00:00:00-05:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/03/my-case-for-standards-based-web-layouts/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Since 1999, the World Wide Web Consortium (W3C) &#8211; a standards body that tells the world how the web should work &#8211; has urged web sites to use semantic markup for content and cascading stylesheets (CSS) for layout, and to abandon code that combines information and presentation in non-semantic HTML table-based layouts. Semantic markup &#8230;</p>
+
+<ul>
+<li>puts the most important information in a document at the beginning of the document;</li>
+<li>clearly marks headings, paragraphs, lists and other standard elements; and </li>
+<li>in general indicates what something is, not what it looks like.</li>
+</ul>
+
+
+<p>It’s this separation of information from presentation that helps Google figure out what a page is about; that lets users make decisions about how they interact with content; that allows content to be reused in ways we didn’t think about when it was first created; that lets us change the look and feel of a whole site by editing a file or two; and that lets us take a site built for a PC-based browser and squeeze it onto an iPhone.</p>
+
+<p>All those advantages aside, at the end of the day, just because the W3C says it should be so doesn’t make it so. Plenty of sites haven’t managed to let go of late-1900s practices, and for understandable reasons: There’s a non-trivial learning curve for designers and developers who grew up slicing and dicing layouts into HTML tables, and good semantic markup and CSS takes careful planning at the outset of a project. Combine those challenges with the fact that a dynamic site’s front-end code can be brutally intertwined with back-end processes, and it can be difficult for a company to justify transitioning away from a system that seems to be working just fine.</p>
+
+<p>However, a few factors are tipping the balance in the W3C’s favor these days:</p>
+
+<ul>
+<li>
+<strong>Search engines like pages they can read</strong>, and semantic markup using HTML provides a language search engines can understand. Mark an element as a Level 1 Heading, and search engines will know it’s the most important heading on the page and use that information to figure out what your page is about. Simply using semantic markup can contribute greatly to a site’s search engine optimization.</li>
+<li>
+<strong>Accessibility has come to the forefront of the web development world</strong> with the certification of <a href="http://www.456bereastreet.com/archive/200710/update_on_the_target_accessibility_lawsuit/">a class-action lawsuit against Target</a> department stores. The suit says that Target has refused to take steps to make the site usable by people who are visually impaired. As a result of a ruling in the lawsuit, <a href="http://www.techcrunch.com/2007/10/13/websites-may-require-visually-impaired-access-in-california/">California may mandate that sites be accessible to the visually impaired</a>. While sites that use table-based layouts aren’t inaccessible by definition, they are inherently more difficult to make accessible than sites that separate their information from their presentation.</li>
+<li>
+<strong>The Web 2.0 phenomenon relies on content that can be rearranged and reused with ease</strong>, and that rearranging and reuse is infinitely easier on sites that separate information from presentation. Web 2.0 technologies rearrange, reuse and repopulate elements on a page based on what the elements are, not on what they look like or where they are on the page. As users come to expect more interactivity and fewer page loads from their web experience, sites that separate their information from presentation will be in a better position to make use of Web 2.0 technologies.</li>
+<li>The mobile web has existed for several years now, but <strong><a href="http://www.alistapart.com/articles/putyourcontentinmypocket">the iPhone is reshaping the mobile web landscape</a></strong> and blurring the line between PCs and portable devices. Though the iPhone can browse “normal” web sites, many content providers are offering sites that are HTML-based but customized for the shape and size of the iPhone’s screen. As more portable devices that can browse the “normal” web become available, sites that separate content from presentation will be uniquely positioned to offer mobile users a customized version of their existing pages without having to change the underlying code.</li>
+</ul>
+
+
+<p>Further reading:</p>
+
+<ul>
+<li>
+<a href="http://www.456bereastreet.com/archive/200711/posh_plain_old_semantic_html/">POSH - Plain Old Semantic HTML</a> on 456 Berea Street</li>
+<li>
+<a href="http://www.hotdesign.com/seybold/everything.html">Why Tables for Layout is Stupid</a> from Seybold 2003 (!)</li>
+<li><a href="http://www.w3.org/Style/CSS/">The W3C on CSS</a></li>
+<li>
+<a href="http://csszengarden.com/">CSS Zen Garden</a>, the site that leads many developers down the path to standards</li>
+<li>
+<a href="http://www.alistapart.com">A List Apart</a> offers excellent articles on standards-based web development</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/7/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

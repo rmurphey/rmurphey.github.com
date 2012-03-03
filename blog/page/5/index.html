@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I just spent more time than was reasonable trying to figure out why some Javascript I was using to show a Google map on one site wasn&#8217;t working &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/5">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/16/solution-for-google-map-contents-not-showing/">Solution for Google Map Contents Not Showing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-16T00:00:00-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/11/16/solution-for-google-map-contents-not-showing/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just spent more time than was reasonable trying to figure out why some Javascript I was using to show a Google map on one site wasn&#8217;t working to show the map on another site. The map controls and copyright were rendering, but there was no actual map.</p>
+
+<p>Turns out the problem wasn&#8217;t with my Javascript; I had a CSS rule that was setting overflow:hidden on all divs within a container, and the divs created by the Google map API were getting that rule too. No good. I wrote a new CSS rule to set overflow:visible on all divs inside the map container &#8211; problem solved.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/">Notes on Handing Off a Design to a Front-end Developer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-22T00:00:00-04:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
+        
+         | <a href="/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been spending a lot of time lately turning other people&#8217;s designs into working websites, and often there are a few rounds of back-and-forth before I have everything I need. Some notes on must-have pieces before I can begin work:</p>
+
+<p><strong>Design</strong></p>
+
+<ul>
+    <li>
+<strong>Custom fonts. </strong>If the design includes fonts that aren&#8217;t on <a href="http://www.ampsoft.net/webdesign-l/WindowsMacFonts.html">this list</a>, then either the designer needs to provide a PSD that has all instances of the font being used in the design, or else I&#8217;m going to need the font file in order to create them. (There may be <a href="http://clagnut.com/blog/1798/">licensing</a> <a href="http://www.fsf.org/blogs/licensing/20050425novalis">issues</a> here, which I leave as an exercise for the reader. In print land, we were allowed to provide the print shop with the fonts required to produce a printed piece, and the print shop was not supposed to retain them once the print run was complete. I imagine something similar applies to web production.)</li>
+    <li>
+<strong>Navigation state information. </strong>What should navigation elements look like in the up, over, and current states? Ideally I&#8217;d like to see all of the buttons in each state, but if the variations are simple then I can probably make them myself.</li>
+    <li>
+<strong>Link state information.</strong> What color should links be? Should they be underlined all the time, or only on hover? What color should they be when they are hovered? When they&#8217;ve already been visited?</li>
+    <li>
+<strong>Form treatment.</strong> If the site has any forms on it, what should form elements &#8211; text inputs, submit buttons and input labels &#8211; look like?</li>
+    <li>
+<strong>Typography specifications.</strong> Decisions about these can dramatically affect the feel of the site, and you may not want to leave them up to me. Specifically:
+<ul>
+    <li>How big should body copy be?</li>
+    <li>How much space should there be between body copy lines? (Normally the &#8220;line-height&#8221; is set at 1.2 times the size of the font; increasing this can make body copy more legible.)</li>
+    <li>How much space should there be between body copy paragraphs?</li>
+    <li>How should headings be styled? How big should primary and secondary headlines be relative to the body copy?</li>
+    <li>How should lists (ordered and bulleted) be styled?</li>
+</ul>
+</li>
+    <li>
+<strong>Imagery specifications.</strong> Like typography specifications, these considerations should be made carefully, as they affect the feel of the site. Specifically:
+<ul>
+    <li>How should text wrap around an image? Should the image float to the left, with copy wrapping around the right? Float to the right, copy on the left? Leave it up to the user?</li>
+    <li>If an image is floated to the left or right, how much space should be between it and the text?</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>Documentation</strong></p>
+
+<ul>
+    <li>
+<strong>Approved content documents.</strong> Personally I prefer a single content document per static page that needs to be created, and a content sample for any dynamic pages that will need to be created. If there are any repeating elements in the design that require content, I&#8217;d enjoy getting a document that contains their text as well. Lastly, if there are any dynamically generated content items &#8211; for example, a list of latest posts &#8211; I&#8217;d like a document that shows me how these should be formatted. This will help me:
+<ul>
+    <li>Make sure I&#8217;ve accounted for the pieces of the content and how they fit together.</li>
+    <li>Know that all content has been considered, reviewed and approved, so there shouldn&#8217;t be too many surprises later.</li>
+    <li>Reconcile the content documents with any other documentation I&#8217;ve received.</li>
+</ul>
+</li>
+    <li>
+<strong>Functional spec document. </strong>Let me know what should happen when someone fills out a form. Let me know how the items in the sidebar should be gathered. Let me know where that video&#8217;s going to come from. Basically, anytime I ask &#8220;Where does that come from?&#8221; or &#8220;What does this do?&#8221;, the functional spec should answer that question. While a functional spec should be initiated long before the design is complete, it is good to review the design and make sure those questions are answered. A functional spec should also include a sitemap.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/09/21/planning-a-wordpress-cms-site/">Planning a Wordpress CMS Site</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-21T00:00:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
+        
+         | <a href="/blog/2008/09/21/planning-a-wordpress-cms-site/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There have been <a href="http://www.devlounge.net/publishing/things-to-consider-when-using-wordpress-as-a-cms">plenty of rumblings</a> lately about how <a href="http://www.webdesignerwall.com/tutorials/wordpress-theme-hacks/">WordPress can be used as a content management system</a>, beyond its core competency as a blogging platform. By harnessing the power of pages and subpages, writing custom Page templates, segmenting posts into category-based content feeds, and using handy little plugins like my brother&#8217;s <a href="http://gmurphey.com/2006/10/05/wordpress-plugin-page-link-manager/">Page Link Manager</a>, you can do some <a href="http://codex.wordpress.org/User:Matt/WP_as_CMS">pretty neat stuff</a>.</p>
+
+<p>Lots of people have caught on, including small advertising and marketing agencies that want to be in the content and design business while staying away from programming. In my work with some of those agencies lately, I&#8217;ve often found that there&#8217;s a gap between having the idea to use WordPress as a CMS and knowing the inner workings of WordPress that allow it to be used as a CMS. Since I often find myself needing to explain the building blocks of WordPress and how to use them as part of a lightweight CMS, I thought I should write my thoughts down. My goal here is not to get into the nitty gritty of actually implementing a WordPress-as-CMS site; I leave that to <a href="http://www.rebeccamurphey.com">skilled WordPress developers</a> ;). Rather, it&#8217;s to give non-technical people an overview of how WordPress works so they can make the most of it during the site planning process.</p>
+
+<p><em>Note: In doing my homework for this post, I discovered lots of posts that mentioned workarounds for earlier versions of WordPress. Many of these things &#8211; such as setting a particular Page to be your homepage &#8211; are build in to the newer versions of WordPress. Make sure if you&#8217;re reading a WordPress as CMS tutorial that you are reading one for the current version.</em></p>
+
+<p><strong>Content building blocks</strong></p>
+
+<p>WordPress offers a few building blocks for content management: posts, categories, pages (better referred to as sections), and custom fields.</p>
+
+<ul>
+    <li>
+<strong>Posts and Categories</strong> are used to organize related content. By assigning a Post to a Category, it can be grouped with other Posts in that Category. For example, you could have a &#8220;team members&#8221; Category and a &#8220;news&#8221; Category, and then easily display all team members in one location, and all news items in a completely separate location. You could even have a &#8220;blog&#8221; Category, which would allow you to have a blog on the site while still using Posts to manage other content as well. (Besides allowing this type of organization, Categories also automatically create Category Archives &#8211; an easy way for your users to browse all content related to a Category, if you choose.)</li>
+    <li>
+<strong>Pages</strong> are used to manage static content, and are used for the site&#8217;s navigation. They can also display other content items &#8211; both Posts and Pages &#8211; that match certain criteria. (For the sake of this discussion, pages and subpages may be better thought of as <em>sections</em> and <em>subsections</em>; not every &#8220;page&#8221; (i.e. URL) on a Wordpress site is managed using a Page in the Wordpress admin, but every section and subsection <em>is</em> managed that way. When I&#8217;m talking about a Page with a capital &#8220;P&#8221;, I&#8217;m referring to the kind that you manage through the WordPress admin; when I&#8217;m talking about a page with a lowercase &#8220;p&#8221;, I mean any part of your site that has a unique URL.) It&#8217;s important to note that, using the Page Link Manager plugin mentioned above, you can easily exclude any Page from the site navigation, which makes them much more powerful for managing pieces of content that don&#8217;t need to show up in the navigation.</li>
+    <li>
+<strong>Custom fields</strong> can be added to both Pages and Posts. They can contain all sorts of extra information related to a content item, which can then be accessed whenever the content item is displayed.</li>
+</ul>
+
+
+<p><strong>Theme building blocks</strong></p>
+
+<p>The design of a WordPress site is managed using a theme. Themes include a global header, footer and sidebar. They also include a variety of files for managing the design and structure of the content area, depending on the page you are viewing.</p>
+
+<p>A very basic theme will include the following content area templates:</p>
+
+<ul>
+    <li>Latest Posts template</li>
+    <li>Single Post template</li>
+    <li>Default Page template</li>
+    <li>Search results template (used for displaying all Posts and Pages containing a term)</li>
+    <li>Archives template (used for displaying date-, author- and Category-based Post archives)</li>
+</ul>
+
+
+<p><strong>Harnessing the power of custom templates
+</strong></p>
+
+<p>This is where things get interesting. On a regular WordPress blog, the default Page template will just display some static content that&#8217;s entered into the Page using WordPress admin, plus the site&#8217;s header, footer, and sidebar. This is fine for Pages that don&#8217;t need to pull in any other content, like, say, an About section. When you start using WordPress as a CMS, you need to start doing more creative things with the content area of your Pages by using custom Page templates.</p>
+
+<p>For the News Page of a site, you might create a custom template that would include introductory content entered via the WordPress admin, along with the 10 most recent posts in the &#8220;news&#8221; Category, ordered from newest to oldest, and a link to view all items in the &#8220;news&#8221; category. For the Home Page of a site, you might create a more elaborate custom template, pulling Posts from a variety of Categories, pulling static content from a variety of hidden Pages, and displaying it all in a variety of ways: full content, titles only excerpts, etc. You might even make use of custom fields. Do you want to be able to show a thumbnail with each Post in the &#8220;video&#8221; category, but only when you&#8217;re showing those posts on your homepage? Add a custom field to those posts with the URL to the thumbnail, then tell your custom Home Page template to look for that custom field and use it to insert an image tag.</p>
+
+<p>You could just as easily create a custom field containing the name of a PHP file to be used as a custom dynamic sidebar for that page; the options here are pretty much limited by your imagination (and your developer).</p>
+
+<p><strong>Developing the site architecture</strong></p>
+
+<p>In planning a site that will use WordPress as a CMS, it&#8217;s imperative to think of how your content, sections and subsections fit into the WordPress model. It will save you lots of headaches when it comes time to actually develop the site, and lots of calls and emails from your developer trying to figure out what you had in mind. In fact, I strongly recommend getting a skilled WordPress developer involved early in the process, to help you turn your ideas into a viable spec.</p>
+
+<p>Here&#8217;s the basic process I recommend:</p>
+
+<ul>
+    <li>Develop a simple sitemap for the site. Figure out what the sections and subsections are, and how they&#8217;re organized.</li>
+    <li>Identify the pieces content that will appear on each item in your sitemap, and evaluate how they should be managed. Is the content static and self-contained, such as &#8220;About Our Company&#8221; text? It should probably be managed through a Page. Is the content some kind of list of related items, such as news items or team members? It should probably be managed through Posts and Categories. Is it a secondary sidebar that appears on several pages? Consider using a hidden page if the sidebar is static or a PHP include if the sidebar uses other WordPress content items.</li>
+    <li>Identify the Categories you&#8217;ll use to distribute the Posts to their proper place(s). For each category, evaluate whether you&#8217;ll need to collect information beyond title, body, and author. If so, identify these as custom fields.</li>
+    <li>Identify the Pages you&#8217;ll be using on the site &#8211; including Pages that will be hidden in the navigation and used solely for placing static content on multiple pages.</li>
+    <li>Decide how you will use your header, sidebar and footer to help users navigate your site. Will you provide links to Category archives? Will you allow your visitors to search your site? Will you show subpages of the Page a visitor is on?</li>
+    <li>Identify which <em>visible</em> Pages will use a default Page template, and which will require a custom template, and identify the types of custom templates that will be required. Ideally, you will not require a separate custom template for every custom Page; look for similarities among the custom Pages, and try to identify the fewest number of custom templates that will do the job.</li>
+</ul>
+
+
+<p><strong>Plan the design based on the architecture
+</strong></p>
+
+<p>Once you&#8217;ve completed the site architecture, you are ready to actually design the site. For your own sanity, don&#8217;t try to do too much design before this point. You&#8217;ll need the information gathered in the site architecture phase to guide you in developing the design document upon which your template developer will base their work; a design document that doesn&#8217;t take all of these considerations into account is going to lead your developer in circles as they try to make sense of what you had in mind.</p>
+
+<p>Before you begin designing, you may want to draw up some wireframes that show the different elements you&#8217;ll be designing &#8211; header, footer, sidebar, custom page views, single post views, etc. They can guide the design process and be valuable to the developer who implements your design. When you&#8217;re finished, your design document should include the following:</p>
+
+<ul>
+    <li>General header. Note any ways in which the header should change according to the context in which it&#8217;s being displayed &#8211; for example, a breadcrumb or an indication of the current navigation item.</li>
+    <li>General sidebar (or left and right sidebar). Again, note ways in which the sidebar should change according to the context in which it&#8217;s being displayed.</li>
+    <li>General footer.</li>
+    <li>Latest Posts view. If you are going to give your visitors the ability to view your latests Posts, make sure you design a view for this. The latest Posts view will usually include 10 posts; for each Post, you&#8217;ll usually show the title, author, date, category, body, and comment count.</li>
+    <li>Single Post view. Ideally the structure of this design will vary little from one Category to another, though the visual presentation may change. This design will likely include the post&#8217;s title, body, author, date, category/ies, navigation to the next and previous post, a comment submission form, and user comments.</li>
+    <li>Archive view. This will be used for viewing all of the Posts by Category, month, year, author, etc. This is only necessary if you will give users the option of viewing posts this way. Usually this view will include multiple Posts. For each post, you&#8217;ll show the title and an excerpt; you may also choose to show date, author and category information.</li>
+    <li>Search view. This will be used for displaying user search results. It is usually very much like the Archive view: a list of posts, for which you show the title, an excerpt, and any other relevant information.</li>
+    <li>Default Page view. This will be used for displaying Pages that do not have custom templates associated with them. Usually this will consist of the Page title and body, and potentially a secondary sidebar.</li>
+    <li>Custom Page views. For every custom view identified in the site architecture phase, create a corresponding custom design.</li>
+</ul>
+
+
+<p>Giving consideration to how a site will be built in WordPress is a tad more complicated than deciding that it should be built in WordPress and then handing it off to a developer; of course, you can do it that way, but it&#8217;s not exactly the most cost-effective method. Understanding the system, working with a developer from the start, and doing the planning before you dive into design will give you the results you intend, and probably open your eyes to some connections and possibilities that you can then decide how to take advantage of, rather than leaving it up to your developer to see them and decide whether to bring them to your attention. It&#8217;s a lot to wrap your brain around at first, perhaps, but I&#8217;ve found that the planning pays for itself by smoothing the rest of the process and truly taking advantage of the CMS features built into Wordpress.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer/">5 Reasons You Don&#8217;t Really Want a Jack-of-all-trades Developer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-02T00:00:00-04:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2008</time>
+        
+         | <a href="/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve spent the last couple of weeks trolling Craigslist and have been shocked at the number of ads I&#8217;ve found that seem to be looking for an entire engineering team rolled up into a single person. Descriptions like this aren&#8217;t at all uncommon:</p>
+
+
+<blockquote class="posterous_medium_quote">Candidates must have 5 years experience defining and developing data driven web sites and have solid experience with ASP.NET, HTML, XML, JavaScript, CSS, Flash, SQL, and optimizing graphics for web use. The candidate must also have project management skills and be able to balance multiple, dynamic, and sometimes conflicting priorities. This position is an integral part of executing our web strategy and must have excellent interpersonal and communication skills.</blockquote>
+
+
+<p>Really.  Now I don&#8217;t know about you, but if I were building a house, I wouldn&#8217;t want an architect doing the work of a carpenter, or the foundation guy doing the work of an electrician. But ads like the one above are suggesting that a single person can actually do all of these things, and the simple fact is that these are <em>fundamentally different skills</em>. The foundation guy may build a solid base, but put him in charge of wiring the house and the whole thing could, well, burn down. When it comes to staffing a web project or product, the principle isn&#8217;t all that different &#8211; nor is the consequence.  I&#8217;ve thought a lot about this these last couple of weeks, and I don&#8217;t think this post is sour grapes about the fact that I don&#8217;t have the top-to-bottom, front-to-back web development skills that this ad and others seem to be asking for. I&#8217;m proud and confident of the abilities I&#8217;ve assembled when it comes to front-end development, and I have a rock-solid understanding of what makes websites tick.  The thing is, the more you know, the more you find out you don&#8217;t know. A year ago I&#8217;d have told you I could write PHP/MySQL applications, and do the front-end too; now that I&#8217;ve seen what it means to be truly skilled at the back-end side of things, I realize the most accurate thing I can say is that I understand PHP applications and how they relate to my front-end development efforts. To say that I can write them myself is to diminish the good work that truly skilled PHP/MySQL developers are doing, just as I get a little bent when a back-end developer thinks they can do my job.  So to all of those companies who are writing ads seeking one magical person to fill all of their needs, I offer a few caveats before you post your next Craigslist ad:</p>
+
+
+<ol>
+<li>If you&#8217;re seeking a single person with all of these skills, make sure you have the technical expertise to determine whether a person&#8217;s skills match their resume. Outsource a tech interview if you need to. Any developer can tell horror stories about inept predecessors, but when a front-end developer like myself can read PHP and think it&#8217;s appalling, that tells me someone didn&#8217;t do a very good job of vetting and got stuck with a programmer who couldn&#8217;t deliver on his stated skills.</li>
+<li>A single source for all of these skills is a single point of failure on multiple fronts. Think long and hard about what it will mean to your project if the person you hire falls short in some aspect(s), and about the mistakes that will have to be cleaned up when you get around to hiring specialized people. I have spent countless days cleaning up after back-end developers who didn&#8217;t understand the nuances and power of CSS, or the difference between a div, a paragraph, a list item, and a span. Really.</li>
+<li>Writing efficient SQL is different from efficiently producing web-optimized graphics. Administering a server is different from troubleshooting cross-browser issues. Trust me. All are integral to the performance and growth of your site, and so you&#8217;re right to want them all &#8211; just not from the same person. Expecting quality results in every area from the same person goes back to the foundation guy doing the wiring. You&#8217;re playing with fire.</li>
+<li>Asking for a laundry list of skills may end up deterring the candidates who will be best able to fill your actual need. Be precise in your ad: about the position&#8217;s title and description, about the level of skill you&#8217;re expecting in the various areas, about what&#8217;s nice to have and what&#8217;s imperative. If you&#8217;re looking to fill more than one position, write more than one ad; if you don&#8217;t know exactly what you want, try harder to figure it out before you click the publish button.</li>
+<li>If you really do think you want one person to do the task of an entire engineering team, prepare yourself to get someone who is OK at a bunch of things and not particularly good at any of them. Again: the more you know, the more you find out you don&#8217;t know. I regularly team with a talented back-end developer who knows better than to try to do my job, and I know better than to try to do his. Anyone who represents themselves as being a master of front-to-back web development may very well have no idea just how much they don&#8217;t know, and could end up imperiling your product or project &#8211; front to back &#8211; as a result.</li>
+</ol>
+
+
+<p>If your budget really is limited to a single position, you might want to consider whether you&#8217;d be better off working with several contractors with specific and proven skills, rather than a single person who claims to encompass everything you&#8217;re after. Your management overhead will increase in the short term, yes, but your headaches down the road will decrease exponentially. In the process, you&#8217;ll gain access to people who can help you evaluate potential full-timers, and probably gain some insight into the actual list of skills a full-timer needs to provide.  If you&#8217;re one of the people who&#8217;s written these ads, all is not lost. Invest in a technical consultant &#8211; probably one you can&#8217;t afford to hire full-time &#8211; to help you really understand your needs and the skills required to solve them. Often they can assist you with writing and posting the ad, and interviews too. For example, I&#8217;ll meet with a client, write and post a detailed ad, identify candidates, and interview contenders; if I don&#8217;t have the technical skills required to evaluate a candidate, chances are I personally know someone who can. Doing that homework up front, and understanding and describing what your needs <em>really</em> are, is vastly more likely to give you the perfect fit you&#8217;re after than if you just cast a wide net and see what you catch.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/14/seeking-a-web-designer/">Seeking a Web Designer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-14T00:00:00-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/07/14/seeking-a-web-designer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I wrote about a 37signals post about <a href="http://blog.rebeccamurphey.com/2008/06/06/skipping-photoshop-for-web-design/">the pitfalls of using Photoshop for web design</a>, I didn&#8217;t know that just a couple of weeks later I&#8217;d be helping <a href="http://dailystrength.org">DailyStrength</a> write a <a href="http://jobs.37signals.com/jobs/4013">job posting for a senior web designer</a> a few weeks later. I thought a lot about what they&#8217;d written, and the skills I&#8217;d want the person who would be working so closely with me to have.</p>
+
+<blockquote> We are a health-based social networking site, with users who are largely social networking novices; we are seeking a designer who can help us develop a consistent visual language for the site that will be easy for these users to understand, while at the same time not limiting our power users. This job entails helping us envision and develop new features, as well as refining the current site.
+
+We have a framework that allows rapid prototyping of new features, letting developers develop and designers design. That means it’s imperative that you be comfortable working with HTML and CSS, so you can take a rough-but-working prototype and give it the polish it needs. You’ll need to be at least as comfortable in Firebug as you are in Photoshop, and be able to communicate clearly about technical aspects of your designs. You won’t need to write any Javascript, but you should be very capable of understanding how and when it fits into an application.</blockquote>
+
+
+<p>In all of my jobs, from bartending to desktop publishing to my current role as a front-end engineer, I&#8217;ve always valued it when the person giving me direction has had some understanding of my job. I didn&#8217;t care for bar owners who overlooked lousy tippers, and I didn&#8217;t care for the art director I worked for who thought one font worked as well as the next when it came to web sites. So when I found out we were hiring, I jotted down some notes about what I was looking for &#8211; specifically, a designer who knew Firebug and Photoshop, and who could take my lightly-skinned markup and polish it to perfection rather than giving me a picture of how to polish it to perfection for them.</p>
+
+<p>We&#8217;ve spent the past several weeks developing a framework for our site that will truly separate content and business logic from our presentation, leaving me largely free from mucking around in PHP sprinkled with HTML. Further, we&#8217;ve spent a lot of time thinking about the core pieces that make up our site, and figuring out how to, say, filter, search and present lists of elements &#8211; any elements &#8211; using largely the same base code, markup and CSS. I&#8217;m excited to soon be working with a designer who can embrace that framework and work on further standardizing the site &#8211; a task that, til now, has been made difficult by how intertwined our markup was with our code.</p>
+
+<p>If you&#8217;re interested, pop over to the 37signals job board and check out the rest of the posting.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/13/centering-images/">Centering Images</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-13T00:00:00-04:00" pubdate data-updated="true">Jun 13<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/06/13/centering-images/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.netmechanic.com/news/vol7/html_no10.htm">An excellent article explaining the pros and cons of different image-centering methods</a>. I love when I find something that gives me exactly the answer I need.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/06/skipping-photoshop-for-web-design/">Skipping Photoshop for Web Design</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-06T00:00:00-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/06/06/skipping-photoshop-for-web-design/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Occasionally the folks at 37signals write a blog post that seems to channel thoughts that I&#8217;ve just never put to paper [blog]. This week they did it twice, with <a href="http://www.37signals.com/svn/posts/1061-why-we-skip-photoshop">two</a> <a href="http://www.37signals.com/svn/posts/1066-web-designers-should-do-their-own-htmlcss">posts</a> about how they prefer to skip Photoshop and work with HTML and CSS when it comes to designing a web site.</p>
+
+<p>I&#8217;ve found it incredibly pleasant to work with designers who have demonstrated knowledge and skill when it comes to CSS and HTML &#8211; at my last job, our lead designer was also the guy you went to if you were stumped by a CSS issue. Knowing the tools means that production considerations become an active part of the design process: you don&#8217;t create an element without giving some thought to how it will be built. In the best of worlds, you weigh the cost of building the element &#8211; in time, in HTTP requests, in excessive markup &#8211; against the benefit of having it on the site, and make educated decisions about what is &#8220;worth it.&#8221;</p>
+
+<p>I&#8217;ve never found Photoshop to be an adequate tool for mocking up a design &#8211; it just doesn&#8217;t &#8220;think&#8221; the way the web does, it just doesn&#8217;t observe the constraints that the web imposes, and it just doesn&#8217;t make accessible the parts of CSS that are truly powerful.</p>
+
+<p>While I am no designer, I play one sometimes for freelance clients. When I haven&#8217;t wanted to go straight to code, I&#8217;ve found that another Adobe product, InDesign, can be incredibly powerful. It&#8217;s an application intended for print layout (and some of its related assumptions can be a little frustrating, such as its lack of a hex-based color picker/setter), but generally it is exponentially closer to the realities of the web than Photoshop. It thinks in boxes, not pixels, and offers paragraph-, character- and object-level stylesheets that can &#8230; cascade! Just like with CSS, you can rapidly and dramatically alter the appearance of a page once you establish the base, semantic elements of it. It steers you to think about a page&#8217;s structure, not just its presentation.</p>
+
+<p>I&#8217;m hoping that the number of web designers who think that Photoshop is a sufficient tool will dwindle, but I&#8217;m not sure what the route is to get to that point. Photoshop&#8217;s inadequacy in this regard is so clear to me &#8211; and to people like the 37signals folks &#8211; that I&#8217;m not sure how you persuade someone who still believes otherwise.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/19/another-cautionary-remote-javascript-tale/">Another Cautionary Remote Javascript Tale</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-19T00:00:00-04:00" pubdate data-updated="true">May 19<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/05/19/another-cautionary-remote-javascript-tale/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It sounds like TechCrunch got <a href="http://www.techcrunch.com/2008/05/17/dont-screw-your-partners-over-a-marketing-promotion/">burnt</a> yesterday by some remote Javascript appearing too high in their pages&#8217; HTML. Visitors&#8217; browsers were waiting and waiting for the remote script to load, and refusing to render the rest of the page until it did.</p>
+
+<blockquote class="posterous_medium_quote">All we knew is that our sites all simultaneously went down three times yesterday. After the first time we identified the likely problem as Seesmic and contacted the company. They assured us there was no way the plugin could take the site down. When it happened a second time we disabled the Seesmic plugin and the sites went back up. We identified the problem - the plugin was loading an external Javascript file, and when Seesmic’s servers were down, we just sat and waited for it for up to two minutes before timing out.</blockquote>
+
+
+<p>The remedy to this, of course, is to load remote scripts in the foot of the page, after all of the actual content has loaded. However, plenty of remote Javascript &#8220;widgets&#8221; aim at the least common denominator without offering a viable option for skilled users who don&#8217;t actually want their site to break. The widget publishers simply require sites to put a remote script call exactly where the site wants the widget to appear. If the widget server chokes, the site is out of luck.</p>
+
+<p>I wrote about a related problem with ad-related Javascript, and my attempts to get around its desire to appear wherever the ad appears, making page rendering grind to a halt if the ad network was slow. We ended up getting around that problem with a bit of utter absurdity: using an iframe that called some server-side code that would generate an HTML page that contained little more than a script tag.</p>
+
+<p>Our solution, as it were, meant an extra HTTP request to our server for every ad on the page, just to avoid a problem that wouldn&#8217;t exist in the first place if the authors of these widgets and ads would offer some real options to their savvier users. A simple method like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">widget</span><span class="p">.</span><span class="nx">appendToElement</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>seems like it would do the trick &#8211; something that could be called at the end of a page and fail fairly silently by just leaving the destination element empty. I imagine that the use of such a method is hardly out of the reach of the good folks at TechCrunch, or plenty of other sites. Until an approach like this becomes a bit more common, expect many more rants like the one we saw from TechCrunch.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/11/remote-javascript-with-document-write-is-killing-me/">Remote Javascript With document.write() Is Killing Me</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-11T00:00:00-04:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/04/11/remote-javascript-with-document-write-is-killing-me/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been coming across way too much remote Javascript that uses document.write() to insert its contents. From ad providers to video hosting services, it&#8217;s common practice to provide a Javascript tag that includes <code>document.write</code> and tell the site owner to just include it in their page where the ad or content should appear.</p>
+
+<p>This is a great least-common-denominator approach for folks who don&#8217;t want to be bothered with understanding how this stuff works. The problem is that when an ad or a video or any other content loaded via remote Javascript needs to appear near the top of the HTML document, before the content, the site user doesn&#8217;t see any more content while the browser fetches the file. In the case of one service we tried, the initial script tag actually wrote <em>five more</em> remote script tags, each of which requires a separate HTTP request, amounting to a total delay of more than a second before the content appeared. In the meantime, the user was staring at a near-empty page.</p>
+
+<p>There are <a href="http://wonko.com/post/remote_javascript_includes_without_the_performance_penalty_part">various</a> <a href="http://blog.rebeccamurphey.com/2008/04/06/fix-for-slow-loading-google-ads/">hacks</a> for getting around this, which involve loading the content low on the page and using (yet more) Javascript to move it to the appropriate place once the page has loaded, but they are hacky and not necessarily foolproof when it comes to ads. My initial experiments with doing this with some ad providers led to multiple ads appearing on the page, or to the whole page being replaced with just an ad.</p>
+
+<p>If these services want people to stop complaining that their sites are loading slowly as a result of adding these tags (and perhaps looking at least for solutions that minimize the number of scripts that need to be loaded), it&#8217;s time that they expose an API that will allow sites to include their <code>script</code> tag at the end of the page&#8217;s HTML, <a href="http://developer.yahoo.com/performance/rules.html#js_bottom">where it belongs</a>. Then sites could call a method to insert the ad wherever it&#8217;s needed, <em>once the content has finished loading</em>.</p>
+
+<p>For example:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">ad</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#my_ad_container&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I grant that this would require a bit more code from the ad providers (and that their ads would load a little bit later than they do now), but the improvement in user experience would be tremendous, relative to waiting as much as a second or two for the ad — and thus the rest of the page — to load.</p>
+
+<p>&#8211;</p>
+
+<p>Update: If you&#8217;re looking for a fix to this problem, also check out <a href="http://ejohn.org/blog/xhtml-documentwrite-and-adsense/">John Resig&#8217;s document.write() rewrite</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/07/fix-for-slow-loading-google-ads/">Fix for Slow-loading Google Ads</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-07T00:00:00-04:00" pubdate data-updated="true">Apr 7<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/04/07/fix-for-slow-loading-google-ads/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Google&#8217;s AdSense ads, and lots of others, are added to pages using Javascript, and if that Javascript appears early in the page&#8217;s HTML, it can seriously slow down the rendering of the rest of the page. That&#8217;s because browsers generally refuse to do any further rendering of the page until they have a requested Javascript file in hand.</p>
+
+<p>We ran into this with the ad in the left column of some pages on <a href="http://dailystrength.org">DailyStrength.org</a>, which appears above the page content in the HTML; when we switched to a new ad provider, which required fetching multiple Javascript files, the issue was even more pronounced.</p>
+
+<p>Since these ads only work when Javascript is enabled anyway, I decided to use some DOM manipulation (via jQuery, which is already on the page) to load the ad script in a hidden div at the bottom of the HTML, and then relocate the Javascript-generated iframe containing the ad to an empty, visible div where the ad needed to be:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#ad_hide&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;iframe&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#ad&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/pre&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, loading the Javascript doesn&#8217;t slow down the rendering of the content, and the ad appears right after the page is loaded.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

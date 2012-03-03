@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Planning a Wordpress CMS site - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="There have been plenty of rumblings lately about how WordPress can be used as a content management system, beyond its core competency as a blogging &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Planning a Wordpress CMS Site</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-21T00:00:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There have been <a href="http://www.devlounge.net/publishing/things-to-consider-when-using-wordpress-as-a-cms">plenty of rumblings</a> lately about how <a href="http://www.webdesignerwall.com/tutorials/wordpress-theme-hacks/">WordPress can be used as a content management system</a>, beyond its core competency as a blogging platform. By harnessing the power of pages and subpages, writing custom Page templates, segmenting posts into category-based content feeds, and using handy little plugins like my brother&#8217;s <a href="http://gmurphey.com/2006/10/05/wordpress-plugin-page-link-manager/">Page Link Manager</a>, you can do some <a href="http://codex.wordpress.org/User:Matt/WP_as_CMS">pretty neat stuff</a>.</p>
+
+<p>Lots of people have caught on, including small advertising and marketing agencies that want to be in the content and design business while staying away from programming. In my work with some of those agencies lately, I&#8217;ve often found that there&#8217;s a gap between having the idea to use WordPress as a CMS and knowing the inner workings of WordPress that allow it to be used as a CMS. Since I often find myself needing to explain the building blocks of WordPress and how to use them as part of a lightweight CMS, I thought I should write my thoughts down. My goal here is not to get into the nitty gritty of actually implementing a WordPress-as-CMS site; I leave that to <a href="http://www.rebeccamurphey.com">skilled WordPress developers</a> ;). Rather, it&#8217;s to give non-technical people an overview of how WordPress works so they can make the most of it during the site planning process.</p>
+
+<p><em>Note: In doing my homework for this post, I discovered lots of posts that mentioned workarounds for earlier versions of WordPress. Many of these things &#8211; such as setting a particular Page to be your homepage &#8211; are build in to the newer versions of WordPress. Make sure if you&#8217;re reading a WordPress as CMS tutorial that you are reading one for the current version.</em></p>
+
+<p><strong>Content building blocks</strong></p>
+
+<p>WordPress offers a few building blocks for content management: posts, categories, pages (better referred to as sections), and custom fields.</p>
+
+<ul>
+    <li>
+<strong>Posts and Categories</strong> are used to organize related content. By assigning a Post to a Category, it can be grouped with other Posts in that Category. For example, you could have a &#8220;team members&#8221; Category and a &#8220;news&#8221; Category, and then easily display all team members in one location, and all news items in a completely separate location. You could even have a &#8220;blog&#8221; Category, which would allow you to have a blog on the site while still using Posts to manage other content as well. (Besides allowing this type of organization, Categories also automatically create Category Archives &#8211; an easy way for your users to browse all content related to a Category, if you choose.)</li>
+    <li>
+<strong>Pages</strong> are used to manage static content, and are used for the site&#8217;s navigation. They can also display other content items &#8211; both Posts and Pages &#8211; that match certain criteria. (For the sake of this discussion, pages and subpages may be better thought of as <em>sections</em> and <em>subsections</em>; not every &#8220;page&#8221; (i.e. URL) on a Wordpress site is managed using a Page in the Wordpress admin, but every section and subsection <em>is</em> managed that way. When I&#8217;m talking about a Page with a capital &#8220;P&#8221;, I&#8217;m referring to the kind that you manage through the WordPress admin; when I&#8217;m talking about a page with a lowercase &#8220;p&#8221;, I mean any part of your site that has a unique URL.) It&#8217;s important to note that, using the Page Link Manager plugin mentioned above, you can easily exclude any Page from the site navigation, which makes them much more powerful for managing pieces of content that don&#8217;t need to show up in the navigation.</li>
+    <li>
+<strong>Custom fields</strong> can be added to both Pages and Posts. They can contain all sorts of extra information related to a content item, which can then be accessed whenever the content item is displayed.</li>
+</ul>
+
+
+<p><strong>Theme building blocks</strong></p>
+
+<p>The design of a WordPress site is managed using a theme. Themes include a global header, footer and sidebar. They also include a variety of files for managing the design and structure of the content area, depending on the page you are viewing.</p>
+
+<p>A very basic theme will include the following content area templates:</p>
+
+<ul>
+    <li>Latest Posts template</li>
+    <li>Single Post template</li>
+    <li>Default Page template</li>
+    <li>Search results template (used for displaying all Posts and Pages containing a term)</li>
+    <li>Archives template (used for displaying date-, author- and Category-based Post archives)</li>
+</ul>
+
+
+<p><strong>Harnessing the power of custom templates
+</strong></p>
+
+<p>This is where things get interesting. On a regular WordPress blog, the default Page template will just display some static content that&#8217;s entered into the Page using WordPress admin, plus the site&#8217;s header, footer, and sidebar. This is fine for Pages that don&#8217;t need to pull in any other content, like, say, an About section. When you start using WordPress as a CMS, you need to start doing more creative things with the content area of your Pages by using custom Page templates.</p>
+
+<p>For the News Page of a site, you might create a custom template that would include introductory content entered via the WordPress admin, along with the 10 most recent posts in the &#8220;news&#8221; Category, ordered from newest to oldest, and a link to view all items in the &#8220;news&#8221; category. For the Home Page of a site, you might create a more elaborate custom template, pulling Posts from a variety of Categories, pulling static content from a variety of hidden Pages, and displaying it all in a variety of ways: full content, titles only excerpts, etc. You might even make use of custom fields. Do you want to be able to show a thumbnail with each Post in the &#8220;video&#8221; category, but only when you&#8217;re showing those posts on your homepage? Add a custom field to those posts with the URL to the thumbnail, then tell your custom Home Page template to look for that custom field and use it to insert an image tag.</p>
+
+<p>You could just as easily create a custom field containing the name of a PHP file to be used as a custom dynamic sidebar for that page; the options here are pretty much limited by your imagination (and your developer).</p>
+
+<p><strong>Developing the site architecture</strong></p>
+
+<p>In planning a site that will use WordPress as a CMS, it&#8217;s imperative to think of how your content, sections and subsections fit into the WordPress model. It will save you lots of headaches when it comes time to actually develop the site, and lots of calls and emails from your developer trying to figure out what you had in mind. In fact, I strongly recommend getting a skilled WordPress developer involved early in the process, to help you turn your ideas into a viable spec.</p>
+
+<p>Here&#8217;s the basic process I recommend:</p>
+
+<ul>
+    <li>Develop a simple sitemap for the site. Figure out what the sections and subsections are, and how they&#8217;re organized.</li>
+    <li>Identify the pieces content that will appear on each item in your sitemap, and evaluate how they should be managed. Is the content static and self-contained, such as &#8220;About Our Company&#8221; text? It should probably be managed through a Page. Is the content some kind of list of related items, such as news items or team members? It should probably be managed through Posts and Categories. Is it a secondary sidebar that appears on several pages? Consider using a hidden page if the sidebar is static or a PHP include if the sidebar uses other WordPress content items.</li>
+    <li>Identify the Categories you&#8217;ll use to distribute the Posts to their proper place(s). For each category, evaluate whether you&#8217;ll need to collect information beyond title, body, and author. If so, identify these as custom fields.</li>
+    <li>Identify the Pages you&#8217;ll be using on the site &#8211; including Pages that will be hidden in the navigation and used solely for placing static content on multiple pages.</li>
+    <li>Decide how you will use your header, sidebar and footer to help users navigate your site. Will you provide links to Category archives? Will you allow your visitors to search your site? Will you show subpages of the Page a visitor is on?</li>
+    <li>Identify which <em>visible</em> Pages will use a default Page template, and which will require a custom template, and identify the types of custom templates that will be required. Ideally, you will not require a separate custom template for every custom Page; look for similarities among the custom Pages, and try to identify the fewest number of custom templates that will do the job.</li>
+</ul>
+
+
+<p><strong>Plan the design based on the architecture
+</strong></p>
+
+<p>Once you&#8217;ve completed the site architecture, you are ready to actually design the site. For your own sanity, don&#8217;t try to do too much design before this point. You&#8217;ll need the information gathered in the site architecture phase to guide you in developing the design document upon which your template developer will base their work; a design document that doesn&#8217;t take all of these considerations into account is going to lead your developer in circles as they try to make sense of what you had in mind.</p>
+
+<p>Before you begin designing, you may want to draw up some wireframes that show the different elements you&#8217;ll be designing &#8211; header, footer, sidebar, custom page views, single post views, etc. They can guide the design process and be valuable to the developer who implements your design. When you&#8217;re finished, your design document should include the following:</p>
+
+<ul>
+    <li>General header. Note any ways in which the header should change according to the context in which it&#8217;s being displayed &#8211; for example, a breadcrumb or an indication of the current navigation item.</li>
+    <li>General sidebar (or left and right sidebar). Again, note ways in which the sidebar should change according to the context in which it&#8217;s being displayed.</li>
+    <li>General footer.</li>
+    <li>Latest Posts view. If you are going to give your visitors the ability to view your latests Posts, make sure you design a view for this. The latest Posts view will usually include 10 posts; for each Post, you&#8217;ll usually show the title, author, date, category, body, and comment count.</li>
+    <li>Single Post view. Ideally the structure of this design will vary little from one Category to another, though the visual presentation may change. This design will likely include the post&#8217;s title, body, author, date, category/ies, navigation to the next and previous post, a comment submission form, and user comments.</li>
+    <li>Archive view. This will be used for viewing all of the Posts by Category, month, year, author, etc. This is only necessary if you will give users the option of viewing posts this way. Usually this view will include multiple Posts. For each post, you&#8217;ll show the title and an excerpt; you may also choose to show date, author and category information.</li>
+    <li>Search view. This will be used for displaying user search results. It is usually very much like the Archive view: a list of posts, for which you show the title, an excerpt, and any other relevant information.</li>
+    <li>Default Page view. This will be used for displaying Pages that do not have custom templates associated with them. Usually this will consist of the Page title and body, and potentially a secondary sidebar.</li>
+    <li>Custom Page views. For every custom view identified in the site architecture phase, create a corresponding custom design.</li>
+</ul>
+
+
+<p>Giving consideration to how a site will be built in WordPress is a tad more complicated than deciding that it should be built in WordPress and then handing it off to a developer; of course, you can do it that way, but it&#8217;s not exactly the most cost-effective method. Understanding the system, working with a developer from the start, and doing the planning before you dive into design will give you the results you intend, and probably open your eyes to some connections and possibilities that you can then decide how to take advantage of, rather than leaving it up to your developer to see them and decide whether to bring them to your attention. It&#8217;s a lot to wrap your brain around at first, perhaps, but I&#8217;ve found that the planning pays for itself by smoothing the rest of the process and truly taking advantage of the CMS features built into Wordpress.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-21T00:00:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/business/'>business</a>, <a class='category' href='/blog/categories/howto-/'>howto,</a>, <a class='category' href='/blog/categories/small/'>small</a>, <a class='category' href='/blog/categories/websites/'>websites</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer/" title="Previous Post: 5 reasons you don't really want a jack-of-all-trades developer">&laquo; 5 reasons you don't really want a jack-of-all-trades developer</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/" title="Next Post: Notes on handing off a design to a front-end developer">Notes on handing off a design to a front-end developer &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site/';
+        var disqus_url = 'http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

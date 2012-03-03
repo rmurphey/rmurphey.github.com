@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: javascript | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2012-03-03T15:51:06-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Getting Better at JavaScript]]></title>
+    <link href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/"/>
+    <updated>2011-05-20T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript</id>
+    <content type="html"><![CDATA[<p>I seem to be getting a lot of emails these days asking a deceptively simple
+question: “How do I get better at JavaScript?” What follows are some
+semi-random thoughts on the subject:</p>
+
+<p>The thing that I’ve come to realize about these questions is that some things
+just take time. I wish I could write down “Ten Things You Need to Know to Make
+You Amazing at the JavaScript,” but it doesn’t work that way. Books are
+fantastic at exposing you to guiding principles and patterns, but if your brain
+isn’t ready to connect them with real-world problems, it won’t.</p>
+
+<p><strong>The number one thing that will make you better at writing JavaScript is writing
+JavaScript.</strong> It’s OK if you cringe at it six months from now. It’s OK if you
+know it could be better if you only understood X, Y, or Z a little bit better.
+<a href="http://www.paulgraham.com/taste.html"> Cultivate dissatisfaction </a>, and fear the day when you aren’t disappointed with
+the code you wrote last month.</p>
+
+<p>Encounters with new concepts are almost always eventually rewarding, but in the
+short term I’ve found they can be downright demoralizing if you’re not aware of
+the bigger picture. The first step to being better at a thing is realizing you
+could be better at that thing, and initially that realization tends to involve
+being overwhelmed with all you don’t know. The first <a href="http://jsconf.us/2009/"> JSConf </a>, in 2009, was
+exactly this for me. I showed up eager to learn but feeling pretty cocky about
+my skills. I left brutally aware of the smallness of my knowledge, and it was a
+transformational experience: getting good at a thing involves seeking out
+opportunities to feel small.</p>
+
+<p>One of the most helpful things in my learning has been having access to smart
+people who are willing to answer my questions and help me when I get stuck.
+Meeting these people and maintaining relationships with them is hard work, and
+it generally involves interacting with them in real life, not just on the
+internet, but the dividends of this investment are unfathomable.</p>
+
+<p>To that end, attend conferences. Talk to the speakers and ask them questions.
+Write them emails afterwards saying that it was nice to meet them. Subscribe to
+their blogs. Pay attention to what they’re doing and evangelize their good
+work.</p>
+
+<p>Remember, too, that local meetups can be good exposure to new ideas too, even
+if on a smaller scale. The added bonus of local meetups is that the people
+you’ll meet there are … local! It’s easy to maintain relationships with them
+and share in learning with them in real life.</p>
+
+<p>(An aside: If your company won’t pay for you to attend any conferences, make
+clear how short-sighted your company’s decision is and start looking for a new
+job, because your company does not deserve you. Then, if you can, cough up the
+money and go anyway. As a self-employed consultant, I still managed to find
+something like $10,000 to spend on travel- and conference-related expenses last
+year, and I consider every penny of it to be money spent on being better at
+what I do. When I hear about big companies that won’t fork over even a fraction
+of that for an employee who is raising their hand and saying “help me be better
+at what I do!”, I rage.)</p>
+
+<p>Make a point of following the bug tracker and repository for an active
+open-source project. Read the bug reports. Try the test cases. Understand the
+commits. I admit that I have never been able to make myself do this for
+extended periods of time, but I try to drop in on certain projects now and then
+because it exposes me to arbitrary code and concepts that I might not otherwise
+run into.</p>
+
+<p>Read the source for your favorite library, and refer to it when you need to
+know how a method works. Consult the documentation when there’s some part of
+the source you don’t understand. When choosing tools and plugins, read the
+source, and see whether there are things you’d do differently.</p>
+
+<p>Eavesdrop on communities, and participate when you have something helpful to
+add. Lurk on a mailing list or a forum or in an IRC channel, help other people
+solve problems. If you’re not a <a href="http://slash7.com/2006/12/22/vampires/"> help vampire </a> — if you give more than you take —
+the “elders” of a community will notice, and you will be rewarded with their
+willingness to help you when it matters.</p>
+
+<p>Finally, books:</p>
+
+<ul>
+<li>JavaScript: The Good Parts, by Douglas Crockford. It took me more than one
+try to get through this not-very-thick book, and it is not gospel. However,
+it is mandatory reading for any serious JavaScript developer.</li>
+<li><a href="http://eloquentjavascript.net/"> Eloquent JavaScript </a>, Marijn Haverbeke (also in print). This is another book
+that I consider mandatory; you may not read straight through it, but you
+should have it close at hand. I like it so much that I actually bought the
+print version, and then was lucky enough to get a signed copy from Marijn at
+JSConf 2011.</li>
+<li>JavaScript Patterns, by Stoyan Stefanov. This was the book that showed me
+there were names for so many patterns that I’d discovered purely through
+fumbling around with my own code. I read it on the flight to the 2010 Boston
+jQuery Conference, and it’s definitely the kind of book that I wouldn’t have
+gotten as much out of a year earlier, when I had a lot less experience with
+the kinds of problems it addresses.</li>
+<li>Object-Oriented JavaScript, by Stoyan Stefanov. It’s been ages since I read
+this book, and so I confess that I don’t have a strong recollection of it,
+but it was probably the first book I read that got me thinking about
+structuring JavaScript code beyond the “get some elements, do something with
+them” paradigm of jQuery.</li>
+</ul>
+
+
+<p>Good luck.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Objects as Arguments: Where do you draw the line?]]></title>
+    <link href="http://rmurphey.com/blog/2011/04/25/objects-as-arguments/"/>
+    <updated>2011-04-25T11:16:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2011/04/25/objects-as-arguments</id>
+    <content type="html"><![CDATA[<p>I was reviewing some code last week and came across a snippet that looked a lot like this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">someObject</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// ...&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">onSuccess</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// ...</span>
+</span><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">someMethod</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">secret</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">},</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">someMethod</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// ...</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>My immediate response was to suggest that it didn't make sense to be passing
+four separate arguments to <code>someMethod</code>, especially when the arguments were
+being "unpacked" from an already-existing object. Certainly we could just pass
+the <code>resp</code> object directly to <code>someMethod</code>, and let <code>someMethod</code> unpack it as
+necessary -- we'd save some bytes, and we'd also leave ourselves some room to
+grow. "I'm not a big fan of functions that take four arguments," I said in my
+GitHub comment.</p>
+
+<p>To the original author's credit, "because I say so" wasn't sufficient reason to
+rewrite code that was working just fine, thank you very much. If four arguments
+was too many, was two arguments too many? Why draw the line at four? Surely the
+four-argument signature helped indicate to future developers what was required
+in order for the function to ... function. Right? My hackles momentarily
+raised, I parried by pointing out that if the arguments were actually required
+by the function, maybe the function ought to actually check for their presence
+before using them. Ha! While the original author was distracted by my disarming
+logic, I fretted over the fact that I use a function that take four arguments
+every day: <code>dojo.connect(node, 'click', contextObj, 'handlerMethod')</code>. Ohnoes.</p>
+
+<p>So where do you draw the line? Certainly you could write that <code>dojo.connect</code>
+call like so:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">node</span> <span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">event</span> <span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">context</span> <span class="o">:</span> <span class="nx">contextObj</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;handlerMethod&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This, though, might make you poke your eyes out. It certainly isn't as concise
+as the four-argument approach, and it makes a lot of things like
+<a href="http://ejohn.org/blog/partial-functions-in-javascript/">partial</a>
+<a href="http://dojotoolkit.org/reference-guide/dojo/partial.html#dojo-partial">application</a>
+a lot harder. Clearly there's more to this than "if there's more than four
+arguments, put them in an object" ... but what are the rules?</p>
+
+<h2>Optional Arguments</h2>
+
+<p>Probably the most compelling reason to use an object is when there are several
+optional arguments. For example, last fall I was reviewing some code from a
+potential training client, and I came across this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;done!&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>No one can argue that this is not terrible, and yet every experienced
+JavaScript developer knows how the developer(s) who wrote it arrived there. At
+first, the function needed three arguments, and all was good with the world.
+But then, it seemed like the same function could be used to do another thing by
+just passing two more arguments -- no big deal, because if those two arguments
+weren't present, then just the first three would suffice. Five arguments
+certainly isn't <em>that</em> bad, right? After that, though, things went south: for
+whatever undoubtedly marketing-department-driven reason, suddenly both the
+original three-argument case and the later five-argument case both needed to
+receive two more arguments, and these two new arguments were mandatory. Now
+both cases had seven-argument signatures, and in some cases, two of those seven
+arguments needed to be null so nothing would break.</p>
+
+<p>This case demonstrates the most compelling reason to switch to using an object
+instead: optional arguments. When the developer discovered that the original,
+three-argument <code>addBling</code> could be used for the five-argument case as well, it
+was probably time to refactor:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// original</span>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// new hotness</span>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then, the same function could be used while passing it more information about
+how to behave in the five-argument case:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#omgSoAwesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">unicorns</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">rainbows</span> <span class="o">:</span> <span class="mi">5</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then, when it came time to add yet more bling, the function signature wouldn't need to change,</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timesToBlink</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">alertOnSuccess</span> <span class="o">:</span> <span class="s1">&#39;done!&#39;</span>
+</span><span class='line'><span class="p">});</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#omgSoAwesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;fast&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">unicorns</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">rainbows</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timesToBlink</span> <span class="o">:</span> <span class="mi">9001</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">alertOnSuccess</span> <span class="o">:</span> <span class="s1">&#39;woohoo!&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Extensibility and Future-Proofing</h2>
+
+<p>Another case for passing in an object is when you want the flexibility that an
+object provides, even if your code doesn't require it for now:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">firstName</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>For now, you only want to be able to provide the first and last name of the
+person -- it would work just fine to create a function signature for the
+<code>Person</code> constructor that took exactly those two arguments, because indeed they
+are required. On the other hand, though, this is incredibly short-sighted --
+while first and last name may be all that you care about now, there's obviously
+more to a person than those two attributes, and eventually you may want to
+provide attributes such as age, occupation, etc. Doing this with individual
+arguments quickly becomes unsustainable. Besides that, though, it also makes
+assigning instance properties a pain in the ass. By passing an object, we can
+rewrite the above code as such:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</span><span class='line'>  <span class="c1">// jQuery: $.extend(this, args);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now -- assuming this is what we want -- we can mix in <em>any</em> settings we provide
+in the <code>args</code> argument. Dojo, for example, bakes this ability in to anything
+that inherits from <code>dijit._Widget</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">thinger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">my</span><span class="p">.</span><span class="nx">Thinger</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Favorite Animals&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">animals</span> <span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;Narwhal&#39;</span><span class="p">,</span> <span class="s1">&#39;Lemur&#39;</span><span class="p">,</span> <span class="s1">&#39;Honey Badger&#39;</span> <span class="p">]</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Use Objects for Related Data</h2>
+
+<p>An important qualifier here is that all of the properties of an object that
+we've talked about passing to our <code>Person</code> constructor are related -- they all
+are saying something about the Person you're creating. What if creating our
+Person was asynchronous, and we wanted to run a function once our Person was
+created? In a (contrived) case like that, I think it does make sense to pass in
+a separate argument:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">configObj</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>In this particular example, we still only have two arguments -- we haven't
+wandered into that muddy realm of four or more. That said, I think this
+distinction is part of what makes <code>dojo.connect(node, 'click', contextObj,
+'handlerMethod')</code> OK: the arguments are four distinctly different types of
+information. Taken together, they have an almost narrative quality: when this
+node receives a click, use the context object's <code>handlerMethod</code>. A signature
+like <code>new Person('Rebecca', 'Murphey', 34, 'web developer', 2 /*cats*/, 2
+/*dogs*/)</code> doesn't <em>feel</em> the same as the <code>dojo.connect</code> example -- it's
+information that's too related to be expressed as independent arguments.</p>
+
+<h2>Four or More, Time to Refactor?</h2>
+
+<p>I think the bottom line here is a) it's complicated, and b) if your function
+signature has four or more arguments, you should almost certainly consider
+whether there's a better way to do it. If the arguments are super-related, it
+may be they belong in an object, so you get the benefit of easy extensibility
+down the road. If there are optional arguments, you almost certainly want to
+wrap those in an object to avoid passing <code>null</code> over and over again.</p>
+
+<p>Personally, my threshold is actually closer to two arguments -- if I find
+myself wanting a third argument, I question whether my function is trying to do
+more than it should be doing -- maybe I should do some pre-processing of the
+input so I can get away with just passing in two arguments. Every additional
+argument is an indication of additional complexity, which means an additional
+opportunity for things to go wrong.</p>
+
+<h2>Other Considerations</h2>
+
+<p>I posed this question to
+<a href="http://twitter.com/#!/rmurphey/status/62172041037623296">Twitter</a> and got a
+ton of interesting feedback. Here are some of the highlights that I didn't
+cover above:</p>
+
+<ul>
+<li><a href="https://twitter.com/raydaly/status/62320791232069632">@raydaly</a> no new nouns
+is my principle. If unrelated data needs to be passed, diff args.</li>
+<li><a href="https://twitter.com/dadaxl/status/62308649699250176">@dadaxl</a> I would pass
+an obj if I've a dynamic bunch of args containing functions.</li>
+<li><a href="https://twitter.com/sh1mmer/status/62308597153021952">@sh1mmer</a> omg! Objects
+for the love of god! No one likes immutable APIs. Just ask @ls_n</li>
+<li><a href="https://twitter.com/mattrogish/status/62307288597266432">@MattRogish</a> Rails
+tends to do required things are named args, optional things are a hash</li>
+<li><a href="https://twitter.com/ryanflorence/status/62511600837468161">@ryanflorence</a>
+obfuscation often influences me, objects don't compress as well as multiple
+args.</li>
+<li><a href="https://twitter.com/getify/status/62512606132449280">@getify</a> if more than
+half of the args are optional...or if there are several boolean params which
+without names can be confusing</li>
+<li><a href="https://twitter.com/jcoglan/status/62253184369954816">@jcoglan</a> When further
+args are optional, or args.length&gt;3. Need to spot when options merit a
+refactoring, though.</li>
+<li><a href="https://twitter.com/digitalicarus/status/62247330354692096">@digitalicarus</a>
+A combo of sheer length, amount of reuse, if it's an API, and/or if it's
+designed to be called a variety of ways to a similar end.</li>
+<li><a href="https://twitter.com/bryanforbes/status/62237053148086272">@BryanForbes</a> If I
+have to start swapping arguments and type checking, it's time for one object
+or reworking my function.</li>
+<li><a href="https://twitter.com/myfreeweb/status/62229278581993472">@myfreeweb</a> I use an
+object when I start forgetting the order of args ... or there is no logical
+order like (key, value, callback) at all</li>
+<li><a href="https://twitter.com/zetafleet/status/62209835097268224">@zetafleet</a> When
+many of the arguments are optional or they&rsquo;re all getting stored or
+copied directly over to the object.</li>
+<li><a href="https://twitter.com/maravillas/status/62176422877335552">@maravillas</a> I
+usually don't make an obj just for passing data; if arglist is too long,
+maybe the function does too much and needs refactoring.</li>
+</ul>
+
+
+<h2>Postscript</h2>
+
+<p>We ended up leaving the code that spurred this whole conversation exactly as it
+was.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Modern JavaScript]]></title>
+    <link href="http://rmurphey.com/blog/2011/04/15/modern-javascript/"/>
+    <updated>2011-04-15T11:16:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2011/04/15/modern-javascript</id>
+    <content type="html"><![CDATA[<p>My presentation <a href="http://www.slideshare.net/rmurphey/the-jquery-divide-5287573">the jQuery Divide</a> (<a href="http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html">video here</a>) has been <a href="http://news.ycombinator.com/item?id=2429411">making the rounds</a> on the internet again, six months after I delivered it at JSConf.eu in Berlin, and this time around, a colleague on IRC shared a link with me that drew from it: <a href="http://www.dagolden.com/index.php/1446/is-javascript-the-new-perl/">Is JavaScript the New Perl?</a></p>
+
+<p>Perl has a special place in my heart; it's the first language I used to solve a real-world problem, and I still have the second edition Learning Perl that my good friend Marcus got for me at the time. These days I struggle for it not to look mostly like a lot of gibberish, but in the late 1990s it was funtimes.</p>
+
+<p>Anyway. The post that linked to my presentation asked if JavaScript might be going through some of the same pains that Perl has gone through, and linked to an eerily relevant presentation about Modern Perl, a movement "actively seeks to both to teach how to write good code and change perceptions of Perl that still linger from the dot.com 90s." It talks about the void that Perl sought to fill way back in 1987, and then steps through the highs and lows of the intervening 23 years.</p>
+
+<p>One thing that struck me, reading the slides, is that Perl -- like other open-source, server-side languages -- has the distinct benefit of being community-driven. While, yes, JavaScript has a wonderful and vibrant community, the language itself is held hostage by browser vendors, some of whom have shown a strong inclination to not give a fuck about owning up to and fixing their egregious mistakes. Using new features of a language like Perl is, at the end of the day, a largely internal problem -- given enough time and money, switching to a new version of the language that offers new features for code organization, testing, and abstraction is a thing a project can do. Indeed, Perl as a community can even make bold decisions like deciding that a new version simply won't be back-compat with a version that came before, throwing away ideas that turned out to be duds; meanwhile, JavaScript web developers often must bend over backwards to ensure back-compat with decade-old technology, and the only way to transition away from that technology is to give up on a set of users entirely.</p>
+
+<p>We've already seen what this means for JavaScript as a language: it was years after JavaScript's debut before we really started seeing <a href="http://www.yuiblog.com/blog/2007/06/12/module-pattern/">conversations</a> about what a module should look like in JavaScript, and <a href="http://tagneto.blogspot.com/2011/04/on-inventing-js-module-formats-and.html">we're still fighting over it</a> today. Without a solid dependency management system -- something you can take for granted in any 15-year-old community-driven language -- dependency management often means sticking another script tag on the page, and even the most popular JavaScript library on the planet <a href="http://bugs.jquery.com/ticket/7102">struggles</a> with how to participate in a fledgling ecosystem. With no arbiter of common, tested, community-approved, community-vetted solutions -- see Perl's CPAN -- it's an environment that's ripe for fragmentation, and shining examples of <a href="http://en.wikipedia.org/wiki/Not_Invented_Here">Not Invented Here (NIH)</a> litter the JavaScript landscape. Lacking even an agreed-upon method of expressing dependencies, the <em>findability</em> of good solutions is low, and coalescence only occurs around tools with extremely low barriers to entry and extremely high near-term reward.</p>
+
+<p>When Marcus was teaching me Perl, back in the dot com heyday of the late 1990s and before the world temporarily went to hell for a few years, there was great emphasis on TIMTOWTDI: there is more than one way to do it. That mantra made Perl beautiful and elegant and powerful. Too often, it also made it ridiculously hard for the next developer to build upon and maintain, especially as the problems developers were solving got more complicated than copying and pasting some code to support a contact form (sound familiar?). In the end, that mantra meant Perl's reputation suffered, as the consequences of code written by developers with a whole lot of freedom and not so much skill became clear.</p>
+
+<p>This, in a nutshell, is what I was talking about in Berlin: that the reputation of this language we love stands to suffer if we don't get around to working together to solve these larger problems, and educating the wider world of JavaScript developers as we figure it out. Unlike with Perl, the language itself isn't going to evolve in time to help us here -- unless and until we're willing to give up on huge swaths of users, we will, generously, be <a href="http://infrequently.org/2010/09/but-ie-9-is-just-around-the-corner/">stuck with the browser technology of 2009</a> for a long time to come. Unlike the Modern Perl movement, <strong>the patterns and tools and practices that will form the foundation of Modern JavaScript are going to have to come from outside implementations of the language itself</strong>.</p>
+
+<p>Realizing that, it becomes clear just how imperative it is that we, as a community, figure out dependency management, modularization, and intentional interoperability so that these patterns, tools, and practices can start to emerge organically. James Burke, the creator of <a href="http://requirejs.org/">RequireJS</a>, is something of a hero to me, not for creating RequireJS, but for taking on the challenge of interacting calmly and level-headedly with all sorts of stakeholders to try to make <a href="http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition">AMD modules</a> a viable reality. Tool and library developers need to stop debating whether this is a good idea and get to work on making it happen.</p>
+
+<p>Tools and libraries also need to take seriously the need for modularization -- though I confess I have many misgivings about the NIH aspect of Dustin Diaz's <a href="https://github.com/ender-js/Ender">Ender.js</a>, and wish that the considerable effort involved had been directed toward an established project with similar features, I can't help but hope it will pressure libraries like jQuery to make more efforts in the direction of modularization.</p>
+
+<p>An equally important aspect of modularization is ensuring minimal duplication of effort. As a community, we need to agree on a core set of functionality that ought to be provided by the language but isn't, and implement that itself as an interchangeable module. A page with both Underscore.js and jQuery on it has tremendous duplication of functionality, for example. Interchangeability will allow end users to roll exactly the tool they need, no more and no less. Eventually, standard toolkits could emerge that draw on the best of all worlds, rather than one-size-fits-all tools that exist in isolation.</p>
+
+<p>While I agree with what Tom Dale wrote in his oddly controversial post -- that <a href="http://tomdale.net/2011/04/imagine-a-beowulf-cluster-of-javascript-frameworks/">"unless it is designed to work well together, it usually won&rsquo;t"</a> -- the more I think about it, the more I realize that the problem lies in our current inability to reliably isolate functionality and express dependencies across tools. It's not that large tools like Dojo are the One True Way -- it's that large tools like Dojo are incredibly powerful precisely because they take seriously the need for a lightweight core leveraged by components that deliver specific, isolated functionality. JavaScript as a whole will become more powerful by embracing the pattern.</p>
+
+<p>The political problems here are obvious and several: such modularization will, by definition, lead to winners and losers; the identities of libraries as we know them stand to be diluted if it becomes trivial to use only parts of them. The emphasis will shift to curated toolkits that assemble best-of-breed solutions, and NIH efforts will compete on merit, not marketing. At the same time, though, trying new things will no longer involve learning a whole new set of tools, and developers won't be as stuck with a solution that made sense once upon a time but not anymore.</p>
+
+<p>A final and important piece of the puzzle is actually educating people about the patterns that are enabled when we embrace these tools and practices. The wider community of everyday devs who are just trying to get their job done has hopefully graduated from copying and pasting scripts, but there's a long path ahead, and part of the work of Modern JavaScript needs to be clearing that path for them.</p>
+
+<p>I said it in my Berlin talk, and I will say it again: <em>sharing what we know is as important as making new things</em>, even if it's not always quite as fun. All the script loaders, build tools, inheritance systems, array utilities, templating frameworks, and data abstractions in the world are meaningless if we don't help people understand how and why to use them.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[When you're building a non-trivial JS application ...]]></title>
+    <link href="http://rmurphey.com/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/"/>
+    <updated>2011-03-30T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application</id>
+    <content type="html"><![CDATA[<p>I sense another round of discussion of this is <a href="http://twitter.com/slightlylate/status/52924409509445632">about to begin</a>, and 140 characters isn't quite enough to say what I want to say, so:</p>
+
+
+<p>When you're building a non-trivial JS application, you don't want a jQuery developer, or a Dojo developer, or a YUI developer, or, frankly, any developer who chooses their tool before they evaluate the problem. <strong>For god's sake, you want a JavaScript developer.</strong> Can you roll your own solution with jQuery as the base? Yes! Should you? I don't think so, and I advise my clients against it for reasons I've <a href="http://blog.rebeccamurphey.com/on-rolling-your-own">written about</a> <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">at length</a>, but I'm open to hearing compelling, articulate, fact-based arguments in favor of it!</p>
+
+
+<p>But do me a favor, OK? Don't base your arguments solely on the winner of a popularity contest. Don't tell me how easy it is to find developers familiar with one library or another, because I'll come right back and ask you just how good those developers will be at solving problems that aren't addressed by said library. And please tell me you've at least explored some of the other options besides [insert the library you're advocating here].&nbsp;</p>
+
+
+<p>People read what I write about JavaScript libraries and they write me heartfelt tweets and e-mails saying OMG YOU HATE JQUERY NOW WHAT HAPPENEDDDDD? I don't hate jQuery! It is a perfectly viable and valuable tool for so many things! But when people argue not just its viability but its absolute <em>supremacy</em>, when people get defensive and possibly even angry that I suggest there are solutions that are vastly better suited to a certain set of problems, when people contort themselves into pretzels to make their case and their case is "well, it's not <em>that</em> bad" ... well, that smacks of blind loyalty, not a thoughtful weighing of the tradeoffs and challenges we face as developers, and I question how those people would fare if actually confronted with the needs of a non-trivial application.&nbsp;</p>
+
+
+<p>So, please: Tell me what solutions you've looked at for non-trivial application development. Tell me where they work, tell me where they fall short. Tell me what you're working on and how you chose the tools. Don't tell me why I'm wrong -- tell me why you're right. Deal? Discuss.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Patterns for DRY-er JavaScript]]></title>
+    <link href="http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript/"/>
+    <updated>2010-07-12T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript</id>
+    <content type="html"><![CDATA[<p>I came across a little code the other day that reminded me I've been meaning to write about JavaScript patterns I take for granted. The code in question was intended to set the value of some fields in a form when a checkbox was selected; when it was deselected, the same fields were to be emptied. It looked not unlike this:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// config is defined outside of this snippet,</span>
+</span><span class='line'><span class="c1">// and may contain more than the properties</span>
+</span><span class='line'><span class="c1">// we care about </span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_foo&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_bar&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">bar</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_baz&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">baz</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_foo&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_bar&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_baz&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This is a wholly readable bit of code -- there's almost no question what's going on here. On the other hand, it's pretty easy to see the rampant repetition; this code isn't interested in "don't repeat yourself" (DRY). We're calling the same method on every selection we make, and our selections are repeated in both the if and else block.   When I saw this code, I had an immediate inclination to rewrite it. Here's what I came up with first:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// config is defined outside of this snippet,</span>
+</span><span class='line'><span class="c1">// and may contain more than the properties</span>
+</span><span class='line'><span class="c1">// we care about&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// note whether the checkbox is checked</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="c1">// iterate over the keys we care about</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// find the field for the given key</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_&#39;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">// and set its value either to the string</span>
+</span><span class='line'>  <span class="c1">// stored for the key, or to an empty string,</span>
+</span><span class='line'>  <span class="c1">// depending on whether the checkbox was checked</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">config</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This looks approximately nothing like the initial code, and without the
+comments, the code itself would be substantially less readable than the
+original. The idealistic part of me -- the part that believes people who write
+JavaScript should understand JavaScript -- says this is an acceptable price to
+pay. And besides, there's something to be said for explaining the code in a
+comment that can be stripped by a minifier, rather than explaining the code via
+the code.  In this iteration, we've introduced two patterns for DRY-er code:
+iterating over an array literal (or, alternately, an object) to achieve
+repetition without repeating ourselves, and using the ternary operator in place
+of an if/else statement when the simplicity of our logic allows it.  The array
+literal serves as a list of the fields we care about. When our checkbox is
+clicked, we iterate over this list, build up a selector for each item in the
+list, make our selection, and then set the field value using a <a
+href="http://stackoverflow.com/questions/1788917/javascript-ternary-operator">ternary
+operator</a>. We've gone from 11 lines of code to six, with the added bonus
+that we have to do a lot less typing if we need our checkbox to affect more
+fields.
+
+(A side note: Is this premature optimization? I'd argue no, if you've
+learn to see these patterns before you start writing code. Once you learn how
+to spot these patterns in a requirement, writing code that embraces them can
+actually be easier than writing code that takes a more "literal" approach to
+the problem. For example, imagine if the checkbox affected 20 other fields
+instead of one? You'd undoubtedly find yourself copying and pasting code if you
+took the more "literal" approach to the problem, and that would be your first
+clue that you were doing something inefficiently.)
+
+The great thing about using a pattern like this is that it rapidly exposes the
+actual meat of what you're doing, and makes refactoring far less painful. I
+also find that it helps me see opportunities for reuse that I might not have
+spotted in the more literal version of the code.  Let's say we're feeling all
+proud of ourselves for DRYing out our code using clever JavaScript that only
+super-smart people can read. Now there's another checkbox that needs similar
+behavior, but it's going to use a different config object and a different list
+of fields. No problem! You've already written this code, so you can just copy
+and paste it and then change what's different. Sweet. Er ... suddenly you're
+not looking so DRY after all.  This is when another pattern comes into play:
+creating a function that returns another function with certain variables
+already baked in (that is, creating a closure). We'll execute this creator
+function and then use the function it returns in place of the anonymous
+function we were using previously when we bound to the click event.</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// handleClick accepts a config object</span>
+</span><span class='line'><span class="c1">// and a makeSelector function; it returns</span>
+</span><span class='line'><span class="c1">// a function that can be bound to</span>
+</span><span class='line'><span class="c1">// a click event, using the config object</span>
+</span><span class='line'><span class="c1">// and the makeSelector function to react</span>
+</span><span class='line'><span class="c1">// appropriately to the click</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">makeSelector</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">fields</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// build the selector using the provided</span>
+</span><span class='line'>  <span class="c1">// makeSelector function</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="nx">makeSelector</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
+</span><span class='line'>          <span class="c1">// set the value using the</span>
+</span><span class='line'>          <span class="c1">// config object, depending</span>
+</span><span class='line'>          <span class="c1">// on whether the checkbox</span>
+</span><span class='line'>          <span class="c1">// is checked</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">config</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">};</span>
+</span><span class='line'><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
+</span><span class='line'>  <span class="c1">// use handleClick to create a function</span>
+</span><span class='line'>  <span class="c1">// that has these variables baked in;</span>
+</span><span class='line'>  <span class="c1">// pass the created function as the</span>
+</span><span class='line'>  <span class="c1">// click handling function</span>
+</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;baz&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="nx">myCheckboxConfig</span><span class="p">,</span>
+</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;#field_&#39;</span> <span class="o">+</span> <span class="nx">field</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">)</span>
+</span><span class='line'><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myOtherCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
+</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="p">[</span><span class="s1">&#39;bim&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;bop&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="nx">myOtherCheckboxConfig</span><span class="p">,</span>
+</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;input[name=&amp;amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">field</span> <span class="o">+</span> <span class="s1">&#39;&amp;amp;quot;]&#39;</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>By creating a function that returns a function, we can isolate what's different about the two different handlers while centralizing the pieces that are the same. If your event handling function was slightly less trivial than this one, or if you were binding to five different checkboxes instead of two, the benefit of consolidating the code would be even more substantial.  JavaScript offers plenty of patterns for writing DRY-er code; it's important to learn to both recognize and use them. It's also important to recognize when you're writing un-DRY code in the first place -- copying and pasting code is one crystal-clear indicator, but others are more subtle and you may not identify them on the first go-round. For example, take these two functions; each receives a list item as its only argument and returns either the next or previous list item, returning to the beginning or end of the list if there is no next or previous item.</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">getNextItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">length</span> <span class="o">?&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>     <span class="nx">$item</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span> <span class="o">:</span> <span class="nx">$items</span><span class="p">.</span><span class="nx">first</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">getPrevItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>    <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">prev</span><span class="p">().</span><span class="nx">length</span> <span class="o">?</span>
+</span><span class='line'>            <span class="nx">$item</span><span class="p">.</span><span class="nx">prev</span><span class="p">()</span> <span class="o">:</span> <span class="nx">$items</span><span class="p">.</span><span class="nx">last</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This felt repetitive when I first wrote it, but I couldn't quickly come up with a single function that would work. A little thinking about it, though, led me to this single function which gets a second argument: direction. That argument is used to decide whether to run the item's next or previous method, and then whether to run the item's first or last method. Besides combining two functions into one, it also eliminates calling next or prev twice inside each function.</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">getItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">,</span> <span class="nx">direction</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$returnItem</span> <span class="o">=</span> <span class="nx">$item</span><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span><span class="nx">direction</span><span class="o">&lt;</span><span class="err">/a&gt;;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$returnItem</span><span class="p">.</span><span class="nx">length</span> <span class="o">?&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>     <span class="nx">$returnItem</span> <span class="o">:</span>
+</span><span class='line'>     <span class="nx">$items</span><span class="p">[(</span><span class="nx">direction</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;first&#39;</span> <span class="o">:</span> <span class="s1">&#39;last&#39;</span><span class="p">]();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Learning about patterns and then discovering opportunities to use them is one of the more pleasing parts of my job. I hope this helps you identify some of those opportunities for yourself :)</p>
+
+]]></content>
+  </entry>
+  
+</feed>

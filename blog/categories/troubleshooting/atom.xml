@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: troubleshooting | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/troubleshooting/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2012-03-03T15:51:06-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Solution for Google Map contents not showing]]></title>
+    <link href="http://rmurphey.com/blog/2008/11/16/solution-for-google-map-contents-not-showing/"/>
+    <updated>2008-11-16T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2008/11/16/solution-for-google-map-contents-not-showing</id>
+    <content type="html"><![CDATA[<p>I just spent more time than was reasonable trying to figure out why some Javascript I was using to show a Google map on one site wasn't working to show the map on another site. The map controls and copyright were rendering, but there was no actual map.</p>
+
+<p>Turns out the problem wasn't with my Javascript; I had a CSS rule that was setting overflow:hidden on all divs within a container, and the divs created by the Google map API were getting that rule too. No good. I wrote a new CSS rule to set overflow:visible on all divs inside the map container -- problem solved.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fix for slow-loading Google ads]]></title>
+    <link href="http://rmurphey.com/blog/2008/04/07/fix-for-slow-loading-google-ads/"/>
+    <updated>2008-04-07T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2008/04/07/fix-for-slow-loading-google-ads</id>
+    <content type="html"><![CDATA[<p>Google's AdSense ads, and lots of others, are added to pages using Javascript, and if that Javascript appears early in the page's HTML, it can seriously slow down the rendering of the rest of the page. That's because browsers generally refuse to do any further rendering of the page until they have a requested Javascript file in hand.</p>
+
+<p>We ran into this with the ad in the left column of some pages on <a href="http://dailystrength.org">DailyStrength.org</a>, which appears above the page content in the HTML; when we switched to a new ad provider, which required fetching multiple Javascript files, the issue was even more pronounced.</p>
+
+<p>Since these ads only work when Javascript is enabled anyway, I decided to use some DOM manipulation (via jQuery, which is already on the page) to load the ad script in a hidden div at the bottom of the HTML, and then relocate the Javascript-generated iframe containing the ad to an empty, visible div where the ad needed to be:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#ad_hide&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;iframe&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#ad&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/pre&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now, loading the Javascript doesn't slow down the rendering of the content, and the ad appears right after the page is loaded.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[jQuery IE7 "Operation Aborted" error]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error/"/>
+    <updated>2007-12-14T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error</id>
+    <content type="html"><![CDATA[<p>I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its job was to rearrange some elements into tabs once the page was loaded.</p>
+
+<p>In unpredictable cases (sequential reloads had different results), loading the page in IE7 would lead to an "Operation aborted" error that provided no additional information. Through some googling, I found out that this was probably related to IE choking when some script was run against the DOM before the DOM was fully loaded.</p>
+
+<p>What puzzled me was that I was using <code>$.ready()</code> to wrap my jQuery, which was supposed to wait for the DOM, but it didn't seem to matter. Then I found <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=215410#215410">this</a> -- it turns out that interacting with the DOM via javascript from within a table can make IE all sorts of angry, while interacting with the DOM via javascript from within a div is just fine.</p>
+
+<p>While my case doesn't directly match the example above, it seems very possible that the table-based template I was writing for was the source of the headaches. Changing the base HTML template for the page I was working on wasn't immediately in the cards, so I split the offending js file into two pieces -- one in the head of the document that contains some basic functions but didn't actually do anything, and another right before the closing body tag that does the actual talking to the DOM -- and that seemed to fix it.</p>
+]]></content>
+  </entry>
+  
+</feed>

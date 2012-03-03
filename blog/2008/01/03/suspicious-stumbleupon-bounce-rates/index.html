@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Suspicious StumbleUpon Bounce Rates? - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;ve been promoting some of my blog posts by submitting them to StumbleUpon, and it&#8217;s been generating a fair bit of traffic &#8211; my &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Suspicious StumbleUpon Bounce Rates?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-03T00:00:00-05:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been promoting some of my blog posts by submitting them to <a href="http://www.stumbleupon.com">StumbleUpon</a>, and it&#8217;s been generating a fair bit of traffic &#8211; my post &#8220;How I Learned CSS&#8221; has done especially well. I&#8217;ve been watching my site using Google Analytics, and I&#8217;ve noticed that visitors from StumbleUpon have a substantially lower <a href="http://en.wikipedia.org/wiki/Bounce_Rate">bounce rate</a> than, say, visitors from <a href="http://www.dzone.com">dzone</a>. So I think, &#8220;yay, StumbleUpon&#8221; and start submitting anything interesting I write to there.</p>
+
+<p>But in poking around in my Google Analytics a bit more, I&#8217;ve also noticed that, on pages that I&#8217;ve promoted through SU, I&#8217;m seeing strange navigation patterns: for &#8220;How I Learned CSS,&#8221; 40% of visits to the page came from the page itself (and, as it logically follows, 40% of next pages were the page itself). The page was viewed a total of 4,700 times, but a little more than 2,800 of those pageviews were unique. Since bounce rate basically measures whether a new arrival went to another page before leaving the site, I&#8217;m not sure it shouldn&#8217;t count as a bounce if the second page the user visits is the same as the one they were already on.</p>
+
+<p>I&#8217;m not seeing this pattern with pages I don&#8217;t promote on SU, which makes me curious. SU is clearly driving a ton of traffic to my site; it&#8217;s just not clear that the traffic is actually resulting in the remarkably low bounce rate that Google Analytics shows. If I took out the 40% of people whose next page was the page they were already on, I&#8217;m left with not even 1% of people who went to another, different page on the site before leaving &#8211; and suddenly dzone is looking good again.</p>
+
+<p>I did a Google search and didn&#8217;t come up with much except <a href="http://www.wpdesigner.com/2007/09/15/wwmd-reduce-bounce-rate/#comment-87245">this</a>, which discusses the importance of bounce rate, and <a href="http://www.seowife.com/stumbleupon-advertising/">this</a>, which suggests using StumbleUpon to reduce your bounce rate.</p>
+
+<p>I&#8217;m curious whether anyone else is seeing this, and whether it&#8217;s actually related to StumbleUpon, Google Analytics, or something else. If I had to guess, I&#8217;d imagine that this is a result of people using the StumbleUpon toolbar (since it&#8217;s not happening in all cases), and maybe the toolbar is pre-visiting the page on the user&#8217;s behalf to make sure it still exists?</p>
+
+<p>Update: See the comments and a more <a href="http://www.jamieharrop.com/2007/11/05/my-stumbleupon-analysis-a-poor-500-traffic-increase/">in-depth discussion</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-03T00:00:00-05:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/analytics-/'>analytics,</a>, <a class='category' href='/blog/categories/blogging-/'>blogging,</a>, <a class='category' href='/blog/categories/bounce/'>bounce</a>, <a class='category' href='/blog/categories/google-/'>google,</a>, <a class='category' href='/blog/categories/rate-/'>rate,</a>, <a class='category' href='/blog/categories/stumbleupon/'>stumbleupon</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/01/02/update-page-using-json-data/" title="Previous Post: Update page using JSON data">&laquo; Update page using JSON data</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/01/04/salivating-over-server-side-javascript/" title="Next Post: Salivating over server-side Javascript">Salivating over server-side Javascript &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/';
+        var disqus_url = 'http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

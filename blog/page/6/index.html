@@ -1,0 +1,1247 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;ve been doing some serious work this week cutting down on YUI bloat &#8211; our site was including the entire YUI library at the top of every &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/14/bye-bye-yui-bloat/">Bye Bye YUI Bloat</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-14T00:00:00-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/03/14/bye-bye-yui-bloat/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been doing some serious work this week cutting down on YUI bloat &#8211; our site was including the entire YUI library at the top of every page, at a cost of more than 200k. Worse, because the library was included at the top of every page, the rest of the page had to wait for it to load before it would render.</p>
+
+<p>First, I switched all of our AJAX to use jQuery, the library we&#8217;ve standardized on going forward &#8211; the fact that we had a wrapper function for all of our AJAX calls made this pleasantly easy. Then, I went through the code and figured out which YUI components were being used where. Once that was done, I was able to roll up a few core YUI files into a file to be included in the global header, and call other components only as needed. Total savings: 170k. Holy crap.</p>
+
+<p>I&#8217;d still like to see us do away with YUI all together &#8211; <a href="http://ajaxian.com/archives/ojay-a-chaining-wrapper-for-the-yui">Ajaxian wrote about Ojay the other day</a>, and all I could think was &#8220;OMG, you want me to use <em>another</em> library to make this library easier to use? I&#8217;ll stick with jQuery, thanks&#8221; &#8211; but considering how much javascript we&#8217;d have to rewrite, I&#8217;m at least feeling much better about 38k than 208k.</p>
+
+<p>By the way, <a href="http://marcus.net/blog">Marcus</a> sent me a link to a great article about why this stuff matters: <a href="http://searchsoftwarequality.techtarget.com/tip/0,289483,sid92_gci1301766,00.html">Use &#8220;SCORN&#8221; to test the front end of a website for performance</a> by Scott Barber. It&#8217;s made me get serious about cutting down on our number of HTTP requests, and so far, it seems to be making a difference.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/22/back-on-the-air/">Back on the Air</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-22T00:00:00-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2008</time>
+        
+         | <a href="/blog/2008/02/22/back-on-the-air/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been juggling 1.5 jobs for the last few weeks, but starting Monday it&#8217;s back down to one, but a new one: I&#8217;ll be doing front-end development for <a href="http://www.dailystrength.org">DailyStrength.org</a>, which will hopefully give me plenty of front-end goodness to write about again. For all two of you paying attention to this site, sorry for the blackout.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/05/selectors-in-jquery/">Selectors in jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-05T00:00:00-05:00" pubdate data-updated="true">Feb 5<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/02/05/selectors-in-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just a note to self: <a href="http://www.learningjquery.com/2006/12/quick-tip-optimizing-dom-traversal">Quick Tip - Optimizing DOM Traversal</a>. Avoid bare classname selectors like <code>$('.foo')</code> when possible; qualify them with an element type or, ideally, the ID of a parent element: <code>$('div.foo')</code> or <code>$('#bar .foo')</code>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/29/cache-regexes-in-javascript/">Cache Regexes in Javascript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-29T00:00:00-05:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/29/cache-regexes-in-javascript/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post about <a href="http://blogs.sun.com/greimer/entry/pre_compile_and_cache_yer">precompiling and caching regular expressions</a> came across my Google reader just as I was wrangling with a slow regex issue. Not sure my issue will benefit from this, but neat regardless.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/">I Have Discovered a Use for Dreamweaver&#8217;s Design View (No Really)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-18T00:00:00-05:00" pubdate data-updated="true">Jan 18<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just got a request to edit a static page that showed several of a company&#8217;s employees. Turns out that a bunch of them aren&#8217;t employees anymore, and the client wanted the page to be updated. I knew before I even opened it that the content was going to be in tables (nested nested tables, in fact), and that rearranging it would be a giant pain.</p>
+
+<p>Dreamweaver design view to the rescue. This thing was <em>made</em> for tables, and in no time I was able to delete what needed to be deleted and rearrange the remaining employees without leaving empty table cells. I didn&#8217;t need to navigate nasty table HTML, and I didn&#8217;t have to worry about accidentally deleting a crucial <code>td</code> that would bring the page to its knees. A quick preview in the browser verified that no harm had been done in my brief foray into design view, and the job was done.</p>
+
+<p>Let it be said: Design view is evil and awful; it seeks to make front-end development accessible to people who have no business going anywhere near front-end development. But it&#8217;s a good tool to have in the toolbox when you&#8217;re faced with editing a table-based page, even if you just use it to find your bearings in the mess of tags.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/13/fix-uneven-line-lengths-in-headlines/">Fix Uneven Line Lengths in Headlines</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-13T00:00:00-05:00" pubdate data-updated="true">Jan 13<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/13/fix-uneven-line-lengths-in-headlines/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I used to work in newspapers, and we were diligent about fixing &#8220;bad breaks&#8221; in headlines. Nothing looks worse than a headline that&#8217;s far longer on one line than on another. Desktop publishing software has some intelligence about these bad breaks, but the web, not so much. A little jQuery can clean up the bad breaks, though &#8211; for example, this will clean up all the <code>h2</code>s.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$h2</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the height of the existing element</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">$h2</span><span class="p">.</span><span class="nx">height</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the text of the existing element</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">$h2</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// put temporary text in the element</span>
+</span><span class='line'>  <span class="c1">// that will make the element one line tall</span>
+</span><span class='line'>  <span class="nx">$h2</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the height of the one-line element</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">singleLineHeight</span> <span class="o">=</span> <span class="nx">$h2</span><span class="p">.</span><span class="nx">height</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// check to see if the initial element was</span>
+</span><span class='line'>  <span class="c1">// taller than the one-line element;</span>
+</span><span class='line'>  <span class="c1">// if so, look for the midpoint of the</span>
+</span><span class='line'>  <span class="c1">// initial text and split it there</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">height</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="nx">singleLineHeight</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">mid</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">length</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="nx">mid</span><span class="p">;</span> <span class="nx">i</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">text</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">breakIndex</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">newText</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="err">&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">newText</span> <span class="o">=</span> <span class="nx">newText</span> <span class="o">+</span> <span class="nx">text</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">$h2</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">newText</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// otherwise, put the initial text</span>
+</span><span class='line'>    <span class="c1">// back in the element and move on</span>
+</span><span class='line'>    <span class="nx">$h2</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So you end up changing this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>This is a very long headline that goes on and then breaks
+</span><span class='line'>badly</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>This is a very long headline that
+</span><span class='line'>goes on and then breaks badly</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You&#8217;ll want to change the <code>$('h2')</code> selector to exactly what you need; in the case of this blog, <code>$('div.post h2 a')</code> is actually more appropriate. You&#8217;re going to be best off if matching elements contain only text, and no HTML.</p>
+
+<p>Also, this will only work for elements that are one or two lines long; for headlines of arbitrary length, you&#8217;d need to see exactly how the height of the initial element compared to the height of the temporary one-line element, and then split the headline multiple times. Then again, thinking back to my newspaper days where we had to convey a whole story in four words, you might ask yourself whether you actually need a headline that&#8217;s more than two lines long.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/">Solved: AJAX Returns Bad Results in Internet Explorer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-10T00:00:00-05:00" pubdate data-updated="true">Jan 10<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Note to self: IE6 likes to cache AJAX requests, and this can be a bad thing if other data on the page that will affect the result of the request has changed.</p>
+
+<p>You&#8217;ll see this if you have two fields on a page that both contribute to a result, but only send them to the server when one of them has changed.</p>
+
+<p>Let&#8217;s say field1 and field2 get multiplied on the server side, and both start out with values of 1. So, in IE6:</p>
+
+<ul>
+<li>Set field1 to 1000: Response is 1000.</li>
+<li>Set field1 to 100: Response is 100.</li>
+<li>Set field2 to 123: Response is 12300</li>
+<li>Set field 1 back to 1000: <strong>Uh oh! Response is 1000 again!</strong>
+</li>
+</ul>
+
+
+<p>IE6 has decided that the result from the first time you set field1 to 1000 was good enough, and it doesn&#8217;t look to see that the new result is different.</p>
+
+<p>The solution? Add a timestamp to your requests, so each one will look different to IE even if the real data is the same:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// just an example; you&#39;d</span>
+</span><span class='line'><span class="c1">// obviously build this from</span>
+</span><span class='line'><span class="c1">// the field itself</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;field1=1000&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// build the timestamp</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
+</span><span class='line'><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;&amp;amp;&#39;</span> <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// now you can send your data</span>
+</span><span class='line'><span class="c1">// using ajax</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Thankfully, when this happened to me yesterday, I had a coworker who only needed a couple of minutes with the server logs to figure out what was happening. After he figured it out here, I found <a href="http://groups.google.com/group/jquery-en/browse_thread/thread/a40b6fb572232e3b">this thread</a>, which verified the cause, and I was able to solve it in a few minutes.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/08/cycle-through-list-elements-with-jquery/">Cycle Through List Elements With jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-08T00:00:00-05:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/08/cycle-through-list-elements-with-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve written several versions of this functionality, and each time I revisit it, it gets simpler and I feel silly for how complicated I made it before. The thing to remember when you&#8217;re working with jQuery is to <strong>always leverage the DOM</strong>. <a href="http://www.christianmontoya.com/2007/12/10/how-i-learned-to-stop-programming-and-love-the-dom/">Christian Montoya has a good writeup</a> about how he came to the same realization, and it&#8217;s worth a read.</p>
+
+<p>In the meantime, here&#8217;s my latest iteration of cycling through items in an unordered list. In the example below, I&#8217;ve just put straight-up text in the list items, but they could contain entire <code>div</code>s of content if you wanted.</p>
+
+<p>First, let&#8217;s assume we have this HTML:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;</span>Item 1<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;</span>Item 2<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;</span>Item 3<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&#8217;ll start by verifying that there&#8217;s more than one item before we do all the rest of the work. (Of course, if your list length doesn&#8217;t vary, this <code>if</code> isn&#8217;t necessary.)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Following the principles of progressive enhancement, we don&#8217;t want to include navigation elements in the HTML if they will only work with Javascript; rather, we want to add them with Javascript:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:last&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;forwardButton.gif&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The comes the fun part: adding the behaviors to the nav buttons. This is where it pays to keep in mind the power of the DOM; in past iterations of this, I&#8217;ve seriously overthought the logic.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the back button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">prev</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the forward button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:last&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;forwardButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">next</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But what happens if there&#8217;s not a next <code>li</code> when you click on the forward button, or a previous <code>li</code> when you click on the back button?</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the back button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">prev</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// if there wasn&#39;t a previous li,</span>
+</span><span class='line'>      <span class="c1">// show the last li in the list</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span><span class="nx">length</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One last thing: we need to hide all the list items and then show the first one:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// hide all the list items and show the first one</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the back button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">prev</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// if there wasn&#39;t a previous li,</span>
+</span><span class='line'>      <span class="c1">// show the last li in the list</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span><span class="nx">length</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For extra fun:</p>
+
+<ul>
+<li>
+<a href="http://blog.rebeccamurphey.com/2007/12/11/jquery-plugin-randomly-reorder-children-elements/">Randomly reorder</a> the list items before you add the rest of the code</li>
+<li>Instead of <code>show()</code> and <code>hide()</code>, try <code>fadeIn()</code> and <code>fadeOut()</code>
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/06/unobtrusive-cross-browser-method-to-add-icons-to-links/">Unobtrusive, Cross-browser Method to Add Icons to Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-06T00:00:00-05:00" pubdate data-updated="true">Jan 6<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/06/unobtrusive-cross-browser-method-to-add-icons-to-links/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are <a href="http://www.askthecssguy.com/2006/12/showing_hyperlink_cues_with_cs_1.html">lots</a> of <a href="http://www.creativewebspecialist.co.uk/CSS_attributes/">examples</a> of using CSS to add filetype icons to links, but they all rely on advanced CSS selectors, which Internet Explorer 6 doesn&#8217;t support.</p>
+
+<p>If you&#8217;re looking for a cross-browser method of adding filetype icons to links, you have a couple of choices: you can add a class name to all of your links and target that class name with CSS that IE6 can understand; or you can let Javascript add the links dynamically based on the extension it finds at the end of each URL. The class name method is fine if you don&#8217;t mind adding the class to all of your links in your HTML, but the Javascript method will figure out which links get which icon automatically.</p>
+
+<h3>The Javascript/jQuery method</h3>
+
+
+<p>This uses my favorite Javascript library, <a href="http://jquery.com">jQuery</a>; you&#8217;ll need to include the library in your document, and then either put the icon-adding code in another file you include, or put it inline with your HTML. It&#8217;s good practice to put all your jQuery code inside <code>$.ready()</code>, <a href="http://docs.jquery.com/Events/ready#fn">to be executed when the document is ready to be manipulated</a>, but I&#8217;ve left that part out here for brevity.</p>
+
+<p><strong>Round 1:</strong> Because <a href="http://docs.jquery.com/Selectors">jQuery supports CSS1-3</a>, you can mimic the CSS rule that wouldn&#8217;t work in IE6:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href$=&amp;quot;.doc&amp;quot;]&#39;</span><span class="p">).</span>
+</span><span class='line'>  <span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>    <span class="c1">// use paddingLeft instead of padding-left;</span>
+</span><span class='line'>    <span class="c1">// jQuery (and Javascript) use camelCase</span>
+</span><span class='line'>    <span class="c1">// for CSS attributes instead of hyphenation</span>
+</span><span class='line'>    <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;word-doc.gif&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Round 2:</strong> You <em>could</em> do one of these snippets for each file type, but with jQuery, you can take advantage of the <a href="http://docs.jquery.com/Utilities/jQuery.each#objectcallback">$.each() utility method</a> to do a loop, eliminating redundant code:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// first, create an object</span>
+</span><span class='line'><span class="c1">// that contains information</span>
+</span><span class='line'><span class="c1">// about how file extensions</span>
+</span><span class='line'><span class="c1">// correspond to images</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// extension: &#39;image file&#39;</span>
+</span><span class='line'>  <span class="nx">doc</span><span class="o">:</span> <span class="s1">&#39;doc.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">xls</span><span class="o">:</span> <span class="s1">&#39;xls.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">pdf</span><span class="o">:</span> <span class="s1">&#39;pdf.gif&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// then, loop over the object</span>
+</span><span class='line'><span class="c1">// using jQuery&#39;s $.each()</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fileTypes</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extension</span><span class="p">,</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href$=&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">extension</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;]&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">image</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Round 3:</strong> One problem with this: while jQuery does support these attribute selectors, in my experience they require some pretty heavy lifting to do the pattern matching, which can slow things down significantly. Since the method above would require multiple selections (one for each extension/image combination), it makes sense to try a different way that will require fewer selections and less pattern matching:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">doc</span><span class="o">:</span> <span class="s1">&#39;doc.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">xls</span><span class="o">:</span> <span class="s1">&#39;xls.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">pdf</span><span class="o">:</span> <span class="s1">&#39;pdf.gif&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// this is like $.each() above, except</span>
+</span><span class='line'><span class="c1">// it iterates over the matched elements</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get a jQuery object for each anchor found</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the href attribute</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the extension from the href</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">fileTypes</span><span class="p">[</span><span class="nx">extension</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$a</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">image</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And in fact, in limited testing using Firebug, this second version is faster than the first if you have more than two filetypes (and thus more than two selections).</p>
+
+<h3>Taking it further</h3>
+
+
+<p>You can also add a different icon to external links, and only add filetype icons to internal links:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">doc</span><span class="o">:</span> <span class="s1">&#39;doc.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">xls</span><span class="o">:</span> <span class="s1">&#39;xls.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">pdf</span><span class="o">:</span> <span class="s1">&#39;pdf.gif&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span>
+</span><span class='line'>    <span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^http/</span><span class="p">))</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">!</span> <span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">domain</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// use a special image for external links</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="s1">&#39;external.gif&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// get the extension from the href</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">fileTypes</span><span class="p">[</span><span class="nx">extension</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$a</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">image</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or, only add icons to certain links, like a list of files in an unordered list, by changing your selector from <code>$('a')</code> to <code>$('ul#fileList a')</code>.</p>
+
+<h3>Resources</h3>
+
+
+<ul>
+<li>There are nuances to the CSS you&#8217;ll want to apply to your links; the above is just an example of something that may or may not work for you. <a href="http://www.askthecssguy.com/2006/12/showing_hyperlink_cues_with_cs_1.html">Read more here</a> about how to style the links so your background images appear as you want them to.</li>
+<li>If you&#8217;re using transparent PNGs for your background images, <a href="http://www.twinhelix.com/css/iepngfix/">iepngfix</a> will save the day.</li>
+<li>
+<a href="http://www.famfamfam.com/lab/icons/silk/">famfamfam</a> has some great icons available for free under the Creative Commons Attribution 2.5 License.</li>
+
+</ul>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/04/salivating-over-server-side-javascript/">Salivating Over Server-side Javascript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-04T00:00:00-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/04/salivating-over-server-side-javascript/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I came across <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html">The End of Web Frameworks</a> in my dzone RSS feed this morning, and it echoes a thought that runs through my brain as I get more and more comfortable with jQuery: who needs the server when you&#8217;ve got Javascript? Wouldn&#8217;t it be great if the server just handed out data, and the client figured out what to do with it? After talking directly to the DOM for the last several months, a trip back to PHP left me utterly disoriented for a few minutes &#8211; why, exactly, couldn&#8217;t I take the anchors from that unordered list I&#8217;d just built 50 lines ago and reuse their hrefs for something else?</p>
+
+<p>As a <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html#c8132224153158413680">couple</a> of <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html#c5149909265291802708">commenters</a> pointed out, it&#8217;s not that easy &#8211; there&#8217;s still graceful degradation (the yin to progressive enhancement&#8217;s yang?) to worry about. It&#8217;s easy to say &#8220;oh, I don&#8217;t have to worry about that,&#8221; but until the day that&#8217;s actually <em>true</em>, Javascript on the client side simply can only supplement good, solid, server-generated markup.</p>
+
+<p>That&#8217;s why stuff like <a href="http://groups.google.com/group/jquery-en/browse_thread/thread/38d8d0c295b2919b">this discussion about server-side jQuery</a> has me nearly salivating. I&#8217;m imagining getting JSON data from a simple bit of server-side code that&#8217;s not encumbered by messy markup and then writing some Javascript to build the DOM of my dreams. The added bonus would be server-side code that could serve that clean, pretty JSON data up to anyone I wanted to have it.</p>
+
+<p>Of course, that DOM would still need to use semantic HTML and not rely on client-side Javascript for anything &#8211; and not just because a visually or otherwise impaired person might drop by someday and want to use my site. <a href="http://blogs.cnet.com/8301-13530_1-9782891-28.html">Progressive enhancement is good for SEO</a>, too, (and so are web standards in general). One only wishes that would lead SEO-focused companies to fall all over themselves in pursuit of it :)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/7/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

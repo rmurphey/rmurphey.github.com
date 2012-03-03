@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: analytics, | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/analytics-/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2012-03-03T15:51:06-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Tracking outbound clicks with Google Analytics and jQuery]]></title>
+    <link href="http://rmurphey.com/blog/2008/12/05/update-tracking-outbound-clicks-with-google-analytics-and-jquery/"/>
+    <updated>2008-12-05T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2008/12/05/update-tracking-outbound-clicks-with-google-analytics-and-jquery</id>
+    <content type="html"><![CDATA[<p>A while back I wrote a post about tracking outbound clicks with Google Analytics; way back then (about 6 months ago), the only event that Google Analytics could track was a pageview. Now that they've introduced the <a href="http://code.google.com/apis/analytics/docs/eventTrackerOverview.html">_trackEvent</a> method of the pageTracker object, events that aren't pageviews don't need to count as pageviews anymore; instead, they can be counted as "events," and they can be categorized and labeled.</p>
+
+<p>Here's an updated example of how to track outbound clicks using Google Analytics and jQuery. You'll of course need to be including the "new" analytics code (ga.js, not urchin.js) for this to work, as well as the jQuery library.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="c1">// see if the link is external</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/&lt;sup&gt;http/</span><span class="p">))</span><span class="o">&lt;</span><span class="err">/sup&gt; &amp;amp;&amp;amp; (! href.match(document.domain)) ) {&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// if so, register an event</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">category</span> <span class="o">=</span> <span class="s1">&#39;outgoing&#39;</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="s1">&#39;click&#39;</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">href</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">pageTracker</span><span class="p">.</span><span class="nx">_trackEvent</span><span class="p">(</span><span class="nx">category</span><span class="p">,</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">href</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You can use the same method to unobtrusively add tracking code to file downloads:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span><span class="s1">&#39;xls&#39;</span><span class="p">,</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="s1">&#39;mp3&#39;</span><span class="p">];</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">extension</span><span class="p">,</span><span class="nx">fileTypes</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>  <span class="nx">pageTracker</span><span class="p">.</span><span class="nx">_trackEvent</span><span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">,</span> <span class="nx">extension</span><span class="p">,</span> <span class="nx">href</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Suspicious StumbleUpon Bounce Rates?]]></title>
+    <link href="http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/"/>
+    <updated>2008-01-03T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates</id>
+    <content type="html"><![CDATA[<p>I've been promoting some of my blog posts by submitting them to <a href="http://www.stumbleupon.com">StumbleUpon</a>, and it's been generating a fair bit of traffic -- my post "How I Learned CSS" has done especially well. I've been watching my site using Google Analytics, and I've noticed that visitors from StumbleUpon have a substantially lower <a href="http://en.wikipedia.org/wiki/Bounce_Rate">bounce rate</a> than, say, visitors from <a href="http://www.dzone.com">dzone</a>. So I think, "yay, StumbleUpon" and start submitting anything interesting I write to there.</p>
+
+<p>But in poking around in my Google Analytics a bit more, I've also noticed that, on pages that I've promoted through SU, I'm seeing strange navigation patterns: for "How I Learned CSS," 40% of visits to the page came from the page itself (and, as it logically follows, 40% of next pages were the page itself). The page was viewed a total of 4,700 times, but a little more than 2,800 of those pageviews were unique. Since bounce rate basically measures whether a new arrival went to another page before leaving the site, I'm not sure it shouldn't count as a bounce if the second page the user visits is the same as the one they were already on.</p>
+
+<p>I'm not seeing this pattern with pages I don't promote on SU, which makes me curious. SU is clearly driving a ton of traffic to my site; it's just not clear that the traffic is actually resulting in the remarkably low bounce rate that Google Analytics shows. If I took out the 40% of people whose next page was the page they were already on, I'm left with not even 1% of people who went to another, different page on the site before leaving -- and suddenly dzone is looking good again.</p>
+
+<p>I did a Google search and didn't come up with much except <a href="http://www.wpdesigner.com/2007/09/15/wwmd-reduce-bounce-rate/#comment-87245">this</a>, which discusses the importance of bounce rate, and <a href="http://www.seowife.com/stumbleupon-advertising/">this</a>, which suggests using StumbleUpon to reduce your bounce rate.</p>
+
+<p>I'm curious whether anyone else is seeing this, and whether it's actually related to StumbleUpon, Google Analytics, or something else. If I had to guess, I'd imagine that this is a result of people using the StumbleUpon toolbar (since it's not happening in all cases), and maybe the toolbar is pre-visiting the page on the user's behalf to make sure it still exists?</p>
+
+<p>Update: See the comments and a more <a href="http://www.jamieharrop.com/2007/11/05/my-stumbleupon-analysis-a-poor-500-traffic-increase/">in-depth discussion</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

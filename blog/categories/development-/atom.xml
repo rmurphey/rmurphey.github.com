@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: development, | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/development-/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2012-03-03T15:51:06-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Patterns for DRY-er JavaScript]]></title>
+    <link href="http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript/"/>
+    <updated>2010-07-12T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript</id>
+    <content type="html"><![CDATA[<p>I came across a little code the other day that reminded me I've been meaning to write about JavaScript patterns I take for granted. The code in question was intended to set the value of some fields in a form when a checkbox was selected; when it was deselected, the same fields were to be emptied. It looked not unlike this:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// config is defined outside of this snippet,</span>
+</span><span class='line'><span class="c1">// and may contain more than the properties</span>
+</span><span class='line'><span class="c1">// we care about </span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_foo&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_bar&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">bar</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_baz&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">baz</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_foo&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_bar&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_baz&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This is a wholly readable bit of code -- there's almost no question what's going on here. On the other hand, it's pretty easy to see the rampant repetition; this code isn't interested in "don't repeat yourself" (DRY). We're calling the same method on every selection we make, and our selections are repeated in both the if and else block.   When I saw this code, I had an immediate inclination to rewrite it. Here's what I came up with first:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// config is defined outside of this snippet,</span>
+</span><span class='line'><span class="c1">// and may contain more than the properties</span>
+</span><span class='line'><span class="c1">// we care about&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// note whether the checkbox is checked</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="c1">// iterate over the keys we care about</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// find the field for the given key</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_&#39;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">// and set its value either to the string</span>
+</span><span class='line'>  <span class="c1">// stored for the key, or to an empty string,</span>
+</span><span class='line'>  <span class="c1">// depending on whether the checkbox was checked</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">config</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This looks approximately nothing like the initial code, and without the
+comments, the code itself would be substantially less readable than the
+original. The idealistic part of me -- the part that believes people who write
+JavaScript should understand JavaScript -- says this is an acceptable price to
+pay. And besides, there's something to be said for explaining the code in a
+comment that can be stripped by a minifier, rather than explaining the code via
+the code.  In this iteration, we've introduced two patterns for DRY-er code:
+iterating over an array literal (or, alternately, an object) to achieve
+repetition without repeating ourselves, and using the ternary operator in place
+of an if/else statement when the simplicity of our logic allows it.  The array
+literal serves as a list of the fields we care about. When our checkbox is
+clicked, we iterate over this list, build up a selector for each item in the
+list, make our selection, and then set the field value using a <a
+href="http://stackoverflow.com/questions/1788917/javascript-ternary-operator">ternary
+operator</a>. We've gone from 11 lines of code to six, with the added bonus
+that we have to do a lot less typing if we need our checkbox to affect more
+fields.
+
+(A side note: Is this premature optimization? I'd argue no, if you've
+learn to see these patterns before you start writing code. Once you learn how
+to spot these patterns in a requirement, writing code that embraces them can
+actually be easier than writing code that takes a more "literal" approach to
+the problem. For example, imagine if the checkbox affected 20 other fields
+instead of one? You'd undoubtedly find yourself copying and pasting code if you
+took the more "literal" approach to the problem, and that would be your first
+clue that you were doing something inefficiently.)
+
+The great thing about using a pattern like this is that it rapidly exposes the
+actual meat of what you're doing, and makes refactoring far less painful. I
+also find that it helps me see opportunities for reuse that I might not have
+spotted in the more literal version of the code.  Let's say we're feeling all
+proud of ourselves for DRYing out our code using clever JavaScript that only
+super-smart people can read. Now there's another checkbox that needs similar
+behavior, but it's going to use a different config object and a different list
+of fields. No problem! You've already written this code, so you can just copy
+and paste it and then change what's different. Sweet. Er ... suddenly you're
+not looking so DRY after all.  This is when another pattern comes into play:
+creating a function that returns another function with certain variables
+already baked in (that is, creating a closure). We'll execute this creator
+function and then use the function it returns in place of the anonymous
+function we were using previously when we bound to the click event.</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// handleClick accepts a config object</span>
+</span><span class='line'><span class="c1">// and a makeSelector function; it returns</span>
+</span><span class='line'><span class="c1">// a function that can be bound to</span>
+</span><span class='line'><span class="c1">// a click event, using the config object</span>
+</span><span class='line'><span class="c1">// and the makeSelector function to react</span>
+</span><span class='line'><span class="c1">// appropriately to the click</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">makeSelector</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">fields</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// build the selector using the provided</span>
+</span><span class='line'>  <span class="c1">// makeSelector function</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="nx">makeSelector</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
+</span><span class='line'>          <span class="c1">// set the value using the</span>
+</span><span class='line'>          <span class="c1">// config object, depending</span>
+</span><span class='line'>          <span class="c1">// on whether the checkbox</span>
+</span><span class='line'>          <span class="c1">// is checked</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">config</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">};</span>
+</span><span class='line'><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
+</span><span class='line'>  <span class="c1">// use handleClick to create a function</span>
+</span><span class='line'>  <span class="c1">// that has these variables baked in;</span>
+</span><span class='line'>  <span class="c1">// pass the created function as the</span>
+</span><span class='line'>  <span class="c1">// click handling function</span>
+</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;baz&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="nx">myCheckboxConfig</span><span class="p">,</span>
+</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;#field_&#39;</span> <span class="o">+</span> <span class="nx">field</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">)</span>
+</span><span class='line'><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myOtherCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
+</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="p">[</span><span class="s1">&#39;bim&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;bop&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="nx">myOtherCheckboxConfig</span><span class="p">,</span>
+</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;input[name=&amp;amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">field</span> <span class="o">+</span> <span class="s1">&#39;&amp;amp;quot;]&#39;</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>By creating a function that returns a function, we can isolate what's different about the two different handlers while centralizing the pieces that are the same. If your event handling function was slightly less trivial than this one, or if you were binding to five different checkboxes instead of two, the benefit of consolidating the code would be even more substantial.  JavaScript offers plenty of patterns for writing DRY-er code; it's important to learn to both recognize and use them. It's also important to recognize when you're writing un-DRY code in the first place -- copying and pasting code is one crystal-clear indicator, but others are more subtle and you may not identify them on the first go-round. For example, take these two functions; each receives a list item as its only argument and returns either the next or previous list item, returning to the beginning or end of the list if there is no next or previous item.</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">getNextItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">length</span> <span class="o">?&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>     <span class="nx">$item</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span> <span class="o">:</span> <span class="nx">$items</span><span class="p">.</span><span class="nx">first</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">getPrevItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>    <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">prev</span><span class="p">().</span><span class="nx">length</span> <span class="o">?</span>
+</span><span class='line'>            <span class="nx">$item</span><span class="p">.</span><span class="nx">prev</span><span class="p">()</span> <span class="o">:</span> <span class="nx">$items</span><span class="p">.</span><span class="nx">last</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This felt repetitive when I first wrote it, but I couldn't quickly come up with a single function that would work. A little thinking about it, though, led me to this single function which gets a second argument: direction. That argument is used to decide whether to run the item's next or previous method, and then whether to run the item's first or last method. Besides combining two functions into one, it also eliminates calling next or prev twice inside each function.</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">getItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">,</span> <span class="nx">direction</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$returnItem</span> <span class="o">=</span> <span class="nx">$item</span><span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span><span class="nx">direction</span><span class="o">&lt;</span><span class="err">/a&gt;;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$returnItem</span><span class="p">.</span><span class="nx">length</span> <span class="o">?&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>     <span class="nx">$returnItem</span> <span class="o">:</span>
+</span><span class='line'>     <span class="nx">$items</span><span class="p">[(</span><span class="nx">direction</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;first&#39;</span> <span class="o">:</span> <span class="s1">&#39;last&#39;</span><span class="p">]();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Learning about patterns and then discovering opportunities to use them is one of the more pleasing parts of my job. I hope this helps you identify some of those opportunities for yourself :)</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum]]></title>
+    <link href="http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum/"/>
+    <updated>2010-06-17T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum</id>
+    <content type="html"><![CDATA[<p>I've been leading <a href="http://www.rebeccamurphey.com/training">jQuery trainings</a> for more than a year now, from tiny gatherings that I organized myself at the local coworking space, to intensive two-day sessions at local web companies, to whirlwind one-day classes at governmental agencies. Over the course of those trainings, I've developed what I'd like to think is a decent curriculum -- training material that's the size of a small book, exercises that demonstrate core concepts, and solutions to those exercises that students can peek at later or when they get stuck.</p>
+
+<p>I decided recently that it was time for all of this material to see the light of day, so I spent the last several days converting it all to DocBook files that allow for easy publication to HTML and PDF (and other formats, if I'm later so inclined). I also fleshed out some topics that I'd given short shrift, and started planning sections covering advanced topics such as plugin authoring, code organization, best practices, and more. There's more to come in the next few days, but I think what I've done so far is worth sharing. I hope you'll agree.</p>
+
+<ul>
+<li><a href="http://rebeccamurphey.com/jqfundamentals/">Full HTML version of jQuery Fundamentals book</a></li>
+<li><a href="http://rebeccamurphey.com/jqfundamentals/book/release/html/index.html">"Chunked" HTML version of jQuery Fundamentals book</a></li>
+<li>
+<a href="http://github.com/rmurphey/jqfundamentals/">GitHub repo</a> (exercises, solutions, and book source code)</li>
+</ul>
+
+
+
+
+<br />
+
+
+<p style="margin: 20px 0;"><div class='p_embed p_image_embed'>
+<a href="http://getfile9.posterous.com/getfile/files.posterous.com/import-vejw/bxqpHqGhgCJJadEpIijidbehCvswlGiiGvHwyiJGejyjvxwnEDdopGoHuswe/media_httpgyazocoma21_qFIfz.png.scaled1000.png"><img alt="Media_httpgyazocoma21_qfifz" height="507" src="http://getfile2.posterous.com/getfile/files.posterous.com/import-vejw/bxqpHqGhgCJJadEpIijidbehCvswlGiiGvHwyiJGejyjvxwnEDdopGoHuswe/media_httpgyazocoma21_qFIfz.png.scaled500.png" width="500" /></a>
+</div>
+</p>
+
+
+<br />
+
+
+<p>My goals in releasing this are several. First and foremost, I want to see people writing better jQuery. The free resources for learning jQuery are scattered across the internets, and my personal experience of learning the library was haphazard — it was a long time before I learned some things I wish I'd known from the get-go. In addition, I want people who are writing jQuery to understand JavaScript. To that end, the book begins with a survey of JavaScript itself before jumping into jQuery.  Finally, I want to enlist the bright minds of the jQuery community to help developing a robust, authoritative, in-depth jQuery curriculum, and in exchange it only seemed fair to make it available to everyone.</p>
+
+<p>I should mention that the goal of this material is to serve as a companion to a human instructor. That said, individuals may find it useful for self-study, especially if they're diligent about doing the exercises at the end of each chapter.</p>
+
+<p>If you're inclined to help -- by adding a chapter, a section, a paragraph, an exercise, or even just a correction -- fork the repo and send me a pull request. I look forward to seeing how this project might evolve with the community's help.</p>
+
+<p><strong>Note</strong>: If you comment on this post pointing out an issue with the material, I will do my best to tend to the issue, but I probably won't publish your comment, as this post isn't the right place for reporting issues in the code. You can <a href="http://github.com/rmurphey/jqfundamentals/issues">report issues at the repository</a>, but if it's important to you, <em>please</em> fork the repository, make the change, and send me a pull request.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons Learned from Taking On a Project in Crisis ]]></title>
+    <link href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/"/>
+    <updated>2010-04-03T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis</id>
+    <content type="html"><![CDATA[<p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you've most certainly heard of. I developed the entire front-end -- HTML, CSS, and JavaScript -- for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I've learned, in hopes that I can benefit from my experience in the future.</p>
+
+
+
+
+<ul>
+    <li>Demand all technical source material up front, such as functional specs, mockups, work that's been done to date, etc. Give the client a fixed amount of time to deliver that source material, and don't make a decision about taking on the project until you've seen it. What the client can deliver in that fixed amount of time will shed a lot of light on the state of the project and whether their expectations are realistic.</li>
+    <li>Set clear time expectations. Am I willing to work 16 hours a day? Am I expected to? Are there hours during which I'll be expected to be available? Am I willing to work on the weekend?</li>
+    <li>Find out whether the client expects me to be available after the imminent deadline, and to what extent. The last thing I want is to snatch defeat from the jaws of victory by being unable to support the code I've written.</li>
+    <li>Do not accept responsibility for commitments made on my behalf. The recruiter said I'd be available six hours a day when I told him four? Not my problem. The client committed to having a feature ready for review without consulting me? They probably won't make that mistake again.</li>
+    <li>Ascertain the rest of the team's commitment to the project. If I'm expected to work long hours, will they be there during those long hours to get me what I need? Are there any constraints on their availability?</li>
+    <li>Establish a single point of contact at the client, and make clear I'll be depending on them to get me any information I need and I'll be treating their decisions as final. Insist that they participate in all calls I'm expected to participate in.</li>
+    <li>Limit the amount of work I do before I have access to all client systems I'll need access to: version control, testing environments, ticketing systems, etc.</li>
+    <li>Insist on a ticketing system. I'm new to the project and I have a lot to get up to speed on. I don't want emails flying at me from all directions -- decisions and technical requirements need to be documented in a single place that everyone can see. This is my only insurance when someone wants to know why something isn't done, or why it wasn't done the way they expected.</li>
+    <li>Insist on version control, even if it's something crappy like CVS. I'll need a way to make sure the rest of the team has access to my latest and greatest. FTP blows, especially when I'm FTPing to a server where another developer is constantly deploying a new build, overwriting my work.</li>
+</ul>
+
+
+
+
+<p>What other advice do you have?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On gaining respect as a front-end developer]]></title>
+    <link href="http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/"/>
+    <updated>2009-04-13T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer</id>
+    <content type="html"><![CDATA[<p>Someone wrote me today:</p>
+
+<blockquote class="posterous_medium_quote">Where I work, design is highly valued with the leader of that group being our Creative Director, back end programmers are also highly valued, but front end ... not so much. Partly I think its that I don't toot my horn but I know there are other reasons. At times, my bosses haven't even understood what it is that I do. Back end programmers look down on front end assuming that its trivial or something that should be relegated to compilers.
+
+I was wondering if this is a common thing or more so something that is happening at my particular company, and if you have any advice or pointers on this.</blockquote>
+
+
+<p>I thought my response might be worth sharing:</p>
+
+<p>I do think this attitude is common but not necessarily the rule. In my experience, I've found that by having a proven value proposition, you can gain converts and respect.</p>
+
+<p>Front end developers are in a unique position to improve page performance (perceived and actual) by using best practices such as the <a href="http://developer.yahoo.com/yslow/">YSlow</a> tests. Front end developers are also in a unique position to help develop templating systems and to write thoughtful CSS, both of which help enable the rapid prototyping and rollout of new features. A focus on results and best practices -- demonstrating that you aren't just pushing pixels around -- is the key.</p>
+
+<p>Back end developers respect people who think like they do. Be mindful of opportunities for abstraction and reuse. Write <a href="http://www.slideshare.net/stubbornella/object-oriented-css">object-oriented CSS</a> and JavaScript. Craft solutions that are maintainable and documented. Learn and make use of <a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">version control</a> <a href="http://svnbook.red-bean.com/nightly/en/svn.intro.quickstart.html">systems</a>. Look for opportunities to participate in developer conversations about new features, and understand what the back end developers are up against. They'll appreciate all of this.</p>
+
+<p>Take the time to teach and to learn. Be sure you have at least a passing understanding of the code the back end developers are writing, and leap at opportunities to share your knowledge. I've worked with more than one back end developer who was surprised to discover what all they didn't know about the front end, and through our conversations about how we approached problems, we both learned a lot.</p>
+
+<p>Finally: identify opportunities for quick victories, execute on them, and make the results known. Benchmark before and after. Can you reduce the number of HTTP requests on a page, decreasing both the perceived and actual rendering time? Are you keeping your JavaScript out of the &lt;head&gt; as much as possible, preventing pages from stalling while rendering? Can you write JavaScript that is primed for reuse, and demonstrate opportunities for that reuse? Has your carefully crafted CSS allowed the rapid rollout of a new feature? Don't be afraid to tell these stories -- they'll tend to strengthen your position by clarifying the important role the front-end developer plays in a site.</p>
+
+<p>Good luck :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solution for Google Map contents not showing]]></title>
+    <link href="http://rmurphey.com/blog/2008/11/16/solution-for-google-map-contents-not-showing/"/>
+    <updated>2008-11-16T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2008/11/16/solution-for-google-map-contents-not-showing</id>
+    <content type="html"><![CDATA[<p>I just spent more time than was reasonable trying to figure out why some Javascript I was using to show a Google map on one site wasn't working to show the map on another site. The map controls and copyright were rendering, but there was no actual map.</p>
+
+<p>Turns out the problem wasn't with my Javascript; I had a CSS rule that was setting overflow:hidden on all divs within a container, and the divs created by the Google map API were getting that rule too. No good. I wrote a new CSS rule to set overflow:visible on all divs inside the map container -- problem solved.</p>
+]]></content>
+  </entry>
+  
+</feed>

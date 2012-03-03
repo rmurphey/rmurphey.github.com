@@ -1,0 +1,1747 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="This is a reprint of an article that originally appeared in the March 2009 issue of JSMag. When you move beyond simple snippets of jQuery and start &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/4">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/15/using-objects-to-organize-your-code/">Using Objects to Organize Your Code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-15T00:00:00-04:00" pubdate data-updated="true">Oct 15<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/10/15/using-objects-to-organize-your-code/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is a reprint of an article that originally appeared in the March 2009 issue of <a href="http://jsmag.com">JSMag</a>.</p>
+
+
+
+
+<p>When you move beyond simple snippets of jQuery and start developing more complex user interactions, your code can quickly become unwieldy and difficult to debug. This article shows you how to start thinking about these interactions in terms of the bits of behavior the feature comprises, using the object literal pattern.</p>
+
+
+
+
+<p>In the past few years, JavaScript libraries have given beginning developers the ability to add elaborate interactions to their sites. Some, like jQuery, have a syntax so simple that people with zero programming experience can quickly add bells and whistles to their pages.  Adding all those bells and whistles, even some pretty elaborate ones, seems to be just a few Google searches away. A copy here, a paste there, a plugin or a few dozen lines of custom code — the client is duly impressed, and you’re adding jQuery to your resume.</p>
+
+
+
+
+<p>But wait. Now the requirements have changed. Now the thing that needed to work for three elements needs to work for ten. Now your code needs to be reused for a slightly different application where all the IDs are different.  We’ve all seen the snippets that make jQuery (and other libraries) look dead-simple. What those snippets leave out — and hey, they’re just snippets, right? — is how to design your code when your needs go beyond dropping in a plugin or doing some <code>show()</code> and <code>hide()</code>.</p>
+
+
+
+
+<h2>Introducing the Object Literal pattern</h2>
+
+
+
+
+<p>The object literal pattern offers a way to organize code by the behaviors it comprises. It’s also a means to keep your code from “polluting the global namespace,” which is a good practice for all projects and imperative for larger ones. It forces you to think at the outset about what your code will do and what pieces need to be in place in order for you to do it. An object literal is a way to encapsulate related behaviors, as shown here:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myObjectLiteral</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">myBehavior1</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="cm">/* do something */</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">myBehavior2</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="cm">/* do something else */</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>As an artificially simplistic example, suppose you had the jQuery shown in Listing 2 for showing and hiding content when a list item was clicked.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myFeature li&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;div/&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;foo.php?item=&#39;</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">));</span>
+</span><span class='line'>        <span class="p">})</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">siblings</span><span class="p">().</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Simple enough, and yet even in this example there are several things you might want to change later — for example, the way you determine the URL for loading the content, the destination of the loaded content, or the show and hide behavior.  An object literal representation of the feature cleanly separates these aspects. It might look like this:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myFeature</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">wrapper</span> <span class="o">:</span> <span class="s1">&#39;#myFeature&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">container</span> <span class="o">:</span> <span class="s1">&#39;div&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">urlBase</span> <span class="o">:</span> <span class="s1">&#39;foo.php?item=&#39;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">wrapper</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>            <span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">myFeature</span><span class="p">.</span><span class="nx">getContent</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+</span><span class='line'>            <span class="p">}).</span>
+</span><span class='line'>            <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">myFeature</span><span class="p">.</span><span class="nx">showContent</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">buildUrl</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$li</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">urlBase</span> <span class="o">+</span> <span class="nx">$li</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">getContent</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$li</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$li</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">buildUrl</span><span class="p">(</span><span class="nx">$li</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">$li</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">container</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">showContent</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$li</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$li</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">myFeature</span><span class="p">.</span><span class="nx">hideContent</span><span class="p">(</span><span class="nx">$li</span><span class="p">.</span><span class="nx">siblings</span><span class="p">());</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">hideContent</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$elements</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$elements</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Because the initial example was incredibly simplistic, the object literal incarnation is longer. Truth be told, the object literal method generally won’t save you lines of code. What it will save is headaches. By using an object literal, we’ve broken our code into its logical parts, making it easy to locate the things we might want to change down the road. We’ve made our feature extendable, by providing the ability to pass in overrides to the default configuration. And, we’ve done some limited self-documentation — it’s easy to see at a glance what the feature does. As your needs grow beyond the simplicity of this example the benefits of the structure will become clearer, as you’ll see below.</p>
+
+
+
+
+<p>_Note: For an excellent primer on objects, properties, and methods, check out <a href="http://www.amazon.com/Object-Oriented-JavaScript-high-quality-applications-libraries/dp/1847194141">Object-Oriented JavaScript: Create scalable, reusable high-quality JavaScript applications and libraries</a> by Stoyan Stefanov. You may also want to read up on JSON (JavaScript Object Notation)._</p>
+
+
+
+
+<h2>An in-depth example</h2>
+
+
+
+
+<p>Our mission will be to create a UI element that features multiple pieces of content divided into several sections. Clicking on a section will show a list of items in the section; clicking on an item in the left nav will show the item in the content area. Whenever a section is shown, the first item in the section should be shown. The first section should be shown when the page loads.</p>
+
+
+
+
+<h3>Step 1: Crafting the HTML</h3>
+
+
+
+
+<p>Writing good semantic HTML is a crucial prerequisite to writing good JavaScript, so let’s start by thinking about what the HTML for something like this might look like. The HTML should:</p>
+
+
+
+
+<ul>
+<li>Make sense (and work) when JavaScript isn’t available.</li>
+<li>Provide a predictable DOM to which we can attach JavaScript.</li>
+<li>Avoid unnecessary IDs and classes (and you might be surprised by how few are necessary).</li>
+</ul>
+
+
+
+
+<p>With those guidelines in mind, we’ll start with <a href="http://www.rebeccamurphey.com/jsmag/object-literal/">this html</a>.  Note that we haven’t included any markup to display the section navigation or the item navigation; those pieces will be added by jQuery since they will only work with jQuery; non-JavaScript users will get nice semantic markup. (If there’s anything surprising or confusing in that HTML, now would be a good time to read up on POSH (plain-old semantic HTML) and progressive enhancement.)</p>
+
+
+
+
+<h3>Step 2: Scaffolding the Object</h3>
+
+
+
+
+<p>My first step in creating an object for a feature is to create “stubs” within the object. Stubs are basically placeholders; they’re the outline for the feature we’re going to build. Our object will have the following methods:</p>
+
+
+
+
+<ul>
+<li><code>myFeature.init()</code> will run on <code>$(document).ready()</code>. It will turn the semantic HTML we start with into a JavaScript-enabled user interface.</li>
+<li><code>myFeature.buildSectionNav()</code> will be called by <code>myFeature.init()</code>. It will take a jQuery object that contains all of the sections from the semantic HTML and use those sections to build the top navigation. It will bind the click handlers to the top navigation items so that clicking on them will show the appropriate section.</li>
+<li><code>myFeature.buildItemNav()</code> will be called by <code>myFeature.showSection()</code>. It will ake a jQuery object that contains all of the items associated with the section from the semantic HTML, and use them to build the side navigation. It will bind the click handlers to the side navigation items so that clicking on them will show the appropriate content.</li>
+<li><code>myFeature.showSection()</code> will be called when the user clicks on an item in the top navigation. It will use the navigation item that’s clicked on to figure out which section to show from the semantic HTML.</li>
+<li><code>myFeature.showContentItem()</code> will be called when the user clicks on an item in the side navigation. It will use the navigation item that’s clicked on to figure out which content item to show from the semantic HTML.</li>
+</ul>
+
+
+
+
+<p>We’ll also make room for a configuration property, <code>myFeature.config</code>, which will be a single location for setting default values rather than scattering them throughout the code. We’ll include the ability to override the defaults when we define the <code>myFeature.init()</code> method.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myFeature</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;config&#39;</span> <span class="o">:</span> <span class="p">{</span> <span class="p">},</span>
+</span><span class='line'>    <span class="s1">&#39;init&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+</span><span class='line'>    <span class="s1">&#39;buildSectionNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+</span><span class='line'>    <span class="s1">&#39;buildItemNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+</span><span class='line'>    <span class="s1">&#39;showSection&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+</span><span class='line'>    <span class="s1">&#39;showContentItem&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>Step 3: The Code</h3>
+
+
+
+
+<p>Once we’ve built this skeleton, it’s time to start coding. Let’s start by setting up a simple <code>myFeature.config</code> object and writing the <code>myFeature.init()</code> method:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;config&#39;</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// default container is #myFeature</span>
+</span><span class='line'>    <span class="s1">&#39;container&#39;</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myFeature&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&#39;init&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// provide for custom configuration via init()</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">config</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">,</span> <span class="nx">config</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// create and/or cache some DOM elements</span>
+</span><span class='line'>    <span class="c1">// we&#39;ll want to use throughout the code</span>
+</span><span class='line'>    <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$container</span> <span class="o">=</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">container</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$sections</span> <span class="o">=</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$container</span><span class="p">.</span>
+</span><span class='line'>        <span class="c1">// only select immediate children!</span>
+</span><span class='line'>        <span class="nx">find</span><span class="p">(</span><span class="s1">&#39;ul.sections &gt; li&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$section_nav</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p/&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;section_nav&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">prependTo</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$container</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$item_nav</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p/&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;item_nav&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">insertAfter</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$section_nav</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$content</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p/&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;content&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span> <span class="nx">insertAfter</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$item_nav</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// build the section-level nav and</span>
+</span><span class='line'>  <span class="c1">// &quot;click&quot; the first item</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">buildSectionNav</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$sections</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$section_nav</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;li:first&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// hide the plain HTML from sight</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;ul.sections&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// make a note that the initialization</span>
+</span><span class='line'>  <span class="c1">// is complete; we don&#39;t strictly need this</span>
+</span><span class='line'>  <span class="c1">// for this iteration, but it can come in handy</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Next we’ll create the <code>myFeature.buildSectionNav()</code> method:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;buildSectionNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$sections</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// iterate over the provided list of sections</span>
+</span><span class='line'>    <span class="nx">$sections</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// get the section</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">$section</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// create a list item for the section navigation</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li/&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="c1">// use the text of the first h2</span>
+</span><span class='line'>          <span class="c1">// in the section as the text for</span>
+</span><span class='line'>          <span class="c1">// the section navigation</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">$section</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;h2:first&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">// add the list item to the section navigation</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$section_nav</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">// use data() to store a reference</span>
+</span><span class='line'>          <span class="c1">// to the original section on the</span>
+</span><span class='line'>          <span class="c1">// newly-created list item</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;section&#39;</span><span class="p">,</span> <span class="nx">$section</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="c1">// bind the click behavior</span>
+</span><span class='line'>          <span class="c1">// to the newly created list itme</span>
+</span><span class='line'>          <span class="c1">// so it will show the section</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">showSection</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Next we’ll create the <code>myFeature.buildItemNav()</code> method:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// iterate over the provided list of items</span>
+</span><span class='line'><span class="nx">$items</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// get the item</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">$item</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// create a list item element for the</span>
+</span><span class='line'>    <span class="c1">// item navigation</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// use the text of the first h3</span>
+</span><span class='line'>      <span class="c1">// in the item as the text for the</span>
+</span><span class='line'>      <span class="c1">// item navigation</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">$item</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;h3:first&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// add the list item to the item navigation</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$item</span><span class="p">.</span><span class="nx">nav</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// use data to store a reference</span>
+</span><span class='line'>      <span class="c1">// to the original item on the</span>
+</span><span class='line'>      <span class="c1">// newly created list item</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="nx">$item</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// bind the click behavior to the</span>
+</span><span class='line'>      <span class="c1">// newly created list item so it will</span>
+</span><span class='line'>      <span class="c1">// show the content item</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">showContentItem</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Finally, we’ll write the methods for showing sections and content items:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;showSection&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// capture the list item that was clicked on</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// clear out the left nav and content area</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$item_nav</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$content</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the jQuery section object from the orginal HTML,</span>
+</span><span class='line'>  <span class="c1">// which we stored using data() during buildSectionNav</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$section</span> <span class="o">=</span> <span class="nx">$li</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;section&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// mark the clicked list item as current</span>
+</span><span class='line'>  <span class="c1">// and remove the current marker from its siblings</span>
+</span><span class='line'>  <span class="nx">$li</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">siblings</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// find all of the items related to the section</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$items</span> <span class="o">=</span> <span class="nx">$section</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;ul li&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// build the item nav for the section</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">buildItemNav</span><span class="p">(</span><span class="nx">$items</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// &quot;click&quot; on the first list item in the section&#39;s item nav</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$item_nav</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;li:first&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&#39;showContentItem&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// mark the clicked list item as current</span>
+</span><span class='line'>  <span class="c1">// and revmoe the current marker from its siblings</span>
+</span><span class='line'>  <span class="nx">$li</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">siblings</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the jQuery item object from the original HTML,</span>
+</span><span class='line'>  <span class="c1">// which we stored using data during buildContentNav</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$item</span> <span class="o">=</span> <span class="nx">$li</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// use the item&#39;s HTML to populate the content area</span>
+</span><span class='line'>  <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$content</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">$item</span><span class="p">.</span><span class="nx">html</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>All that’s left to do is to call the myFeature.init() method:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">init</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>Step 4: Changing Requirements</h3>
+
+
+
+
+<p>No project is complete without some last-minute change in the requirements, right? Here’s where the object literal approach really shines by making it quick and fairly painless to implement last-minute changes.  What if we need to get the content item excerpts via AJAX instead of from the HTML? Assuming the backend is set up to handle it, try this:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myFeature</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;config&#39;</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="s1">&#39;container&#39;</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myFeature&#39;</span><span class="p">),</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// configurable function for getting</span>
+</span><span class='line'>        <span class="c1">// a URL for loading item content</span>
+</span><span class='line'>        <span class="s1">&#39;getItemURL&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;a:first&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;init&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// stays the same</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;buildSectionNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$sections</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// stays the same</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;buildItemNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$items</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// stays the same</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;showSection&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// stays the same</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;showContentItem&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">$li</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">).</span>
+</span><span class='line'>            <span class="nx">siblings</span><span class="p">().</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;current&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">$item</span> <span class="o">=</span> <span class="nx">$li</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">getItemURL</span><span class="p">(</span><span class="nx">$item</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// myFeature.$content.html($item.html());</span>
+</span><span class='line'>        <span class="nx">myFeature</span><span class="p">.</span><span class="nx">$content</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Do you need more flexibility? There’s a lot more you can configure (and therefore override) if you really want to make this flexible. For example, you can use myFeature.config to specify how to find and process the title text for each item in the left nav.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myFeature</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;config&#39;</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="s1">&#39;container&#39;</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myFeature&#39;</span><span class="p">),</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// specify the default selector</span>
+</span><span class='line'>        <span class="c1">// for finding the text to use</span>
+</span><span class='line'>        <span class="c1">// for each item in the item nav</span>
+</span><span class='line'>        <span class="s1">&#39;itemNavSelector&#39;</span> <span class="o">:</span> <span class="s1">&#39;h3&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// specify a default callback</span>
+</span><span class='line'>        <span class="c1">// for &quot;processing&quot; the jQuery object</span>
+</span><span class='line'>        <span class="c1">// returned by the itemNavText selector</span>
+</span><span class='line'>        <span class="s1">&#39;itemNavProcessor&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$selection</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="s1">&#39;Preview of &#39;</span> <span class="o">+</span>
+</span><span class='line'>                <span class="nx">$selection</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;init&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// stays the same</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;buildSectionNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$sections</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// stays the same</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="s1">&#39;buildItemNav&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$items</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">$items</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">$item</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// use the selector and processor</span>
+</span><span class='line'>            <span class="c1">// from the config</span>
+</span><span class='line'>            <span class="c1">// to get the text for each item nav</span>
+</span><span class='line'>            <span class="kd">var</span> <span class="nx">myText</span> <span class="o">=</span> <span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">itemNavProcessor</span><span class="p">(</span>
+</span><span class='line'>                <span class="nx">$item</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">itemNavSelector</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li/&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="c1">// use the new variable</span>
+</span><span class='line'>            <span class="c1">// as the text for the nav item</span>
+</span><span class='line'>              <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">myText</span><span class="p">)</span>
+</span><span class='line'>              <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">$item_nav</span><span class="p">)</span>
+</span><span class='line'>              <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="nx">$item</span><span class="p">)</span>
+</span><span class='line'>              <span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="nx">myFeature</span><span class="p">.</span><span class="nx">showContentItem</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="s1">&#39;showSection&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// stays the same</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="s1">&#39;showContentItem&#39;</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// stays the same</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Once you’ve added defaults to the config object, you can override them when you call <code>myFeature.init()</code>:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">myFeature</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span> <span class="s1">&#39;itemNavSelector&#39;</span> <span class="o">:</span> <span class="s1">&#39;h2&#39;</span> <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Beyond the scope of this article (but also interesting to contemplate and much easier with the object literal pattern) is this: making the back button retrace your path through the tabs using the jQuery history plugin. I leave it as an exercise for the reader.</p>
+
+
+
+
+<h2>Conclusion</h2>
+
+
+
+
+<p>If you’ve stepped through the code examples in this column, you should have a basic understanding of the object literal pattern and how it might prove useful to you as you develop more complex features and interactions. You also have access to some code that you can use to build on this basic foundation.</p>
+
+
+
+
+<p>I encourage you to give this pattern a try the next time you find yourself writing more than a few lines of JavaScript — it forces you to think through the elements and behaviors that make up a complex feature or interaction. Once you become proficient, it provides a sturdy foundation for extending and reusing your code.</p>
+
+
+
+
+<h2>Learn More</h2>
+
+
+
+
+<ul>
+<li><a href="http://docs.jquery.com/Data">More on the jQuery <code>data()</code> method</a></li>
+<li><a href="http://www.wait-till-i.com/2006/02/16/show-love-to-the-object-literal/">More praise for the object literal pattern</a></li>
+<li><a href="http://www.mikage.to/jquery/jquery_history.html">The jQuery History plugin</a></li>
+<li><a href="http://paulirish.com/2009/markup-based-unobtrusive-comprehensive-dom-ready-execution/">An interesting application of the object literal pattern for architecting code for multiple page types</a></li>
+<li><a href="http://www.slideshare.net/rmurphey/using-objects-to-organize-your-jquery-code">My presentation at the 2009 jQuery Conference about code organization</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/19/inaugural-north-carolina-jquery-camp/">Inaugural North Carolina jQuery Camp</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-19T00:00:00-04:00" pubdate data-updated="true">Sep 19<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/09/19/inaugural-north-carolina-jquery-camp/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m just back from the inaugural North Carolina jQuery Camp at <a href="http://www.viget.com">Viget Labs</a> in Durham, N.C., and a couple of people have asked how it went, so I thought I&#8217;d write a quick post. I had a whim a few weeks ago to organize the camp; I envisioned an unstructured day where fellow jQuery developers could get together and talk about how they use the library. I figured that since the jQuery Conference had sold out and had a huge waiting list, getting a couple dozen people together on a Saturday in Durham, N.C. wouldn&#8217;t be that hard.</p>
+
+<p>We had around 25 people show up to the camp today, from novices to experts, including Scott Gonzalez, a contributor to the jQuery UI library. True to my (utter lack of) vision, it was a very unstructured day, but productive and fun I think. My only experience with unconferences was at BarCamp RDU just a few weeks ago, so it took me a bit to get into full go-with-the-flow mode, but when I didn&#8217;t know what to do, I just asked &#8220;what do I do now?&#8221; and usually someone would tell me.</p>
+
+<p>We started out by writing some topic ideas up on the wall, and quickly had enough to get started. I split off with the novices to give an intro to the library, while the main room dug into the topics that had been suggested, starting with a talk by Scott about stateful plugins. Up next was Brian Landau from Viget, showing off the code for his mapping plugin and giving an overview of ScrewUnit; then, David Eisinger, also of Viget, showed us some simple strategies for improving perceived performance.</p>
+
+<p>Lunch &#8211; made possible by the generosity of Rich Orris, FireStream Media, Ignite Social Media, and DesignHammer &#8211; was time for informal conversations and demonstrations. Here&#8217;s Scott and someone whose name I don&#8217;t remember doing some quality whiteboarding:</p>
+
+<div class='p_embed p_image_embed'>
+<img alt="Media_httpfarm3static_bjtwc" height="333" src="http://getfile3.posterous.com/getfile/files.posterous.com/import-vejw/tdlezEdCedqyrontDHsHFjxtjJkAaCpctfsJlbCJAcHbaGJGqyEEeFwgspop/media_httpfarm3static_bjtwC.jpg.scaled500.jpg" width="500" />
+</div>
+
+
+<p>We came back from lunch with a reprise of my presentation from the jQuery Conference about using objects to organize your code, minus FAST FORWARD but otherwise largely intact. I was grateful to have more than 30 minutes this time, and we ended up having some good conversation about code organization in general.</p>
+
+<p>From there it was on to some great show-and-tell &#8211; people are doing excellent things with the library, and doing them with ease &#8211; and then Scott wrapped up the day with an overview of jQuery UI. Probably the biggest hit of the day was Scott&#8217;s &#8220;just one more thing &#8230;&#8221; moment, when he showed us a whole new API for using the position method as a setter, coming soon to a plugin near you. Lots of oohs and aahs about that one.</p>
+
+<p>I said at the end of the day that this first camp was really just a proof of concept &#8211; yes, I can get 25 people to show up to talk about jQuery. I&#8217;m hoping to do another jQuery camp in January, perhaps. There are a few things I&#8217;d like to do differently next time. For one, I&#8217;d like to be a little bit more intentional about having more than one session that&#8217;s suitable for beginners &#8211; a lot of the presentations were super-interesting, but way over the heads of people just getting started.</p>
+
+<p>Also, there were a number of people who signed up who didn&#8217;t make it, which is a shame because I ordered food expecting a larger turnout. I&#8217;d asked people to let me know if they couldn&#8217;t make it, but alas only a handful did. Next time, I think I&#8217;ll charge a token amount to attend &#8211; say $10 or so &#8211; so people will feel a bit more committed. If they don&#8217;t make it, at least their food will be paid for! Charging a few dollars will also help reduce the need for sponsors &#8211; not that I don&#8217;t love the sponsors, just that it was a bit of work and stress to line them up.</p>
+
+<p>Finally, next time I&#8217;d like to be a little bit more intentional about setting up and promoting the event. This time around, I started promoting it before I even had a venue, and shortly after I secured a venue (thank you Viget!) all the slots were filled. Next time around, I might approach that a little bit differently, especially if I can line up a few different venue options.</p>
+
+<p>That&#8217;s my report. For more pictures, visit <a href="http://www.flickr.com/photos/rdmey/tags/ncjquerycamp/">Flickr</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference/">On Speaking at the 2009 jQuery Conference</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-16T00:00:00-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of my personal goals for this year was to start being part of the solution to the dearth of female speakers at tech events. Though I&rsquo;ve talked at a couple of smallish local events over the past few months, this past weekend I got to do it in a big way: I presented a talk on using objects to organize your jQuery code to an audience of around 100 people, more by far than I&rsquo;ve ever spoken to before.</p>
+
+
+
+
+<p>[This post isn&rsquo;t so much about the talk itself as my first experience with talking at a conference. If you&rsquo;re interested in the talk, I encourage you to check out the slides, links, and code at the link above.]</p>
+
+
+
+
+<p>I decided I wanted to try to talk at the jQuery conference after I saw the initial very smart, very male speaker lineup. I submitted my talk based on an article I wrote earlier this year, and by the time it was all said and done, mine was the second most popular topic and I was slated to have 30 minutes in &ldquo;the big room.&rdquo;</p>
+
+
+
+
+<p>There is something sort of out-of-body about that moment when I am standing in front of a roomful of people right before I talk &mdash; I had it when I gave my first Refresh talk, when I taught my first jQuery class, when I spoke at my first BarCamp RDU, and yet again this weekend. For that moment, in my head, I am a complete and utter case, and can&rsquo;t quite fathom that I thought this was a good idea. And then I start talking, and then it is OK. And then when it&rsquo;s over, people clap, and I like that part.</p>
+
+
+
+
+<p>Back when I set out to start speaking more, I decided to take an improv class. For six weeks, we practiced being spontaneously funny, and at the end, we got up on stage in front of a bunch of strangers and tried to do it for real. Knowing what that feels like &mdash; what it feels like to run up the aisle like you&rsquo;re excited when really you&rsquo;re terrified because you&rsquo;ve never done this before and in real life you sit at a desk all day and talk to no one and what were you thinking? &mdash; makes the thought of talking to a bunch of strangers about what you actually know how to do seem like a completely reasonable thing.</p>
+
+
+
+
+<p>My experience this weekend was nothing short of excellent &mdash; people I barely knew rallied around me throughout the weekend to help me improve my presentation (most notably Chris Williams, organizer of JSConf, to whom I owe many thanks for all the images &mdash; especially the Liger). The audience graciously tolerated the part in the middle where I had to leave the podium to (very publicly) blow my nose. People asked great questions, and audience members gently pointed out things I might want to rethink. With the exception of one creepy off-the-wall comment about my &ldquo;fine-boned features,&rdquo; the reaction was overwhelmingly positive.</p>
+
+
+
+
+<p>Reliable sources told me that of 300 attendees, approximately 282 were men. I was the only woman to submit a talk. So this is the part where I encourage other women to do the same. I think women, on the whole (of course there are exceptions), are way more inclined than men to think they aren&rsquo;t good enough speakers, that they don&rsquo;t know a topic well enough to tell it to other people. Two truths: one, the speaking skills of the speakers I&rsquo;ve seen have been all over the map; two, you&rsquo;d be surprised how much you actually know about a topic, especially given the right audience. Go speak at a small event &mdash; a local meetup, a Refresh, even a lunch-and-learn at your office. Get to know the people who do speak at events, and discover that they&rsquo;re people just like you. Go out on a limb and try something that&rsquo;s</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/">jQuery Validation: Indicate That at Least One Element in a Group Is Required</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-15T00:00:00-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I had a need today to indicate that at least one of a set of input fields was required. I was hoping there was a direct way to do this in the <a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">jQuery validation plugin</a>; while the method isn&#8217;t quite as straightforward as I was wishing for, it&#8217;s still fairly simple.</p>
+
+<p>To start with, I put <code>class="required_group"</code> on each of the elements in the group. Then, I added a custom validation method:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">addMethod</span><span class="p">(</span><span class="s1">&#39;required_group&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">$module</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.panel&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">$module</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.required_group:filled&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230; a custom class rule to take advantage of the new method:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">addClassRules</span><span class="p">(</span><span class="s1">&#39;required_group&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;required_group&#39;</span> <span class="o">:</span> <span class="kc">true</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230; and finally a custom message for the new method:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">required_group</span> <span class="o">=</span> <span class="s1">&#39;Please fill out at least one of these fields.&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What I&#8217;d love to see is a way to specify a dependent group without using a custom class rule, but I&#8217;m not sure what this would look like, as all validation rules are either keyed off an element&#8217;s class or the presence of the element&#8217;s name in the rules object. Thoughts? I&#8217;m open to the possibility that there&#8217;s a far better way to solve this &#8211;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/">On Gaining Respect as a Front-end Developer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-13T00:00:00-04:00" pubdate data-updated="true">Apr 13<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Someone wrote me today:</p>
+
+<blockquote class="posterous_medium_quote">Where I work, design is highly valued with the leader of that group being our Creative Director, back end programmers are also highly valued, but front end &#8230; not so much. Partly I think its that I don&#8217;t toot my horn but I know there are other reasons. At times, my bosses haven&#8217;t even understood what it is that I do. Back end programmers look down on front end assuming that its trivial or something that should be relegated to compilers.
+
+I was wondering if this is a common thing or more so something that is happening at my particular company, and if you have any advice or pointers on this.</blockquote>
+
+
+<p>I thought my response might be worth sharing:</p>
+
+<p>I do think this attitude is common but not necessarily the rule. In my experience, I&#8217;ve found that by having a proven value proposition, you can gain converts and respect.</p>
+
+<p>Front end developers are in a unique position to improve page performance (perceived and actual) by using best practices such as the <a href="http://developer.yahoo.com/yslow/">YSlow</a> tests. Front end developers are also in a unique position to help develop templating systems and to write thoughtful CSS, both of which help enable the rapid prototyping and rollout of new features. A focus on results and best practices &#8211; demonstrating that you aren&#8217;t just pushing pixels around &#8211; is the key.</p>
+
+<p>Back end developers respect people who think like they do. Be mindful of opportunities for abstraction and reuse. Write <a href="http://www.slideshare.net/stubbornella/object-oriented-css">object-oriented CSS</a> and JavaScript. Craft solutions that are maintainable and documented. Learn and make use of <a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">version control</a> <a href="http://svnbook.red-bean.com/nightly/en/svn.intro.quickstart.html">systems</a>. Look for opportunities to participate in developer conversations about new features, and understand what the back end developers are up against. They&#8217;ll appreciate all of this.</p>
+
+<p>Take the time to teach and to learn. Be sure you have at least a passing understanding of the code the back end developers are writing, and leap at opportunities to share your knowledge. I&#8217;ve worked with more than one back end developer who was surprised to discover what all they didn&#8217;t know about the front end, and through our conversations about how we approached problems, we both learned a lot.</p>
+
+<p>Finally: identify opportunities for quick victories, execute on them, and make the results known. Benchmark before and after. Can you reduce the number of HTTP requests on a page, decreasing both the perceived and actual rendering time? Are you keeping your JavaScript out of the &lt;head&gt; as much as possible, preventing pages from stalling while rendering? Can you write JavaScript that is primed for reuse, and demonstrate opportunities for that reuse? Has your carefully crafted CSS allowed the rapid rollout of a new feature? Don&#8217;t be afraid to tell these stories &#8211; they&#8217;ll tend to strengthen your position by clarifying the important role the front-end developer plays in a site.</p>
+
+<p>Good luck :)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/">CSS vs. Tables: Maybe the Design Is to Blame?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T00:00:00-05:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There&#8217;s been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so bad after all. From <a href="http://giveupandusetables.com/">giveupandusetables.com</a>, which says the maximum time to spend before abandoning CSS is 47 minutes, to the <a href="http://www.flownet.com/ron/css-rant.html">well-illustrated blog post by Ron Garret</a>, the general argument is that CSS isn&#8217;t up to the task of faithfully reproducing elaborate designs cross-browser in an acceptable amount of developer time.</p>
+
+<p>In his post about Garret&#8217;s article, <a href="http://ajaxian.com/archives/css-for-layout-another-rant">Dion Almaer at Ajaxian</a> opines:</p>
+
+<blockquote class="posterous_medium_quote">CSS purist[s] may poo poo him and say &#8220;he is just dumb and doesn&#8217;t REALLY know CSS.&#8221; The problem though is that most developers run into exactly the pain that he describes. We’ve all been there. It drives you nuts and when frustrated what do you do? You fluster about and change CSS like a mad man until it kinda looks right. And, you never learn what the real problem was, and thus destined to make the same mistake again.</blockquote>
+
+
+<p>It seems that while developers are thinking about sacrificing web standards for the perceived simplicity of tables, the viability of the design rarely enters the debate, and that&#8217;s a shame. In my experience, some of the most difficult designs to produce using CSS were fundamentally flawed from the get-go, created by designers who failed to grasp that the web is not like print.</p>
+
+<p><strong>The web is not like print.</strong> In print, designers have near-total control over the output, because the number of new &#8220;pages&#8221; &#8211; items of content &#8211; is limited by the cost of printing. If a print designer wants text vertically centered in a fixed-height column, or two columns that are exactly the same height, or rounded corners with drop shadows on top of gradients, there&#8217;s no reason they can&#8217;t have that. The cost of printing is sufficiently high, and print graphics programs are sufficiently sophisticated, that making those design decisions has no impact on the marginal cost of production.</p>
+
+<p>On the web, the marginal cost of creating a new page of content can be approximately zero, but to achieve that we <em>must</em> build pages that adapt to unpredictable content and unpredictable users. If we don&#8217;t, we won&#8217;t realize the economies of scale that the web has to offer. The tradeoff for that infinitesimally small marginal cost is that the rules have to be different, because the cost of implementing those print-centric design decisions is inordinately high. Instead of sophisticated graphics programs, the web has mere humans to turn PSDs into working pages; instead of content created by experts and pored over by editors, the web has volumes of user-generated content, and the ability to change it on a whim.</p>
+
+<p>On the web, equal-height columns will cease to be equal height when the content changes; vertically centered content will outgrow its fixed-height bounds; and rounded corners with drop shadows on gradients can&#8217;t possibly be worth the cost of producing them. These are not problems with CSS that should be solved with tables. They are, fundamentally, problems with the design.</p>
+
+<p>When I talk about this to other developers (and any designers who are willing to give me the time of day after I&#8217;m done pointing out how costly their design will be to produce), I make the analogy that it&#8217;s just as absurd to impose these print-centric design conventions on the web as it would be to use holograms for every picture in a magazine. Sure, you <em>can</em>, but that doesn&#8217;t mean you <em>should</em>.</p>
+
+<p><strong>So what&#8217;s a web developer to do?</strong> When designs reach the desk of the CSS developer, more often than not they&#8217;ve been through so many rounds of review, revision, and approval &#8211; by people far-removed from the realities of the web &#8211; that the developer has little choice but to toil away at reproducing them faithfully.</p>
+
+<p>The best defense may be a good offense, which is to say, the burden is on you, dear developer, to educate the misguided designers. Here are some tactics I&#8217;ve used:</p>
+
+<ul>
+<li>Impose yourself early in the process, insisting on wireframes and information architecture documents (even if they&#8217;re just sketches and an outline). Identify potential problems early on, but don&#8217;t become a naysayer &#8211; make sure you offer ideas, not just criticism.</li>
+<li>Push back &#8211; gently but firmly &#8211; on design decisions that have the potential to cause problems down the road. Ask lots of &#8220;what if&#8221; questions and insist on answers.</li>
+<li>Be honest about how long it will take you to accomplish a design &#8211; with yourself and with your boss or client &#8211; and identify opportunities to make cost-saving changes to the specifics of the design without changing its spirit.</li>
+<li>Have examples at the ready of similar problems solved in more web-centric ways. The <a href="http://developer.yahoo.com/ypatterns/">Yahoo! Design Patterns Library</a> can be an excellent resource for this, but look also to other sites in your industry or genre.</li>
+</ul>
+
+
+<p>The burden&#8217;s also on you to get better at CSS. I am lucky in that, when I first started playing around with web production, I was a little intimidated by tables. A background in print production steeped in templates and stylesheets made tables seem awkward and strange to me; CSS, temperamental as it was, at least bore some resemblance to the cascading style sheets of print production programs like Quark and InDesign.</p>
+
+<p>These days, it&#8217;s rarer and rarer (but not unheard of) that I find myself beating my head against the wall over a CSS problem. I&#8217;ve learned HTML and CSS patterns that I reuse often, and I&#8217;ve learned to spot &#8211; and speak up about &#8211; design-induced ratholes. If you&#8217;re finding yourself sucked in by the latest round of CSS vs. tables debate, take heart, stand firm, and reconsider the source of your frustration.</p>
+
+<h3>Useful things:</h3>
+
+
+<ul>
+<li><a href="http://blog.rebeccamurphey.com/2007/12/24/learning-css-web-design/">How I learned CSS</a></li>
+<li><a href="http://www.stubbornella.org/content/2009/02/12/css-doesn%E2%80%99t-suck-you%E2%80%99re-just-doing-it-wrong/">CSS doesn&#8217;t suck, you&#8217;re just doing it wrong</a></li>
+<li><a href="http://www.slideshare.net/stubbornella/object-oriented-css">Object-oriented CSS</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/01/12/jquery-validation-and-tinymce/">jQuery Validation and TinyMCE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-12T00:00:00-05:00" pubdate data-updated="true">Jan 12<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/01/12/jquery-validation-and-tinymce/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just solved a problem where the <a href="http://docs.jquery.com/Plugins/Validation">jQuery validation plugin</a> wasn&#8217;t playing so nicely with <a href="http://wiki.moxiecode.com/index.php/TinyMCE:Index">TinyMCE</a> &#8211; the validation plugin was trying to validate the textarea before TinyMCE had a chance to copy the editor contents back to the textarea. I was about to yank TinyMCE out of the page but a little reading through the TinyMCE docs led me to try this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mySubmitButton&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">tinyMCE</span><span class="p">.</span><span class="nx">activeEditor</span><span class="p">.</span><span class="nx">getContent</span><span class="p">();</span> <span class="c1">// get the content</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myTextarea&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span> <span class="c1">// put it in the textarea</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And what do you know, it works. One note: it&#8217;s important to bind the content replacement to the click event of the submit button, not to the actual form submission, or else the validation may try to run before the content gets copied back to the textarea.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/07/jquery-style-guide-from-benjamin-sterling/">jQuery Style Guide From Benjamin Sterling</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/12/07/jquery-style-guide-from-benjamin-sterling/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just wanted to call attention to two excellent posts by Benjamin Sterling: <a href="http://benjaminsterling.com/better-jquery-code-1/">Better jQuery Code 1</a> and <a href="http://benjaminsterling.com/better-jquery-code-2/">Better jQuery Code 2</a>. He offers some must-have tips on style, form and best practices. Thanks to <a href="http://twitter.com/foobar2k">@foobar2k</a> for the link.</p>
+
+<p>One addition to his notes on caching selections by setting up references: I&#8217;m partial to giving references a variable name that starts with a dollar sign, like $links. For me, it serves as a good reminder that the variable is a reference to a jQuery object.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/05/update-tracking-outbound-clicks-with-google-analytics-and-jquery/">Tracking Outbound Clicks With Google Analytics and jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/12/05/update-tracking-outbound-clicks-with-google-analytics-and-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A while back I wrote a post about tracking outbound clicks with Google Analytics; way back then (about 6 months ago), the only event that Google Analytics could track was a pageview. Now that they&#8217;ve introduced the <a href="http://code.google.com/apis/analytics/docs/eventTrackerOverview.html">_trackEvent</a> method of the pageTracker object, events that aren&#8217;t pageviews don&#8217;t need to count as pageviews anymore; instead, they can be counted as &#8220;events,&#8221; and they can be categorized and labeled.</p>
+
+<p>Here&#8217;s an updated example of how to track outbound clicks using Google Analytics and jQuery. You&#8217;ll of course need to be including the &#8220;new&#8221; analytics code (ga.js, not urchin.js) for this to work, as well as the jQuery library.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// see if the link is external</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^http/</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span> <span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">domain</span><span class="p">))</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// if so, register an event</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">category</span> <span class="o">=</span> <span class="s1">&#39;outgoing&#39;</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="s1">&#39;click&#39;</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">href</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">pageTracker</span><span class="p">.</span><span class="nx">_trackEvent</span><span class="p">(</span><span class="nx">category</span><span class="p">,</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">href</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can use the same method to unobtrusively add tracking code to file downloads:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span><span class="s1">&#39;xls&#39;</span><span class="p">,</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="s1">&#39;mp3&#39;</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">extension</span><span class="p">,</span><span class="nx">fileTypes</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">pageTracker</span><span class="p">.</span><span class="nx">_trackEvent</span><span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">,</span> <span class="nx">extension</span><span class="p">,</span> <span class="nx">href</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/">Avoid Bare Class Selectors in jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It just happened again: I was looking at someone else&#8217;s jQuery and I came across something like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a classic case of &#8220;just because you can, doesn&#8217;t mean you should.&#8221; This little bit of jQuery will, indeed, find every element on a page with a class of &#8220;button&#8221;, but that&#8217;s exactly the problem: it has to look at every element on the page to figure out which ones match the selector. It seems short and sweet, like so much of jQuery is, but on a page with a lot of elements, this selector can actually take a non-trivial amount of time to run.</p>
+
+<p>There are a few ways to avoid this:</p>
+
+<ul>
+<li>If the element you&#8217;re after has an ID attribute, use it. That&#8217;s the single-fastest way to find an element. However, don&#8217;t gratuitously add ID attributes to elements; the other methods below are perfectly good.</li>
+<li>Specify the type of element you&#8217;re after. For example, <code>$('input.button')</code>. This will tell jQuery that it&#8217;s only looking for inputs, so it can disregard anything on the page that isn&#8217;t an input. If you&#8217;re looking for multiple element types, tell jQuery that: <code>$('input.button, a.button')</code>
+</li>
+<li>Give jQuery some information about where to look for the element. For example: <code>$('#myForm .button')</code>
+</li>
+<li>Use an element you&#8217;ve already found to tell jQuery where to find the element:
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myUnorderedList&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$ul</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.selected&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

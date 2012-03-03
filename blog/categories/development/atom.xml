@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: development | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/development/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2012-03-03T15:51:06-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CSS vs. Tables: Maybe the design is to blame?]]></title>
+    <link href="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/"/>
+    <updated>2009-02-14T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame</id>
+    <content type="html"><![CDATA[<p>There's been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so bad after all. From <a href="http://giveupandusetables.com/">giveupandusetables.com</a>, which says the maximum time to spend before abandoning CSS is 47 minutes, to the <a href="http://www.flownet.com/ron/css-rant.html">well-illustrated blog post by Ron Garret</a>, the general argument is that CSS isn't up to the task of faithfully reproducing elaborate designs cross-browser in an acceptable amount of developer time.</p>
+
+<p>In his post about Garret's article, <a href="http://ajaxian.com/archives/css-for-layout-another-rant">Dion Almaer at Ajaxian</a> opines:</p>
+
+<blockquote class="posterous_medium_quote">CSS purist[s] may poo poo him and say "he is just dumb and doesn't REALLY know CSS." The problem though is that most developers run into exactly the pain that he describes. We’ve all been there. It drives you nuts and when frustrated what do you do? You fluster about and change CSS like a mad man until it kinda looks right. And, you never learn what the real problem was, and thus destined to make the same mistake again.</blockquote>
+
+
+<p>It seems that while developers are thinking about sacrificing web standards for the perceived simplicity of tables, the viability of the design rarely enters the debate, and that's a shame. In my experience, some of the most difficult designs to produce using CSS were fundamentally flawed from the get-go, created by designers who failed to grasp that the web is not like print.</p>
+
+<p><strong>The web is not like print.</strong> In print, designers have near-total control over the output, because the number of new "pages" -- items of content -- is limited by the cost of printing. If a print designer wants text vertically centered in a fixed-height column, or two columns that are exactly the same height, or rounded corners with drop shadows on top of gradients, there's no reason they can't have that. The cost of printing is sufficiently high, and print graphics programs are sufficiently sophisticated, that making those design decisions has no impact on the marginal cost of production.</p>
+
+<p>On the web, the marginal cost of creating a new page of content can be approximately zero, but to achieve that we <em>must</em> build pages that adapt to unpredictable content and unpredictable users. If we don't, we won't realize the economies of scale that the web has to offer. The tradeoff for that infinitesimally small marginal cost is that the rules have to be different, because the cost of implementing those print-centric design decisions is inordinately high. Instead of sophisticated graphics programs, the web has mere humans to turn PSDs into working pages; instead of content created by experts and pored over by editors, the web has volumes of user-generated content, and the ability to change it on a whim.</p>
+
+<p>On the web, equal-height columns will cease to be equal height when the content changes; vertically centered content will outgrow its fixed-height bounds; and rounded corners with drop shadows on gradients can't possibly be worth the cost of producing them. These are not problems with CSS that should be solved with tables. They are, fundamentally, problems with the design.</p>
+
+<p>When I talk about this to other developers (and any designers who are willing to give me the time of day after I'm done pointing out how costly their design will be to produce), I make the analogy that it's just as absurd to impose these print-centric design conventions on the web as it would be to use holograms for every picture in a magazine. Sure, you <em>can</em>, but that doesn't mean you <em>should</em>.</p>
+
+<p><strong>So what's a web developer to do?</strong> When designs reach the desk of the CSS developer, more often than not they've been through so many rounds of review, revision, and approval -- by people far-removed from the realities of the web -- that the developer has little choice but to toil away at reproducing them faithfully.</p>
+
+<p>The best defense may be a good offense, which is to say, the burden is on you, dear developer, to educate the misguided designers. Here are some tactics I've used:</p>
+
+<ul>
+<li>Impose yourself early in the process, insisting on wireframes and information architecture documents (even if they're just sketches and an outline). Identify potential problems early on, but don't become a naysayer -- make sure you offer ideas, not just criticism.</li>
+<li>Push back -- gently but firmly -- on design decisions that have the potential to cause problems down the road. Ask lots of "what if" questions and insist on answers.</li>
+<li>Be honest about how long it will take you to accomplish a design -- with yourself and with your boss or client -- and identify opportunities to make cost-saving changes to the specifics of the design without changing its spirit.</li>
+<li>Have examples at the ready of similar problems solved in more web-centric ways. The <a href="http://developer.yahoo.com/ypatterns/">Yahoo! Design Patterns Library</a> can be an excellent resource for this, but look also to other sites in your industry or genre.</li>
+</ul>
+
+
+<p>The burden's also on you to get better at CSS. I am lucky in that, when I first started playing around with web production, I was a little intimidated by tables. A background in print production steeped in templates and stylesheets made tables seem awkward and strange to me; CSS, temperamental as it was, at least bore some resemblance to the cascading style sheets of print production programs like Quark and InDesign.</p>
+
+<p>These days, it's rarer and rarer (but not unheard of) that I find myself beating my head against the wall over a CSS problem. I've learned HTML and CSS patterns that I reuse often, and I've learned to spot -- and speak up about -- design-induced ratholes. If you're finding yourself sucked in by the latest round of CSS vs. tables debate, take heart, stand firm, and reconsider the source of your frustration.</p>
+
+<h3>Useful things:</h3>
+
+
+<ul>
+<li><a href="http://blog.rebeccamurphey.com/2007/12/24/learning-css-web-design/">How I learned CSS</a></li>
+<li><a href="http://www.stubbornella.org/content/2009/02/12/css-doesn%E2%80%99t-suck-you%E2%80%99re-just-doing-it-wrong/">CSS doesn't suck, you're just doing it wrong</a></li>
+<li><a href="http://www.slideshare.net/stubbornella/object-oriented-css">Object-oriented CSS</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Notes on handing off a design to a front-end developer]]></title>
+    <link href="http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/"/>
+    <updated>2008-09-22T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer</id>
+    <content type="html"><![CDATA[<p>I've been spending a lot of time lately turning other people's designs into working websites, and often there are a few rounds of back-and-forth before I have everything I need. Some notes on must-have pieces before I can begin work:</p>
+
+<p><strong>Design</strong></p>
+
+<ul>
+    <li>
+<strong>Custom fonts. </strong>If the design includes fonts that aren't on <a href="http://www.ampsoft.net/webdesign-l/WindowsMacFonts.html">this list</a>, then either the designer needs to provide a PSD that has all instances of the font being used in the design, or else I'm going to need the font file in order to create them. (There may be <a href="http://clagnut.com/blog/1798/">licensing</a> <a href="http://www.fsf.org/blogs/licensing/20050425novalis">issues</a> here, which I leave as an exercise for the reader. In print land, we were allowed to provide the print shop with the fonts required to produce a printed piece, and the print shop was not supposed to retain them once the print run was complete. I imagine something similar applies to web production.)</li>
+    <li>
+<strong>Navigation state information. </strong>What should navigation elements look like in the up, over, and current states? Ideally I'd like to see all of the buttons in each state, but if the variations are simple then I can probably make them myself.</li>
+    <li>
+<strong>Link state information.</strong> What color should links be? Should they be underlined all the time, or only on hover? What color should they be when they are hovered? When they've already been visited?</li>
+    <li>
+<strong>Form treatment.</strong> If the site has any forms on it, what should form elements -- text inputs, submit buttons and input labels -- look like?</li>
+    <li>
+<strong>Typography specifications.</strong> Decisions about these can dramatically affect the feel of the site, and you may not want to leave them up to me. Specifically:
+<ul>
+    <li>How big should body copy be?</li>
+    <li>How much space should there be between body copy lines? (Normally the "line-height" is set at 1.2 times the size of the font; increasing this can make body copy more legible.)</li>
+    <li>How much space should there be between body copy paragraphs?</li>
+    <li>How should headings be styled? How big should primary and secondary headlines be relative to the body copy?</li>
+    <li>How should lists (ordered and bulleted) be styled?</li>
+</ul>
+</li>
+    <li>
+<strong>Imagery specifications.</strong> Like typography specifications, these considerations should be made carefully, as they affect the feel of the site. Specifically:
+<ul>
+    <li>How should text wrap around an image? Should the image float to the left, with copy wrapping around the right? Float to the right, copy on the left? Leave it up to the user?</li>
+    <li>If an image is floated to the left or right, how much space should be between it and the text?</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>Documentation</strong></p>
+
+<ul>
+    <li>
+<strong>Approved content documents.</strong> Personally I prefer a single content document per static page that needs to be created, and a content sample for any dynamic pages that will need to be created. If there are any repeating elements in the design that require content, I'd enjoy getting a document that contains their text as well. Lastly, if there are any dynamically generated content items -- for example, a list of latest posts -- I'd like a document that shows me how these should be formatted. This will help me:
+<ul>
+    <li>Make sure I've accounted for the pieces of the content and how they fit together.</li>
+    <li>Know that all content has been considered, reviewed and approved, so there shouldn't be too many surprises later.</li>
+    <li>Reconcile the content documents with any other documentation I've received.</li>
+</ul>
+</li>
+    <li>
+<strong>Functional spec document. </strong>Let me know what should happen when someone fills out a form. Let me know how the items in the sidebar should be gathered. Let me know where that video's going to come from. Basically, anytime I ask "Where does that come from?" or "What does this do?", the functional spec should answer that question. While a functional spec should be initiated long before the design is complete, it is good to review the design and make sure those questions are answered. A functional spec should also include a sitemap.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Centering images]]></title>
+    <link href="http://rmurphey.com/blog/2008/06/13/centering-images/"/>
+    <updated>2008-06-13T00:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2008/06/13/centering-images</id>
+    <content type="html"><![CDATA[<p><a href="http://www.netmechanic.com/news/vol7/html_no10.htm">An excellent article explaining the pros and cons of different image-centering methods</a>. I love when I find something that gives me exactly the answer I need.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[I have discovered a use for Dreamweaver's design view (no really)]]></title>
+    <link href="http://rmurphey.com/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/"/>
+    <updated>2008-01-18T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really</id>
+    <content type="html"><![CDATA[<p>I just got a request to edit a static page that showed several of a company's employees. Turns out that a bunch of them aren't employees anymore, and the client wanted the page to be updated. I knew before I even opened it that the content was going to be in tables (nested nested tables, in fact), and that rearranging it would be a giant pain.</p>
+
+<p>Dreamweaver design view to the rescue. This thing was <em>made</em> for tables, and in no time I was able to delete what needed to be deleted and rearrange the remaining employees without leaving empty table cells. I didn't need to navigate nasty table HTML, and I didn't have to worry about accidentally deleting a crucial <code>td</code> that would bring the page to its knees. A quick preview in the browser verified that no harm had been done in my brief foray into design view, and the job was done.</p>
+
+<p>Let it be said: Design view is evil and awful; it seeks to make front-end development accessible to people who have no business going anywhere near front-end development. But it's a good tool to have in the toolbox when you're faced with editing a table-based page, even if you just use it to find your bearings in the mess of tags.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[In case you thought IE6 was going away]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/11/in-case-you-thought-ie6-was-going-away/"/>
+    <updated>2007-12-11T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/11/in-case-you-thought-ie6-was-going-away</id>
+    <content type="html"><![CDATA[<p>Microsoft has released <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=21EABB90-958F-4B64-B5F1-73D0A413C8EF&amp;displaylang=en">yet another version</a> (the third, I think) of their timebombed XP/IE6 image for use with their <a href="http://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx">Virtual PC Console</a>. (Why they keep timebombing it is a mystery to me -- it's as if they think one of these days, approximately six months from whenever they release a new version, there won't be a need for IE6 testing anymore.)</p>
+
+<p>I have not a single kind word for IE6, and about the best I can say about IE7 is that a) it sucks less than IE6 and b) some proprietary software I have to use for client work crashes a bit less often in it than in Firefox. That said, both IE6 and IE7 are a fact of life, and it's also a fact of life that Microsoft saw fit to ensure that you can't easily run both side-by side -- which is why you have this whole Virtual PC setup. <em>If</em> you can get the Virtual Machine Additions, Shared Networking, and Shared Folders all to work (at the same time, if you're lucky!), then this is a decent kludge to let you test your sites in IE6.</p>
+]]></content>
+  </entry>
+  
+</feed>
