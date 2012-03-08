@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bookmarklet, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/bookmarklet-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Insert jQuery into any page using a bookmarklet]]></title>
     <link href="http://rmurphey.com/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/"/>
-    <updated>2007-12-10T00:00:00-05:00</updated>
+    <updated>2007-12-10T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet</id>
     <content type="html"><![CDATA[<p>Ever wish you could use jQuery on a page at the drop of a hat, without having access to the page itself? Well I'll be damned, <a href="http://simonwillison.net/2007/Aug/15/jquery/">you can</a>.</p>
 

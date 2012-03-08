@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bounce | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/bounce/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Suspicious StumbleUpon Bounce Rates?]]></title>
     <link href="http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/"/>
-    <updated>2008-01-03T00:00:00-05:00</updated>
+    <updated>2008-01-03T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates</id>
     <content type="html"><![CDATA[<p>I've been promoting some of my blog posts by submitting them to <a href="http://www.stumbleupon.com">StumbleUpon</a>, and it's been generating a fair bit of traffic -- my post "How I Learned CSS" has done especially well. I've been watching my site using Google Analytics, and I've noticed that visitors from StumbleUpon have a substantially lower <a href="http://en.wikipedia.org/wiki/Bounce_Rate">bounce rate</a> than, say, visitors from <a href="http://www.dzone.com">dzone</a>. So I think, "yay, StumbleUpon" and start submitting anything interesting I write to there.</p>
 

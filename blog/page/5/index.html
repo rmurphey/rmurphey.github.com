@@ -9,7 +9,8 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I just spent more time than was reasonable trying to figure out why some Javascript I was using to show a Google map on one site wasn&#8217;t working &hellip;">
+  <meta name="description" content="It just happened again: I was looking at someone else&#8217;s jQuery and I came across something like this: 1
+$(&#39;.button&#39;).click(function &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +82,73 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/">Avoid Bare Class Selectors in jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-05T00:00:00-06:00" pubdate data-updated="true">Dec 5<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It just happened again: I was looking at someone else&#8217;s jQuery and I came across something like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is a classic case of &#8220;just because you can, doesn&#8217;t mean you should.&#8221; This little bit of jQuery will, indeed, find every element on a page with a class of &#8220;button&#8221;, but that&#8217;s exactly the problem: it has to look at every element on the page to figure out which ones match the selector. It seems short and sweet, like so much of jQuery is, but on a page with a lot of elements, this selector can actually take a non-trivial amount of time to run.</p>
+
+<p>There are a few ways to avoid this:</p>
+
+<ul>
+<li>If the element you&#8217;re after has an ID attribute, use it. That&#8217;s the single-fastest way to find an element. However, don&#8217;t gratuitously add ID attributes to elements; the other methods below are perfectly good.</li>
+<li>Specify the type of element you&#8217;re after. For example, <code>$('input.button')</code>. This will tell jQuery that it&#8217;s only looking for inputs, so it can disregard anything on the page that isn&#8217;t an input. If you&#8217;re looking for multiple element types, tell jQuery that: <code>$('input.button, a.button')</code>
+</li>
+<li>Give jQuery some information about where to look for the element. For example: <code>$('#myForm .button')</code>
+</li>
+<li>Use an element you&#8217;ve already found to tell jQuery where to find the element:
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myUnorderedList&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$ul</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.selected&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/11/16/solution-for-google-map-contents-not-showing/">Solution for Google Map Contents Not Showing</a></h1>
     
     
@@ -97,7 +165,7 @@
   
 
 
-<time datetime="2008-11-16T00:00:00-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+<time datetime="2008-11-16T00:00:00-06:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/11/16/solution-for-google-map-contents-not-showing/#disqus_thread">Comments</a>
         
@@ -137,7 +205,7 @@
   
 
 
-<time datetime="2008-09-22T00:00:00-04:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
+<time datetime="2008-09-22T00:00:00-05:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
         
          | <a href="/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/#disqus_thread">Comments</a>
         
@@ -222,7 +290,7 @@
   
 
 
-<time datetime="2008-09-21T00:00:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
+<time datetime="2008-09-21T00:00:00-05:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
         
          | <a href="/blog/2008/09/21/planning-a-wordpress-cms-site/#disqus_thread">Comments</a>
         
@@ -340,7 +408,7 @@
   
 
 
-<time datetime="2008-08-02T00:00:00-04:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2008</time>
+<time datetime="2008-08-02T00:00:00-05:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2008</time>
         
          | <a href="/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer/#disqus_thread">Comments</a>
         
@@ -397,7 +465,7 @@
   
 
 
-<time datetime="2008-07-14T00:00:00-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
+<time datetime="2008-07-14T00:00:00-05:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/07/14/seeking-a-web-designer/#disqus_thread">Comments</a>
         
@@ -446,7 +514,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-06-13T00:00:00-04:00" pubdate data-updated="true">Jun 13<span>th</span>, 2008</time>
+<time datetime="2008-06-13T00:00:00-05:00" pubdate data-updated="true">Jun 13<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/06/13/centering-images/#disqus_thread">Comments</a>
         
@@ -484,7 +552,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-06-06T00:00:00-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+<time datetime="2008-06-06T00:00:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/06/06/skipping-photoshop-for-web-design/#disqus_thread">Comments</a>
         
@@ -530,7 +598,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-05-19T00:00:00-04:00" pubdate data-updated="true">May 19<span>th</span>, 2008</time>
+<time datetime="2008-05-19T00:00:00-05:00" pubdate data-updated="true">May 19<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/05/19/another-cautionary-remote-javascript-tale/#disqus_thread">Comments</a>
         
@@ -584,7 +652,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-04-11T00:00:00-04:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
+<time datetime="2008-04-11T00:00:00-05:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/04/11/remote-javascript-with-document-write-is-killing-me/#disqus_thread">Comments</a>
         
@@ -620,55 +688,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/04/07/fix-for-slow-loading-google-ads/">Fix for Slow-loading Google Ads</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-07T00:00:00-04:00" pubdate data-updated="true">Apr 7<span>th</span>, 2008</time>
-        
-         | <a href="/blog/2008/04/07/fix-for-slow-loading-google-ads/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Google&#8217;s AdSense ads, and lots of others, are added to pages using Javascript, and if that Javascript appears early in the page&#8217;s HTML, it can seriously slow down the rendering of the rest of the page. That&#8217;s because browsers generally refuse to do any further rendering of the page until they have a requested Javascript file in hand.</p>
-
-<p>We ran into this with the ad in the left column of some pages on <a href="http://dailystrength.org">DailyStrength.org</a>, which appears above the page content in the HTML; when we switched to a new ad provider, which required fetching multiple Javascript files, the issue was even more pronounced.</p>
-
-<p>Since these ads only work when Javascript is enabled anyway, I decided to use some DOM manipulation (via jQuery, which is already on the page) to load the ad script in a hidden div at the bottom of the HTML, and then relocate the Javascript-generated iframe containing the ad to an empty, visible div where the ad needed to be:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#ad_hide&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;iframe&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#ad&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/pre&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now, loading the Javascript doesn&#8217;t slow down the rendering of the content, and the ad appears right after the page is loaded.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -686,6 +705,10 @@ We have a framework that allows rapid prototyping of new features, letting devel
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
       </li>
     
@@ -699,10 +722,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
     
       <li class="post">
         <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
       </li>
     
   </ul>

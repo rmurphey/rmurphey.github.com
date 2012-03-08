@@ -4,7 +4,7 @@
   <title><![CDATA[Category: css | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Skipping Photoshop for web design]]></title>
     <link href="http://rmurphey.com/blog/2008/06/06/skipping-photoshop-for-web-design/"/>
-    <updated>2008-06-06T00:00:00-04:00</updated>
+    <updated>2008-06-06T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2008/06/06/skipping-photoshop-for-web-design</id>
     <content type="html"><![CDATA[<p>Occasionally the folks at 37signals write a blog post that seems to channel thoughts that I've just never put to paper [blog]. This week they did it twice, with <a href="http://www.37signals.com/svn/posts/1061-why-we-skip-photoshop">two</a> <a href="http://www.37signals.com/svn/posts/1066-web-designers-should-do-their-own-htmlcss">posts</a> about how they prefer to skip Photoshop and work with HTML and CSS when it comes to designing a web site.</p>
 

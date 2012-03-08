@@ -4,7 +4,7 @@
   <title><![CDATA[Category: fundamentals, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/fundamentals-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[The Future of jQuery Fundamentals (and a confession)]]></title>
     <link href="http://rmurphey.com/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession/"/>
-    <updated>2011-03-17T00:00:00-04:00</updated>
+    <updated>2011-03-17T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession</id>
     <content type="html"><![CDATA[<p>About 9 months ago, <a href="http://blog.rebeccamurphey.com/2010/06/17/open-source-jquery-training">I released</a> <a href="http://jqfundamentals.com/book/">jQuery Fundamentals</a>, a free, online training curriculum for people interested in learning jQuery based on material I&rsquo;d assembled while leading jQuery trainings.</p>
 
@@ -76,7 +76,7 @@
   <entry>
     <title type="html"><![CDATA[Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum]]></title>
     <link href="http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum/"/>
-    <updated>2010-06-17T00:00:00-04:00</updated>
+    <updated>2010-06-17T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum</id>
     <content type="html"><![CDATA[<p>I've been leading <a href="http://www.rebeccamurphey.com/training">jQuery trainings</a> for more than a year now, from tiny gatherings that I organized myself at the local coworking space, to intensive two-day sessions at local web companies, to whirlwind one-day classes at governmental agencies. Over the course of those trainings, I've developed what I'd like to think is a decent curriculum -- training material that's the size of a small book, exercises that demonstrate core concepts, and solutions to those exercises that students can peek at later or when they get stuck.</p>
 

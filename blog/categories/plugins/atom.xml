@@ -4,7 +4,7 @@
   <title><![CDATA[Category: plugins | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/plugins/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[jQuery validation: Indicate that at least one element in a group is required]]></title>
     <link href="http://rmurphey.com/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/"/>
-    <updated>2009-04-15T00:00:00-04:00</updated>
+    <updated>2009-04-15T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required</id>
     <content type="html"><![CDATA[<p>I had a need today to indicate that at least one of a set of input fields was required. I was hoping there was a direct way to do this in the <a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">jQuery validation plugin</a>; while the method isn't quite as straightforward as I was wishing for, it's still fairly simple.</p>
 
@@ -67,7 +67,7 @@
   <entry>
     <title type="html"><![CDATA[Update page using JSON data]]></title>
     <link href="http://rmurphey.com/blog/2008/01/02/update-page-using-json-data/"/>
-    <updated>2008-01-02T00:00:00-05:00</updated>
+    <updated>2008-01-02T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2008/01/02/update-page-using-json-data</id>
     <content type="html"><![CDATA[<p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/jquery.updateWithJSON.js">updateWithJSON</a> is a jQuery plugin that updates elements on your page based on key/value pairs in a JSON object. Usage:</p>
 
@@ -139,7 +139,7 @@
   <entry>
     <title type="html"><![CDATA[Determine the order of two DOM elements]]></title>
     <link href="http://rmurphey.com/blog/2007/12/30/determine-the-order-of-two-dom-elements/"/>
-    <updated>2007-12-30T00:00:00-05:00</updated>
+    <updated>2007-12-30T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2007/12/30/determine-the-order-of-two-dom-elements</id>
     <content type="html"><![CDATA[<p>Inspired by <a href="http://us.php.net/usort">this</a> from PHP, I wanted a
 utility function to determine whether a given element came before or after

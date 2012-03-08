@@ -4,7 +4,7 @@
   <title><![CDATA[Category: freelancing, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/freelancing-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Lessons Learned from Taking On a Project in Crisis ]]></title>
     <link href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/"/>
-    <updated>2010-04-03T00:00:00-04:00</updated>
+    <updated>2010-04-03T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis</id>
     <content type="html"><![CDATA[<p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you've most certainly heard of. I developed the entire front-end -- HTML, CSS, and JavaScript -- for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I've learned, in hopes that I can benefit from my experience in the future.</p>
 
@@ -46,7 +46,7 @@
   <entry>
     <title type="html"><![CDATA[Notes on handing off a design to a front-end developer]]></title>
     <link href="http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/"/>
-    <updated>2008-09-22T00:00:00-04:00</updated>
+    <updated>2008-09-22T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer</id>
     <content type="html"><![CDATA[<p>I've been spending a lot of time lately turning other people's designs into working websites, and often there are a few rounds of back-and-forth before I have everything I need. Some notes on must-have pieces before I can begin work:</p>
 

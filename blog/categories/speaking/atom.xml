@@ -4,7 +4,7 @@
   <title><![CDATA[Category: speaking | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/speaking/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Introducing yayQuery -- A jQuery podcast]]></title>
     <link href="http://rmurphey.com/blog/2009/11/06/introducing-yayquery-a-jquery-podcast/"/>
-    <updated>2009-11-06T00:00:00-05:00</updated>
+    <updated>2009-11-06T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2009/11/06/introducing-yayquery-a-jquery-podcast</id>
     <content type="html"><![CDATA[<object height="333" width="500"><param name="allowfullscreen" value="true" />
 <param name="allowscriptaccess" value="always" />
@@ -51,7 +51,7 @@
   <entry>
     <title type="html"><![CDATA[Inaugural North Carolina jQuery Camp]]></title>
     <link href="http://rmurphey.com/blog/2009/09/19/inaugural-north-carolina-jquery-camp/"/>
-    <updated>2009-09-19T00:00:00-04:00</updated>
+    <updated>2009-09-19T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2009/09/19/inaugural-north-carolina-jquery-camp</id>
     <content type="html"><![CDATA[<p>I'm just back from the inaugural North Carolina jQuery Camp at <a href="http://www.viget.com">Viget Labs</a> in Durham, N.C., and a couple of people have asked how it went, so I thought I'd write a quick post. I had a whim a few weeks ago to organize the camp; I envisioned an unstructured day where fellow jQuery developers could get together and talk about how they use the library. I figured that since the jQuery Conference had sold out and had a huge waiting list, getting a couple dozen people together on a Saturday in Durham, N.C. wouldn't be that hard.</p>
 

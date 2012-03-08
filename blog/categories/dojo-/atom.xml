@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dojo, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/dojo-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Lessons From a Rewrite]]></title>
     <link href="http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite/"/>
-    <updated>2011-07-06T10:50:00-04:00</updated>
+    <updated>2011-07-06T10:50:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite</id>
     <content type="html"><![CDATA[<p>MVC and friends have been around for decades, but it’s only in the last couple
 of years that broad swaths of developers have started applying those patterns
@@ -454,7 +454,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[Making sense of dojo.when: A simple XHR caching example]]></title>
     <link href="http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/"/>
-    <updated>2010-08-29T00:00:00-04:00</updated>
+    <updated>2010-08-29T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example</id>
     <content type="html"><![CDATA[<p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
 
@@ -653,7 +653,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[EnterpriseDojo.com uses jQuery! ]]></title>
     <link href="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/"/>
-    <updated>2010-08-21T00:00:00-04:00</updated>
+    <updated>2010-08-21T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery</id>
     <content type="html"><![CDATA[<p>And you should too ... for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
 
@@ -681,7 +681,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[On Rolling Your Own]]></title>
     <link href="http://rmurphey.com/blog/2010/08/11/on-rolling-your-own/"/>
-    <updated>2010-08-11T00:00:00-04:00</updated>
+    <updated>2010-08-11T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/11/on-rolling-your-own</id>
     <content type="html"><![CDATA[<p>There&rsquo;s been a lot of activity around my last post, <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">On jQuery &amp; Large Applications</a>. A number of people have asked me why, exactly, I&rsquo;m so opposed to using jQuery as part of a roll-your-own solution.</p>
 
@@ -773,7 +773,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[Lessons Learned from Taking On a Project in Crisis ]]></title>
     <link href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/"/>
-    <updated>2010-04-03T00:00:00-04:00</updated>
+    <updated>2010-04-03T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis</id>
     <content type="html"><![CDATA[<p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you've most certainly heard of. I developed the entire front-end -- HTML, CSS, and JavaScript -- for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I've learned, in hopes that I can benefit from my experience in the future.</p>
 

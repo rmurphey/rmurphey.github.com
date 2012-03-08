@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -14,9 +14,102 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Community Conferences]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/08/community-conferences/"/>
+    <updated>2012-03-08T08:29:00-06:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/08/community-conferences</id>
+    <content type="html"><![CDATA[<p>In 2010, I helped put on the first TXJS. We sold our first tickets for $29, and
+I think the most expensive tickets went for something like $129. We had about
+200 people buy tickets, we had speakers like Douglas Crockford, Paul Irish, and
+John Resig, and we had sponsors like Facebook and Google. Our total budget was
+something like $30,000, and every out-of-town speaker had their travel and
+accommodations paid for.</p>
+
+<p>In May, O&#8217;Reilly Media is holding another JavaScript conference in San
+Francisco, called FluentConf. I recently came to know that they are charging
+$100,000 for top-tier sponsorships, and that they were offering a 10-minute
+keynote as part of the package.</p>
+
+<p>This turned my stomach, and not just because I believe it cheapens the
+experience of attendees, who will pay hundreds of dollars themselves. What
+really upset me was that a few weeks ago, I was approached to be on the speaker
+selection committee of FluentConf, and that conversation led me to discover
+that FluentConf would not be paying for speaker travel and accommodations. And
+so the other day, I tweeted:</p>
+
+<blockquote><p>conference #protip: save your money &#8211; and your speaking skills &#8211; for events that don&#8217;t sell their keynotes for $100k</p></blockquote>
+
+<p>Last night, I was at the Ginger Man in Austin, and I chcecked the Twitters,
+discovering that Peter Cooper, one of the chairs of FluentConf, had replied to
+a conversation that arose from that tweet:</p>
+
+<blockquote><p>@rmurphey @tomdale If you&#8217;re referring to Fluent, that is news to me.</p></blockquote>
+
+<p>I will accept the weird fact that the co-chair of a conference didn&#8217;t know its
+speaking slots were for sale &#8211; I gather that it is essentially a volunteer
+role, and the co-chairs aren&#8217;t necessarily in the driver&#8217;s seat when it comes
+to decisions like this. I let Peter know that, indeed, I had a PDF that
+outlined all the sponsorship options.</p>
+
+<p>This is the part where, in some alternate reality, a mutual understanding of
+the offensiveness of this fact would have been achieved. What happened instead
+was a whole lot of name-calling, misquoting, and general weirdness.</p>
+
+<p>Here&#8217;s the deal. Conferences can run their event however they want, and they
+can make money hand over fist. They can even claim they are the giving
+JavaScript developers &#8220;an event of their own,&#8221; ignoring the existence of
+the actual community-run JavaScript events that have been around for years now.  I
+probably won&#8217;t go to or speak at an event that makes money hand over fist, but
+I don&#8217;t have any problem with the existence of such events, or with people&#8217;s
+involvement with them.  However, when a conference is making money hand over
+fist &#8211; my back of the napkin calculations would suggest that FluentConf stands
+to have revenues of well over a million dollars &#8211; then that conference has no
+excuse not to pay the relatively paltry costs associated with speaker travel
+and accommodations.</p>
+
+<p>A conference does not exist without its speakers. Those who speak at an event
+&#8211; the good ones, anyway &#8211; spend countless hours preparing and rehearsing, and
+they are away from home and work for days. While I do not discount the benefits
+that accrue to good speakers, the costs of being a speaker are non-trivial &#8211;
+and that&#8217;s <em>before</em> you get into the dollar costs of travel and accommodations.</p>
+
+<p>When an event is unwilling to cover even those hard costs &#8211; nevermind the
+preparation time and time away from work and home &#8211; it materially affects the
+selection of speakers.  It&#8217;s even worse when those same conferences claim to
+desire <a href="http://fluentconf.com/fluent2012/public/content/about#diversity">diversity</a>;
+the people they claim to want so badly are the very people most likely to be
+discouraged when they find out they have to pay their own way to the stage.</p>
+
+<p>In the conversation last night, I made this point:</p>
+
+<blockquote><p>when only the people who can afford to speak can speak, then only the people who can afford to speak will
+speak.</p></blockquote>
+
+<p>Amy Hoy responded with a criticism of community-run conferences:</p>
+
+<blockquote><p>and when only ppl who can order a ticket in 3 seconds can afford to come, only ppl who can order a ticket in 3 seconds can come</p></blockquote>
+
+<p>I know that getting tickets to the actual community-run events is hard, but
+that is because the community-run events flat-out ignore the economics of
+supply and demand, choosing instead to sell tickets at affordable prices even
+if it means they will sell out in a heartbeat, leaving a boatload of potential
+profit on the table. And yet those events &#8211; JSConf, TXJS, and the like &#8211; have
+still figured out how to cover speaker costs and provide attendees
+unforgettable experiences.</p>
+
+<p>When an event with revenues exceeding a million dollars is unwilling to cover
+those costs, while simultaneously selling speaking slots, I do not hesitate for
+a moment to call that event out, and I do not hesitate to call
+on <a href="http://fluentconf.com/fluent2012/public/content/about#commitee">respected members of the community</a> to sever
+their ties with the event. I&#8217;m not embarrassed about it, and you can call me all
+the names you want.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Mulberry: A development framework for mobile apps]]></title>
     <link href="http://rmurphey.com/blog/2011/09/18/introducing-mulberry/"/>
-    <updated>2011-09-18T11:30:00-04:00</updated>
+    <updated>2011-09-18T11:30:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/09/18/introducing-mulberry</id>
     <content type="html"><![CDATA[<p>I&#8217;ll be getting on stage in a bit at <a href="http://capitoljs.com">CapitolJS</a>, another
 great event from Chris Williams, the creator of JSConf and all-around
@@ -227,7 +320,7 @@ site</a>, but if you&#8217;re reading this, you&#8217;re probably a JavaScript d
   <entry>
     <title type="html"><![CDATA[Switching to Octopress]]></title>
     <link href="http://rmurphey.com/blog/2011/07/25/switching-to-octopress/"/>
-    <updated>2011-07-25T08:14:00-04:00</updated>
+    <updated>2011-07-25T08:14:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/07/25/switching-to-octopress</id>
     <content type="html"><![CDATA[<p>I&#8217;m taking a stab at starting a new blog at
 <a href="http://rmurphey.com">rmurphey.com</a>, powered by
@@ -285,7 +378,7 @@ with it. Win all around.</p>
   <entry>
     <title type="html"><![CDATA[Using object literals for flow control and settings]]></title>
     <link href="http://rmurphey.com/blog/2011/07/24/object-literals/"/>
-    <updated>2011-07-24T00:00:00-04:00</updated>
+    <updated>2011-07-24T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/07/24/object-literals</id>
     <content type="html"><![CDATA[<p>I got an email the other day from someone reading through <a href="http://jqfundamentals.com">jQuery Fundamentals</a> &#8211; they&#8217;d come across the section
 about patterns for performance and compression, which is based on a
@@ -419,7 +512,7 @@ smart folks eager to take the time to explain.</p>
   <entry>
     <title type="html"><![CDATA[Lessons From a Rewrite]]></title>
     <link href="http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite/"/>
-    <updated>2011-07-06T10:50:00-04:00</updated>
+    <updated>2011-07-06T10:50:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite</id>
     <content type="html"><![CDATA[<p>MVC and friends have been around for decades, but it’s only in the last couple
 of years that broad swaths of developers have started applying those patterns
@@ -836,7 +929,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[A new chapter]]></title>
     <link href="http://rmurphey.com/blog/2011/05/31/a-new-chapter/"/>
-    <updated>2011-05-31T00:00:00-04:00</updated>
+    <updated>2011-05-31T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/05/31/a-new-chapter</id>
     <content type="html"><![CDATA[<p>It was three years ago this summer that I <a href="http://blog.rebeccamurphey.com/2-years-in-some-thoughts-on-working-for-mysel">got the call, bought the Yuengling, smoked the cigarettes</a>, and began life as an independent consultant. It&rsquo;s been (almost) three years of ups and downs, and, eventually, among the most rewarding experiences of my life. Day by day, I wrote my own job description, found my own clients, set my own schedule, and set my own agenda.</p>
 
@@ -871,7 +964,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[Getting Better at JavaScript]]></title>
     <link href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/"/>
-    <updated>2011-05-20T00:00:00-04:00</updated>
+    <updated>2011-05-20T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript</id>
     <content type="html"><![CDATA[<p>I seem to be getting a lot of emails these days asking a deceptively simple
 question: “How do I get better at JavaScript?” What follows are some
@@ -975,7 +1068,7 @@ them” paradigm of jQuery.</li>
   <entry>
     <title type="html"><![CDATA[Objects as Arguments: Where do you draw the line?]]></title>
     <link href="http://rmurphey.com/blog/2011/04/25/objects-as-arguments/"/>
-    <updated>2011-04-25T11:16:00-04:00</updated>
+    <updated>2011-04-25T11:16:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/04/25/objects-as-arguments</id>
     <content type="html"><![CDATA[<p>I was reviewing some code last week and came across a snippet that looked a lot like this:</p>
 
@@ -1301,7 +1394,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[Modern JavaScript]]></title>
     <link href="http://rmurphey.com/blog/2011/04/15/modern-javascript/"/>
-    <updated>2011-04-15T11:16:00-04:00</updated>
+    <updated>2011-04-15T11:16:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/04/15/modern-javascript</id>
     <content type="html"><![CDATA[<p>My presentation <a href="http://www.slideshare.net/rmurphey/the-jquery-divide-5287573">the jQuery Divide</a> (<a href="http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html">video here</a>) has been <a href="http://news.ycombinator.com/item?id=2429411">making the rounds</a> on the internet again, six months after I delivered it at JSConf.eu in Berlin, and this time around, a colleague on IRC shared a link with me that drew from it: <a href="http://www.dagolden.com/index.php/1446/is-javascript-the-new-perl/">Is JavaScript the New Perl?</a></p>
 
@@ -1336,7 +1429,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[A Dojo Boilerplate]]></title>
     <link href="http://rmurphey.com/blog/2011/04/04/a-dojo-boilerplate/"/>
-    <updated>2011-04-04T00:00:00-04:00</updated>
+    <updated>2011-04-04T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/04/04/a-dojo-boilerplate</id>
     <content type="html"><![CDATA[<p>When I first started playing with the <a href="http://dojotoolkit.org">Dojo Toolkit</a>, it was easy enough to <a href="http://dojotoolkit.org/documentation/tutorials/1.6/hello_dojo/">use the CDN-hosted <code>dojo.js</code> and get started</a>, but before long I wanted to make use of one of the features that drew me to Dojo in the first place: the build system that parses your code&rsquo;s dependencies as expressed by <code>dojo.require()</code> statements and creates production-ready files.</p>
 
@@ -1367,7 +1460,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[When you're building a non-trivial JS application ...]]></title>
     <link href="http://rmurphey.com/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/"/>
-    <updated>2011-03-30T00:00:00-04:00</updated>
+    <updated>2011-03-30T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application</id>
     <content type="html"><![CDATA[<p>I sense another round of discussion of this is <a href="http://twitter.com/slightlylate/status/52924409509445632">about to begin</a>, and 140 characters isn&#8217;t quite enough to say what I want to say, so:</p>
 
@@ -1389,7 +1482,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[The Future of jQuery Fundamentals (and a confession)]]></title>
     <link href="http://rmurphey.com/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession/"/>
-    <updated>2011-03-17T00:00:00-04:00</updated>
+    <updated>2011-03-17T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession</id>
     <content type="html"><![CDATA[<p>About 9 months ago, <a href="http://blog.rebeccamurphey.com/2010/06/17/open-source-jquery-training">I released</a> <a href="http://jqfundamentals.com/book/">jQuery Fundamentals</a>, a free, online training curriculum for people interested in learning jQuery based on material I&rsquo;d assembled while leading jQuery trainings.</p>
 
@@ -1449,7 +1542,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[Deferreds coming to jQuery 1.5?]]></title>
     <link href="http://rmurphey.com/blog/2010/12/25/deferreds-coming-to-jquery/"/>
-    <updated>2010-12-25T00:00:00-05:00</updated>
+    <updated>2010-12-25T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2010/12/25/deferreds-coming-to-jquery</id>
     <content type="html"><![CDATA[<p><em>I have updated this post to show the code using the API that was released in jQuery 1.5.0.</em></p>
 
@@ -1665,7 +1758,7 @@ join in.</p>
   <entry>
     <title type="html"><![CDATA[On Conferencing]]></title>
     <link href="http://rmurphey.com/blog/2010/11/20/on-conferencing/"/>
-    <updated>2010-11-20T00:00:00-05:00</updated>
+    <updated>2010-11-20T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2010/11/20/on-conferencing</id>
     <content type="html"><![CDATA[<p>I&#8217;m a few hours away from finalizing my slides for the Rich Web Experience in Ft. Lauderdale next month. I&#8217;ll be presenting on basic tips for refactoring your jQuery; I think it&#8217;s a decent presentation &#8211; the part of it I&#8217;ve finished, anyway &#8211; and I&#8217;ll be glad to have it in my collection.</p>
 
@@ -1727,7 +1820,7 @@ join in.</p>
   <entry>
     <title type="html"><![CDATA[jQuery Conference Breakout Session: Women & Conferences]]></title>
     <link href="http://rmurphey.com/blog/2010/10/19/jquery-breakout-women-and-conferences/"/>
-    <updated>2010-10-19T00:00:00-04:00</updated>
+    <updated>2010-10-19T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/10/19/jquery-breakout-women-and-conferences</id>
     <content type="html"><![CDATA[<p>I decided to organize a breakout session about women and conferences at the
 <a href="http://events.jquery.org/2010/boston/">jQuery Conference in Boston</a> this past
@@ -1842,7 +1935,7 @@ to continued discussion.</p>
   <entry>
     <title type="html"><![CDATA[Functionality-Focused Code Organization]]></title>
     <link href="http://rmurphey.com/blog/2010/10/17/functionality-focused-code-organization/"/>
-    <updated>2010-10-17T00:00:00-04:00</updated>
+    <updated>2010-10-17T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/10/17/functionality-focused-code-organization</id>
     <content type="html"><![CDATA[<p>I spoke yesterday at the 2010 Boston jQuery Conference about
 &#8220;Functionality-Focused Code Organization.&#8221; It was a presentation that
@@ -1881,7 +1974,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[In Search of JavaScript Developers: A Gist]]></title>
     <link href="http://rmurphey.com/blog/2010/09/15/in-search-of-javascript-developers-a-gist/"/>
-    <updated>2010-09-15T00:00:00-04:00</updated>
+    <updated>2010-09-15T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/09/15/in-search-of-javascript-developers-a-gist</id>
     <content type="html"><![CDATA[<p>I posted a <a href="http://gist.github.com/576723">gist</a> the other day in an attempt to locate some JavaScript help. I&rsquo;m finding, lately, that I&rsquo;m being asked to do more work than I can comfortably take on without having some overflow capacity, but I&rsquo;ve been a little lax at actually identifying people who can provide that capacity up until now. That meant I was turning down work, and that&rsquo;s not a good thing.</p>
 
@@ -2894,7 +2987,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[Making sense of dojo.when: A simple XHR caching example]]></title>
     <link href="http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/"/>
-    <updated>2010-08-29T00:00:00-04:00</updated>
+    <updated>2010-08-29T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example</id>
     <content type="html"><![CDATA[<p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
 
@@ -3086,7 +3179,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[Code Org, Take 2: Structuring JavaScript Applications]]></title>
     <link href="http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/"/>
-    <updated>2010-08-27T00:00:00-04:00</updated>
+    <updated>2010-08-27T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications</id>
     <content type="html"><![CDATA[<p>It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d been thinking for a few months about how to improve my own code and give it more structure, and how to give advice to others about how to do the same.</p>
 
@@ -3356,7 +3449,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[Dear conference organizer]]></title>
     <link href="http://rmurphey.com/blog/2010/08/24/dear-conference-organizer/"/>
-    <updated>2010-08-24T00:00:00-04:00</updated>
+    <updated>2010-08-24T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/24/dear-conference-organizer</id>
     <content type="html"><![CDATA[<p>
 <p>Thank you for the invitation to speak at your conference, and your offer to pay my hotel and airfare in exchange.&nbsp;I notice that you are selling tickets for upwards of $1,500, in addition to hotel and travel costs. In exchange, you are hosting a three-day event, meals, a USB drive, a shirt, and a binder.</p>
@@ -3367,34 +3460,6 @@ well, which means a lot. Thanks, guys.</p>
 <p>&#8211;</p>
 <p>Finally: To all of the TXJS speakers, we heart you unbelievably and stand in awe that when we asked you to present at an event that had never existed before, each and every one of you said yes without batting an eye. I hope you know that we know that even with the open bar and the parties and the shuttle and the venue and all of it, we couldn&#8217;t have had a conference without you.&nbsp;</p>
 </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[EnterpriseDojo.com uses jQuery! ]]></title>
-    <link href="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/"/>
-    <updated>2010-08-21T00:00:00-04:00</updated>
-    <id>http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery</id>
-    <content type="html"><![CDATA[<p>And you should too &#8230; for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
-
-
-<p>Here&#8217;s an idea: Let&#8217;s have an honest discussion about when a given solution makes sense and when it doesn&#8217;t, rather than mocking a contributor to that discussion for choosing a perfectly appropriate tool for a perfectly mundane task. <a href="http://enterprisedojo.com">EnterpriseDojo.com</a> is a blog about using Dojo in the enterprise, not a blog about using Dojo on blogs.&nbsp;Snickering at its use of jQuery is approximately as useful as pointing to <a href="http://www.google.com/trends?q=jquery%2Cdojo%2Cyui">this graph</a> and saying case closed, leaving more reasonable, thoughtful people to explain <a href="http://stackoverflow.com/questions/2450696/what-happened-to-dojo-in-2008/2451785#2451785">all the ways that graph doesn&#8217;t tell us a&nbsp;damn thing</a>.&nbsp;</p>
-
-
-<p>I want to be very clear, as the dust settles around my several recent rants: jQuery has its place, and it is a very, very big place. It is a lovely DOM, Ajax, and events library, and a great way to get certain things done quickly, especially for people who may not have the luxury of learning the inner workings of JavaScript (noble a goal as that is).&nbsp;There was a time when DOM and Ajax and events questions felt like&nbsp;<em>the</em> questions of the day, and jQuery showed us how to answer those questions using a simple, easy-to-learn API that suddenly made JavaScript accessible to the masses. Other libraries solved the same questions but those solutions felt ugly and clunky and goshdarnit, <em>hard</em>, and I give jQuery the utmost credit for making JavaScript suck so much less when all I wanted to do was show or hide or slide a thing or load some content onto my page. I&#8217;ll even grant that it can be used as a piece of a large application solution, though I question the wisdom of doing so for reasons outlined in <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">another post</a>. Heck, I&#8217;ll even grant that &#8220;enterprises&#8221; aren&#8217;t off their rockers to use it &#8211; for the things it was meant to be used for.&nbsp;</p>
-
-
-<p>What upsets me is when smart people seem to say that jQuery&#8217;s victory in an internet-wide popularity contest suggests, well, anything at all when it comes to more complex needs. It upsets me because my clients hear those suggestions, look at that same well-marketed graph, and I am left explaining to them that, yes, jQuery is popular, but it&#8217;s popular because it answers a small set of questions easily and well &#8211; even for people who don&#8217;t even know JavaScript! &#8211; and you, dear client, have vastly larger questions than that.</p>
-
-
-<p>At the end of the day, these toolkit decisions ought to be about more than a popularity contest; jQuery may be the right answer, or part of the right answer, but it&#8217;s imperative, to me, that my clients understand the scope of the question first. It&#8217;s imperative that they make their decisions based on a full understanding of pros and cons, risk and reward, cost and benefit &#8211; not based on a graph, not based on a popularity contest.</p>
-
-
-<p>So again I say: we, as a community, and especially the influential ones among us, do well when we elevate the conversation beyond that contest and acknowledge that choosing the right toolkit depends on first understanding what you&#8217;re choosing the toolkit for. We do well when we educate teams and decisionmakers on the lessons we&#8217;ve learned in the time since DOM, Ajax, and events were the big question of the day, on the best practices that have emerged, on the situations where we&#8217;ve, gasp, had to look beyond jQuery &#8211; either to other tools or other toolkits &#8211; for the answers. And we do well when we start showing them how they can do the same.</p>
-
-
-<p><em>An aside: Some people I like a lot have pointed out that in the midst of all of my complaining, I have not come out and offered a solution. This is fair. Two things: One, I have not wanted this conversation to collapse into Dojo vs. jQuery vs. YUI vs. Ext vs. MooTools vs. whatever, because if it does, I think we&#8217;ve missed the crux of the matter: that different tools do different things, that some set out to answer complex questions and some do not. If anyone has been unclear, which I rather doubt, my personal preference of late has been to use Dojo. I do not recommend using Dojo for everything under the sun, but I find it offers a lot of utility when writing non-trivial applications. I cannot make a compelling argument for using it vs. YUI, simply because I don&#8217;t know YUI well enough. I can&#8217;t even make a compelling argument for using it vs. Ext, except for licensing issues that may or may not be relevant in a given scenario. Two, if you&#8217;re disappointed that I haven&#8217;t offered a solution, especially a jQuery-based one, I apologize. However, I feel there are too many viable existing solutions out there already, and I haven&#8217;t come up with a good reason to promote a jQuery-based solution besides jQuery&#8217;s popularity. And, well, see above for my thoughts on that.</em></p>
 
 ]]></content>
   </entry>

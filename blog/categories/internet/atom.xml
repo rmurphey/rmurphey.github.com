@@ -4,7 +4,7 @@
   <title><![CDATA[Category: internet | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/internet/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Solved: AJAX returns bad results in Internet Explorer]]></title>
     <link href="http://rmurphey.com/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/"/>
-    <updated>2008-01-10T00:00:00-05:00</updated>
+    <updated>2008-01-10T00:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer</id>
     <content type="html"><![CDATA[<p>Note to self: IE6 likes to cache AJAX requests, and this can be a bad thing if other data on the page that will affect the result of the request has changed.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: large-applications | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/large-applications/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Code Org, Take 2: Structuring JavaScript Applications]]></title>
     <link href="http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/"/>
-    <updated>2010-08-27T00:00:00-04:00</updated>
+    <updated>2010-08-27T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications</id>
     <content type="html"><![CDATA[<p>It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d been thinking for a few months about how to improve my own code and give it more structure, and how to give advice to others about how to do the same.</p>
 
@@ -286,7 +286,7 @@
   <entry>
     <title type="html"><![CDATA[EnterpriseDojo.com uses jQuery! ]]></title>
     <link href="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/"/>
-    <updated>2010-08-21T00:00:00-04:00</updated>
+    <updated>2010-08-21T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery</id>
     <content type="html"><![CDATA[<p>And you should too ... for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
 
@@ -314,7 +314,7 @@
   <entry>
     <title type="html"><![CDATA[On Rolling Your Own]]></title>
     <link href="http://rmurphey.com/blog/2010/08/11/on-rolling-your-own/"/>
-    <updated>2010-08-11T00:00:00-04:00</updated>
+    <updated>2010-08-11T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/11/on-rolling-your-own</id>
     <content type="html"><![CDATA[<p>There&rsquo;s been a lot of activity around my last post, <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">On jQuery &amp; Large Applications</a>. A number of people have asked me why, exactly, I&rsquo;m so opposed to using jQuery as part of a roll-your-own solution.</p>
 
@@ -406,7 +406,7 @@
   <entry>
     <title type="html"><![CDATA[On jQuery & Large Applications]]></title>
     <link href="http://rmurphey.com/blog/2010/08/09/on-jquery-large-applications/"/>
-    <updated>2010-08-09T00:00:00-04:00</updated>
+    <updated>2010-08-09T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/08/09/on-jquery-large-applications</id>
     <content type="html"><![CDATA[<p><em>Update: I&rsquo;ve written a separate post on the wisdom of <a href="http://blog.rebeccamurphey.com/on-rolling-your-own">rolling your own</a> large application toolkit that incorporates jQuery.</em></p>
 

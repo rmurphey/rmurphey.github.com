@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I&#8217;ve been doing some serious work this week cutting down on YUI bloat &#8211; our site was including the entire YUI library at the top of every &hellip;">
+  <meta name="description" content="Google&#8217;s AdSense ads, and lots of others, are added to pages using Javascript, and if that Javascript appears early in the page&#8217;s HTML, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,55 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/04/07/fix-for-slow-loading-google-ads/">Fix for Slow-loading Google Ads</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-07T00:00:00-05:00" pubdate data-updated="true">Apr 7<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/04/07/fix-for-slow-loading-google-ads/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Google&#8217;s AdSense ads, and lots of others, are added to pages using Javascript, and if that Javascript appears early in the page&#8217;s HTML, it can seriously slow down the rendering of the rest of the page. That&#8217;s because browsers generally refuse to do any further rendering of the page until they have a requested Javascript file in hand.</p>
+
+<p>We ran into this with the ad in the left column of some pages on <a href="http://dailystrength.org">DailyStrength.org</a>, which appears above the page content in the HTML; when we switched to a new ad provider, which required fetching multiple Javascript files, the issue was even more pronounced.</p>
+
+<p>Since these ads only work when Javascript is enabled anyway, I decided to use some DOM manipulation (via jQuery, which is already on the page) to load the ad script in a hidden div at the bottom of the HTML, and then relocate the Javascript-generated iframe containing the ad to an empty, visible div where the ad needed to be:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#ad_hide&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;iframe&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#ad&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/pre&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, loading the Javascript doesn&#8217;t slow down the rendering of the content, and the ad appears right after the page is loaded.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/03/14/bye-bye-yui-bloat/">Bye Bye YUI Bloat</a></h1>
     
     
@@ -97,7 +146,7 @@
   
 
 
-<time datetime="2008-03-14T00:00:00-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2008</time>
+<time datetime="2008-03-14T00:00:00-05:00" pubdate data-updated="true">Mar 14<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/03/14/bye-bye-yui-bloat/#disqus_thread">Comments</a>
         
@@ -141,7 +190,7 @@
   
 
 
-<time datetime="2008-02-22T00:00:00-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2008</time>
+<time datetime="2008-02-22T00:00:00-06:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2008</time>
         
          | <a href="/blog/2008/02/22/back-on-the-air/#disqus_thread">Comments</a>
         
@@ -179,7 +228,7 @@
   
 
 
-<time datetime="2008-02-05T00:00:00-05:00" pubdate data-updated="true">Feb 5<span>th</span>, 2008</time>
+<time datetime="2008-02-05T00:00:00-06:00" pubdate data-updated="true">Feb 5<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/02/05/selectors-in-jquery/#disqus_thread">Comments</a>
         
@@ -217,7 +266,7 @@
   
 
 
-<time datetime="2008-01-29T00:00:00-05:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
+<time datetime="2008-01-29T00:00:00-06:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/29/cache-regexes-in-javascript/#disqus_thread">Comments</a>
         
@@ -255,7 +304,7 @@
   
 
 
-<time datetime="2008-01-18T00:00:00-05:00" pubdate data-updated="true">Jan 18<span>th</span>, 2008</time>
+<time datetime="2008-01-18T00:00:00-06:00" pubdate data-updated="true">Jan 18<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/#disqus_thread">Comments</a>
         
@@ -297,7 +346,7 @@
   
 
 
-<time datetime="2008-01-13T00:00:00-05:00" pubdate data-updated="true">Jan 13<span>th</span>, 2008</time>
+<time datetime="2008-01-13T00:00:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/13/fix-uneven-line-lengths-in-headlines/#disqus_thread">Comments</a>
         
@@ -448,7 +497,7 @@
   
 
 
-<time datetime="2008-01-10T00:00:00-05:00" pubdate data-updated="true">Jan 10<span>th</span>, 2008</time>
+<time datetime="2008-01-10T00:00:00-06:00" pubdate data-updated="true">Jan 10<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/#disqus_thread">Comments</a>
         
@@ -530,7 +579,7 @@
   
 
 
-<time datetime="2008-01-08T00:00:00-05:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
+<time datetime="2008-01-08T00:00:00-06:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/08/cycle-through-list-elements-with-jquery/#disqus_thread">Comments</a>
         
@@ -812,7 +861,7 @@
   
 
 
-<time datetime="2008-01-06T00:00:00-05:00" pubdate data-updated="true">Jan 6<span>th</span>, 2008</time>
+<time datetime="2008-01-06T00:00:00-06:00" pubdate data-updated="true">Jan 6<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/06/unobtrusive-cross-browser-method-to-add-icons-to-links/#disqus_thread">Comments</a>
         
@@ -1065,50 +1114,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/01/04/salivating-over-server-side-javascript/">Salivating Over Server-side Javascript</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-04T00:00:00-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time>
-        
-         | <a href="/blog/2008/01/04/salivating-over-server-side-javascript/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I came across <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html">The End of Web Frameworks</a> in my dzone RSS feed this morning, and it echoes a thought that runs through my brain as I get more and more comfortable with jQuery: who needs the server when you&#8217;ve got Javascript? Wouldn&#8217;t it be great if the server just handed out data, and the client figured out what to do with it? After talking directly to the DOM for the last several months, a trip back to PHP left me utterly disoriented for a few minutes &#8211; why, exactly, couldn&#8217;t I take the anchors from that unordered list I&#8217;d just built 50 lines ago and reuse their hrefs for something else?</p>
-
-<p>As a <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html#c8132224153158413680">couple</a> of <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html#c5149909265291802708">commenters</a> pointed out, it&#8217;s not that easy &#8211; there&#8217;s still graceful degradation (the yin to progressive enhancement&#8217;s yang?) to worry about. It&#8217;s easy to say &#8220;oh, I don&#8217;t have to worry about that,&#8221; but until the day that&#8217;s actually <em>true</em>, Javascript on the client side simply can only supplement good, solid, server-generated markup.</p>
-
-<p>That&#8217;s why stuff like <a href="http://groups.google.com/group/jquery-en/browse_thread/thread/38d8d0c295b2919b">this discussion about server-side jQuery</a> has me nearly salivating. I&#8217;m imagining getting JSON data from a simple bit of server-side code that&#8217;s not encumbered by messy markup and then writing some Javascript to build the DOM of my dreams. The added bonus would be server-side code that could serve that clean, pretty JSON data up to anyone I wanted to have it.</p>
-
-<p>Of course, that DOM would still need to use semantic HTML and not rely on client-side Javascript for anything &#8211; and not just because a visually or otherwise impaired person might drop by someday and want to use my site. <a href="http://blogs.cnet.com/8301-13530_1-9782891-28.html">Progressive enhancement is good for SEO</a>, too, (and so are web standards in general). One only wishes that would lead SEO-focused companies to fall all over themselves in pursuit of it :)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1126,6 +1131,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
       </li>
     
@@ -1139,10 +1148,6 @@
     
       <li class="post">
         <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/05/31/a-new-chapter/">A new chapter</a>
       </li>
     
   </ul>

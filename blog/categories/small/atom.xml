@@ -4,7 +4,7 @@
   <title><![CDATA[Category: small | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/small/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-03T17:14:05-05:00</updated>
+  <updated>2012-03-08T09:29:03-06:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Planning a Wordpress CMS site]]></title>
     <link href="http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site/"/>
-    <updated>2008-09-21T00:00:00-04:00</updated>
+    <updated>2008-09-21T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site</id>
     <content type="html"><![CDATA[<p>There have been <a href="http://www.devlounge.net/publishing/things-to-consider-when-using-wordpress-as-a-cms">plenty of rumblings</a> lately about how <a href="http://www.webdesignerwall.com/tutorials/wordpress-theme-hacks/">WordPress can be used as a content management system</a>, beyond its core competency as a blogging platform. By harnessing the power of pages and subpages, writing custom Page templates, segmenting posts into category-based content feeds, and using handy little plugins like my brother's <a href="http://gmurphey.com/2006/10/05/wordpress-plugin-page-link-manager/">Page Link Manager</a>, you can do some <a href="http://codex.wordpress.org/User:Matt/WP_as_CMS">pretty neat stuff</a>.</p>
 
