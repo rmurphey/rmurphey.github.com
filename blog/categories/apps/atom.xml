@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apps | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/apps/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-11T23:06:38-04:00</updated>
+  <updated>2012-03-11T23:17:59-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -64,7 +64,7 @@ enormous head start when it came to incorporating
 setting up a development server. It also included some great inline docs that
 helped me get my bearings with Backbone.</p>
 
-<p>There are a couple of ways I thik the boilerplate could be improved, and I'd be
+<p>There are a couple of ways I think the boilerplate could be improved, and I'd be
 curious for others' opinions:</p>
 
 <ul>
