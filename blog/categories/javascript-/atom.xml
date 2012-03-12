@@ -4,7 +4,7 @@
   <title><![CDATA[Category: javascript, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/javascript-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-11T23:17:59-04:00</updated>
+  <updated>2012-03-12T09:59:42-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -74,8 +74,7 @@ module. I don't love the idea of combining all of this into a single file,
 because it seems to discourage smart reuse and unit testing of each piece of
 functionality. In the app I created, I abandoned the concept of modules, and
 instead broke my app into "components", "controllers", and "services". I
-explain this breakdown in a bit more depth in the <a href="http://www.slideshare.net/rmurphey/bvjs">presentation I gave at
-BazaarVoice</a>. I'm not sure this is
+explain this breakdown in a bit more depth in the <a href="http://www.slideshare.net/rmurphey/bvjs">presentation I gave at BazaarVoice</a>. I'm not sure this is
 the right answer for all apps, but I think modules oversimplify things.</li>
 <li>The boilerplate includes a <code>namespace.js</code> file. It defines a namespace
 object, and that object includes a <code>fetchTemplate</code> method. It seems this
