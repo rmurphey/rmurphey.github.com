@@ -4,7 +4,7 @@
   <title><![CDATA[Category: thoughts, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/thoughts-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[5 reasons you don't really want a jack-of-all-trades developer]]></title>
     <link href="http://rmurphey.com/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer/"/>
-    <updated>2008-08-02T00:00:00-05:00</updated>
+    <updated>2008-08-02T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer</id>
     <content type="html"><![CDATA[<p>I've spent the last couple of weeks trolling Craigslist and have been shocked at the number of ads I've found that seem to be looking for an entire engineering team rolled up into a single person. Descriptions like this aren't at all uncommon:</p>
 
@@ -44,7 +44,7 @@
   <entry>
     <title type="html"><![CDATA[How I learned CSS]]></title>
     <link href="http://rmurphey.com/blog/2007/12/24/how-i-learned-css/"/>
-    <updated>2007-12-24T00:00:00-06:00</updated>
+    <updated>2007-12-24T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/24/how-i-learned-css</id>
     <content type="html"><![CDATA[<p>I remember when I first tried to understand how to produce designs for the web -- coming from the paper-based world, it was hard for me to accept everything that was suddenly out of my control. When I first tried to grasp CSS with the help of now-defunct Adobe GoLive, I bailed pretty quickly. Table-based layout and font tags didn't make much sense to me either -- why did I have to slice up a page into a bunch of adjoining cells, instead of just drawing independent boxes like I did in Quark?</p>
 

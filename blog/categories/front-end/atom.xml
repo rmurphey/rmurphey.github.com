@@ -4,7 +4,7 @@
   <title><![CDATA[Category: front-end | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/front-end/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Patterns for DRY-er JavaScript]]></title>
     <link href="http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript/"/>
-    <updated>2010-07-12T00:00:00-05:00</updated>
+    <updated>2010-07-12T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript</id>
     <content type="html"><![CDATA[<p>I came across a little code the other day that reminded me I've been meaning to write about JavaScript patterns I take for granted. The code in question was intended to set the value of some fields in a form when a checkbox was selected; when it was deselected, the same fields were to be emptied. It looked not unlike this:</p>
 
@@ -323,7 +323,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum]]></title>
     <link href="http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum/"/>
-    <updated>2010-06-17T00:00:00-05:00</updated>
+    <updated>2010-06-17T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum</id>
     <content type="html"><![CDATA[<p>I've been leading <a href="http://www.rebeccamurphey.com/training">jQuery trainings</a> for more than a year now, from tiny gatherings that I organized myself at the local coworking space, to intensive two-day sessions at local web companies, to whirlwind one-day classes at governmental agencies. Over the course of those trainings, I've developed what I'd like to think is a decent curriculum -- training material that's the size of a small book, exercises that demonstrate core concepts, and solutions to those exercises that students can peek at later or when they get stuck.</p>
 
@@ -364,7 +364,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[Lessons Learned from Taking On a Project in Crisis ]]></title>
     <link href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/"/>
-    <updated>2010-04-03T00:00:00-05:00</updated>
+    <updated>2010-04-03T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis</id>
     <content type="html"><![CDATA[<p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you've most certainly heard of. I developed the entire front-end -- HTML, CSS, and JavaScript -- for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I've learned, in hopes that I can benefit from my experience in the future.</p>
 
@@ -394,7 +394,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[On gaining respect as a front-end developer]]></title>
     <link href="http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/"/>
-    <updated>2009-04-13T00:00:00-05:00</updated>
+    <updated>2009-04-13T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer</id>
     <content type="html"><![CDATA[<p>Someone wrote me today:</p>
 
@@ -422,7 +422,7 @@ I was wondering if this is a common thing or more so something that is happening
   <entry>
     <title type="html"><![CDATA[CSS vs. Tables: Maybe the design is to blame?]]></title>
     <link href="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/"/>
-    <updated>2009-02-14T00:00:00-06:00</updated>
+    <updated>2009-02-14T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame</id>
     <content type="html"><![CDATA[<p>There's been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so bad after all. From <a href="http://giveupandusetables.com/">giveupandusetables.com</a>, which says the maximum time to spend before abandoning CSS is 47 minutes, to the <a href="http://www.flownet.com/ron/css-rant.html">well-illustrated blog post by Ron Garret</a>, the general argument is that CSS isn't up to the task of faithfully reproducing elaborate designs cross-browser in an acceptable amount of developer time.</p>
 

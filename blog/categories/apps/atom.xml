@@ -4,7 +4,7 @@
   <title><![CDATA[Category: apps | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/apps/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -14,9 +14,100 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Thoughts on a (very) small project with Backbone and Backbone Boilerplate]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/"/>
+    <updated>2012-03-11T21:30:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate</id>
+    <content type="html"><![CDATA[<p>I worked with <a href="http://documentcloud.github.com/backbone/">Backbone</a> and the
+<a href="https://github.com/tbranyen/backbone-boilerplate">Backbone Boilerplate</a> for
+the first time last weekend, putting together a small <a href="https://github.com/rmurphey/bvjs">demo app</a> for a presentation I gave last week at
+BazaarVoice. I realize I'm about 18 months late to the Backbone party, here,
+but I wanted to write down my thoughts, mostly because I'm pretty sure they'll
+change as I get a chance to work with both tools more.</p>
+
+<h2>Backbone</h2>
+
+<p>Backbone describes itself as a tool that "gives structure to web applications,"
+but, at the risk of sounding pedantic, I think it would be more accurate to say
+that it gives you tools that can help you structure your applications. There's
+incredibly little prescription about how to use the tools that Backbone
+provides, and I have a feeling that the code I wrote to build my simple app
+looks a lot different than what someone else might come up with.</p>
+
+<p>This lack of prescription feels good and bad -- good, because I was able to use
+Backbone to pretty quickly set up an infrastructure that mirrored ones I've
+built in the past; bad, because it leaves open the possibility of lots of
+people inventing lots of wheels. To its credit, it packs a lot of power in a
+very small package -- 5.3k in production -- but a real app is going to require
+layering a lot more functionality on top of it. Ultimately, the best way to
+think of Backbone is as the client-side app boilerplate you'd otherwise have to
+write yourself.</p>
+
+<p>My biggest complaint about Backbone is probably how unopinionated it is about
+the view layer. Its focus seems to be entirely on the data layer, but the view
+is still where we spend the vast majority of our time. Specifically, I think
+Backbone could take a page from Dojo, and embrace the concept of "templated
+widgets", because that's what people seem to be doing with Backbone views
+anyway: mixing data with a template to create a DOM fragment, placing that
+fragment on the page, listening for user interaction with the fragment, and
+updating it as required. Backbone provides for some of this, specifically the
+event stuff, but it leaves you to write your own functionality when it comes to
+templating, placing, and updating. I think this is a solveable problem without
+a whole lot of code, and want to spend some time trying to prove it, but I know
+I need to look into the Backbone Layout Manager before I get too carried away.</p>
+
+<h2>Backbone Boilerplate</h2>
+
+<p>This project from Tim Branyen was a life-saver -- it gave me an absolutely
+enormous head start when it came to incorporating
+<a href="http://requirejs.org/">RequireJS</a>, setting up my application directories, and
+setting up a development server. It also included some great inline docs that
+helped me get my bearings with Backbone.</p>
+
+<p>There are a couple of ways I thik the boilerplate could be improved, and I'd be
+curious for others' opinions:</p>
+
+<ul>
+<li>The sample app includes the concept of "modules," which seem to be a single
+file that include the models, collections, views, and routes for a ...
+module. I don't love the idea of combining all of this into a single file,
+because it seems to discourage smart reuse and unit testing of each piece of
+functionality. In the app I created, I abandoned the concept of modules, and
+instead broke my app into "components", "controllers", and "services". I
+explain this breakdown in a bit more depth in the <a href="http://www.slideshare.net/rmurphey/bvjs">presentation I gave at
+BazaarVoice</a>. I'm not sure this is
+the right answer for all apps, but I think modules oversimplify things.</li>
+<li>The boilerplate includes a <code>namespace.js</code> file. It defines a namespace
+object, and that object includes a <code>fetchTemplate</code> method. It seems this
+method should only be used by views, and so I'd rather see something along
+the lines of an enhanced View that provides this functionality. That's what I
+did with the <a href="https://github.com/rmurphey/bvjs/blob/master/app/components/base.js">base component module</a>
+in my sample app.</li>
+<li>I'm super-glad to see Jasmine included in the test directory, but
+unfortunately the examples show how to write Jasmine tests, not Jasmine tests
+for a Backbone app. As a community, we definitely need to be showing more
+examples of how to test things, and this seems like a good opportunity to
+distribute that knowledge.</li>
+</ul>
+
+
+<h2>Overall</h2>
+
+<p>I feel a little silly that I'm just now getting around to spending any time
+with Backbone, and I know that I only scratched the surface, but I like what I
+saw. I think it's important to take it for what it is: an uber-tiny library
+that gets you pointed in the right direction. What I really want to see are
+fuller-fledged frameworks that build on top of Backbone, because I think
+there's a lot more that can be standardized beyond what Backbone offers. I'm
+hoping to have a bit more time in April to dig in, and hopefully I can flesh
+out some of these ideas into something useful.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Lessons From a Rewrite]]></title>
     <link href="http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite/"/>
-    <updated>2011-07-06T10:50:00-05:00</updated>
+    <updated>2011-07-06T10:50:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite</id>
     <content type="html"><![CDATA[<p>MVC and friends have been around for decades, but it’s only in the last couple
 of years that broad swaths of developers have started applying those patterns

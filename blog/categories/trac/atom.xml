@@ -4,7 +4,7 @@
   <title><![CDATA[Category: trac | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/trac/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Remixing trac with jQuery]]></title>
     <link href="http://rmurphey.com/blog/2007/12/03/remixing-trac-with-jquery/"/>
-    <updated>2007-12-03T00:00:00-06:00</updated>
+    <updated>2007-12-03T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/03/remixing-trac-with-jquery</id>
     <content type="html"><![CDATA[<p>I love <a href="http://trac.edgewall.org/">trac</a>, and I've been doing lots of work lately to customize it so our clients can use it to send us requests. With the configurable workflow option offered in <a href="http://trac.edgewall.org/milestone/0.11">version 0.11</a>, it became the perfect way for us to manage and track client requests. By connecting it to the subversion repository we use for version control of client files, we've virtually eliminated the need for back-and-forth emails -- everything is in one place.</p>
 

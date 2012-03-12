@@ -4,7 +4,7 @@
   <title><![CDATA[Category: howto, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/howto-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Patterns for DRY-er JavaScript]]></title>
     <link href="http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript/"/>
-    <updated>2010-07-12T00:00:00-05:00</updated>
+    <updated>2010-07-12T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/07/12/patterns-for-dry-er-javascript</id>
     <content type="html"><![CDATA[<p>I came across a little code the other day that reminded me I've been meaning to write about JavaScript patterns I take for granted. The code in question was intended to set the value of some fields in a form when a checkbox was selected; when it was deselected, the same fields were to be emptied. It looked not unlike this:</p>
 
@@ -323,7 +323,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum]]></title>
     <link href="http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum/"/>
-    <updated>2010-06-17T00:00:00-05:00</updated>
+    <updated>2010-06-17T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum</id>
     <content type="html"><![CDATA[<p>I've been leading <a href="http://www.rebeccamurphey.com/training">jQuery trainings</a> for more than a year now, from tiny gatherings that I organized myself at the local coworking space, to intensive two-day sessions at local web companies, to whirlwind one-day classes at governmental agencies. Over the course of those trainings, I've developed what I'd like to think is a decent curriculum -- training material that's the size of a small book, exercises that demonstrate core concepts, and solutions to those exercises that students can peek at later or when they get stuck.</p>
 
@@ -364,7 +364,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[Using Objects to Organize Your Code]]></title>
     <link href="http://rmurphey.com/blog/2009/10/15/using-objects-to-organize-your-code/"/>
-    <updated>2009-10-15T00:00:00-05:00</updated>
+    <updated>2009-10-15T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2009/10/15/using-objects-to-organize-your-code</id>
     <content type="html"><![CDATA[<p>This is a reprint of an article that originally appeared in the March 2009 issue of <a href="http://jsmag.com">JSMag</a>.</p>
 
@@ -1287,7 +1287,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[jQuery validation and TinyMCE]]></title>
     <link href="http://rmurphey.com/blog/2009/01/12/jquery-validation-and-tinymce/"/>
-    <updated>2009-01-12T00:00:00-06:00</updated>
+    <updated>2009-01-12T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2009/01/12/jquery-validation-and-tinymce</id>
     <content type="html"><![CDATA[<p>Just solved a problem where the <a href="http://docs.jquery.com/Plugins/Validation">jQuery validation plugin</a> wasn't playing so nicely with <a href="http://wiki.moxiecode.com/index.php/TinyMCE:Index">TinyMCE</a> -- the validation plugin was trying to validate the textarea before TinyMCE had a chance to copy the editor contents back to the textarea. I was about to yank TinyMCE out of the page but a little reading through the TinyMCE docs led me to try this:</p>
 
@@ -1318,7 +1318,7 @@ function we were using previously when we bound to the click event.</p>
   <entry>
     <title type="html"><![CDATA[Planning a Wordpress CMS site]]></title>
     <link href="http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site/"/>
-    <updated>2008-09-21T00:00:00-05:00</updated>
+    <updated>2008-09-21T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2008/09/21/planning-a-wordpress-cms-site</id>
     <content type="html"><![CDATA[<p>There have been <a href="http://www.devlounge.net/publishing/things-to-consider-when-using-wordpress-as-a-cms">plenty of rumblings</a> lately about how <a href="http://www.webdesignerwall.com/tutorials/wordpress-theme-hacks/">WordPress can be used as a content management system</a>, beyond its core competency as a blogging platform. By harnessing the power of pages and subpages, writing custom Page templates, segmenting posts into category-based content feeds, and using handy little plugins like my brother's <a href="http://gmurphey.com/2006/10/05/wordpress-plugin-page-link-manager/">Page Link Manager</a>, you can do some <a href="http://codex.wordpress.org/User:Matt/WP_as_CMS">pretty neat stuff</a>.</p>
 

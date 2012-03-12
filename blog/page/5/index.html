@@ -9,8 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="It just happened again: I was looking at someone else&#8217;s jQuery and I came across something like this: 1
-$(&#39;.button&#39;).click(function &hellip;">
+  <meta name="description" content="A while back I wrote a post about tracking outbound clicks with Google Analytics; way back then (about 6 months ago), the only event that Google &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +81,112 @@ $(&#39;.button&#39;).click(function &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/12/05/update-tracking-outbound-clicks-with-google-analytics-and-jquery/">Tracking Outbound Clicks With Google Analytics and jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/12/05/update-tracking-outbound-clicks-with-google-analytics-and-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A while back I wrote a post about tracking outbound clicks with Google Analytics; way back then (about 6 months ago), the only event that Google Analytics could track was a pageview. Now that they&#8217;ve introduced the <a href="http://code.google.com/apis/analytics/docs/eventTrackerOverview.html">_trackEvent</a> method of the pageTracker object, events that aren&#8217;t pageviews don&#8217;t need to count as pageviews anymore; instead, they can be counted as &#8220;events,&#8221; and they can be categorized and labeled.</p>
+
+<p>Here&#8217;s an updated example of how to track outbound clicks using Google Analytics and jQuery. You&#8217;ll of course need to be including the &#8220;new&#8221; analytics code (ga.js, not urchin.js) for this to work, as well as the jQuery library.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// see if the link is external</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^http/</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span> <span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">domain</span><span class="p">))</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// if so, register an event</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">category</span> <span class="o">=</span> <span class="s1">&#39;outgoing&#39;</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">event</span> <span class="o">=</span> <span class="s1">&#39;click&#39;</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">href</span><span class="p">;</span> <span class="c1">// set this to whatever you want</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">pageTracker</span><span class="p">.</span><span class="nx">_trackEvent</span><span class="p">(</span><span class="nx">category</span><span class="p">,</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">href</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can use the same method to unobtrusively add tracking code to file downloads:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span><span class="s1">&#39;xls&#39;</span><span class="p">,</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span><span class="s1">&#39;mp3&#39;</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">extension</span><span class="p">,</span><span class="nx">fileTypes</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">pageTracker</span><span class="p">.</span><span class="nx">_trackEvent</span><span class="p">(</span><span class="s1">&#39;download&#39;</span><span class="p">,</span> <span class="nx">extension</span><span class="p">,</span> <span class="nx">href</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/">Avoid Bare Class Selectors in jQuery</a></h1>
     
     
@@ -98,7 +203,7 @@ $(&#39;.button&#39;).click(function &hellip;">
   
 
 
-<time datetime="2008-12-05T00:00:00-06:00" pubdate data-updated="true">Dec 5<span>th</span>, 2008</time>
+<time datetime="2008-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/#disqus_thread">Comments</a>
         
@@ -165,7 +270,7 @@ $(&#39;.button&#39;).click(function &hellip;">
   
 
 
-<time datetime="2008-11-16T00:00:00-06:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+<time datetime="2008-11-16T00:00:00-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/11/16/solution-for-google-map-contents-not-showing/#disqus_thread">Comments</a>
         
@@ -205,7 +310,7 @@ $(&#39;.button&#39;).click(function &hellip;">
   
 
 
-<time datetime="2008-09-22T00:00:00-05:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
+<time datetime="2008-09-22T00:00:00-04:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
         
          | <a href="/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/#disqus_thread">Comments</a>
         
@@ -290,7 +395,7 @@ $(&#39;.button&#39;).click(function &hellip;">
   
 
 
-<time datetime="2008-09-21T00:00:00-05:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
+<time datetime="2008-09-21T00:00:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
         
          | <a href="/blog/2008/09/21/planning-a-wordpress-cms-site/#disqus_thread">Comments</a>
         
@@ -408,7 +513,7 @@ $(&#39;.button&#39;).click(function &hellip;">
   
 
 
-<time datetime="2008-08-02T00:00:00-05:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2008</time>
+<time datetime="2008-08-02T00:00:00-04:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2008</time>
         
          | <a href="/blog/2008/08/02/5-reasons-you-don-t-really-want-a-jack-of-all-trades-developer/#disqus_thread">Comments</a>
         
@@ -465,7 +570,7 @@ $(&#39;.button&#39;).click(function &hellip;">
   
 
 
-<time datetime="2008-07-14T00:00:00-05:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
+<time datetime="2008-07-14T00:00:00-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/07/14/seeking-a-web-designer/#disqus_thread">Comments</a>
         
@@ -514,7 +619,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-06-13T00:00:00-05:00" pubdate data-updated="true">Jun 13<span>th</span>, 2008</time>
+<time datetime="2008-06-13T00:00:00-04:00" pubdate data-updated="true">Jun 13<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/06/13/centering-images/#disqus_thread">Comments</a>
         
@@ -552,7 +657,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-06-06T00:00:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+<time datetime="2008-06-06T00:00:00-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/06/06/skipping-photoshop-for-web-design/#disqus_thread">Comments</a>
         
@@ -598,7 +703,7 @@ We have a framework that allows rapid prototyping of new features, letting devel
   
 
 
-<time datetime="2008-05-19T00:00:00-05:00" pubdate data-updated="true">May 19<span>th</span>, 2008</time>
+<time datetime="2008-05-19T00:00:00-04:00" pubdate data-updated="true">May 19<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/05/19/another-cautionary-remote-javascript-tale/#disqus_thread">Comments</a>
         
@@ -631,63 +736,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/04/11/remote-javascript-with-document-write-is-killing-me/">Remote Javascript With document.write() Is Killing Me</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-11T00:00:00-05:00" pubdate data-updated="true">Apr 11<span>th</span>, 2008</time>
-        
-         | <a href="/blog/2008/04/11/remote-javascript-with-document-write-is-killing-me/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have been coming across way too much remote Javascript that uses document.write() to insert its contents. From ad providers to video hosting services, it&#8217;s common practice to provide a Javascript tag that includes <code>document.write</code> and tell the site owner to just include it in their page where the ad or content should appear.</p>
-
-<p>This is a great least-common-denominator approach for folks who don&#8217;t want to be bothered with understanding how this stuff works. The problem is that when an ad or a video or any other content loaded via remote Javascript needs to appear near the top of the HTML document, before the content, the site user doesn&#8217;t see any more content while the browser fetches the file. In the case of one service we tried, the initial script tag actually wrote <em>five more</em> remote script tags, each of which requires a separate HTTP request, amounting to a total delay of more than a second before the content appeared. In the meantime, the user was staring at a near-empty page.</p>
-
-<p>There are <a href="http://wonko.com/post/remote_javascript_includes_without_the_performance_penalty_part">various</a> <a href="http://blog.rebeccamurphey.com/2008/04/06/fix-for-slow-loading-google-ads/">hacks</a> for getting around this, which involve loading the content low on the page and using (yet more) Javascript to move it to the appropriate place once the page has loaded, but they are hacky and not necessarily foolproof when it comes to ads. My initial experiments with doing this with some ad providers led to multiple ads appearing on the page, or to the whole page being replaced with just an ad.</p>
-
-<p>If these services want people to stop complaining that their sites are loading slowly as a result of adding these tags (and perhaps looking at least for solutions that minimize the number of scripts that need to be loaded), it&#8217;s time that they expose an API that will allow sites to include their <code>script</code> tag at the end of the page&#8217;s HTML, <a href="http://developer.yahoo.com/performance/rules.html#js_bottom">where it belongs</a>. Then sites could call a method to insert the ad wherever it&#8217;s needed, <em>once the content has finished loading</em>.</p>
-
-<p>For example:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">ad</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#my_ad_container&#39;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I grant that this would require a bit more code from the ad providers (and that their ads would load a little bit later than they do now), but the improvement in user experience would be tremendous, relative to waiting as much as a second or two for the ad — and thus the rest of the page — to load.</p>
-
-<p>&#8211;</p>
-
-<p>Update: If you&#8217;re looking for a fix to this problem, also check out <a href="http://ejohn.org/blog/xhtml-documentwrite-and-adsense/">John Resig&#8217;s document.write() rewrite</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -705,6 +753,10 @@ We have a framework that allows rapid prototyping of new features, letting devel
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
@@ -718,10 +770,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
     
       <li class="post">
         <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
       </li>
     
   </ul>

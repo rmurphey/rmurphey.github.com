@@ -4,7 +4,7 @@
   <title><![CDATA[Category: development | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/development/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[CSS vs. Tables: Maybe the design is to blame?]]></title>
     <link href="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/"/>
-    <updated>2009-02-14T00:00:00-06:00</updated>
+    <updated>2009-02-14T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame</id>
     <content type="html"><![CDATA[<p>There's been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so bad after all. From <a href="http://giveupandusetables.com/">giveupandusetables.com</a>, which says the maximum time to spend before abandoning CSS is 47 minutes, to the <a href="http://www.flownet.com/ron/css-rant.html">well-illustrated blog post by Ron Garret</a>, the general argument is that CSS isn't up to the task of faithfully reproducing elaborate designs cross-browser in an acceptable amount of developer time.</p>
 
@@ -66,7 +66,7 @@
   <entry>
     <title type="html"><![CDATA[Notes on handing off a design to a front-end developer]]></title>
     <link href="http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/"/>
-    <updated>2008-09-22T00:00:00-05:00</updated>
+    <updated>2008-09-22T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer</id>
     <content type="html"><![CDATA[<p>I've been spending a lot of time lately turning other people's designs into working websites, and often there are a few rounds of back-and-forth before I have everything I need. Some notes on must-have pieces before I can begin work:</p>
 
@@ -122,7 +122,7 @@
   <entry>
     <title type="html"><![CDATA[Centering images]]></title>
     <link href="http://rmurphey.com/blog/2008/06/13/centering-images/"/>
-    <updated>2008-06-13T00:00:00-05:00</updated>
+    <updated>2008-06-13T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2008/06/13/centering-images</id>
     <content type="html"><![CDATA[<p><a href="http://www.netmechanic.com/news/vol7/html_no10.htm">An excellent article explaining the pros and cons of different image-centering methods</a>. I love when I find something that gives me exactly the answer I need.</p>
 ]]></content>
@@ -131,7 +131,7 @@
   <entry>
     <title type="html"><![CDATA[I have discovered a use for Dreamweaver's design view (no really)]]></title>
     <link href="http://rmurphey.com/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/"/>
-    <updated>2008-01-18T00:00:00-06:00</updated>
+    <updated>2008-01-18T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really</id>
     <content type="html"><![CDATA[<p>I just got a request to edit a static page that showed several of a company's employees. Turns out that a bunch of them aren't employees anymore, and the client wanted the page to be updated. I knew before I even opened it that the content was going to be in tables (nested nested tables, in fact), and that rearranging it would be a giant pain.</p>
 
@@ -144,7 +144,7 @@
   <entry>
     <title type="html"><![CDATA[In case you thought IE6 was going away]]></title>
     <link href="http://rmurphey.com/blog/2007/12/11/in-case-you-thought-ie6-was-going-away/"/>
-    <updated>2007-12-11T00:00:00-06:00</updated>
+    <updated>2007-12-11T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/11/in-case-you-thought-ie6-was-going-away</id>
     <content type="html"><![CDATA[<p>Microsoft has released <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=21EABB90-958F-4B64-B5F1-73D0A413C8EF&amp;displaylang=en">yet another version</a> (the third, I think) of their timebombed XP/IE6 image for use with their <a href="http://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx">Virtual PC Console</a>. (Why they keep timebombing it is a mystery to me -- it's as if they think one of these days, approximately six months from whenever they release a new version, there won't be a need for IE6 testing anymore.)</p>
 

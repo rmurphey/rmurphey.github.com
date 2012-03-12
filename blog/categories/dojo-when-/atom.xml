@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dojo.when, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/dojo-when-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Making sense of dojo.when: A simple XHR caching example]]></title>
     <link href="http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/"/>
-    <updated>2010-08-29T00:00:00-05:00</updated>
+    <updated>2010-08-29T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example</id>
     <content type="html"><![CDATA[<p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
 

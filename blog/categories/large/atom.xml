@@ -4,7 +4,7 @@
   <title><![CDATA[Category: large | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/large/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Lessons From a Rewrite]]></title>
     <link href="http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite/"/>
-    <updated>2011-07-06T10:50:00-05:00</updated>
+    <updated>2011-07-06T10:50:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite</id>
     <content type="html"><![CDATA[<p>MVC and friends have been around for decades, but it’s only in the last couple
 of years that broad swaths of developers have started applying those patterns

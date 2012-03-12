@@ -4,7 +4,7 @@
   <title><![CDATA[Category: POSH, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/posh-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[My case for standards-based web layouts]]></title>
     <link href="http://rmurphey.com/blog/2007/12/03/my-case-for-standards-based-web-layouts/"/>
-    <updated>2007-12-03T00:00:00-06:00</updated>
+    <updated>2007-12-03T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/03/my-case-for-standards-based-web-layouts</id>
     <content type="html"><![CDATA[<p>Since 1999, the World Wide Web Consortium (W3C) -- a standards body that tells the world how the web should work -- has urged web sites to use semantic markup for content and cascading stylesheets (CSS) for layout, and to abandon code that combines information and presentation in non-semantic HTML table-based layouts. Semantic markup ...</p>
 

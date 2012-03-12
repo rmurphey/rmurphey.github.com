@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I came across The End of Web Frameworks in my dzone RSS feed this morning, and it echoes a thought that runs through my brain as I get more and more &hellip;">
+  <meta name="description" content="There are lots of examples of using CSS to add filetype icons to links, but they all rely on advanced CSS selectors, which Internet Explorer 6 doesn &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,280 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/01/06/unobtrusive-cross-browser-method-to-add-icons-to-links/">Unobtrusive, Cross-browser Method to Add Icons to Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-06T00:00:00-05:00" pubdate data-updated="true">Jan 6<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/06/unobtrusive-cross-browser-method-to-add-icons-to-links/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are <a href="http://www.askthecssguy.com/2006/12/showing_hyperlink_cues_with_cs_1.html">lots</a> of <a href="http://www.creativewebspecialist.co.uk/CSS_attributes/">examples</a> of using CSS to add filetype icons to links, but they all rely on advanced CSS selectors, which Internet Explorer 6 doesn&#8217;t support.</p>
+
+<p>If you&#8217;re looking for a cross-browser method of adding filetype icons to links, you have a couple of choices: you can add a class name to all of your links and target that class name with CSS that IE6 can understand; or you can let Javascript add the links dynamically based on the extension it finds at the end of each URL. The class name method is fine if you don&#8217;t mind adding the class to all of your links in your HTML, but the Javascript method will figure out which links get which icon automatically.</p>
+
+<h3>The Javascript/jQuery method</h3>
+
+
+<p>This uses my favorite Javascript library, <a href="http://jquery.com">jQuery</a>; you&#8217;ll need to include the library in your document, and then either put the icon-adding code in another file you include, or put it inline with your HTML. It&#8217;s good practice to put all your jQuery code inside <code>$.ready()</code>, <a href="http://docs.jquery.com/Events/ready#fn">to be executed when the document is ready to be manipulated</a>, but I&#8217;ve left that part out here for brevity.</p>
+
+<p><strong>Round 1:</strong> Because <a href="http://docs.jquery.com/Selectors">jQuery supports CSS1-3</a>, you can mimic the CSS rule that wouldn&#8217;t work in IE6:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href$=&amp;quot;.doc&amp;quot;]&#39;</span><span class="p">).</span>
+</span><span class='line'>  <span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>    <span class="c1">// use paddingLeft instead of padding-left;</span>
+</span><span class='line'>    <span class="c1">// jQuery (and Javascript) use camelCase</span>
+</span><span class='line'>    <span class="c1">// for CSS attributes instead of hyphenation</span>
+</span><span class='line'>    <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;word-doc.gif&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Round 2:</strong> You <em>could</em> do one of these snippets for each file type, but with jQuery, you can take advantage of the <a href="http://docs.jquery.com/Utilities/jQuery.each#objectcallback">$.each() utility method</a> to do a loop, eliminating redundant code:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// first, create an object</span>
+</span><span class='line'><span class="c1">// that contains information</span>
+</span><span class='line'><span class="c1">// about how file extensions</span>
+</span><span class='line'><span class="c1">// correspond to images</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// extension: &#39;image file&#39;</span>
+</span><span class='line'>  <span class="nx">doc</span><span class="o">:</span> <span class="s1">&#39;doc.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">xls</span><span class="o">:</span> <span class="s1">&#39;xls.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">pdf</span><span class="o">:</span> <span class="s1">&#39;pdf.gif&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// then, loop over the object</span>
+</span><span class='line'><span class="c1">// using jQuery&#39;s $.each()</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fileTypes</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extension</span><span class="p">,</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a[href$=&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">extension</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;]&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">image</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Round 3:</strong> One problem with this: while jQuery does support these attribute selectors, in my experience they require some pretty heavy lifting to do the pattern matching, which can slow things down significantly. Since the method above would require multiple selections (one for each extension/image combination), it makes sense to try a different way that will require fewer selections and less pattern matching:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">doc</span><span class="o">:</span> <span class="s1">&#39;doc.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">xls</span><span class="o">:</span> <span class="s1">&#39;xls.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">pdf</span><span class="o">:</span> <span class="s1">&#39;pdf.gif&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// this is like $.each() above, except</span>
+</span><span class='line'><span class="c1">// it iterates over the matched elements</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get a jQuery object for each anchor found</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the href attribute</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the extension from the href</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">fileTypes</span><span class="p">[</span><span class="nx">extension</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$a</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">image</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And in fact, in limited testing using Firebug, this second version is faster than the first if you have more than two filetypes (and thus more than two selections).</p>
+
+<h3>Taking it further</h3>
+
+
+<p>You can also add a different icon to external links, and only add filetype icons to internal links:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fileTypes</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">doc</span><span class="o">:</span> <span class="s1">&#39;doc.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">xls</span><span class="o">:</span> <span class="s1">&#39;xls.gif&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">pdf</span><span class="o">:</span> <span class="s1">&#39;pdf.gif&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">href</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span>
+</span><span class='line'>    <span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^http/</span><span class="p">))</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">!</span> <span class="nx">href</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">domain</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// use a special image for external links</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="s1">&#39;external.gif&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// get the extension from the href</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">hrefArray</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">extension</span> <span class="o">=</span> <span class="nx">hrefArray</span><span class="p">[</span><span class="nx">hrefArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">fileTypes</span><span class="p">[</span><span class="nx">extension</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$a</span><span class="p">.</span><span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">paddingLeft</span><span class="o">:</span> <span class="s1">&#39;18px&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;transparent url(&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">image</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;) no-repeat center left&#39;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or, only add icons to certain links, like a list of files in an unordered list, by changing your selector from <code>$('a')</code> to <code>$('ul#fileList a')</code>.</p>
+
+<h3>Resources</h3>
+
+
+<ul>
+<li>There are nuances to the CSS you&#8217;ll want to apply to your links; the above is just an example of something that may or may not work for you. <a href="http://www.askthecssguy.com/2006/12/showing_hyperlink_cues_with_cs_1.html">Read more here</a> about how to style the links so your background images appear as you want them to.</li>
+<li>If you&#8217;re using transparent PNGs for your background images, <a href="http://www.twinhelix.com/css/iepngfix/">iepngfix</a> will save the day.</li>
+<li>
+<a href="http://www.famfamfam.com/lab/icons/silk/">famfamfam</a> has some great icons available for free under the Creative Commons Attribution 2.5 License.</li>
+
+</ul>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/01/04/salivating-over-server-side-javascript/">Salivating Over Server-side Javascript</a></h1>
     
     
@@ -97,7 +371,7 @@
   
 
 
-<time datetime="2008-01-04T00:00:00-06:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time>
+<time datetime="2008-01-04T00:00:00-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time>
         
          | <a href="/blog/2008/01/04/salivating-over-server-side-javascript/#disqus_thread">Comments</a>
         
@@ -141,7 +415,7 @@
   
 
 
-<time datetime="2008-01-03T00:00:00-06:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
+<time datetime="2008-01-03T00:00:00-05:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
         
          | <a href="/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/#disqus_thread">Comments</a>
         
@@ -189,7 +463,7 @@
   
 
 
-<time datetime="2008-01-02T00:00:00-06:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2008</time>
+<time datetime="2008-01-02T00:00:00-05:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2008</time>
         
          | <a href="/blog/2008/01/02/update-page-using-json-data/#disqus_thread">Comments</a>
         
@@ -297,7 +571,7 @@
   
 
 
-<time datetime="2007-12-30T00:00:00-06:00" pubdate data-updated="true">Dec 30<span>th</span>, 2007</time>
+<time datetime="2007-12-30T00:00:00-05:00" pubdate data-updated="true">Dec 30<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/30/determine-the-order-of-two-dom-elements/#disqus_thread">Comments</a>
         
@@ -402,7 +676,7 @@ another element in the DOM.</p>
   
 
 
-<time datetime="2007-12-24T00:00:00-06:00" pubdate data-updated="true">Dec 24<span>th</span>, 2007</time>
+<time datetime="2007-12-24T00:00:00-05:00" pubdate data-updated="true">Dec 24<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/24/how-i-learned-css/#disqus_thread">Comments</a>
         
@@ -497,7 +771,7 @@ another element in the DOM.</p>
   
 
 
-<time datetime="2007-12-14T00:00:00-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2007</time>
+<time datetime="2007-12-14T00:00:00-05:00" pubdate data-updated="true">Dec 14<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/#disqus_thread">Comments</a>
         
@@ -541,7 +815,7 @@ another element in the DOM.</p>
   
 
 
-<time datetime="2007-12-12T00:00:00-06:00" pubdate data-updated="true">Dec 12<span>th</span>, 2007</time>
+<time datetime="2007-12-12T00:00:00-05:00" pubdate data-updated="true">Dec 12<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/12/jquery-build-table-from-json-data/#disqus_thread">Comments</a>
         
@@ -659,7 +933,7 @@ another element in the DOM.</p>
   
 
 
-<time datetime="2007-12-11T00:00:00-06:00" pubdate data-updated="true">Dec 11<span>th</span>, 2007</time>
+<time datetime="2007-12-11T00:00:00-05:00" pubdate data-updated="true">Dec 11<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/11/in-case-you-thought-ie6-was-going-away/#disqus_thread">Comments</a>
         
@@ -699,7 +973,7 @@ another element in the DOM.</p>
   
 
 
-<time datetime="2007-12-10T00:00:00-06:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
+<time datetime="2007-12-10T00:00:00-05:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/#disqus_thread">Comments</a>
         
@@ -727,61 +1001,6 @@ another element in the DOM.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/09/using-ems-for-font-sizing-in-css/">Using Ems for Font Sizing in Css</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-09T00:00:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/09/using-ems-for-font-sizing-in-css/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A List Apart had a great article recently on <a href="http://www.alistapart.com/articles/howtosizetextincss/">using &#8216;em&#8217; for CSS font-size declarations</a>, which served as great back-up for some conversations I&#8217;d been having among coworkers. (It turns out that people who didn&#8217;t have a former life in print don&#8217;t necessarily understand what an em is: a self-referential unit of font size measurement, equal to the height of the capital letter M. Back in the typesetting days, it was a unit for measuring space, especially horizontal space, in the form of an &#8220;em dash&#8221; (rendered now as <code>&amp;mdash;</code>) or an &#8220;em space.&#8221; There was also a sister unit, the &#8220;en.&#8221;)</p>
-
-<p>Anyway: I just came across <a href="http://benjaminsterling.com/using-em-for-font-size-learning-on-the-go/">this post</a>, by someone trying to put ems into practice; at the end, he gets into tools for doing conversions from pixels to ems, and it struck a surprising nerve with me.</p>
-
-<p>Here&#8217;s the thing: While I can see how pixel conversion seems useful when you first make the switch from px to em, I think the whole point of using ems instead of pixels is to embrace the concept that, on the web, sizes are relative, not absolute. If you&#8217;re focused on matching an absolute size in a mockup by converting pixels to ems, the chances seem good that you&#8217;re dealing with a layout that wasn&#8217;t intended to work with relatively sized text to begin with, and/or that your ultimate product won&#8217;t work if the user makes a different decision than you about how they will consume it.</p>
-
-<p>If you receive a Photoshop mockup where body copy is 10px tall, I think it&#8217;s a tremendous waste of time to measure that 10px and convert it to ems &#8211; 10px on my 1024x768 monitor is a far cry from 10px on my 1600x1200 monitor, nevermind on the HDTV sitting across the room.</p>
-
-<p>When you&#8217;re designing and styling text for the web, better to:</p>
-
-<ul>
-<li>Assume from the start that users will consume your site differently than you do.</li>
-<li>Make decisions in your design, CSS and HTML that will consistently convey the content and hierarchy of your site, regardless of how it is consumed.</li>
-<li>Assume that the user knows better than you what a good base text size is for them.</li>
-<li>Use a reset styleheet — I like <a href="http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/">Eric Meyer&#8217;s CSS Reset Reloaded</a> — to set everything to that base size.</li>
-<li>Vary the sizes of elements <em>relatively</em> using ems.</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -799,6 +1018,10 @@ another element in the DOM.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
@@ -812,10 +1035,6 @@ another element in the DOM.</p>
     
       <li class="post">
         <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
       </li>
     
   </ul>

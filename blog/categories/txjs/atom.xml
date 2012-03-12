@@ -4,7 +4,7 @@
   <title><![CDATA[Category: txjs | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/txjs/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[TXJS: JS + BBQ + You]]></title>
     <link href="http://rmurphey.com/blog/2010/03/18/txjs-js-bbq-you/"/>
-    <updated>2010-03-18T00:00:00-05:00</updated>
+    <updated>2010-03-18T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/03/18/txjs-js-bbq-you</id>
     <content type="html"><![CDATA[<p>If you follow me on Twitter, you've heard about <a href="http://txjs.eventbrite.com">TXJS</a> by now, but let me tell you: now that we've announced Douglas Crockford and John Resig, there is officially no way you should miss this. TXJS is a full-day conference set for June 5 in Austin, Texas, hosted by the <a href="http://txjs.eventbrite.com">yayQuery</a> team and featuring BBQ and a slew of awesome JavaScripters:</p>
 

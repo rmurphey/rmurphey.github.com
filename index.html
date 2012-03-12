@@ -9,8 +9,9 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="In 2010, I helped put on the first TXJS. We sold our first tickets for $29, and
-I think the most expensive tickets went for something like $129. We &hellip;">
+  <meta name="description" content="I worked with Backbone and the
+Backbone Boilerplate for
+the first time last weekend, putting together a small demo app for a presentation I gave last &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +83,126 @@ I think the most expensive tickets went for something like $129. We &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (Very) Small Project With Backbone and Backbone Boilerplate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-11T21:30:00-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I worked with <a href="http://documentcloud.github.com/backbone/">Backbone</a> and the
+<a href="https://github.com/tbranyen/backbone-boilerplate">Backbone Boilerplate</a> for
+the first time last weekend, putting together a small <a href="https://github.com/rmurphey/bvjs">demo app</a> for a presentation I gave last week at
+BazaarVoice. I realize I&#8217;m about 18 months late to the Backbone party, here,
+but I wanted to write down my thoughts, mostly because I&#8217;m pretty sure they&#8217;ll
+change as I get a chance to work with both tools more.</p>
+
+<h2>Backbone</h2>
+
+<p>Backbone describes itself as a tool that &#8220;gives structure to web applications,&#8221;
+but, at the risk of sounding pedantic, I think it would be more accurate to say
+that it gives you tools that can help you structure your applications. There&#8217;s
+incredibly little prescription about how to use the tools that Backbone
+provides, and I have a feeling that the code I wrote to build my simple app
+looks a lot different than what someone else might come up with.</p>
+
+<p>This lack of prescription feels good and bad &#8211; good, because I was able to use
+Backbone to pretty quickly set up an infrastructure that mirrored ones I&#8217;ve
+built in the past; bad, because it leaves open the possibility of lots of
+people inventing lots of wheels. To its credit, it packs a lot of power in a
+very small package &#8211; 5.3k in production &#8211; but a real app is going to require
+layering a lot more functionality on top of it. Ultimately, the best way to
+think of Backbone is as the client-side app boilerplate you&#8217;d otherwise have to
+write yourself.</p>
+
+<p>My biggest complaint about Backbone is probably how unopinionated it is about
+the view layer. Its focus seems to be entirely on the data layer, but the view
+is still where we spend the vast majority of our time. Specifically, I think
+Backbone could take a page from Dojo, and embrace the concept of &#8220;templated
+widgets&#8221;, because that&#8217;s what people seem to be doing with Backbone views
+anyway: mixing data with a template to create a DOM fragment, placing that
+fragment on the page, listening for user interaction with the fragment, and
+updating it as required. Backbone provides for some of this, specifically the
+event stuff, but it leaves you to write your own functionality when it comes to
+templating, placing, and updating. I think this is a solveable problem without
+a whole lot of code, and want to spend some time trying to prove it, but I know
+I need to look into the Backbone Layout Manager before I get too carried away.</p>
+
+<h2>Backbone Boilerplate</h2>
+
+<p>This project from Tim Branyen was a life-saver &#8211; it gave me an absolutely
+enormous head start when it came to incorporating
+<a href="http://requirejs.org/">RequireJS</a>, setting up my application directories, and
+setting up a development server. It also included some great inline docs that
+helped me get my bearings with Backbone.</p>
+
+<p>There are a couple of ways I thik the boilerplate could be improved, and I&#8217;d be
+curious for others&#8217; opinions:</p>
+
+<ul>
+<li>The sample app includes the concept of &#8220;modules,&#8221; which seem to be a single
+file that include the models, collections, views, and routes for a &#8230;
+module. I don&#8217;t love the idea of combining all of this into a single file,
+because it seems to discourage smart reuse and unit testing of each piece of
+functionality. In the app I created, I abandoned the concept of modules, and
+instead broke my app into &#8220;components&#8221;, &#8220;controllers&#8221;, and &#8220;services&#8221;. I
+explain this breakdown in a bit more depth in the <a href="http://www.slideshare.net/rmurphey/bvjs">presentation I gave at
+BazaarVoice</a>. I&#8217;m not sure this is
+the right answer for all apps, but I think modules oversimplify things.</li>
+<li>The boilerplate includes a <code>namespace.js</code> file. It defines a namespace
+object, and that object includes a <code>fetchTemplate</code> method. It seems this
+method should only be used by views, and so I&#8217;d rather see something along
+the lines of an enhanced View that provides this functionality. That&#8217;s what I
+did with the <a href="https://github.com/rmurphey/bvjs/blob/master/app/components/base.js">base component module</a>
+in my sample app.</li>
+<li>I&#8217;m super-glad to see Jasmine included in the test directory, but
+unfortunately the examples show how to write Jasmine tests, not Jasmine tests
+for a Backbone app. As a community, we definitely need to be showing more
+examples of how to test things, and this seems like a good opportunity to
+distribute that knowledge.</li>
+</ul>
+
+
+<h2>Overall</h2>
+
+<p>I feel a little silly that I&#8217;m just now getting around to spending any time
+with Backbone, and I know that I only scratched the surface, but I like what I
+saw. I think it&#8217;s important to take it for what it is: an uber-tiny library
+that gets you pointed in the right direction. What I really want to see are
+fuller-fledged frameworks that build on top of Backbone, because I think
+there&#8217;s a lot more that can be standardized beyond what Backbone offers. I&#8217;m
+hoping to have a bit more time in April to dig in, and hopefully I can flesh
+out some of these ideas into something useful.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/03/08/community-conferences/">Community Conferences</a></h1>
     
     
@@ -98,7 +219,7 @@ I think the most expensive tickets went for something like $129. We &hellip;">
   
 
 
-<time datetime="2012-03-08T08:29:00-06:00" pubdate data-updated="true">Mar 8<span>th</span>, 2012</time>
+<time datetime="2012-03-08T08:29:00-05:00" pubdate data-updated="true">Mar 8<span>th</span>, 2012</time>
         
          | <a href="/blog/2012/03/08/community-conferences/#disqus_thread">Comments</a>
         
@@ -116,7 +237,7 @@ accommodations paid for.</p>
 
 <p>In May, O&#8217;Reilly Media is holding another JavaScript conference in San
 Francisco, called FluentConf. I recently came to know that they are charging
-$100,000 for top-tier sponsorships, and that they were offering a 10-minute
+$100,000 for top-tier sponsorships, and that they are offering a 10-minute
 keynote as part of the package.</p>
 
 <p>This turned my stomach, and not just because I believe it cheapens the
@@ -220,7 +341,7 @@ the names you want.</p>
   
 
 
-<time datetime="2011-09-18T11:30:00-05:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
+<time datetime="2011-09-18T11:30:00-04:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/09/18/introducing-mulberry/#disqus_thread">Comments</a>
         
@@ -460,7 +581,7 @@ site</a>, but if you&#8217;re reading this, you&#8217;re probably a JavaScript d
   
 
 
-<time datetime="2011-07-25T08:14:00-05:00" pubdate data-updated="true">Jul 25<span>th</span>, 2011</time>
+<time datetime="2011-07-25T08:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/07/25/switching-to-octopress/#disqus_thread">Comments</a>
         
@@ -547,7 +668,7 @@ with it. Win all around.</p>
   
 
 
-<time datetime="2011-07-24T00:00:00-05:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
+<time datetime="2011-07-24T00:00:00-04:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/07/24/object-literals/#disqus_thread">Comments</a>
         
@@ -710,7 +831,7 @@ smart folks eager to take the time to explain.</p>
   
 
 
-<time datetime="2011-07-06T10:50:00-05:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time>
+<time datetime="2011-07-06T10:50:00-04:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/07/06/lessons-from-a-rewrite/#disqus_thread">Comments</a>
         
@@ -1156,7 +1277,7 @@ works” should never be mistaken for “it’s done.”</p>
   
 
 
-<time datetime="2011-05-31T00:00:00-05:00" pubdate data-updated="true">May 31<span>st</span>, 2011</time>
+<time datetime="2011-05-31T00:00:00-04:00" pubdate data-updated="true">May 31<span>st</span>, 2011</time>
         
          | <a href="/blog/2011/05/31/a-new-chapter/#disqus_thread">Comments</a>
         
@@ -1220,7 +1341,7 @@ works” should never be mistaken for “it’s done.”</p>
   
 
 
-<time datetime="2011-05-20T00:00:00-05:00" pubdate data-updated="true">May 20<span>th</span>, 2011</time>
+<time datetime="2011-05-20T00:00:00-04:00" pubdate data-updated="true">May 20<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/05/20/getting-better-at-javascript/#disqus_thread">Comments</a>
         
@@ -1353,7 +1474,7 @@ them” paradigm of jQuery.</li>
   
 
 
-<time datetime="2011-04-25T11:16:00-05:00" pubdate data-updated="true">Apr 25<span>th</span>, 2011</time>
+<time datetime="2011-04-25T11:16:00-04:00" pubdate data-updated="true">Apr 25<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/04/25/objects-as-arguments/#disqus_thread">Comments</a>
         
@@ -1708,7 +1829,7 @@ was.</p>
   
 
 
-<time datetime="2011-04-15T11:16:00-05:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
+<time datetime="2011-04-15T11:16:00-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
         
          | <a href="/blog/2011/04/15/modern-javascript/#disqus_thread">Comments</a>
         
@@ -1751,66 +1872,6 @@ was.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/04/a-dojo-boilerplate/">A Dojo Boilerplate</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-04T00:00:00-05:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/04/04/a-dojo-boilerplate/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When I first started playing with the <a href="http://dojotoolkit.org">Dojo Toolkit</a>, it was easy enough to <a href="http://dojotoolkit.org/documentation/tutorials/1.6/hello_dojo/">use the CDN-hosted <code>dojo.js</code> and get started</a>, but before long I wanted to make use of one of the features that drew me to Dojo in the first place: the build system that parses your code&rsquo;s dependencies as expressed by <code>dojo.require()</code> statements and creates production-ready files.</p>
-
-
-<p>Coming from a world where this was entirely a DIY affair, the patterns I should follow for taking advantage of Dojo&rsquo;s system were, shall we say, less than clear. There was a lot of frustration, a lot of swearing, and a lot of pleas for help in #dojo on Freenode.</p>
-
-
-<p>These days, I&rsquo;m talking about Dojo a lot, and I&rsquo;ve gotten pretty comfortable with how to set up a project &mdash; I even wrote a post about <a href="http://blog.rebeccamurphey.com/scaffolding-a-buildable-dojo-application">scaffolding a Dojo app</a> once I felt like I had the basics down &mdash; but for a long time I&rsquo;ve wanted to release a ready-made starter project, rather than making people follow seven lengthy steps.</p>
-
-
-<p>With the help of <a href="http://zetafleet.com">Colin Snover</a>, I&rsquo;m pleased to release the <a href="https://github.com/csnover/dojo-boilerplate">Dojo Boilerplate</a>, a simple starter project if you&rsquo;d like to get your feet wet with Dojo and the power of its dependency management and build system. It comes with a bare-bones do-nothing app, a shell script for downloading the Dojo SDK and getting it in the right place, and a shell script and profile file for actually creating a built version. For the brave, it also includes a work-in-progress router for single-page apps &mdash; one of the few features that I feel Dojo itself is missing. Everything you should need to know is documented in the README.</p>
-
-
-<p>I&rsquo;ve also created a <a href="https://github.com/rmurphey/dojo-demo">small demo app</a> that uses the boilerplate and shows some of the basic concepts of MVC development using Dojo, including separating your code into models, views, controllers, and third-party services. It includes an example of templated widgets, which are one of the biggest selling points of Dojo for me, as well as an uber-basic example of object stores, new in Dojo 1.6.</p>
-
-
-<p>The goal of the boilerplate and the demo app is to eliminate some of that pain and WTF that I went through &mdash; while Dojo is ridiculously powerful, the barrier to entry can seem daunting. Over and over again, though, I am grateful that I took the time to overcome it.</p>
-
-
-<p>Finally: as always, pull requests and issues are welcome. Enjoy.</p>
-
-
-<p>Update: Colin is now the maintainer of the boilerplate; I&#8217;ve updated the links above accordingly.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1826,6 +1887,10 @@ was.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
@@ -1839,10 +1904,6 @@ was.</p>
     
       <li class="post">
         <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
       </li>
     
   </ul>

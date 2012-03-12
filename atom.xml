@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -14,9 +14,100 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Thoughts on a (very) small project with Backbone and Backbone Boilerplate]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/"/>
+    <updated>2012-03-11T21:30:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate</id>
+    <content type="html"><![CDATA[<p>I worked with <a href="http://documentcloud.github.com/backbone/">Backbone</a> and the
+<a href="https://github.com/tbranyen/backbone-boilerplate">Backbone Boilerplate</a> for
+the first time last weekend, putting together a small <a href="https://github.com/rmurphey/bvjs">demo app</a> for a presentation I gave last week at
+BazaarVoice. I realize I&#8217;m about 18 months late to the Backbone party, here,
+but I wanted to write down my thoughts, mostly because I&#8217;m pretty sure they&#8217;ll
+change as I get a chance to work with both tools more.</p>
+
+<h2>Backbone</h2>
+
+<p>Backbone describes itself as a tool that &#8220;gives structure to web applications,&#8221;
+but, at the risk of sounding pedantic, I think it would be more accurate to say
+that it gives you tools that can help you structure your applications. There&#8217;s
+incredibly little prescription about how to use the tools that Backbone
+provides, and I have a feeling that the code I wrote to build my simple app
+looks a lot different than what someone else might come up with.</p>
+
+<p>This lack of prescription feels good and bad &#8211; good, because I was able to use
+Backbone to pretty quickly set up an infrastructure that mirrored ones I&#8217;ve
+built in the past; bad, because it leaves open the possibility of lots of
+people inventing lots of wheels. To its credit, it packs a lot of power in a
+very small package &#8211; 5.3k in production &#8211; but a real app is going to require
+layering a lot more functionality on top of it. Ultimately, the best way to
+think of Backbone is as the client-side app boilerplate you&#8217;d otherwise have to
+write yourself.</p>
+
+<p>My biggest complaint about Backbone is probably how unopinionated it is about
+the view layer. Its focus seems to be entirely on the data layer, but the view
+is still where we spend the vast majority of our time. Specifically, I think
+Backbone could take a page from Dojo, and embrace the concept of &#8220;templated
+widgets&#8221;, because that&#8217;s what people seem to be doing with Backbone views
+anyway: mixing data with a template to create a DOM fragment, placing that
+fragment on the page, listening for user interaction with the fragment, and
+updating it as required. Backbone provides for some of this, specifically the
+event stuff, but it leaves you to write your own functionality when it comes to
+templating, placing, and updating. I think this is a solveable problem without
+a whole lot of code, and want to spend some time trying to prove it, but I know
+I need to look into the Backbone Layout Manager before I get too carried away.</p>
+
+<h2>Backbone Boilerplate</h2>
+
+<p>This project from Tim Branyen was a life-saver &#8211; it gave me an absolutely
+enormous head start when it came to incorporating
+<a href="http://requirejs.org/">RequireJS</a>, setting up my application directories, and
+setting up a development server. It also included some great inline docs that
+helped me get my bearings with Backbone.</p>
+
+<p>There are a couple of ways I thik the boilerplate could be improved, and I&#8217;d be
+curious for others&#8217; opinions:</p>
+
+<ul>
+<li>The sample app includes the concept of &#8220;modules,&#8221; which seem to be a single
+file that include the models, collections, views, and routes for a &#8230;
+module. I don&#8217;t love the idea of combining all of this into a single file,
+because it seems to discourage smart reuse and unit testing of each piece of
+functionality. In the app I created, I abandoned the concept of modules, and
+instead broke my app into &#8220;components&#8221;, &#8220;controllers&#8221;, and &#8220;services&#8221;. I
+explain this breakdown in a bit more depth in the <a href="http://www.slideshare.net/rmurphey/bvjs">presentation I gave at
+BazaarVoice</a>. I&#8217;m not sure this is
+the right answer for all apps, but I think modules oversimplify things.</li>
+<li>The boilerplate includes a <code>namespace.js</code> file. It defines a namespace
+object, and that object includes a <code>fetchTemplate</code> method. It seems this
+method should only be used by views, and so I&#8217;d rather see something along
+the lines of an enhanced View that provides this functionality. That&#8217;s what I
+did with the <a href="https://github.com/rmurphey/bvjs/blob/master/app/components/base.js">base component module</a>
+in my sample app.</li>
+<li>I&#8217;m super-glad to see Jasmine included in the test directory, but
+unfortunately the examples show how to write Jasmine tests, not Jasmine tests
+for a Backbone app. As a community, we definitely need to be showing more
+examples of how to test things, and this seems like a good opportunity to
+distribute that knowledge.</li>
+</ul>
+
+
+<h2>Overall</h2>
+
+<p>I feel a little silly that I&#8217;m just now getting around to spending any time
+with Backbone, and I know that I only scratched the surface, but I like what I
+saw. I think it&#8217;s important to take it for what it is: an uber-tiny library
+that gets you pointed in the right direction. What I really want to see are
+fuller-fledged frameworks that build on top of Backbone, because I think
+there&#8217;s a lot more that can be standardized beyond what Backbone offers. I&#8217;m
+hoping to have a bit more time in April to dig in, and hopefully I can flesh
+out some of these ideas into something useful.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Community Conferences]]></title>
     <link href="http://rmurphey.com/blog/2012/03/08/community-conferences/"/>
-    <updated>2012-03-08T08:29:00-06:00</updated>
+    <updated>2012-03-08T08:29:00-05:00</updated>
     <id>http://rmurphey.com/blog/2012/03/08/community-conferences</id>
     <content type="html"><![CDATA[<p>In 2010, I helped put on the first TXJS. We sold our first tickets for $29, and
 I think the most expensive tickets went for something like $129. We had about
@@ -27,7 +118,7 @@ accommodations paid for.</p>
 
 <p>In May, O&#8217;Reilly Media is holding another JavaScript conference in San
 Francisco, called FluentConf. I recently came to know that they are charging
-$100,000 for top-tier sponsorships, and that they were offering a 10-minute
+$100,000 for top-tier sponsorships, and that they are offering a 10-minute
 keynote as part of the package.</p>
 
 <p>This turned my stomach, and not just because I believe it cheapens the
@@ -109,7 +200,7 @@ the names you want.</p>
   <entry>
     <title type="html"><![CDATA[Mulberry: A development framework for mobile apps]]></title>
     <link href="http://rmurphey.com/blog/2011/09/18/introducing-mulberry/"/>
-    <updated>2011-09-18T11:30:00-05:00</updated>
+    <updated>2011-09-18T11:30:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/09/18/introducing-mulberry</id>
     <content type="html"><![CDATA[<p>I&#8217;ll be getting on stage in a bit at <a href="http://capitoljs.com">CapitolJS</a>, another
 great event from Chris Williams, the creator of JSConf and all-around
@@ -320,7 +411,7 @@ site</a>, but if you&#8217;re reading this, you&#8217;re probably a JavaScript d
   <entry>
     <title type="html"><![CDATA[Switching to Octopress]]></title>
     <link href="http://rmurphey.com/blog/2011/07/25/switching-to-octopress/"/>
-    <updated>2011-07-25T08:14:00-05:00</updated>
+    <updated>2011-07-25T08:14:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/07/25/switching-to-octopress</id>
     <content type="html"><![CDATA[<p>I&#8217;m taking a stab at starting a new blog at
 <a href="http://rmurphey.com">rmurphey.com</a>, powered by
@@ -378,7 +469,7 @@ with it. Win all around.</p>
   <entry>
     <title type="html"><![CDATA[Using object literals for flow control and settings]]></title>
     <link href="http://rmurphey.com/blog/2011/07/24/object-literals/"/>
-    <updated>2011-07-24T00:00:00-05:00</updated>
+    <updated>2011-07-24T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/07/24/object-literals</id>
     <content type="html"><![CDATA[<p>I got an email the other day from someone reading through <a href="http://jqfundamentals.com">jQuery Fundamentals</a> &#8211; they&#8217;d come across the section
 about patterns for performance and compression, which is based on a
@@ -512,7 +603,7 @@ smart folks eager to take the time to explain.</p>
   <entry>
     <title type="html"><![CDATA[Lessons From a Rewrite]]></title>
     <link href="http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite/"/>
-    <updated>2011-07-06T10:50:00-05:00</updated>
+    <updated>2011-07-06T10:50:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite</id>
     <content type="html"><![CDATA[<p>MVC and friends have been around for decades, but it’s only in the last couple
 of years that broad swaths of developers have started applying those patterns
@@ -929,7 +1020,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[A new chapter]]></title>
     <link href="http://rmurphey.com/blog/2011/05/31/a-new-chapter/"/>
-    <updated>2011-05-31T00:00:00-05:00</updated>
+    <updated>2011-05-31T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/05/31/a-new-chapter</id>
     <content type="html"><![CDATA[<p>It was three years ago this summer that I <a href="http://blog.rebeccamurphey.com/2-years-in-some-thoughts-on-working-for-mysel">got the call, bought the Yuengling, smoked the cigarettes</a>, and began life as an independent consultant. It&rsquo;s been (almost) three years of ups and downs, and, eventually, among the most rewarding experiences of my life. Day by day, I wrote my own job description, found my own clients, set my own schedule, and set my own agenda.</p>
 
@@ -964,7 +1055,7 @@ works” should never be mistaken for “it’s done.”</p>
   <entry>
     <title type="html"><![CDATA[Getting Better at JavaScript]]></title>
     <link href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/"/>
-    <updated>2011-05-20T00:00:00-05:00</updated>
+    <updated>2011-05-20T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript</id>
     <content type="html"><![CDATA[<p>I seem to be getting a lot of emails these days asking a deceptively simple
 question: “How do I get better at JavaScript?” What follows are some
@@ -1068,7 +1159,7 @@ them” paradigm of jQuery.</li>
   <entry>
     <title type="html"><![CDATA[Objects as Arguments: Where do you draw the line?]]></title>
     <link href="http://rmurphey.com/blog/2011/04/25/objects-as-arguments/"/>
-    <updated>2011-04-25T11:16:00-05:00</updated>
+    <updated>2011-04-25T11:16:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/04/25/objects-as-arguments</id>
     <content type="html"><![CDATA[<p>I was reviewing some code last week and came across a snippet that looked a lot like this:</p>
 
@@ -1394,7 +1485,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[Modern JavaScript]]></title>
     <link href="http://rmurphey.com/blog/2011/04/15/modern-javascript/"/>
-    <updated>2011-04-15T11:16:00-05:00</updated>
+    <updated>2011-04-15T11:16:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/04/15/modern-javascript</id>
     <content type="html"><![CDATA[<p>My presentation <a href="http://www.slideshare.net/rmurphey/the-jquery-divide-5287573">the jQuery Divide</a> (<a href="http://jsconf.eu/2010/speaker/the_jquery_divide_by_rebecca_m.html">video here</a>) has been <a href="http://news.ycombinator.com/item?id=2429411">making the rounds</a> on the internet again, six months after I delivered it at JSConf.eu in Berlin, and this time around, a colleague on IRC shared a link with me that drew from it: <a href="http://www.dagolden.com/index.php/1446/is-javascript-the-new-perl/">Is JavaScript the New Perl?</a></p>
 
@@ -1429,7 +1520,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[A Dojo Boilerplate]]></title>
     <link href="http://rmurphey.com/blog/2011/04/04/a-dojo-boilerplate/"/>
-    <updated>2011-04-04T00:00:00-05:00</updated>
+    <updated>2011-04-04T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/04/04/a-dojo-boilerplate</id>
     <content type="html"><![CDATA[<p>When I first started playing with the <a href="http://dojotoolkit.org">Dojo Toolkit</a>, it was easy enough to <a href="http://dojotoolkit.org/documentation/tutorials/1.6/hello_dojo/">use the CDN-hosted <code>dojo.js</code> and get started</a>, but before long I wanted to make use of one of the features that drew me to Dojo in the first place: the build system that parses your code&rsquo;s dependencies as expressed by <code>dojo.require()</code> statements and creates production-ready files.</p>
 
@@ -1460,7 +1551,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[When you're building a non-trivial JS application ...]]></title>
     <link href="http://rmurphey.com/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/"/>
-    <updated>2011-03-30T00:00:00-05:00</updated>
+    <updated>2011-03-30T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application</id>
     <content type="html"><![CDATA[<p>I sense another round of discussion of this is <a href="http://twitter.com/slightlylate/status/52924409509445632">about to begin</a>, and 140 characters isn&#8217;t quite enough to say what I want to say, so:</p>
 
@@ -1482,7 +1573,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[The Future of jQuery Fundamentals (and a confession)]]></title>
     <link href="http://rmurphey.com/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession/"/>
-    <updated>2011-03-17T00:00:00-05:00</updated>
+    <updated>2011-03-17T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession</id>
     <content type="html"><![CDATA[<p>About 9 months ago, <a href="http://blog.rebeccamurphey.com/2010/06/17/open-source-jquery-training">I released</a> <a href="http://jqfundamentals.com/book/">jQuery Fundamentals</a>, a free, online training curriculum for people interested in learning jQuery based on material I&rsquo;d assembled while leading jQuery trainings.</p>
 
@@ -1542,7 +1633,7 @@ was.</p>
   <entry>
     <title type="html"><![CDATA[Deferreds coming to jQuery 1.5?]]></title>
     <link href="http://rmurphey.com/blog/2010/12/25/deferreds-coming-to-jquery/"/>
-    <updated>2010-12-25T00:00:00-06:00</updated>
+    <updated>2010-12-25T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/12/25/deferreds-coming-to-jquery</id>
     <content type="html"><![CDATA[<p><em>I have updated this post to show the code using the API that was released in jQuery 1.5.0.</em></p>
 
@@ -1758,7 +1849,7 @@ join in.</p>
   <entry>
     <title type="html"><![CDATA[On Conferencing]]></title>
     <link href="http://rmurphey.com/blog/2010/11/20/on-conferencing/"/>
-    <updated>2010-11-20T00:00:00-06:00</updated>
+    <updated>2010-11-20T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2010/11/20/on-conferencing</id>
     <content type="html"><![CDATA[<p>I&#8217;m a few hours away from finalizing my slides for the Rich Web Experience in Ft. Lauderdale next month. I&#8217;ll be presenting on basic tips for refactoring your jQuery; I think it&#8217;s a decent presentation &#8211; the part of it I&#8217;ve finished, anyway &#8211; and I&#8217;ll be glad to have it in my collection.</p>
 
@@ -1820,7 +1911,7 @@ join in.</p>
   <entry>
     <title type="html"><![CDATA[jQuery Conference Breakout Session: Women & Conferences]]></title>
     <link href="http://rmurphey.com/blog/2010/10/19/jquery-breakout-women-and-conferences/"/>
-    <updated>2010-10-19T00:00:00-05:00</updated>
+    <updated>2010-10-19T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/10/19/jquery-breakout-women-and-conferences</id>
     <content type="html"><![CDATA[<p>I decided to organize a breakout session about women and conferences at the
 <a href="http://events.jquery.org/2010/boston/">jQuery Conference in Boston</a> this past
@@ -1935,7 +2026,7 @@ to continued discussion.</p>
   <entry>
     <title type="html"><![CDATA[Functionality-Focused Code Organization]]></title>
     <link href="http://rmurphey.com/blog/2010/10/17/functionality-focused-code-organization/"/>
-    <updated>2010-10-17T00:00:00-05:00</updated>
+    <updated>2010-10-17T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/10/17/functionality-focused-code-organization</id>
     <content type="html"><![CDATA[<p>I spoke yesterday at the 2010 Boston jQuery Conference about
 &#8220;Functionality-Focused Code Organization.&#8221; It was a presentation that
@@ -1974,7 +2065,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[In Search of JavaScript Developers: A Gist]]></title>
     <link href="http://rmurphey.com/blog/2010/09/15/in-search-of-javascript-developers-a-gist/"/>
-    <updated>2010-09-15T00:00:00-05:00</updated>
+    <updated>2010-09-15T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/09/15/in-search-of-javascript-developers-a-gist</id>
     <content type="html"><![CDATA[<p>I posted a <a href="http://gist.github.com/576723">gist</a> the other day in an attempt to locate some JavaScript help. I&rsquo;m finding, lately, that I&rsquo;m being asked to do more work than I can comfortably take on without having some overflow capacity, but I&rsquo;ve been a little lax at actually identifying people who can provide that capacity up until now. That meant I was turning down work, and that&rsquo;s not a good thing.</p>
 
@@ -2987,7 +3078,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[Making sense of dojo.when: A simple XHR caching example]]></title>
     <link href="http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/"/>
-    <updated>2010-08-29T00:00:00-05:00</updated>
+    <updated>2010-08-29T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example</id>
     <content type="html"><![CDATA[<p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
 
@@ -3179,7 +3270,7 @@ well, which means a lot. Thanks, guys.</p>
   <entry>
     <title type="html"><![CDATA[Code Org, Take 2: Structuring JavaScript Applications]]></title>
     <link href="http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/"/>
-    <updated>2010-08-27T00:00:00-05:00</updated>
+    <updated>2010-08-27T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications</id>
     <content type="html"><![CDATA[<p>It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d been thinking for a few months about how to improve my own code and give it more structure, and how to give advice to others about how to do the same.</p>
 
@@ -3442,24 +3533,6 @@ well, which means a lot. Thanks, guys.</p>
 
 
 <p>Finally: If you have your own thoughts to share about how to approach these large application questions, I&rsquo;m pleading with you to write your own blog post(s) about them. If you have other reference material on the topic, I beg you to share it. As more and more people transition from simple JavaScript enhancements to non-trivial applications, the need for education is huge.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dear conference organizer]]></title>
-    <link href="http://rmurphey.com/blog/2010/08/24/dear-conference-organizer/"/>
-    <updated>2010-08-24T00:00:00-05:00</updated>
-    <id>http://rmurphey.com/blog/2010/08/24/dear-conference-organizer</id>
-    <content type="html"><![CDATA[<p>
-<p>Thank you for the invitation to speak at your conference, and your offer to pay my hotel and airfare in exchange.&nbsp;I notice that you are selling tickets for upwards of $1,500, in addition to hotel and travel costs. In exchange, you are hosting a three-day event, meals, a USB drive, a shirt, and a binder.</p>
-<p>We need to talk, and not about the binder.</p>
-<p>TXJS was a one-day conference with approximately a $30k budget &#8211; some tickets cost a whopping $29, and the most expensive tickets were $109 &#8211; and yet it managed to offer exactly what you&#8217;re offering to me to its out-of-town speakers: hotel and travel. It had two nights of open-bar parties; a shuttle bus to get people to and from the amazing, eclectic, venue; catered breakfast and lunch; an open bar at the event itself; and a speaker and VIP brunch the following day. It also had some of the best JavaScript minds in the business on stage and in the audience, drawing people from around the country and beyond.&nbsp;</p>
-<p>I hope you can appreciate the disconnect here. It&#8217;s not so much that I want to get paid &#8211; I have gladly and eagerly spoken at lower-cost conferences without even getting my hotel compensated &#8211; as the fact that I know now that conferences just don&#8217;t have to cost that much. When they do, it&#8217;s hard to get on board with lending my name for free when the conference stands to have revenue of <em>hundreds of thousands of dollars</em> and I know I only needed revenue tens of thousands to put on an amazing event.&nbsp;</p>
-<p>As a self-employed consultant, speaking at a conference has, at best, intangible benefit to me, and non-trivial costs. You and many other organizers can seem as though you assume the benefit is obvious, and the costs negligible. In fact, agreeing to a speaking engagement &#8211; one that requires two non-working days for travel, a non-working day for speaking, and whatever prep time is required to actually put together my talk &#8211; is a tough decision regardless of how much tickets cost, especially for someone without corporate backing or a product to promote. Call me selfish, but I need to be very clear that there&#8217;s a benefit to me. A high-dollar conference likely to attract almost exclusively corporate-backed attendees with at best a peripheral relationship to my area of expertise is exactly the kind of conference where it&#8217;s <em>not</em> clear what the benefit will be. Being away from home and work for three days, even in a nice hotel, just doesn&#8217;t count.&nbsp;</p>
-<p>&#8211;</p>
-<p>Finally: To all of the TXJS speakers, we heart you unbelievably and stand in awe that when we asked you to present at an event that had never existed before, each and every one of you said yes without batting an eye. I hope you know that we know that even with the open bar and the parties and the shuttle and the venue and all of it, we couldn&#8217;t have had a conference without you.&nbsp;</p>
-</p>
 
 ]]></content>
   </entry>

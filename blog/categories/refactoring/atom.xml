@@ -4,7 +4,7 @@
   <title><![CDATA[Category: refactoring | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/refactoring/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[In Search of JavaScript Developers: A Gist]]></title>
     <link href="http://rmurphey.com/blog/2010/09/15/in-search-of-javascript-developers-a-gist/"/>
-    <updated>2010-09-15T00:00:00-05:00</updated>
+    <updated>2010-09-15T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/09/15/in-search-of-javascript-developers-a-gist</id>
     <content type="html"><![CDATA[<p>I posted a <a href="http://gist.github.com/576723">gist</a> the other day in an attempt to locate some JavaScript help. I&rsquo;m finding, lately, that I&rsquo;m being asked to do more work than I can comfortably take on without having some overflow capacity, but I&rsquo;ve been a little lax at actually identifying people who can provide that capacity up until now. That meant I was turning down work, and that&rsquo;s not a good thing.</p>
 

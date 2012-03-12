@@ -4,7 +4,7 @@
   <title><![CDATA[Category: speaking, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/speaking-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[I need to say a few things.]]></title>
     <link href="http://rmurphey.com/blog/2010/07/27/i-need-to-say-a-few-things/"/>
-    <updated>2010-07-27T00:00:00-05:00</updated>
+    <updated>2010-07-27T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2010/07/27/i-need-to-say-a-few-things</id>
     <content type="html"><![CDATA[<p>Over the weekend, there was a tweet announcing that Google was going to provide "scholarships" to qualified women to attend JSConf.eu. There was then a tweet by another person calling this "disgusting" and "illegal." Nicole Sullivan has a <a href="http://www.stubbornella.org/content/2010/07/26/woman-in-technology/">level-headed and well-articulated roundup</a> of the back-and-forth and some of the surrounding issues, and I suggest you read it.</p>
 
@@ -51,7 +51,7 @@
   <entry>
     <title type="html"><![CDATA[On speaking at the 2009 jQuery Conference]]></title>
     <link href="http://rmurphey.com/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference/"/>
-    <updated>2009-09-16T00:00:00-05:00</updated>
+    <updated>2009-09-16T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference</id>
     <content type="html"><![CDATA[<p>One of my personal goals for this year was to start being part of the solution to the dearth of female speakers at tech events. Though I&rsquo;ve talked at a couple of smallish local events over the past few months, this past weekend I got to do it in a big way: I presented a talk on using objects to organize your jQuery code to an audience of around 100 people, more by far than I&rsquo;ve ever spoken to before.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: systems | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/systems/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Software without which I'd be hard-pressed to do my job]]></title>
     <link href="http://rmurphey.com/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job/"/>
-    <updated>2007-12-05T00:00:00-06:00</updated>
+    <updated>2007-12-05T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job</id>
     <content type="html"><![CDATA[<ul>
 <li>
@@ -39,7 +39,7 @@
   <entry>
     <title type="html"><![CDATA[Getting non-developers on the subversion bandwagon]]></title>
     <link href="http://rmurphey.com/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/"/>
-    <updated>2007-12-04T00:00:00-06:00</updated>
+    <updated>2007-12-04T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon</id>
     <content type="html"><![CDATA[<p><a href="http://marcus.net/blog/">Marcus</a> turned me on to subversion when I was working on a project earlier this year and wanted a way to revisit old versions of files. <a href="http://marcus.net/blog/2007/01/19/creating-a-subversion-repository/">Setting up a subversion repository</a> was easy, and while I did download the Tortoise GUI for Windows, I found the command line was pretty easy too.</p>
 

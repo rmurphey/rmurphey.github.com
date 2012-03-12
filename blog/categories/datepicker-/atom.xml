@@ -4,7 +4,7 @@
   <title><![CDATA[Category: datepicker, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/datepicker-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[DateJS]]></title>
     <link href="http://rmurphey.com/blog/2007/12/09/datejs/"/>
-    <updated>2007-12-09T00:00:00-06:00</updated>
+    <updated>2007-12-09T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/09/datejs</id>
     <content type="html"><![CDATA[<p>Forgot about coming across <a href="http://www.datejs.com/">DateJS</a> in one of my feeds the other day. Haven't used it yet, but expect I will next time I have to do much of anything with user date input. I'll be especially happy if it does end up getting <a href="http://marcgrabanski.com/article/90/DateJS-JavaScript-Library">integrated with the  jQuery UI datepicker ...</a>.</p>
 ]]></content>

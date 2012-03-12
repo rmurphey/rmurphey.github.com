@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I was just at the online Apple store to buy an iTunes gift card for my mother (who hopefully will not be reading this blog) &#8211; when you arrive &hellip;">
+  <meta name="description" content="A List Apart had a great article recently on using &#8216;em&#8217; for CSS font-size declarations, which served as great back-up for some &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,61 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2007/12/09/using-ems-for-font-sizing-in-css/">Using Ems for Font Sizing in Css</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-09T00:00:00-05:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/09/using-ems-for-font-sizing-in-css/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A List Apart had a great article recently on <a href="http://www.alistapart.com/articles/howtosizetextincss/">using &#8216;em&#8217; for CSS font-size declarations</a>, which served as great back-up for some conversations I&#8217;d been having among coworkers. (It turns out that people who didn&#8217;t have a former life in print don&#8217;t necessarily understand what an em is: a self-referential unit of font size measurement, equal to the height of the capital letter M. Back in the typesetting days, it was a unit for measuring space, especially horizontal space, in the form of an &#8220;em dash&#8221; (rendered now as <code>&amp;mdash;</code>) or an &#8220;em space.&#8221; There was also a sister unit, the &#8220;en.&#8221;)</p>
+
+<p>Anyway: I just came across <a href="http://benjaminsterling.com/using-em-for-font-size-learning-on-the-go/">this post</a>, by someone trying to put ems into practice; at the end, he gets into tools for doing conversions from pixels to ems, and it struck a surprising nerve with me.</p>
+
+<p>Here&#8217;s the thing: While I can see how pixel conversion seems useful when you first make the switch from px to em, I think the whole point of using ems instead of pixels is to embrace the concept that, on the web, sizes are relative, not absolute. If you&#8217;re focused on matching an absolute size in a mockup by converting pixels to ems, the chances seem good that you&#8217;re dealing with a layout that wasn&#8217;t intended to work with relatively sized text to begin with, and/or that your ultimate product won&#8217;t work if the user makes a different decision than you about how they will consume it.</p>
+
+<p>If you receive a Photoshop mockup where body copy is 10px tall, I think it&#8217;s a tremendous waste of time to measure that 10px and convert it to ems &#8211; 10px on my 1024x768 monitor is a far cry from 10px on my 1600x1200 monitor, nevermind on the HDTV sitting across the room.</p>
+
+<p>When you&#8217;re designing and styling text for the web, better to:</p>
+
+<ul>
+<li>Assume from the start that users will consume your site differently than you do.</li>
+<li>Make decisions in your design, CSS and HTML that will consistently convey the content and hierarchy of your site, regardless of how it is consumed.</li>
+<li>Assume that the user knows better than you what a good base text size is for them.</li>
+<li>Use a reset styleheet — I like <a href="http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/">Eric Meyer&#8217;s CSS Reset Reloaded</a> — to set everything to that base size.</li>
+<li>Vary the sizes of elements <em>relatively</em> using ems.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2007/12/09/for-only-25-more-this-gift-card-comes-in-green/">For Only $25 More, This Gift Card Comes in Green</a></h1>
     
     
@@ -97,7 +152,7 @@
   
 
 
-<time datetime="2007-12-09T00:00:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
+<time datetime="2007-12-09T00:00:00-05:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/09/for-only-25-more-this-gift-card-comes-in-green/#disqus_thread">Comments</a>
         
@@ -144,7 +199,7 @@
   
 
 
-<time datetime="2007-12-09T00:00:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
+<time datetime="2007-12-09T00:00:00-05:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/09/datejs/#disqus_thread">Comments</a>
         
@@ -182,7 +237,7 @@
   
 
 
-<time datetime="2007-12-07T00:00:00-06:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
+<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/07/standards-for-html-emails/#disqus_thread">Comments</a>
         
@@ -220,7 +275,7 @@
   
 
 
-<time datetime="2007-12-07T00:00:00-06:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
+<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/07/more-on-jquery-selectors/#disqus_thread">Comments</a>
         
@@ -269,7 +324,7 @@
   
 
 
-<time datetime="2007-12-05T00:00:00-06:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+<time datetime="2007-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job/#disqus_thread">Comments</a>
         
@@ -321,7 +376,7 @@
   
 
 
-<time datetime="2007-12-05T00:00:00-06:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+<time datetime="2007-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/#disqus_thread">Comments</a>
         
@@ -389,7 +444,7 @@
   
 
 
-<time datetime="2007-12-04T00:00:00-06:00" pubdate data-updated="true">Dec 4<span>th</span>, 2007</time>
+<time datetime="2007-12-04T00:00:00-05:00" pubdate data-updated="true">Dec 4<span>th</span>, 2007</time>
         
          | <a href="/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/#disqus_thread">Comments</a>
         
@@ -580,7 +635,7 @@ export PATH</pre></div>
   
 
 
-<time datetime="2007-12-03T00:00:00-06:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+<time datetime="2007-12-03T00:00:00-05:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
         
          | <a href="/blog/2007/12/03/remixing-trac-with-jquery/#disqus_thread">Comments</a>
         
@@ -685,7 +740,7 @@ The new form makes more sense to the client users, reduces errors and omissions,
   
 
 
-<time datetime="2007-12-03T00:00:00-06:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+<time datetime="2007-12-03T00:00:00-05:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
         
          | <a href="/blog/2007/12/03/my-case-for-standards-based-web-layouts/#disqus_thread">Comments</a>
         
@@ -756,6 +811,10 @@ The new form makes more sense to the client users, reduces errors and omissions,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
@@ -769,10 +828,6 @@ The new form makes more sense to the client users, reduces errors and omissions,
     
       <li class="post">
         <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a>
       </li>
     
   </ul>

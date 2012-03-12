@@ -4,7 +4,7 @@
   <title><![CDATA[Category: css, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/css-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[CSS vs. Tables: Maybe the design is to blame?]]></title>
     <link href="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/"/>
-    <updated>2009-02-14T00:00:00-06:00</updated>
+    <updated>2009-02-14T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame</id>
     <content type="html"><![CDATA[<p>There's been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so bad after all. From <a href="http://giveupandusetables.com/">giveupandusetables.com</a>, which says the maximum time to spend before abandoning CSS is 47 minutes, to the <a href="http://www.flownet.com/ron/css-rant.html">well-illustrated blog post by Ron Garret</a>, the general argument is that CSS isn't up to the task of faithfully reproducing elaborate designs cross-browser in an acceptable amount of developer time.</p>
 
@@ -66,7 +66,7 @@
   <entry>
     <title type="html"><![CDATA[Centering images]]></title>
     <link href="http://rmurphey.com/blog/2008/06/13/centering-images/"/>
-    <updated>2008-06-13T00:00:00-05:00</updated>
+    <updated>2008-06-13T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2008/06/13/centering-images</id>
     <content type="html"><![CDATA[<p><a href="http://www.netmechanic.com/news/vol7/html_no10.htm">An excellent article explaining the pros and cons of different image-centering methods</a>. I love when I find something that gives me exactly the answer I need.</p>
 ]]></content>
@@ -75,7 +75,7 @@
   <entry>
     <title type="html"><![CDATA[How I learned CSS]]></title>
     <link href="http://rmurphey.com/blog/2007/12/24/how-i-learned-css/"/>
-    <updated>2007-12-24T00:00:00-06:00</updated>
+    <updated>2007-12-24T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/24/how-i-learned-css</id>
     <content type="html"><![CDATA[<p>I remember when I first tried to understand how to produce designs for the web -- coming from the paper-based world, it was hard for me to accept everything that was suddenly out of my control. When I first tried to grasp CSS with the help of now-defunct Adobe GoLive, I bailed pretty quickly. Table-based layout and font tags didn't make much sense to me either -- why did I have to slice up a page into a bunch of adjoining cells, instead of just drawing independent boxes like I did in Quark?</p>
 
@@ -141,7 +141,7 @@
   <entry>
     <title type="html"><![CDATA[Using ems for font sizing in css]]></title>
     <link href="http://rmurphey.com/blog/2007/12/09/using-ems-for-font-sizing-in-css/"/>
-    <updated>2007-12-09T00:00:00-06:00</updated>
+    <updated>2007-12-09T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/09/using-ems-for-font-sizing-in-css</id>
     <content type="html"><![CDATA[<p>A List Apart had a great article recently on <a href="http://www.alistapart.com/articles/howtosizetextincss/">using 'em' for CSS font-size declarations</a>, which served as great back-up for some conversations I'd been having among coworkers. (It turns out that people who didn't have a former life in print don't necessarily understand what an em is: a self-referential unit of font size measurement, equal to the height of the capital letter M. Back in the typesetting days, it was a unit for measuring space, especially horizontal space, in the form of an "em dash" (rendered now as <code>&amp;mdash;</code>) or an "em space." There was also a sister unit, the "en.")</p>
 
@@ -167,7 +167,7 @@
   <entry>
     <title type="html"><![CDATA[Standards for HTML emails?]]></title>
     <link href="http://rmurphey.com/blog/2007/12/07/standards-for-html-emails/"/>
-    <updated>2007-12-07T00:00:00-06:00</updated>
+    <updated>2007-12-07T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/07/standards-for-html-emails</id>
     <content type="html"><![CDATA[<p>After a couple of attempts that ended not-so-well, I gave up on HTML emails. I advise people to work with someone who's an expert with them, or to at least <a href="http://www.campaignmonitor.com/resources/">use templates that are known to work</a>, and then I wish them well. At a job interview I actually proclaimed my active dislike of HTML emails and general unwillingness to muck with them -- I'm not sure that went over so well. The news that <a href="http://www.campaignmonitor.com/blog/archives/2007/01/microsoft_takes_email_design_b.html">Outlook 2007 actually took a giant leap backwards in HTML support</a> seals the deal for me. Still, it's good to read that <a href="http://www.456bereastreet.com/archive/200712/the_email_standards_project_launches/">some people are trying to bring some sanity to the situation</a>. I wish them luck.</p>
 ]]></content>

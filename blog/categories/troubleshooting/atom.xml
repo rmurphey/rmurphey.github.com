@@ -4,7 +4,7 @@
   <title><![CDATA[Category: troubleshooting | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/troubleshooting/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-08T09:39:05-06:00</updated>
+  <updated>2012-03-11T23:06:38-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Solution for Google Map contents not showing]]></title>
     <link href="http://rmurphey.com/blog/2008/11/16/solution-for-google-map-contents-not-showing/"/>
-    <updated>2008-11-16T00:00:00-06:00</updated>
+    <updated>2008-11-16T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2008/11/16/solution-for-google-map-contents-not-showing</id>
     <content type="html"><![CDATA[<p>I just spent more time than was reasonable trying to figure out why some Javascript I was using to show a Google map on one site wasn't working to show the map on another site. The map controls and copyright were rendering, but there was no actual map.</p>
 
@@ -27,7 +27,7 @@
   <entry>
     <title type="html"><![CDATA[Fix for slow-loading Google ads]]></title>
     <link href="http://rmurphey.com/blog/2008/04/07/fix-for-slow-loading-google-ads/"/>
-    <updated>2008-04-07T00:00:00-05:00</updated>
+    <updated>2008-04-07T00:00:00-04:00</updated>
     <id>http://rmurphey.com/blog/2008/04/07/fix-for-slow-loading-google-ads</id>
     <content type="html"><![CDATA[<p>Google's AdSense ads, and lots of others, are added to pages using Javascript, and if that Javascript appears early in the page's HTML, it can seriously slow down the rendering of the rest of the page. That's because browsers generally refuse to do any further rendering of the page until they have a requested Javascript file in hand.</p>
 
@@ -46,7 +46,7 @@
   <entry>
     <title type="html"><![CDATA[jQuery IE7 "Operation Aborted" error]]></title>
     <link href="http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error/"/>
-    <updated>2007-12-14T00:00:00-06:00</updated>
+    <updated>2007-12-14T00:00:00-05:00</updated>
     <id>http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error</id>
     <content type="html"><![CDATA[<p>I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its job was to rearrange some elements into tabs once the page was loaded.</p>
 
