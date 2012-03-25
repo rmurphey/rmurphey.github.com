@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="A while back I wrote a post about tracking outbound clicks with Google Analytics; way back then (about 6 months ago), the only event that Google &hellip;">
+  <meta name="description" content="Just wanted to call attention to two excellent posts by Benjamin Sterling: Better jQuery Code 1 and Better jQuery Code 2. He offers some must-have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/12/07/jquery-style-guide-from-benjamin-sterling/">jQuery Style Guide From Benjamin Sterling</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/12/07/jquery-style-guide-from-benjamin-sterling/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just wanted to call attention to two excellent posts by Benjamin Sterling: <a href="http://benjaminsterling.com/better-jquery-code-1/">Better jQuery Code 1</a> and <a href="http://benjaminsterling.com/better-jquery-code-2/">Better jQuery Code 2</a>. He offers some must-have tips on style, form and best practices. Thanks to <a href="http://twitter.com/foobar2k">@foobar2k</a> for the link.</p>
+
+<p>One addition to his notes on caching selections by setting up references: I&#8217;m partial to giving references a variable name that starts with a dollar sign, like $links. For me, it serves as a good reminder that the variable is a reference to a jQuery object.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -682,60 +722,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/19/another-cautionary-remote-javascript-tale/">Another Cautionary Remote Javascript Tale</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-19T00:00:00-04:00" pubdate data-updated="true">May 19<span>th</span>, 2008</time>
-        
-         | <a href="/blog/2008/05/19/another-cautionary-remote-javascript-tale/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It sounds like TechCrunch got <a href="http://www.techcrunch.com/2008/05/17/dont-screw-your-partners-over-a-marketing-promotion/">burnt</a> yesterday by some remote Javascript appearing too high in their pages&#8217; HTML. Visitors&#8217; browsers were waiting and waiting for the remote script to load, and refusing to render the rest of the page until it did.</p>
-
-<blockquote class="posterous_medium_quote">All we knew is that our sites all simultaneously went down three times yesterday. After the first time we identified the likely problem as Seesmic and contacted the company. They assured us there was no way the plugin could take the site down. When it happened a second time we disabled the Seesmic plugin and the sites went back up. We identified the problem - the plugin was loading an external Javascript file, and when Seesmic’s servers were down, we just sat and waited for it for up to two minutes before timing out.</blockquote>
-
-
-<p>The remedy to this, of course, is to load remote scripts in the foot of the page, after all of the actual content has loaded. However, plenty of remote Javascript &#8220;widgets&#8221; aim at the least common denominator without offering a viable option for skilled users who don&#8217;t actually want their site to break. The widget publishers simply require sites to put a remote script call exactly where the site wants the widget to appear. If the widget server chokes, the site is out of luck.</p>
-
-<p>I wrote about a related problem with ad-related Javascript, and my attempts to get around its desire to appear wherever the ad appears, making page rendering grind to a halt if the ad network was slow. We ended up getting around that problem with a bit of utter absurdity: using an iframe that called some server-side code that would generate an HTML page that contained little more than a script tag.</p>
-
-<p>Our solution, as it were, meant an extra HTTP request to our server for every ad on the page, just to avoid a problem that wouldn&#8217;t exist in the first place if the authors of these widgets and ads would offer some real options to their savvier users. A simple method like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">widget</span><span class="p">.</span><span class="nx">appendToElement</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>seems like it would do the trick &#8211; something that could be called at the end of a page and fail fairly silently by just leaving the destination element empty. I imagine that the use of such a method is hardly out of the reach of the good folks at TechCrunch, or plenty of other sites. Until an approach like this becomes a bit more common, expect many more rants like the one we saw from TechCrunch.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -753,6 +739,10 @@ We have a framework that allows rapid prototyping of new features, letting devel
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
       </li>
     
@@ -766,10 +756,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
     
       <li class="post">
         <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/24/object-literals/">Using object literals for flow control and settings</a>
       </li>
     
   </ul>

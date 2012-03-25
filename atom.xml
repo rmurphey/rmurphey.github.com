@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-12T09:59:42-04:00</updated>
+  <updated>2012-03-25T11:37:22-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,130 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Girls and Computers]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/25/girls-and-computers/"/>
+    <updated>2012-03-25T12:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/25/girls-and-computers</id>
+    <content type="html"><![CDATA[<p>After a week that seemed just chock full of
+<a href="http://storify.com/ireneros/sexist-language-earns-sqoot-lots-of-fury">people</a>
+being <a href="http://storify.com/charlesarthur/oh-hai-sexism">stupid</a> about women in
+technology, I just found myself thinking back on how it was that I ended up
+doing this whole computer thing in the first place.  I recorded a video a while
+back for the <a href="http://highvisibilityproject.org/2011/10/rebecca-murphey/">High Visibility Project</a>, but that
+really just told the story of how I ended up doing web development. The story
+of how I got into computers begain when I was unequivocally a girl. It was
+1982.</p>
+
+<p>Back then, my dad made eyeglasses. My mom stayed at home with me and my
+year-old sister &#8211; which she&#8217;d continue to do til I was a teenager, when my
+brother finally entered kindergarten eight years later. Their mortgage was $79
+&#8211; about $190 in today&#8217;s dollars &#8211; which is a good thing because my dad made
+about $13,000 a year. We lived in Weedsport, New York, a small town just
+outside of Syracuse. We walked to the post office to get our mail. The farmers
+who lived just outside town were the rich people. In the winters the fire
+department filled a small depression behind the elementary school with water
+for a tiny skating rink. There were dish-to-pass suppers in the gym at church.</p>
+
+<p>In 1982, Timex came out with the <a href="http://en.wikipedia.org/wiki/Timex_Sinclair">Timex Sinclair TS-1000</a>,
+selling 500,000 of them in just six months. The computer, a few times thicker
+than the original iPad but with about the same footprint, cost $99.95 &#8211; more
+than that mortgage payment. When everyone else in town was getting cable,
+my parents decided that three channels were good enough for them &#8211; it&#8217;s
+possible they still had a black-and-white TV &#8211; and bought a computer instead.</p>
+
+<p><img src="http://rmurphey.com/images/ts1000.JPG" alt="Timex Sinclair TS-1000" /></p>
+
+<p>I remember tiny snippets of that time &#8211; playing kickball in my best friend
+Beth&#8217;s yard, getting in trouble for tricking my mother into giving us milk that
+we used to make mud pies, throwing sand in the face of my friend Nathan
+because I didn&#8217;t yet appreciate that it really sucks to get sand thrown in your
+face &#8211; but I vividly remember sitting in the living room of our house on
+Horton Street with my father, playing with the computer.</p>
+
+<p>A cassette player was our disk drive, and we had to set the volume just right
+in order to read anything off a tape &#8211; there was actually some semblance of a
+flight simulator program that we&#8217;d play, after listening to the tape player
+screech for minutes on end. Eventually we upgraded the computer with a
+fist-sized brick of RAM that we plugged into the back of the computer, bumping
+our total capacity from 2K to 34K. I wrote programs in BASIC, though for the
+life of me I can&#8217;t remember what any of them did. The programs that were the
+most fun, though, were the ones whose assembly I painstakingly transcribed,
+with my five-year-old fingers, from the back of magazines &#8211; pages and pages of
+letters and numbers I didn&#8217;t understand on any level, and yet they made magic
+happen if I got every single one right.</p>
+
+<p>A string of computers followed. My parents bought a <a href="http://en.wikipedia.org/wiki/Coleco_Adam">Coleco Adam</a> when we moved
+to Horseheads, New York &#8211; apparently the computer came with a certificate
+redeemable for $100 upon my graduation from high school, but Coleco folded long
+before they could cash it in. I made my first real money by typing a crazy
+lady&#8217;s crazy manuscript about crazy food into an Apple IIe that we had plugged
+into our TV, and my uncle and I spent almost the entirety of his visit from
+Oklahoma writing a game of Yahtzee! on that computer, again in BASIC.</p>
+
+<p><img src="http://rmurphey.com/images/rebecca-computer.jpg" alt="Me at a computer fair at the mall with my sister, my mother, and my friend
+Michael" /></p>
+
+<p><em>Above: Me at a computer fair at the mall with my sister, my
+mother, and my friend Michael. &#8220;You were giving us all a tutorial, I can tell,&#8221;
+says my mom. Note the 5-1/4&#8221; external floppy drive.</em></p>
+
+<p>In middle school, I started a school newspaper, and I think we used some
+prehistoric version of PageMaker to lay it out. When high school rolled around,
+I toiled through hand-crafting the perfect letters and lines and arrows in
+Technical Drawing so I could take CAD and CAM classes and make the computer
+draw letters and lines and arrows for me, and quickly proceeded to school just
+about every boy in the class. In my senior year of high school, I oversaw the
+school yearbook&#8217;s transition from laying out pages on paper to laying out pages
+with computers, this time the vaguely portable (it had a handle on the back!)
+<a href="http://en.wikipedia.org/wiki/Macintosh_Classic">Mac Classic</a>.
+We used PageMaker again; the screen was black and white and 9&#8221;, diagonally.</p>
+
+<p><img src="http://rmurphey.com/images/mac-classic.jpg" alt="Macintosh Classic" /></p>
+
+<p>It was around then that a friend gave me a modem and &#8211; to his eventual
+chagrin, when he got the bill &#8211; access to his Delphi account, giving me my
+first taste of the whole Internet thing in the form of telnet, gopher, and IRC.
+When I went to college the following year, I took with me a computer with
+perhaps a 10MB hard drive, and no mouse.</p>
+
+<p>Once again I found myself poring over magazines to discover URIs and,
+eventually, URLs that I could type to discover a whole new world of
+information. In 1995, I spent the summer making my college newspaper&#8217;s web
+site, previewing it in Lynx &#8211; it felt like there wasn&#8217;t much to learn when
+there was so little difference between the markup and what I saw on the screen.
+I would go to the computer lab to use NCSA&#8217;s Mosaic on the powerful RISC 6000
+workstations, because they had a mouse. Yahoo! was about one year old. My
+friend Dave, who lived down the street, installed Windows 95 that summer and
+invited me over to show me. It was amazing. We were living in the future.</p>
+
+<p>My early years with computers seem pretty tame &#8211; I wasn&#8217;t tearing them apart
+or building my own or doing anything particularly interesting with them, but I
+was using them, I was telling them what to do and they were mostly listening,
+and <em>it never made me feel like I was weird</em>. To the contrary, it made me
+feel powerful and empowered. I felt like a part of this ever-growing community
+of peple who understood, eventually, that computers were going to change the
+world. It was the people who didn&#8217;t understand this who were weird and beneath
+us. It was the people who understood computers better than me of whom I stood in
+awe.</p>
+
+<p>I can barely remember a time when computers weren&#8217;t a part of my life, and yet
+when they first entered my life, their presence was incredibly exceptional.
+These days, of course, computers are ubiquitous, but interaction with them at
+the copy-assembly-from-the-back-of-a-magazine level is almost nonexistent.
+Parents who can approach a computer with the same awe and wonder and
+determination as a child &#8211; as I must imagine that my dad did in 1982 &#8211; are
+likely equally rare.</p>
+
+<p>In some ways, it is like the very ubiquity of technology has led us back to a
+world where socially normative gender roles take hold all over again, and the
+effort we&#8217;re going to need to put into overcoming that feels overwhelming
+sometimes. Words can&#8217;t express my gratitude for the parents I have, for
+that $99.95 investment they made in me, and for fact that I was lucky enough to
+be 5 and full of wonder in 1982.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Thoughts on a (very) small project with Backbone and Backbone Boilerplate]]></title>
@@ -3262,276 +3386,6 @@ well, which means a lot. Thanks, guys.</p>
 
 
 <p><em>Disclaimer: This post contains sample code for illustration purposes. In reality it&rsquo;s all namespaced and these naked functions are actually methods in classes and stuff, and the real code doesn&rsquo;t even look much like the code you see here. I&rsquo;ve also completely ignored questions of when to clear or invalidate the cache. You&rsquo;ve been warned.</em></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code Org, Take 2: Structuring JavaScript Applications]]></title>
-    <link href="http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/"/>
-    <updated>2010-08-27T00:00:00-04:00</updated>
-    <id>http://rmurphey.com/blog/2010/08/27/code-org-take-2-structuring-javascript-applications</id>
-    <content type="html"><![CDATA[<p>It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d been thinking for a few months about how to improve my own code and give it more structure, and how to give advice to others about how to do the same.</p>
-
-
-
-
-<p>My talk was about code organization, but really I was talking about how you might organize a single piece of functionality; I didn&rsquo;t even begin to answer the larger question of how to structure a bona fide JavaScript application. Really, that question is almost perpendicular to the one I was tackling at the time; it&rsquo;s a question of strategy, not tactics.</p>
-
-
-
-
-<p>A year later, I&rsquo;d like to share my thoughts on how I&rsquo;m answering it these days.</p>
-
-
-
-
-<h2>First Things First: What&rsquo;s a JavaScript Application?</h2>
-
-
-
-
-<p>GMail is a JavaScript application; this Posterous blog, while it makes use of JavaScript a bit, is probably not, but the admin interface most certainly is. The line can be frustratingly fuzzy, but at the same time it&rsquo;s pretty important to realize when you&rsquo;ve crossed it.</p>
-
-
-
-
-<p><strong>To me, the defining characteristic of a JavaScript application is that the heavy lifting of manipulating and displaying data falls to the browser</strong>, with most communication with the server happening via XHR.</p>
-
-
-
-
-<p>If you find yourself in application land, welcome. Now what?</p>
-
-
-
-
-<h2>My Building Blocks</h2>
-
-
-
-
-<p>My approach to organizing an application is really just an MVC variant, so I don&rsquo;t want to sound as though I&rsquo;ve discovered something novel or new. However, there are a couple of things to note: For one, the term &ldquo;controller&rdquo; has a couple of different meanings to me, as explained below; for two, there are two distinct flavors of &ldquo;views,&rdquo; though I&rsquo;m not sure exactly how important the distinction is.</p>
-
-
-
-
-<p>I also want to be super-clear that I don&rsquo;t tout this as The One and Only Way; it is just a way that has worked for me, a way that I evolve and adapt with every project I work on, and a way that I&rsquo;ve run by a few people and they haven&rsquo;t laughed at me. My point in dissecting it isn&rsquo;t that you&rsquo;ll try to follow it word-for-word; rather, I hope it might get you thinking about  JavaScript applications beyond the DOM.</p>
-
-
-
-
-<h3>Models</h3>
-
-
-
-
-<p>There&rsquo;s nothing particularly unique to models in a JavaScript application. They are responsible for fetching and storing application data and maintaining its integrity in the browser. They fetch data, store data, and provide an API for other application components to get access to that data. There may be more than one destination for the data: memory, the server, or some type of local storage. But if it has to do with managing data, it&rsquo;s the model&rsquo;s job.</p>
-
-
-
-
-<p>Models stay out of the way when it comes to displaying data or responding (at least directly) to user interaction. Those tasks are left up to other pieces of the application, as we&rsquo;ll see below.</p>
-
-
-
-
-<h4>Example</h4>
-
-
-
-
-<p>A simple search application would likely have a search results model, responsible for receiving the current search term, fetching the data for the term, and broadcasting it to the rest of the application. It might also allow for manipulating individual search results, such as indicating that a particular result was a favorite or a dud, though that task might also fall to an individual search result model depending on the needs.</p>
-
-
-
-
-<h3>Widgets and Data Views</h3>
-
-
-
-
-<p>Views comprise HTML (generally in the form of client-side templates) and CSS for a component, and are generally accompanied by a view controller (the  JavaScript related to interacting with the vew; see below for an explanation). The HTML for a view consists of a single parent node with an arbitrary internal structure; the parent node will optionally have one or more classes on it that can be used to target CSS.</p>
-
-
-
-
-<p>There are two flavors of views, in my mind: widgets, which are responsible for supporting user interaction with the application but don&rsquo;t render any application data; and data views that are responsible for displaying and allowing interaction with application data.</p>
-
-
-
-
-<p>Data views are instantiated with the initial data required to populate them; then, their view controllers listen for messages from other pieces of the application to tell them when new or updated data needs to be rendered.</p>
-
-
-
-
-<h4>Examples</h4>
-
-
-
-
-<p>A basic search input box would be considered a widget &mdash; when it is created, it doesn&rsquo;t need any application data in order to render properly. The widget is strictly responsible for allowing the basic interaction of typing a search term and hitting enter; that is, it&rsquo;s not responsible for actually performing the search.</p>
-
-
-
-
-<p>A search results list is an example of a data view; it renders application data <em>and</em>, potentially, allows for interaction with it. Again, though, it&rsquo;s not responsible for performing the search; it just renders data and then allows for interaction with it.</p>
-
-
-
-
-<h3>View Controllers</h3>
-
-
-
-
-<p>View controllers manage interaction with a data view or widget &mdash; interaction by the user, and interaction with the rest of the application. They are responsible for binding and handling events, for broadcasting user interactions with the widget to the rest of the application, and for listening to other pieces of the application to tell them they have new data to render.</p>
-
-
-
-
-<p>View controllers <em>never</em> handle server communication directly; their role is solely to provide a user interface to the application. When something interesting happens to a view or widget, the view controller announces it. When new data is available for a view, the view controller should know how to handle it. But, again, the view controller itself should focus on providing a user interface, not on interfacing with the server.</p>
-
-
-
-
-<h4>Examples</h4>
-
-
-
-
-<p>The view controller for a search box might listen for the user to focus on the search box, hiding placeholder text for the input. Then, it might listen for the user to hit Enter inside the search box; when that happens, it would broadcast to the rest of the application that the user had submitted a search, along with the term that was searched.</p>
-
-
-
-
-<p>The view controller for a search results list might listen for another piece of the application to announce that new search results are available to be displayed. If the results were for the currently displayed search term, it could add them to the list; if they were for a new term, the results list could empty itself and display the new results.</p>
-
-
-
-
-<h3>Application-Level Controllers</h3>
-
-
-
-
-<p>Application-level controllers are the glue of an application. Loosely, there may be one per &ldquo;page&rdquo; of the application, or one per feature. For example, an application that includes a search feature and a checkout feature might have a controller for each feature, even though the checkout feature might spread across multiple pages.</p>
-
-
-
-
-<p>These controllers are responsible for getting the models and views/widgets for a feature in place and talking to each other. So, a controller might first make sure the required models are in place, then tell them to fetch the appropriate data; once the data is available, the controller would instantiate the views for displaying the data. Finally, the controller would broker future interactions between the views and the models.</p>
-
-
-
-
-<h4>Examples</h4>
-
-
-
-
-<p>On a search results page, a user might click a Favorite button on a search result. The search results list&rsquo;s view controller would handle the click, broadcasting a message about the user&rsquo;s action to the rest of the application. The controller would observe this message and pass it, along with any other relevant information, to the search results model, which would in turn pass the information to the server, or store it locally.</p>
-
-
-
-
-<h2>Notes on Enablers</h2>
-
-
-
-
-<p>I&rsquo;ve glossed over a few implementation details that are somewhat tangential to the organization question, but I want to touch on them briefly:</p>
-
-
-
-
-<h3>Pubsub and Friends</h3>
-
-
-
-
-<p>I didn&rsquo;t want to get too specific about how all of this &ldquo;announcing&rdquo; and &ldquo;broadcasting&rdquo; and &ldquo;listening&rdquo; happens, because there are lots of ways to accomplish it. One could use pubsub, custom events, or any number of other solutions. I don&rsquo;t think the actual implementation is important, though personally I lean heavily on pubsub &mdash; what is important is the notion of broadcasting and listening for announcements that something has happened, allowing other components of the application to react appropriately.</p>
-
-
-
-
-<h3>Templating</h3>
-
-
-
-
-<p>If you aren&rsquo;t using a toolkit with templating built in (or, heck, even if you are), I&rsquo;ve kind of fallen in love with <a href="http://github.com/janl/mustache.js/">mustache.js</a> lately. It&rsquo;s a great client-side templating companion, making it dead-simple to turn data into markup without ending up with templates that look more like JavaScript than HTML.</p>
-
-
-
-
-<p>Figuring out how to maintain templates can be tricky &mdash; do you store them in your page&rsquo;s markup? Do you maintain them as separate files requested via XHR and then cached? Or do you put them in your JavaScript? Dojo&rsquo;s <code>dojo.cache()</code> method provides a handy way to keep your templates in separate files and load them via XHR, while interning them into your JavaScript for you if you use Dojo&rsquo;s build tool. I like this.</p>
-
-
-
-
-<h3>Attaching Events to Views</h3>
-
-
-
-
-<p>Another shameless Dojo plug: <code>dijit.\_Templated</code> provides some serious hotness when it comes to attaching events to views. Read up on <a href="http://docs.dojocampus.org/dijit/_Templated"><code>dojoAttachPoint</code> and <code>dojoAttachEvent</code></a>; together with dijit._Widget&rsquo;s <code>connect</code> and <code>subscribe</code> methods, which provide automatic cleanup for you, there&rsquo;s some real power here, which has me writing hardly any selector-based code these days.</p>
-
-
-
-
-<h3>File Structure</h3>
-
-
-
-
-<p>I hesitate to make any particular recommendations here, because the needs of an application can vary widely. However, I tend to have a directory each for models, views (for view controllers and templates), and controllers (for application-level controllers). Those directories &mdash; especially the views directory &mdash; may contain subdirectories, for instance if there&rsquo;s more than one view for a certain type of data.</p>
-
-
-
-
-<h2>Why Go To All This Trouble, Again?</h2>
-
-
-
-
-<p>So this is the part where you might say &ldquo;OMG, srsly, what happened to &lsquo;get some elements, do something with them?!?&rsquo;&rdquo; Let me be clear, that approach may be <em>entirely appropriate</em> for your particular needs; I&rsquo;m not here to convince you otherwise.</p>
-
-
-
-
-<p>But: if your application is complex enough to warrant considering an approach like this, I&rsquo;ve found that in the long run it actually simplifies my code by cleanly separating concerns and providing a decent roadmap for building new features. I can build and test a solid model for some Thinger, and then use that model throughout my code; I can build and test a user interface component for editing a Thinger long before the data exists to support it. I can map &ldquo;pages&rdquo; of my application to application-level controllers, providing a high-level view of what&rsquo;s happening where.</p>
-
-
-
-
-<p>Best of all, paths to code reuse become clear and entanglements become fewer when I keep this division of responsibilities in mind as I code. A search results data view, for example, can be made to accept search results from any model that provides them in the proper format; a search can be initiated and the results displayed without depending on a user entering text into a search input widget.</p>
-
-
-
-
-<p>Dividing the responsibilities into well-defined sections leads to components that are truly pluggable, often in ways you may not have even imagined when you wrote them. In an application that evolves over time, it&rsquo;s hard to overstate the benefits of this.</p>
-
-
-
-
-<h2>In Conclusion &amp; A Plea</h2>
-
-
-
-
-<p>If you find yourself working on a JavaScript application, I can&rsquo;t recommend enough that you consider, at length, what underlying structure makes the most sense; it&rsquo;s almost inevitably more complex than you can manage via the DOM alone. Again, my answer isn&rsquo;t the right answer, it&rsquo;s just an answer, but I hope it helps you start thinking about what the right answer might be for your project.</p>
-
-
-
-
-<p>If you&rsquo;re interested in this stuff, I&rsquo;d encourage you to check out <a href="http://javascriptmvc.com/">JavaScriptMVC</a>, if only to see how they approach these problems; <a href="http://cujojs.com/">Cujo.js</a> is another framework, built on top of Dojo, that aims to enter this space, but you&rsquo;ll have to wait until mid-September to see it.</p>
-
-
-
-
-<p>Finally: If you have your own thoughts to share about how to approach these large application questions, I&rsquo;m pleading with you to write your own blog post(s) about them. If you have other reference material on the topic, I beg you to share it. As more and more people transition from simple JavaScript enhancements to non-trivial applications, the need for education is huge.</p>
 
 ]]></content>
   </entry>
