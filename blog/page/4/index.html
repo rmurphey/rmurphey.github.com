@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="If you follow me on Twitter, you&#8217;ve heard about TXJS by now, but let me tell you: now that we&#8217;ve announced Douglas Crockford and John &hellip;">
+  <meta name="description" content="I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you&#8217;ve most &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/">Lessons Learned From Taking on a Project in Crisis</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-03T00:00:00-04:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2010</time>
+        
+         | <a href="/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you&#8217;ve most certainly heard of. I developed the entire front-end &#8211; HTML, CSS, and JavaScript &#8211; for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I&#8217;ve learned, in hopes that I can benefit from my experience in the future.</p>
+
+
+
+
+<ul>
+    <li>Demand all technical source material up front, such as functional specs, mockups, work that&#8217;s been done to date, etc. Give the client a fixed amount of time to deliver that source material, and don&#8217;t make a decision about taking on the project until you&#8217;ve seen it. What the client can deliver in that fixed amount of time will shed a lot of light on the state of the project and whether their expectations are realistic.</li>
+    <li>Set clear time expectations. Am I willing to work 16 hours a day? Am I expected to? Are there hours during which I&#8217;ll be expected to be available? Am I willing to work on the weekend?</li>
+    <li>Find out whether the client expects me to be available after the imminent deadline, and to what extent. The last thing I want is to snatch defeat from the jaws of victory by being unable to support the code I&#8217;ve written.</li>
+    <li>Do not accept responsibility for commitments made on my behalf. The recruiter said I&#8217;d be available six hours a day when I told him four? Not my problem. The client committed to having a feature ready for review without consulting me? They probably won&#8217;t make that mistake again.</li>
+    <li>Ascertain the rest of the team&#8217;s commitment to the project. If I&#8217;m expected to work long hours, will they be there during those long hours to get me what I need? Are there any constraints on their availability?</li>
+    <li>Establish a single point of contact at the client, and make clear I&#8217;ll be depending on them to get me any information I need and I&#8217;ll be treating their decisions as final. Insist that they participate in all calls I&#8217;m expected to participate in.</li>
+    <li>Limit the amount of work I do before I have access to all client systems I&#8217;ll need access to: version control, testing environments, ticketing systems, etc.</li>
+    <li>Insist on a ticketing system. I&#8217;m new to the project and I have a lot to get up to speed on. I don&#8217;t want emails flying at me from all directions &#8211; decisions and technical requirements need to be documented in a single place that everyone can see. This is my only insurance when someone wants to know why something isn&#8217;t done, or why it wasn&#8217;t done the way they expected.</li>
+    <li>Insist on version control, even if it&#8217;s something crappy like CVS. I&#8217;ll need a way to make sure the rest of the team has access to my latest and greatest. FTP blows, especially when I&#8217;m FTPing to a server where another developer is constantly deploying a new build, overwriting my work.</li>
+</ul>
+
+
+
+
+<p>What other advice do you have?</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -2010,61 +2069,6 @@ I was wondering if this is a common thing or more so something that is happening
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/01/12/jquery-validation-and-tinymce/">jQuery Validation and TinyMCE</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-12T00:00:00-05:00" pubdate data-updated="true">Jan 12<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/01/12/jquery-validation-and-tinymce/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just solved a problem where the <a href="http://docs.jquery.com/Plugins/Validation">jQuery validation plugin</a> wasn&#8217;t playing so nicely with <a href="http://wiki.moxiecode.com/index.php/TinyMCE:Index">TinyMCE</a> &#8211; the validation plugin was trying to validate the textarea before TinyMCE had a chance to copy the editor contents back to the textarea. I was about to yank TinyMCE out of the page but a little reading through the TinyMCE docs led me to try this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mySubmitButton&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">tinyMCE</span><span class="p">.</span><span class="nx">activeEditor</span><span class="p">.</span><span class="nx">getContent</span><span class="p">();</span> <span class="c1">// get the content</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myTextarea&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span> <span class="c1">// put it in the textarea</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And what do you know, it works. One note: it&#8217;s important to bind the content replacement to the click event of the submit button, not to the actual form submission, or else the validation may try to run before the content gets copied back to the textarea.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -2082,6 +2086,10 @@ I was wondering if this is a common thing or more so something that is happening
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
       </li>
     
@@ -2095,10 +2103,6 @@ I was wondering if this is a common thing or more so something that is happening
     
       <li class="post">
         <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
       </li>
     
   </ul>

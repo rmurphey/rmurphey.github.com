@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-25T14:30:30-04:00</updated>
+  <updated>2012-03-26T12:31:08-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bocoup]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/26/bocoup/"/>
+    <updated>2012-03-26T10:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/26/bocoup</id>
+    <content type="html"><![CDATA[<p><img src="http://rmurphey.com/images/bocoup.png" alt="bocoup" /></p>
+
+<p>It wasn&#8217;t so long ago that I was giving my first talk about JavaScript at the
+2009 jQuery Conference, and it was there that Bocoup&#8217;s Boaz Sender and Rick
+Waldron created the (now-defunct) objectlateral.com, a celebration of an
+unfortunate typo in the conference program&#8217;s listing of my talk.</p>
+
+<p>A bond was forged, and ever since I&#8217;ve watched as <a href="http://bocoup.com">Bocoup</a>
+has grown and prospered. I&#8217;ve watched them do mind-boggling work for the likes
+of Mozilla, The Guardian, Google, and others, all while staying true to their
+mission of embracing, contributing to, and evangelizing open-web technologies.</p>
+
+<p>Today, I&#8217;m beyond excited &#8211; and also a wee bit humbled &#8211; to announce that
+<a href="http://weblog.bocoup.com/welcome-rebecca-murphey">I&#8217;m joining their consulting team</a>.
+As part of that role, I look forward to spending even more time working on and
+talking about patterns and best practices for developing client-side JavaScript
+applications. I also hope to work on new <a href="http://training.bocoup.com/">training offerings</a>
+aimed at helping people make great client-side applications with web technology.</p>
+
+<p>New beginnings have a terrible tendency to be accompanied by endings, and while
+the Bocoup opportunity is one I couldn&#8217;t refuse, it&#8217;s with a heavy heart that I
+bid farewell to the team at Toura. I&#8217;m proud of what we&#8217;ve built together, and
+that we&#8217;ve shared so much of it with the developer community in the form of
+<a href="http://github.com/Toura/mulberry">Mulberry</a>. The beauty of open source means
+that I fully expect to continue working on and with Mulberry once I leave
+Toura, but I know it won&#8217;t be the same.</p>
+
+<p>I&#8217;ll be spending the next few days tying up loose ends at Toura, and then I&#8217;m
+taking a break in April to hit JSConf, spend some time in Berlin, and head to
+Warsaw to speak at <a href="http://2012.front-trends.com/">FrontTrends</a>. I&#8217;ll make my
+way back home in time to start with Bocoup on May 1.</p>
+
+<p>And so. To my teammates at Toura: I wish you nothing but the best, and look
+forward to hearing news of your continued success. To Bocoup: Thanks for
+welcoming me to the family. It&#8217;s been a long time coming, and I&#8217;m glad the day
+is finally here.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Girls and Computers]]></title>
@@ -3194,198 +3238,6 @@ well, which means a lot. Thanks, guys.</p>
 
 
 <p>If you think the quiz would be useful to you as you&rsquo;re looking for a JavaScript developer to call your own, it&rsquo;s licensed under the <a href="http://sam.zoy.org/wtfpl/">WTFPL</a>, which you should read just because it&rsquo;s funny.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Making sense of dojo.when: A simple XHR caching example]]></title>
-    <link href="http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/"/>
-    <updated>2010-08-29T00:00:00-04:00</updated>
-    <id>http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example</id>
-    <content type="html"><![CDATA[<p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
-
-
-
-
-<p>This is one of those things that was super-neat when I read about it, but it took me a while to incorporate it into my code &mdash; it&rsquo;s only in the last couple of weeks that I&rsquo;ve had that wonderful moment when I&rsquo;ve said &ldquo;oh, I could totally use <code>dojo.when</code> for that!&rdquo; Moments like these make me very happy.</p>
-
-
-
-
-<p>It&rsquo;s pretty common that an application makes an Ajax request for some data, and then caches that data so the request won&rsquo;t have to happen again; the pattern might look something like this:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]);</span>
-</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
-</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
-</span><span class='line'>    <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Here we have a function that takes an ID; the function looks in the cache to see if there&rsquo;s a value stored for the ID, and if so, it passes the stored value to a <code>handleResponse</code> function. If not, it does an XHR to get the data; when the XHR succeeds, it stores the data in the cache and, again, passes the value to the <code>handleResponse</code> function.</p>
-
-
-
-
-<p>There&rsquo;s nothing strictly wrong with this, but I discovered that some neat abstraction opportunities became more clear when I switched to using <code>dojo.when</code> instead:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span>
-</span><span class='line'>    <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">||</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
-</span><span class='line'>      <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
-</span><span class='line'>      <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>    <span class="p">}),</span>
-</span><span class='line'>    <span class="nx">handleResponse</span>
-</span><span class='line'>  <span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Now we&rsquo;re telling our <code>getSomeStuff</code> function to look for a cached value; if it finds one, <code>dojo.when</code> will immediately pass that value to the <code>handleResponse</code> function. If it doesn&rsquo;t find one, it will run the XHR, and <code>dojo.when</code> will magically pass the XHR&rsquo;s response to the <code>handleResponse</code> function instead. This is hot.</p>
-
-
-
-
-<p>This works because <code>dojo.xhrGet</code> returns a &ldquo;promise&rdquo; object with a <code>then</code> method. <code>dojo.when</code> looks to see whether it got a promise object as its first argument; if so, it uses the <code>then</code> method of the promise object to attach the callback provided as the second argument to <code>dojo.when</code>. If not, it simply calls the callback immediately on the first argument. The real magic is actually in <code>dojo.Deferred</code>, not in <code>dojo.when</code> itself. Since all of Dojo&rsquo;s XHR methods return a <code>dojo.Deferred</code> promise, <code>dojo.when</code> will &ldquo;just work.&rdquo;</p>
-
-
-
-
-<p>I found that I was going through my application and ripping out instances of the old code, replacing it with the new. And then I had that &ldquo;oh sh*t I&rsquo;m copying and pasting, aren&rsquo;t I &hellip;&rdquo; moment, and saw my way to an abstraction.</p>
-
-
-
-
-<p>In my application, I was actually caching the responses using the URL from which I&rsquo;d requested them, which works out to be a perfectly unique ID for the data. (This particular part may or may not work in your application.) My abstraction was an essentially drop-in replacement for <code>dojo.xhrGet</code> calls:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">cacheableXhrGet</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">req</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">||</span>
-</span><span class='line'>            <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">(</span><span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
-</span><span class='line'>              <span class="c1">// override the load handler</span>
-</span><span class='line'>              <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
-</span><span class='line'>              <span class="p">}</span>
-</span><span class='line'>            <span class="p">},</span> <span class="nx">settings</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">load</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>I can pass a settings object to <code>cacheableXhrGet</code> that looks exactly like the object I&rsquo;d pass to <code>dojo.xhrGet</code>, but replace the <code>load</code> function before actually passing it to <code>dojo.xhrGet</code>. But before the XHR even has a chance to get set up, I check my cache for a stored response; if I find one, I store it in the <code>req</code> variable, but otherwise I store the XHR there.</p>
-
-
-
-
-<p>In either case, the function defined at <code>settings.load</code> gets the proper response value via <code>dojo.when</code>. For bonus points, I then return either the cached value or the XHR &mdash; which means <em>other code can use the return value of <code>cacheableXhrGet</code> for its own <code>dojo.when</code></em>. How neat is that?</p>
-
-
-
-
-<h2>Conclusion</h2>
-
-
-
-
-<p>Promises and deferred&rsquo;s are a really pleasant tool to have in your JavaScript arsenal once you get the hang of them, and <code>dojo.when</code> seems like a great place to start understanding them.</p>
-
-
-
-
-<p>Out of the box, Dojo makes use of deferreds for all of its XHR functionality, meaning that you can pass around the return value of any Dojo XHR method and do fun things you can&rsquo;t do with jQuery&rsquo;s <code>$.ajax</code>, like add more callbacks to a request after you&rsquo;ve set it up.</p>
-
-
-
-
-<p>I&rsquo;ve just recently started realizing when I could incorporate <a href="http://docs.dojocampus.org/dojo/Deferred"><code>dojo.Deferred</code></a> functionality into my own code &mdash; again, now that I&rsquo;ve got the hang of it, I&rsquo;m pretty sure it&rsquo;s going to dramatically change how I write asynchronous code.</p>
-
-
-
-
-<p><em>Disclaimer: This post contains sample code for illustration purposes. In reality it&rsquo;s all namespaced and these naked functions are actually methods in classes and stuff, and the real code doesn&rsquo;t even look much like the code you see here. I&rsquo;ve also completely ignored questions of when to clear or invalidate the cache. You&rsquo;ve been warned.</em></p>
 
 ]]></content>
   </entry>

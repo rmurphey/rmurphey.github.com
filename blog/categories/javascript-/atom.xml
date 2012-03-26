@@ -4,7 +4,7 @@
   <title><![CDATA[Category: javascript, | Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/blog/categories/javascript-/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-03-25T14:30:30-04:00</updated>
+  <updated>2012-03-26T12:31:08-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bocoup]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/26/bocoup/"/>
+    <updated>2012-03-26T10:00:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/26/bocoup</id>
+    <content type="html"><![CDATA[<p><img src="/images/bocoup.png" alt="bocoup" /></p>
+
+<p>It wasn't so long ago that I was giving my first talk about JavaScript at the
+2009 jQuery Conference, and it was there that Bocoup's Boaz Sender and Rick
+Waldron created the (now-defunct) objectlateral.com, a celebration of an
+unfortunate typo in the conference program's listing of my talk.</p>
+
+<p>A bond was forged, and ever since I've watched as <a href="http://bocoup.com">Bocoup</a>
+has grown and prospered. I've watched them do mind-boggling work for the likes
+of Mozilla, The Guardian, Google, and others, all while staying true to their
+mission of embracing, contributing to, and evangelizing open-web technologies.</p>
+
+<p>Today, I'm beyond excited -- and also a wee bit humbled -- to announce that
+<a href="http://weblog.bocoup.com/welcome-rebecca-murphey">I'm joining their consulting team</a>.
+As part of that role, I look forward to spending even more time working on and
+talking about patterns and best practices for developing client-side JavaScript
+applications. I also hope to work on new <a href="http://training.bocoup.com/">training offerings</a>
+aimed at helping people make great client-side applications with web technology.</p>
+
+<p>New beginnings have a terrible tendency to be accompanied by endings, and while
+the Bocoup opportunity is one I couldn't refuse, it's with a heavy heart that I
+bid farewell to the team at Toura. I'm proud of what we've built together, and
+that we've shared so much of it with the developer community in the form of
+<a href="http://github.com/Toura/mulberry">Mulberry</a>. The beauty of open source means
+that I fully expect to continue working on and with Mulberry once I leave
+Toura, but I know it won't be the same.</p>
+
+<p>I'll be spending the next few days tying up loose ends at Toura, and then I'm
+taking a break in April to hit JSConf, spend some time in Berlin, and head to
+Warsaw to speak at <a href="http://2012.front-trends.com/">FrontTrends</a>. I'll make my
+way back home in time to start with Bocoup on May 1.</p>
+
+<p>And so. To my teammates at Toura: I wish you nothing but the best, and look
+forward to hearing news of your continued success. To Bocoup: Thanks for
+welcoming me to the family. It's been a long time coming, and I'm glad the day
+is finally here.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Thoughts on a (very) small project with Backbone and Backbone Boilerplate]]></title>
@@ -1806,47 +1850,6 @@ works” should never be mistaken for “it’s done.”</p>
 
 <p>Finally: If you have your own thoughts to share about how to approach these large application questions, I&rsquo;m pleading with you to write your own blog post(s) about them. If you have other reference material on the topic, I beg you to share it. As more and more people transition from simple JavaScript enhancements to non-trivial applications, the need for education is huge.</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum]]></title>
-    <link href="http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum/"/>
-    <updated>2010-06-17T00:00:00-04:00</updated>
-    <id>http://rmurphey.com/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum</id>
-    <content type="html"><![CDATA[<p>I've been leading <a href="http://www.rebeccamurphey.com/training">jQuery trainings</a> for more than a year now, from tiny gatherings that I organized myself at the local coworking space, to intensive two-day sessions at local web companies, to whirlwind one-day classes at governmental agencies. Over the course of those trainings, I've developed what I'd like to think is a decent curriculum -- training material that's the size of a small book, exercises that demonstrate core concepts, and solutions to those exercises that students can peek at later or when they get stuck.</p>
-
-<p>I decided recently that it was time for all of this material to see the light of day, so I spent the last several days converting it all to DocBook files that allow for easy publication to HTML and PDF (and other formats, if I'm later so inclined). I also fleshed out some topics that I'd given short shrift, and started planning sections covering advanced topics such as plugin authoring, code organization, best practices, and more. There's more to come in the next few days, but I think what I've done so far is worth sharing. I hope you'll agree.</p>
-
-<ul>
-<li><a href="http://rebeccamurphey.com/jqfundamentals/">Full HTML version of jQuery Fundamentals book</a></li>
-<li><a href="http://rebeccamurphey.com/jqfundamentals/book/release/html/index.html">"Chunked" HTML version of jQuery Fundamentals book</a></li>
-<li>
-<a href="http://github.com/rmurphey/jqfundamentals/">GitHub repo</a> (exercises, solutions, and book source code)</li>
-</ul>
-
-
-
-
-<br />
-
-
-<p style="margin: 20px 0;"><div class='p_embed p_image_embed'>
-<a href="http://getfile9.posterous.com/getfile/files.posterous.com/import-vejw/bxqpHqGhgCJJadEpIijidbehCvswlGiiGvHwyiJGejyjvxwnEDdopGoHuswe/media_httpgyazocoma21_qFIfz.png.scaled1000.png"><img alt="Media_httpgyazocoma21_qfifz" height="507" src="http://getfile2.posterous.com/getfile/files.posterous.com/import-vejw/bxqpHqGhgCJJadEpIijidbehCvswlGiiGvHwyiJGejyjvxwnEDdopGoHuswe/media_httpgyazocoma21_qFIfz.png.scaled500.png" width="500" /></a>
-</div>
-</p>
-
-
-<br />
-
-
-<p>My goals in releasing this are several. First and foremost, I want to see people writing better jQuery. The free resources for learning jQuery are scattered across the internets, and my personal experience of learning the library was haphazard — it was a long time before I learned some things I wish I'd known from the get-go. In addition, I want people who are writing jQuery to understand JavaScript. To that end, the book begins with a survey of JavaScript itself before jumping into jQuery.  Finally, I want to enlist the bright minds of the jQuery community to help developing a robust, authoritative, in-depth jQuery curriculum, and in exchange it only seemed fair to make it available to everyone.</p>
-
-<p>I should mention that the goal of this material is to serve as a companion to a human instructor. That said, individuals may find it useful for self-study, especially if they're diligent about doing the exercises at the end of each chapter.</p>
-
-<p>If you're inclined to help -- by adding a chapter, a section, a paragraph, an exercise, or even just a correction -- fork the repo and send me a pull request. I look forward to seeing how this project might evolve with the community's help.</p>
-
-<p><strong>Note</strong>: If you comment on this post pointing out an issue with the material, I will do my best to tend to the issue, but I probably won't publish your comment, as this post isn't the right place for reporting issues in the code. You can <a href="http://github.com/rmurphey/jqfundamentals/issues">report issues at the repository</a>, but if it's important to you, <em>please</em> fork the repository, make the change, and send me a pull request.</p>
 ]]></content>
   </entry>
   

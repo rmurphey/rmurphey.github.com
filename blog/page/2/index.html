@@ -9,7 +9,19 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="My presentation the jQuery Divide (video here) has been making the rounds on the internet again, six months after I delivered it at JSConf.eu in &hellip;">
+  <meta name="description" content="I was reviewing some code last week and came across a snippet that looked a lot like this: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+var someObject = { // ... &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +87,361 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/25/objects-as-arguments/">Objects as Arguments: Where Do You Draw the Line?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-25T11:16:00-04:00" pubdate data-updated="true">Apr 25<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/04/25/objects-as-arguments/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was reviewing some code last week and came across a snippet that looked a lot like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">someObject</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// ...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">onSuccess</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">someMethod</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">key</span><span class="p">,</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">secret</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">someMethod</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">host</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>My immediate response was to suggest that it didn&#8217;t make sense to be passing
+four separate arguments to <code>someMethod</code>, especially when the arguments were
+being &#8220;unpacked&#8221; from an already-existing object. Certainly we could just pass
+the <code>resp</code> object directly to <code>someMethod</code>, and let <code>someMethod</code> unpack it as
+necessary &#8211; we&#8217;d save some bytes, and we&#8217;d also leave ourselves some room to
+grow. &#8220;I&#8217;m not a big fan of functions that take four arguments,&#8221; I said in my
+GitHub comment.</p>
+
+<p>To the original author&#8217;s credit, &#8220;because I say so&#8221; wasn&#8217;t sufficient reason to
+rewrite code that was working just fine, thank you very much. If four arguments
+was too many, was two arguments too many? Why draw the line at four? Surely the
+four-argument signature helped indicate to future developers what was required
+in order for the function to &#8230; function. Right? My hackles momentarily
+raised, I parried by pointing out that if the arguments were actually required
+by the function, maybe the function ought to actually check for their presence
+before using them. Ha! While the original author was distracted by my disarming
+logic, I fretted over the fact that I use a function that take four arguments
+every day: <code>dojo.connect(node, 'click', contextObj, 'handlerMethod')</code>. Ohnoes.</p>
+
+<p>So where do you draw the line? Certainly you could write that <code>dojo.connect</code>
+call like so:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">connect</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">node</span> <span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">event</span> <span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">context</span> <span class="o">:</span> <span class="nx">contextObj</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">method</span> <span class="o">:</span> <span class="s1">&#39;handlerMethod&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This, though, might make you poke your eyes out. It certainly isn&#8217;t as concise
+as the four-argument approach, and it makes a lot of things like
+<a href="http://ejohn.org/blog/partial-functions-in-javascript/">partial</a>
+<a href="http://dojotoolkit.org/reference-guide/dojo/partial.html#dojo-partial">application</a>
+a lot harder. Clearly there&#8217;s more to this than &#8220;if there&#8217;s more than four
+arguments, put them in an object&#8221; &#8230; but what are the rules?</p>
+
+<h2>Optional Arguments</h2>
+
+<p>Probably the most compelling reason to use an object is when there are several
+optional arguments. For example, last fall I was reviewing some code from a
+potential training client, and I came across this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;done!&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>No one can argue that this is not terrible, and yet every experienced
+JavaScript developer knows how the developer(s) who wrote it arrived there. At
+first, the function needed three arguments, and all was good with the world.
+But then, it seemed like the same function could be used to do another thing by
+just passing two more arguments &#8211; no big deal, because if those two arguments
+weren&#8217;t present, then just the first three would suffice. Five arguments
+certainly isn&#8217;t <em>that</em> bad, right? After that, though, things went south: for
+whatever undoubtedly marketing-department-driven reason, suddenly both the
+original three-argument case and the later five-argument case both needed to
+receive two more arguments, and these two new arguments were mandatory. Now
+both cases had seven-argument signatures, and in some cases, two of those seven
+arguments needed to be null so nothing would break.</p>
+
+<p>This case demonstrates the most compelling reason to switch to using an object
+instead: optional arguments. When the developer discovered that the original,
+three-argument <code>addBling</code> could be used for the five-argument case as well, it
+was probably time to refactor:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// original</span>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span> <span class="s1">&#39;slow&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// new hotness</span>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, the same function could be used while passing it more information about
+how to behave in the five-argument case:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#omgSoAwesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">unicorns</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">rainbows</span> <span class="o">:</span> <span class="mi">5</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then, when it came time to add yet more bling, the function signature wouldn&#8217;t need to change,</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#awesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;fuchsia&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timesToBlink</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">alertOnSuccess</span> <span class="o">:</span> <span class="s1">&#39;done!&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">addBling</span><span class="p">(</span><span class="s1">&#39;#omgSoAwesome&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">speed</span> <span class="o">:</span> <span class="s1">&#39;fast&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">unicorns</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">rainbows</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">timesToBlink</span> <span class="o">:</span> <span class="mi">9001</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">alertOnSuccess</span> <span class="o">:</span> <span class="s1">&#39;woohoo!&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Extensibility and Future-Proofing</h2>
+
+<p>Another case for passing in an object is when you want the flexibility that an
+object provides, even if your code doesn&#8217;t require it for now:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">firstName</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">lastName</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For now, you only want to be able to provide the first and last name of the
+person &#8211; it would work just fine to create a function signature for the
+<code>Person</code> constructor that took exactly those two arguments, because indeed they
+are required. On the other hand, though, this is incredibly short-sighted &#8211;
+while first and last name may be all that you care about now, there&#8217;s obviously
+more to a person than those two attributes, and eventually you may want to
+provide attributes such as age, occupation, etc. Doing this with individual
+arguments quickly becomes unsustainable. Besides that, though, it also makes
+assigning instance properties a pain in the ass. By passing an object, we can
+rewrite the above code as such:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</span><span class='line'>  <span class="c1">// jQuery: $.extend(this, args);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now &#8211; assuming this is what we want &#8211; we can mix in <em>any</em> settings we provide
+in the <code>args</code> argument. Dojo, for example, bakes this ability in to anything
+that inherits from <code>dijit._Widget</code>:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">thinger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">my</span><span class="p">.</span><span class="nx">Thinger</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">title</span> <span class="o">:</span> <span class="s1">&#39;Favorite Animals&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">animals</span> <span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;Narwhal&#39;</span><span class="p">,</span> <span class="s1">&#39;Lemur&#39;</span><span class="p">,</span> <span class="s1">&#39;Honey Badger&#39;</span> <span class="p">]</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Use Objects for Related Data</h2>
+
+<p>An important qualifier here is that all of the properties of an object that
+we&#8217;ve talked about passing to our <code>Person</code> constructor are related &#8211; they all
+are saying something about the Person you&#8217;re creating. What if creating our
+Person was asynchronous, and we wanted to run a function once our Person was
+created? In a (contrived) case like that, I think it does make sense to pass in
+a separate argument:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">configObj</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this particular example, we still only have two arguments &#8211; we haven&#8217;t
+wandered into that muddy realm of four or more. That said, I think this
+distinction is part of what makes <code>dojo.connect(node, 'click', contextObj,
+'handlerMethod')</code> OK: the arguments are four distinctly different types of
+information. Taken together, they have an almost narrative quality: when this
+node receives a click, use the context object&#8217;s <code>handlerMethod</code>. A signature
+like <code>new Person('Rebecca', 'Murphey', 34, 'web developer', 2 /*cats*/, 2
+/*dogs*/)</code> doesn&#8217;t <em>feel</em> the same as the <code>dojo.connect</code> example &#8211; it&#8217;s
+information that&#8217;s too related to be expressed as independent arguments.</p>
+
+<h2>Four or More, Time to Refactor?</h2>
+
+<p>I think the bottom line here is a) it&#8217;s complicated, and b) if your function
+signature has four or more arguments, you should almost certainly consider
+whether there&#8217;s a better way to do it. If the arguments are super-related, it
+may be they belong in an object, so you get the benefit of easy extensibility
+down the road. If there are optional arguments, you almost certainly want to
+wrap those in an object to avoid passing <code>null</code> over and over again.</p>
+
+<p>Personally, my threshold is actually closer to two arguments &#8211; if I find
+myself wanting a third argument, I question whether my function is trying to do
+more than it should be doing &#8211; maybe I should do some pre-processing of the
+input so I can get away with just passing in two arguments. Every additional
+argument is an indication of additional complexity, which means an additional
+opportunity for things to go wrong.</p>
+
+<h2>Other Considerations</h2>
+
+<p>I posed this question to
+<a href="http://twitter.com/#!/rmurphey/status/62172041037623296">Twitter</a> and got a
+ton of interesting feedback. Here are some of the highlights that I didn&#8217;t
+cover above:</p>
+
+<ul>
+<li><a href="https://twitter.com/raydaly/status/62320791232069632">@raydaly</a> no new nouns
+is my principle. If unrelated data needs to be passed, diff args.</li>
+<li><a href="https://twitter.com/dadaxl/status/62308649699250176">@dadaxl</a> I would pass
+an obj if I&#8217;ve a dynamic bunch of args containing functions.</li>
+<li><a href="https://twitter.com/sh1mmer/status/62308597153021952">@sh1mmer</a> omg! Objects
+for the love of god! No one likes immutable APIs. Just ask @ls_n</li>
+<li><a href="https://twitter.com/mattrogish/status/62307288597266432">@MattRogish</a> Rails
+tends to do required things are named args, optional things are a hash</li>
+<li><a href="https://twitter.com/ryanflorence/status/62511600837468161">@ryanflorence</a>
+obfuscation often influences me, objects don&#8217;t compress as well as multiple
+args.</li>
+<li><a href="https://twitter.com/getify/status/62512606132449280">@getify</a> if more than
+half of the args are optional&#8230;or if there are several boolean params which
+without names can be confusing</li>
+<li><a href="https://twitter.com/jcoglan/status/62253184369954816">@jcoglan</a> When further
+args are optional, or args.length&gt;3. Need to spot when options merit a
+refactoring, though.</li>
+<li><a href="https://twitter.com/digitalicarus/status/62247330354692096">@digitalicarus</a>
+A combo of sheer length, amount of reuse, if it&#8217;s an API, and/or if it&#8217;s
+designed to be called a variety of ways to a similar end.</li>
+<li><a href="https://twitter.com/bryanforbes/status/62237053148086272">@BryanForbes</a> If I
+have to start swapping arguments and type checking, it&#8217;s time for one object
+or reworking my function.</li>
+<li><a href="https://twitter.com/myfreeweb/status/62229278581993472">@myfreeweb</a> I use an
+object when I start forgetting the order of args &#8230; or there is no logical
+order like (key, value, callback) at all</li>
+<li><a href="https://twitter.com/zetafleet/status/62209835097268224">@zetafleet</a> When
+many of the arguments are optional or they&rsquo;re all getting stored or
+copied directly over to the object.</li>
+<li><a href="https://twitter.com/maravillas/status/62176422877335552">@maravillas</a> I
+usually don&#8217;t make an obj just for passing data; if arglist is too long,
+maybe the function does too much and needs refactoring.</li>
+</ul>
+
+
+<h2>Postscript</h2>
+
+<p>We ended up leaving the code that spurred this whole conversation exactly as it
+was.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1930,227 +2297,6 @@ well, which means a lot. Thanks, guys.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/">Making Sense of dojo.when: A Simple XHR Caching Example</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-29T00:00:00-04:00" pubdate data-updated="true">Aug 29<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
-
-
-
-
-<p>This is one of those things that was super-neat when I read about it, but it took me a while to incorporate it into my code &mdash; it&rsquo;s only in the last couple of weeks that I&rsquo;ve had that wonderful moment when I&rsquo;ve said &ldquo;oh, I could totally use <code>dojo.when</code> for that!&rdquo; Moments like these make me very happy.</p>
-
-
-
-
-<p>It&rsquo;s pretty common that an application makes an Ajax request for some data, and then caches that data so the request won&rsquo;t have to happen again; the pattern might look something like this:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]);</span>
-</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
-</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
-</span><span class='line'>    <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Here we have a function that takes an ID; the function looks in the cache to see if there&rsquo;s a value stored for the ID, and if so, it passes the stored value to a <code>handleResponse</code> function. If not, it does an XHR to get the data; when the XHR succeeds, it stores the data in the cache and, again, passes the value to the <code>handleResponse</code> function.</p>
-
-
-
-
-<p>There&rsquo;s nothing strictly wrong with this, but I discovered that some neat abstraction opportunities became more clear when I switched to using <code>dojo.when</code> instead:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span>
-</span><span class='line'>    <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">||</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
-</span><span class='line'>      <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
-</span><span class='line'>      <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>    <span class="p">}),</span>
-</span><span class='line'>    <span class="nx">handleResponse</span>
-</span><span class='line'>  <span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Now we&rsquo;re telling our <code>getSomeStuff</code> function to look for a cached value; if it finds one, <code>dojo.when</code> will immediately pass that value to the <code>handleResponse</code> function. If it doesn&rsquo;t find one, it will run the XHR, and <code>dojo.when</code> will magically pass the XHR&rsquo;s response to the <code>handleResponse</code> function instead. This is hot.</p>
-
-
-
-
-<p>This works because <code>dojo.xhrGet</code> returns a &ldquo;promise&rdquo; object with a <code>then</code> method. <code>dojo.when</code> looks to see whether it got a promise object as its first argument; if so, it uses the <code>then</code> method of the promise object to attach the callback provided as the second argument to <code>dojo.when</code>. If not, it simply calls the callback immediately on the first argument. The real magic is actually in <code>dojo.Deferred</code>, not in <code>dojo.when</code> itself. Since all of Dojo&rsquo;s XHR methods return a <code>dojo.Deferred</code> promise, <code>dojo.when</code> will &ldquo;just work.&rdquo;</p>
-
-
-
-
-<p>I found that I was going through my application and ripping out instances of the old code, replacing it with the new. And then I had that &ldquo;oh sh*t I&rsquo;m copying and pasting, aren&rsquo;t I &hellip;&rdquo; moment, and saw my way to an abstraction.</p>
-
-
-
-
-<p>In my application, I was actually caching the responses using the URL from which I&rsquo;d requested them, which works out to be a perfectly unique ID for the data. (This particular part may or may not work in your application.) My abstraction was an essentially drop-in replacement for <code>dojo.xhrGet</code> calls:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">cacheableXhrGet</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
-</span><span class='line'>      <span class="nx">req</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">||</span>
-</span><span class='line'>            <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">(</span><span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
-</span><span class='line'>              <span class="c1">// override the load handler</span>
-</span><span class='line'>              <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
-</span><span class='line'>              <span class="p">}</span>
-</span><span class='line'>            <span class="p">},</span> <span class="nx">settings</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">load</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>I can pass a settings object to <code>cacheableXhrGet</code> that looks exactly like the object I&rsquo;d pass to <code>dojo.xhrGet</code>, but replace the <code>load</code> function before actually passing it to <code>dojo.xhrGet</code>. But before the XHR even has a chance to get set up, I check my cache for a stored response; if I find one, I store it in the <code>req</code> variable, but otherwise I store the XHR there.</p>
-
-
-
-
-<p>In either case, the function defined at <code>settings.load</code> gets the proper response value via <code>dojo.when</code>. For bonus points, I then return either the cached value or the XHR &mdash; which means <em>other code can use the return value of <code>cacheableXhrGet</code> for its own <code>dojo.when</code></em>. How neat is that?</p>
-
-
-
-
-<h2>Conclusion</h2>
-
-
-
-
-<p>Promises and deferred&rsquo;s are a really pleasant tool to have in your JavaScript arsenal once you get the hang of them, and <code>dojo.when</code> seems like a great place to start understanding them.</p>
-
-
-
-
-<p>Out of the box, Dojo makes use of deferreds for all of its XHR functionality, meaning that you can pass around the return value of any Dojo XHR method and do fun things you can&rsquo;t do with jQuery&rsquo;s <code>$.ajax</code>, like add more callbacks to a request after you&rsquo;ve set it up.</p>
-
-
-
-
-<p>I&rsquo;ve just recently started realizing when I could incorporate <a href="http://docs.dojocampus.org/dojo/Deferred"><code>dojo.Deferred</code></a> functionality into my own code &mdash; again, now that I&rsquo;ve got the hang of it, I&rsquo;m pretty sure it&rsquo;s going to dramatically change how I write asynchronous code.</p>
-
-
-
-
-<p><em>Disclaimer: This post contains sample code for illustration purposes. In reality it&rsquo;s all namespaced and these naked functions are actually methods in classes and stuff, and the real code doesn&rsquo;t even look much like the code you see here. I&rsquo;ve also completely ignored questions of when to clear or invalidate the cache. You&rsquo;ve been warned.</em></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -2168,6 +2314,10 @@ well, which means a lot. Thanks, guys.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
       </li>
     
@@ -2181,10 +2331,6 @@ well, which means a lot. Thanks, guys.</p>
     
       <li class="post">
         <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a>
       </li>
     
   </ul>
