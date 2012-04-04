@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Note to self: IE6 likes to cache AJAX requests, and this can be a bad thing if other data on the page that will affect the result of the request has &hellip;">
+  <meta name="description" content="I used to work in newspapers, and we were diligent about fixing &#8220;bad breaks&#8221; in headlines. Nothing looks worse than a headline that&#8217 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,157 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/13/fix-uneven-line-lengths-in-headlines/">Fix Uneven Line Lengths in Headlines</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-13T00:00:00-05:00" pubdate data-updated="true">Jan 13<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/13/fix-uneven-line-lengths-in-headlines/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I used to work in newspapers, and we were diligent about fixing &#8220;bad breaks&#8221; in headlines. Nothing looks worse than a headline that&#8217;s far longer on one line than on another. Desktop publishing software has some intelligence about these bad breaks, but the web, not so much. A little jQuery can clean up the bad breaks, though &#8211; for example, this will clean up all the <code>h2</code>s.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;h2&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$h2</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the height of the existing element</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">$h2</span><span class="p">.</span><span class="nx">height</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the text of the existing element</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">$h2</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// put temporary text in the element</span>
+</span><span class='line'>  <span class="c1">// that will make the element one line tall</span>
+</span><span class='line'>  <span class="nx">$h2</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// get the height of the one-line element</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">singleLineHeight</span> <span class="o">=</span> <span class="nx">$h2</span><span class="p">.</span><span class="nx">height</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// check to see if the initial element was</span>
+</span><span class='line'>  <span class="c1">// taller than the one-line element;</span>
+</span><span class='line'>  <span class="c1">// if so, look for the midpoint of the</span>
+</span><span class='line'>  <span class="c1">// initial text and split it there</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">height</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="nx">singleLineHeight</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">mid</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">length</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="nx">mid</span><span class="p">;</span> <span class="nx">i</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">text</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">breakIndex</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">newText</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="err">&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">newText</span> <span class="o">=</span> <span class="nx">newText</span> <span class="o">+</span> <span class="nx">text</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">$h2</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">newText</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// otherwise, put the initial text</span>
+</span><span class='line'>    <span class="c1">// back in the element and move on</span>
+</span><span class='line'>    <span class="nx">$h2</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So you end up changing this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>This is a very long headline that goes on and then breaks
+</span><span class='line'>badly</span></code></pre></td></tr></table></div></figure>
+
+
+<p>to something like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>This is a very long headline that
+</span><span class='line'>goes on and then breaks badly</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You&#8217;ll want to change the <code>$('h2')</code> selector to exactly what you need; in the case of this blog, <code>$('div.post h2 a')</code> is actually more appropriate. You&#8217;re going to be best off if matching elements contain only text, and no HTML.</p>
+
+<p>Also, this will only work for elements that are one or two lines long; for headlines of arbitrary length, you&#8217;d need to see exactly how the height of the initial element compared to the height of the temporary one-line element, and then split the headline multiple times. Then again, thinking back to my newspaper days where we had to convey a whole story in four words, you might ask yourself whether you actually need a headline that&#8217;s more than two lines long.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1158,124 +1309,6 @@ another element in the DOM.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/12/jquery-build-table-from-json-data/">jQuery: Build Table From JSON Data</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-12T00:00:00-05:00" pubdate data-updated="true">Dec 12<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/12/jquery-build-table-from-json-data/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Given data like:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>   <span class="s2">&quot;GUEST&quot;</span> <span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="s1">&#39;visits&#39;</span> <span class="o">:</span> <span class="mi">1734070</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;visits_pct&#39;</span> <span class="o">:</span> <span class="mi">74</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;users&#39;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;net_pv&#39;</span> <span class="o">:</span> <span class="mi">3432781</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;users_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;pv_pct&#39;</span> <span class="o">:</span> <span class="mi">13</span>
-</span><span class='line'>   <span class="p">},</span>
-</span><span class='line'>   <span class="s1">&#39;Logged In&#39;</span> <span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>      <span class="s1">&#39;visits&#39;</span> <span class="o">:</span> <span class="mi">4240</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;visits_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;users&#39;</span> <span class="o">:</span> <span class="mi">177</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;net_pv&#39;</span> <span class="o">:</span> <span class="mi">188112</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;users_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-</span><span class='line'>      <span class="s1">&#39;pv_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&#8230; a little jQuery ditty to make a table out of the data:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">rowLabel</span><span class="p">,</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">header</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">$table</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">$thead</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;thead tr&#39;</span><span class="p">,</span><span class="nx">$table</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">$thead</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">headerLabel</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">$thead</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">headerLabel</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="p">});</span>
-</span><span class='line'>        <span class="nx">header</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">$table</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">$tr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;tr:last&#39;</span><span class="p">,</span><span class="nx">$table</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">$tr</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">rowLabel</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">j</span><span class="p">,</span><span class="nx">cellData</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">$tr</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">cellData</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">})</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I&#8217;ll come back and do something more interesting with this eventually, just wanted to jot it down for now.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1293,6 +1326,10 @@ another element in the DOM.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/04/be-like-eich/">Be Like Eich</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
       </li>
     
@@ -1306,10 +1343,6 @@ another element in the DOM.</p>
     
       <li class="post">
         <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
       </li>
     
   </ul>

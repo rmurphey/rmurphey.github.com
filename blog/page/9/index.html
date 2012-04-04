@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I love trac, and I&#8217;ve been doing lots of work lately to customize it so our clients can use it to send us requests. With the configurable &hellip;">
+  <meta name="description" content="Marcus turned me on to subversion when I was working on a project earlier this year and wanted a way to revisit old versions of files. Setting up a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,197 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/">Getting Non-developers on the Subversion Bandwagon</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-04T00:00:00-05:00" pubdate data-updated="true">Dec 4<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://marcus.net/blog/">Marcus</a> turned me on to subversion when I was working on a project earlier this year and wanted a way to revisit old versions of files. <a href="http://marcus.net/blog/2007/01/19/creating-a-subversion-repository/">Setting up a subversion repository</a> was easy, and while I did download the Tortoise GUI for Windows, I found the command line was pretty easy too.</p>
+
+<p>A few months later, we were wrestling at work with an issue I&#8217;ve confronted at every job I&#8217;ve had: how to maintain a filesystem that &#8230;</p>
+
+<ul>
+<li>allows everyone to have access to any file they might need</li>
+<li>promotes the concept that files are associated with a <em>client</em>, not with a person</li>
+<li>facilitates regular and thorough backups</li>
+<li>provides versioning more sophisticated than multiple files with names like <code>project_outline_rev2.html</code>
+</li>
+<li>does all this without intimidating the hell out of people who aren&#8217;t on good terms with the command line</li>
+</ul>
+
+
+<p>It wasn&#8217;t a typical use for subversion, which is more normally (in my mind) used for version control with straight-up development projects, but the more I thought about it and talked about it with people who had used subversion, the more it seemed to make sense. We&#8217;d be using it to manage an infinite number of concurrent projects related to maintaining a large client&#8217;s web content, and that meant we&#8217;d have to agree on a directory structure beyond the standard branches/tags/trunk. For it to work at all, I was also going to have to convince people &#8211; some of whom were scarred by cvs &#8211; to actually use it. I braced for a full-fledged campaign: sure, it&#8217;s more complex than no system at all, I would argue, but writing HTML is more complex than writing in Notepad, too, and we seem to handle that OK, right?</p>
+
+<p>As it turned out, my campaign lasted all of a day, and wasn&#8217;t much of a campaign at all. One designer suggested using Dreamweaver or VersionCue to address these concerns, to which I said:</p>
+
+<blockquote>
+one of the things i like about subversion (svn) is that it&#8217;s a platform/software agnostic tool. if we used dw for site management, everyone would have to use dw &#8211; for the homepage update i just did, i hardly touched dreamweaver, preferring to do most everything in vim/command line because it was just so much easier for the sort of work i was doing.
+
+i know that at least on the pc side, there is a subversion extension for dreamweaver. i also know on the pc side there&#8217;s a pretty decent gui svn client. i imagine, since macs are getting pretty popular with devs, that there&#8217;s something similar on that side.
+
+i don&#8217;t mean to shoot down dw/vc out of hand, but i think that it would introduce some real limitations vs svn, even though it is tempting because it is a tool we already use. another thing that is great about svn is that it&#8217;s integrated with the whole trac system that stancil has set up, which also includes a wiki and a ticketing system, all of which are linked together. i see *huge* potential here in terms of project management, documentation, and file management that we aren&#8217;t taking advantage of, and that wouldn&#8217;t be available with a dw solution.
+
+&#8230;
+
+it&#8217;s possible that we don&#8217;t need svn for everything, but honestly i think it&#8217;s easy enough to use once you get the hang of it that it would be just as easy as the fileserver approach, with a ton of added benefits. perhaps the only true drawback is the disk space that would be required for versioning psd&#8217;s and such. but disk space is cheap, and it think the extra storage we&#8217;d need would be worth its small cost if we had constant access to everything.
+</blockquote>
+
+
+<p>Our sysadmin already had some repositories set up that weren&#8217;t getting wide use, so setting up another one was trivial. He added a bunch of disk space in anticipation of the new storage demands (while subversion just stores diffs for text files, it stores full copies of each binary file, and we were going to have a lot of those), and I wrote up some instructions for getting people started:</p>
+
+<h3>Download and install the subversion binaries</h3>
+
+
+<ul>
+<li>
+<a href="http://downloads.open.collab.net/binaries.html">for mac</a> (click the download button)</li>
+<li>
+<a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=91">for pc</a> (choose the latest .exe file)</li>
+</ul>
+
+
+
+
+<h3>Download the GUI</h3>
+
+
+<ul>
+<li><a href="http://scplugin.tigris.org/servlets/ProjectDocumentList">scplugin for mac</a></li>
+<li><a href="http://tortoisesvn.net/downloads">TortoiseSVN for pc</a></li>
+</ul>
+
+
+
+
+<h3>Mac folk: update your path to include svn</h3>
+
+
+<ul>
+<li>open terminal</li>
+<li><code>cd ~</code></li>
+<li><code>pico .bash_profile</code></li>
+<li>enter the following:
+<div class="CodeRay">
+  <div class="code"><pre>PATH=&quot;/usr/local/bin:/usr/local/subversion/bin:$PATH&quot;
+export PATH</pre></div>
+</div>
+
+</li>
+<li>press CTRL-O to save</li>
+<li>restart terminal</li>
+</ul>
+
+
+
+
+<h3>Establish ssl certification</h3>
+
+
+<ul>
+<li>open a Terminal window (mac) or Start &gt; Run &gt; cmd.exe (windows)</li>
+<li>type <code>svn ls https://www.svnserver.com/repository/trunk/</code> and hit enter (get the exact URL for your repository; this is just an example)</li>
+<li>enter user/password
+<ul>
+<li>if your username on your machine is the same as your svn username, enter your password.</li>
+<li>otherwise, press enter and you&#8217;ll be prompted for your svn username. enter it.</li>
+<li>enter your svn password.</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+<h3>Getting started and basic workflow</h3>
+
+
+<p>I sat down with a group of initial users to do the initial checkout of the repository and show them the basic workflow. TortoiseSVN makes things especially easy, while scplugin is a bit more rudimentary. Here&#8217;s the workflow I explained:</p>
+
+<ul>
+<li>
+<code>update</code> a folder before you begin work in it; to save time, just update the specific folder, not the whole repo</li>
+<li>make your changes</li>
+<li>
+<code>add</code> any new folders and files you create to the repo &#8211; they won&#8217;t be added automatically!
+</li>
+<li>if you change the structure of a dir, or remove a file, you have to do it via svn!</li>
+<ul>
+<li>
+<code>rename</code> to change a file name or move a file</li>
+<li>
+<code>delete</code> to remove a file</li>
+</ul>
+
+<li>
+<code>update</code> folder prior to commit to receive others&#8217; changes</li>
+<li>
+<code>commit</code> (check in) whenever you reach a milestone or stop work. enter a message with your commit to indicate what you did.</li>
+</ul>
+
+
+
+
+<h3>File structure</h3>
+
+
+<p>Subversion is usually used for managing development projects, but we wanted us to use it to manage an infinite number of small, concurrent projects related to our work maintaining the content on a large client&#8217;s web site. The branches/tags/trunk paradigm didn&#8217;t quite fit here. We ended up keeping the b/t/t setup, but most people just check out the trunk, which contains the following folders:</p>
+
+<ul>
+<li>
+<strong>client_site</strong>, with a directory structure that mirrors the structure of our client&#8217;s web site. This is where we keep most of our files. By mirroring the directory structure of the client&#8217;s web site, we make it easy to find a file if we know the URL of the file on the site.</li>
+<li>
+<strong>projects</strong>, for files related to projects that don&#8217;t fit neatly into the site structure.</li>
+<li>
+<strong>resources</strong>, for image templates, HTML templates, fonts, logos, etc.</li>
+</ul>
+
+
+
+
+<h3>To do</h3>
+
+
+<p>Because we are constantly creating new files and adding them to the repository, some directories are getting unduly large, making <code>update</code>s take a long time, and forcing users to store a lot of unnecessary files locally once they do an <code>update</code>. We need to work out a way to age files so they are still available and easy to locate, but don&#8217;t get picked up as part of the <code>update</code> process.</p>
+
+<h3>Further reading</h3>
+
+
+<ul>
+<li><a href="http://svnbook.red-bean.com/en/1.2/svn.tour.cycle.html">Basic Work Cycle</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -273,6 +464,10 @@ The new form makes more sense to the client users, reduces errors and omissions,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/04/be-like-eich/">Be Like Eich</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
       </li>
     
@@ -286,10 +481,6 @@ The new form makes more sense to the client users, reduces errors and omissions,
     
       <li class="post">
         <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/09/18/introducing-mulberry/">Mulberry: A development framework for mobile apps</a>
       </li>
     
   </ul>
