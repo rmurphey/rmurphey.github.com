@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Greenfielding - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;m officially one-third of the way through my self-imposed month of unemployment before I join Bocoup at the beginning of May, and I&#8217;ve &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2012/04/10/greenfielding">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Greenfielding</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-10T12:19:00-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m officially one-third of the way through my self-imposed month of unemployment before I join <a href="http://bocoup.com">Bocoup</a> at the beginning of May, and I&#8217;ve been spending most of what would normally be my working hours on a small demo to support talks at <a href="http://2012.front-trends.com/">conferences</a> I will be <a href="http://backboneconf.com/">speaking at</a> this <a href="http://2012.texasjavascript.com/">summer</a>. It&#8217;s just a <a href="https://github.com/rmurphey/srchr-demo">little app</a> that searches various services, and displays the results &#8211; so simple that, when I showed it to Melissa, she helpfully asked why I wouldn&#8217;t just use Google.</p>
+
+<p>It&#8217;s been about 18 months since I last got to start a project from scratch &#8211; in that case, the codebase that became <a href="http://mulberry.toura.com">Mulberry</a> &#8211; but even then, I didn&#8217;t have control over the full stack of technologies, just the JavaScript side of things. Over the course of my time on that project, I came to be extremely familiar with Dojo, fairly competent with Jasmine, decently comfortable with Ruby and its go-to simple server Sinatra, and somewhat conversational in Sass.</p>
+
+<p>I spent most of my time on that project working with technologies with which I was already pretty comfortable. Interactions with new technologies came in dribs and drabs (except for that one time I decided to test my Ruby skills by rewriting our entire build process), and all of my learning was backed up by a whole lot of institutional knowledge.</p>
+
+<p>The consulting world, of course, is a wee bit different: you interact frequently with new technologies, and you never know what a client might ask you to do. Learning comes in bursts, and the ability to quickly come up to speed with a technology is imperative. On a six-week project, you can&#8217;t spend the first 40 hours getting your bearings.</p>
+
+<p>Even though I spent three years as a consultant, returning to that world of constant learning was feeling a tad intimidating. And so for this project, I decided to make a point of leaving that comfort zone, and intentionally chose technologies &#8211; Node, Bootstrap, Backbone, Mocha, RequireJS &#8211; that I hadn&#8217;t really had a chance to work with in depth (or at all).</p>
+
+<h2>On Learning</h2>
+
+<p>Greenfield projects are few and far between, and it&#8217;s easy to get in a rut by sticking with the tools you already know. Some of my most exciting times at Toura weren&#8217;t when I was writing JavaScript, but rather when I was learning how to talk to the computer in a whole new language. Greenfielding a personal project is a special treat &#8211; it never really has to be &#8220;finished,&#8221; and no one&#8217;s going to be mad at you if it turns out you made a shitty choice, so you&#8217;re free to try things that are less of a sure thing than they would need to be if you were getting paid.</p>
+
+<p>Speaking personally, it can also be a little intimidating to learn a new thing because learning often involves asking for help, and asking for help requires admitting that I don&#8217;t already know how to do the thing that people might expect I already know how to do.</p>
+
+<p>Sometimes the thing that gets in the way of starting a new learning project is actually the fear that I will get stuck. What does it mean if the person who talks at conferences about principles code organization can&#8217;t figure out how best to structure a particular app with Backbone? What does it mean if the person who&#8217;s been encouraging people to build their JavaScript can&#8217;t get RequireJS to generate a proper build? What will I say to <a href="http://blog.izs.me/">Isaac</a>, now that he is standing in front of me and introducing himself, when I have not in fact spent any quality time with Node prior to this past weekend?</p>
+
+<p>Lucky for me, it turns out that all of this is mostly in my head. While I often preface my questions with a small dose of humility and embarrassment, it turns out that well articulated questions are usually greeted with thoughtful and helpful answers. If anything, I&#8217;m trying to be more communicative about the learning that I do, because I think it&#8217;s important that people feel comfortable acknowledging that they used to not know a certain thing, and now they do. I also try to gently remind people that just because they have known something for months or years doesn&#8217;t mean they should look down upon the person enthusiastically blogging about it today.</p>
+
+<p>On that note &#8230; here&#8217;s what&#8217;s new to me these past couple of weeks :)</p>
+
+<h2>Twitter Bootstrap</h2>
+
+<p>I&#8217;ve written a lot of demo apps, and while my coding style has changed over the years, one thing has remained constant: they all look fairly terrible. In theory, we&#8217;re all smart enough to know that what a demo looks like doesn&#8217;t have any bearing on what it explains, but in reality a good-looking demo is simply more compelling, if only because the viewer isn&#8217;t distracted by the bad design.</p>
+
+<p>With this in mind, I decided to give <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> a try. When I first arrived at the site, I started looking for docs about how to set it up, but it turns out that I vastly overestimated Bootstrap&#8217;s complexity. Drop a style tag into your page (and, optionally, another style tag for the responsive CSS), look at the <a href="http://twitter.github.com/bootstrap/examples.html">examples</a>, and start writing your markup.</p>
+
+<p>What I really loved is that there were patterns for everything I needed, and those patterns were easy to follow and implement. Within an hour or so I had a respectable-looking HTML page with markup that didn&#8217;t seem to suck &#8211; that is, it looked good <em>and</em> it was a decent starting point if I ever wanted to apply a custom design.</p>
+
+<h2>Node</h2>
+
+<p>If you&#8217;ve ever talked to me about Node, you know that I have pretty mixed feelings about it &#8211; some days I feel like the people writing JavaScript in the browser really would have benefited if the people who have gravitated to Node had stuck around to invest their collective smarts in the world where 99% of JavaScript is still written. But that doesn&#8217;t really have anything to do with Node the technology, so much as Node the new shiny thing unburdened by browser differences.</p>
+
+<p>I&#8217;ve actually visited Node a couple of times previously &#8211; if you haven&#8217;t at least installed it, you might be living under a rock &#8211; and I was flattered that <a href="http://dev.garann.com">Garann</a> asked me to review her book <a href="http://shop.oreilly.com/product/0636920023258.do">Node for Front-End Developers</a>, but past experiences had left me frustrated.</p>
+
+<p>This time, something was different. I don&#8217;t rule out that it might be me, or even that learning some of the ins and outs of Ruby might have prepared me to understand Node &#8211; and packages and dependency management and writing for the server instead of the browser &#8211; better this time around. It could also be that the Node ecosystem has reached a point of maturity that it just hadn&#8217;t reached the last time I poked around.</p>
+
+<p>Regardless, I found that everything made a whole lot more sense this time, and my struggles this time were about forgetting to stringify an object before sending it as a response to a request, not about getting the server to start in the first place. I used the <code>q</code> module to give me my beloved promises for managing all the asynchronicity, and generally found it ridiculously pleasant to leave behind all the context switching I&#8217;d grown accustomed to while using JavaScript and Ruby side by side. I&#8217;ll probably still turn to Ruby for automating things on the command line (though I continue to be intrigued by <a href="https://github.com/cowboy/grunt">grunt</a>), but I&#8217;m ready to admit that it&#8217;s time for me to add Node to my toolbox.</p>
+
+<h2>Mocha</h2>
+
+<p>To be honest, I&#8217;d just planned on using <a href="https://github.com/pivotal/jasmine">Jasmine</a> for writing tests for this project, mostly because I&#8217;d never set up Jasmine myself, and I was interested in maybe getting it working with grunt for headless testing. I ended up bailing on that plan when, in the course of some Googling for answers about Jasmine, I came across <a href="http://visionmedia.github.com/mocha/">Mocha</a>.</p>
+
+<p>Mocha is a super-flexible testing framework that runs on Node and in the browser. You can choose your assertion library &#8211; that is, you can choose to write your tests like <code>assert(1, 1).ok()</code> or <code>expect(1).to.be(1)</code> depending on your preference. I decided to use the latter style, with the help of <a href="https://github.com/LearnBoost/expect.js">expect.js</a>. You can also choose your reporting style, including the ability to generate docs from your tests.</p>
+
+<p>I had to do a bit of finagling to get the browser-based tests working with my RequireJS setup, and ultimately I ended up just using my app&#8217;s server, running in dev mode, to serve the tests in the browser. I&#8217;m still working out how best to run just one test at a time in th browser, but all in all, discovering Mocha has probably been the best part of working on this project.</p>
+
+<h2>RequireJS</h2>
+
+<p><a href="http://requirejs.org/">RequireJS</a> is another tool that I&#8217;ve dabbled with in the past, but for the last 18 months I&#8217;ve been spending most of my time with Dojo&#8217;s pre-AMD build system, so I had some catching up to do. I don&#8217;t have a ton to say about RequireJS except:</p>
+
+<ul>
+<li>It&#8217;s gotten even easier to use since I last visited it.</li>
+<li>The docs are great and also gorgeous.</li>
+<li>While I haven&#8217;t had to bother him lately, James Burke, the author and maintainer of RequireJS, is a kind and incredibly helpful soul.</li>
+<li>The <a href="http://requirejs.org/docs/api.html#text"><code>text!</code></a> plugin makes working with client-side templates incredibly simple, without cluttering up your HTML with templates in script tags or hard-coding your templates into your JavaScript.</li>
+<li>The <a href="https://github.com/tbranyen/use.js"><code>use!</code></a> plugin makes it painless to treat libraries that don&#8217;t include AMD support just like libraries that do. I hear it might become an official plugin soon; I hope it will.</li>
+</ul>
+
+
+<h2>Backbone</h2>
+
+<p>This part was a tough choice, and I actually set out to use a different framework but ended up getting cold feet &#8211; even though this was just a personal project, it did need to reach some semblance of done-ness in some reasonable period of time. After a little bit of poking around at other options, I decided that, barring completely copping out and using Dojo, Backbone was going to be the best tool for this particular job on this particular schedule.</p>
+
+<p>I&#8217;m pretty torn about this, because I decided to use a framework that I <em>know</em> has shortcomings and limited magic, and I <em>know</em> that other options would serve me better in the long term. But I also know that the long term doesn&#8217;t exactly matter for this particular project. The thing that swayed me, really, was that with Backbone, I didn&#8217;t feel like I needed to grasp a whole slew of concepts before I could write my first line of code.</p>
+
+<p>I looked up plenty of things along the way, and rewrote my fair share of code when I discovered that I&#8217;d been Doing It Wrong, but I was able to maintain a constant forward momentum. With the other options I considered, I felt like I was going to have to climb a ladder of unknown height before making any forward progress.</p>
+
+<p>I feel like I made the right choice for this project, but it&#8217;s a choice I&#8217;d spend a lot more time on for a &#8220;real&#8221; project, and I&#8217;d be much more inclined to invest the initial energy in getting up to speed if the payoff was clearer. This, though, is a choice that people seem to be consistently terrible at, and so I feel like I should beat myself up about it just a little. It&#8217;s all too common to dig a ginormous hole for ourselves by choosing the technology that lets us start writing code the soonest; on the flip side, it&#8217;s all too common to choose a technology that&#8217;s complete overkill for the task at hand.</p>
+
+<h2>The End</h2>
+
+<p>The master branch of the <a href="https://github.com/rmurphey/srchr-demo">repo for the project</a> should be mostly stable (if incomplete) if you want to check it out. I&#8217;m going to close comments on this post in the hopes that you&#8217;ll write your own post about what you&#8217;ve been learning instead :)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-10T12:19:00-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2012/04/10/greenfielding/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2012/04/10/greenfielding/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/04/javascript-a-language-not-a-religion/" title="Previous Post: JavaScript: It's a language, not a religion">&laquo; JavaScript: It's a language, not a religion</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It's a language, not a religion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

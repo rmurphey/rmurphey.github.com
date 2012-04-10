@@ -9,7 +9,8 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I posted a gist the other day in an attempt to locate some JavaScript help. I&rsquo;m finding, lately, that I&rsquo;m being asked to do more work &hellip;">
+  <meta name="description" content="I spoke yesterday at the 2010 Boston jQuery Conference about
+&#8220;Functionality-Focused Code Organization.&#8221; It was a presentation that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,74 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/10/17/functionality-focused-code-organization/">Functionality-Focused Code Organization</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-17T00:00:00-04:00" pubdate data-updated="true">Oct 17<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/10/17/functionality-focused-code-organization/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I spoke yesterday at the 2010 Boston jQuery Conference about
+&#8220;Functionality-Focused Code Organization.&#8221; It was a presentation that
+summarized a year of thinking about organizing JavaScript applications, and I
+think it went fairly well. It was a treat to see so many people nodding in
+understanding and agreement out in the audience, and to talk to people
+afterwards who have thought about and struggled with these same problems.</p>
+
+<ul>
+<li><a href="http://www.slideshare.net/rmurphey/functionality-basedorg">Slides</a> (Note
+that you can download a PDF there if you&#8217;d prefer not to view the slides on
+SlideShare)</li>
+</ul>
+
+
+<p>I had one person come up to me afterwards who really left an impression &#8211; I
+don&#8217;t recall his name (I am perfectly terrible with names), but what he said
+was that he came from a background of developing desktop applications, and that
+the concepts I talked about in fact made perfect sense to him. I think this is
+important to remember &#8211; the ideas that I talked about aren&#8217;t new or novel at
+all, but really just long-established patterns of developing applications,
+adapted to fit in the world of JavaScript and the browser. I don&#8217;t come from a
+CS background at all &#8211; I came to this whole JavaScript thing via HTML and CSS,
+with a tiny smattering of programming mixed in &#8211; and so I&#8217;ve arrived at a lot
+of this things the hard way. It&#8217;s gratifying to hear people tell me I&#8217;ve gotten
+it right, and if anything, it makes me want to get the word out to all the
+people who are in the same shoes as I was not that long ago.</p>
+
+<p>Finally: A big thanks to the jQuery team, and especially Leah Silber, for
+putting on the conference. I know it&#8217;s hard work, and I know there were some
+bumps (there always are!), but as a speaker, I feel like I&#8217;ve been treated very
+well, which means a lot. Thanks, guys.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -2329,313 +2398,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/07/12/patterns-for-dry-er-javascript/">Patterns for DRY-er JavaScript</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-12T00:00:00-04:00" pubdate data-updated="true">Jul 12<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/07/12/patterns-for-dry-er-javascript/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I came across a little code the other day that reminded me I&#8217;ve been meaning to write about JavaScript patterns I take for granted. The code in question was intended to set the value of some fields in a form when a checkbox was selected; when it was deselected, the same fields were to be emptied. It looked not unlike this:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// config is defined outside of this snippet,</span>
-</span><span class='line'><span class="c1">// and may contain more than the properties</span>
-</span><span class='line'><span class="c1">// we care about </span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_foo&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">foo</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_bar&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">bar</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_baz&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">baz</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_foo&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_bar&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_baz&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>This is a wholly readable bit of code &#8211; there&#8217;s almost no question what&#8217;s going on here. On the other hand, it&#8217;s pretty easy to see the rampant repetition; this code isn&#8217;t interested in &#8220;don&#8217;t repeat yourself&#8221; (DRY). We&#8217;re calling the same method on every selection we make, and our selections are repeated in both the if and else block.   When I saw this code, I had an immediate inclination to rewrite it. Here&#8217;s what I came up with first:</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// config is defined outside of this snippet,</span>
-</span><span class='line'><span class="c1">// and may contain more than the properties</span>
-</span><span class='line'><span class="c1">// we care about</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">// note whether the checkbox is checked</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">// iterate over the keys we care about</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="c1">// find the field for the given key</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field_&#39;</span> <span class="o">+</span> <span class="nx">v</span><span class="p">)</span>
-</span><span class='line'>      <span class="c1">// and set its value either to the string</span>
-</span><span class='line'>      <span class="c1">// stored for the key, or to an empty string,</span>
-</span><span class='line'>      <span class="c1">// depending on whether the checkbox was checked</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">config</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>This looks approximately nothing like the initial code, and without the
-comments, the code itself would be substantially less readable than the
-original. The idealistic part of me &#8211; the part that believes people who write
-JavaScript should understand JavaScript &#8211; says this is an acceptable price to
-pay. And besides, there&#8217;s something to be said for explaining the code in a
-comment that can be stripped by a minifier, rather than explaining the code via
-the code.  In this iteration, we&#8217;ve introduced two patterns for DRY-er code:
-iterating over an array literal (or, alternately, an object) to achieve
-repetition without repeating ourselves, and using the ternary operator in place
-of an if/else statement when the simplicity of our logic allows it.  The array
-literal serves as a list of the fields we care about. When our checkbox is
-clicked, we iterate over this list, build up a selector for each item in the
-list, make our selection, and then set the field value using a <a
-href="http://stackoverflow.com/questions/1788917/javascript-ternary-operator">ternary
-operator</a>. We&#8217;ve gone from 11 lines of code to six, with the added bonus
-that we have to do a lot less typing if we need our checkbox to affect more
-fields.
-
-(A side note: Is this premature optimization? I&#8217;d argue no, if you&#8217;ve
-learn to see these patterns before you start writing code. Once you learn how
-to spot these patterns in a requirement, writing code that embraces them can
-actually be easier than writing code that takes a more &#8220;literal&#8221; approach to
-the problem. For example, imagine if the checkbox affected 20 other fields
-instead of one? You&#8217;d undoubtedly find yourself copying and pasting code if you
-took the more &#8220;literal&#8221; approach to the problem, and that would be your first
-clue that you were doing something inefficiently.)
-
-The great thing about using a pattern like this is that it rapidly exposes the
-actual meat of what you&#8217;re doing, and makes refactoring far less painful. I
-also find that it helps me see opportunities for reuse that I might not have
-spotted in the more literal version of the code.  Let&#8217;s say we&#8217;re feeling all
-proud of ourselves for DRYing out our code using clever JavaScript that only
-super-smart people can read. Now there&#8217;s another checkbox that needs similar
-behavior, but it&#8217;s going to use a different config object and a different list
-of fields. No problem! You&#8217;ve already written this code, so you can just copy
-and paste it and then change what&#8217;s different. Sweet. Er &#8230; suddenly you&#8217;re
-not looking so DRY after all.  This is when another pattern comes into play:
-creating a function that returns another function with certain variables
-already baked in (that is, creating a closure). We&#8217;ll execute this creator
-function and then use the function it returns in place of the anonymous
-function we were using previously when we bound to the click event.</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// handleClick accepts a config object</span>
-</span><span class='line'><span class="c1">// and a makeSelector function; it returns</span>
-</span><span class='line'><span class="c1">// a function that can be bound to</span>
-</span><span class='line'><span class="c1">// a click event, using the config object</span>
-</span><span class='line'><span class="c1">// and the makeSelector function to react</span>
-</span><span class='line'><span class="c1">// appropriately to the click</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">makeSelector</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">checked</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nx">fields</span> <span class="o">&amp;&amp;</span> <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="c1">// build the selector using the provided</span>
-</span><span class='line'>      <span class="c1">// makeSelector function</span>
-</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="nx">makeSelector</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
-</span><span class='line'>              <span class="c1">// set the value using the</span>
-</span><span class='line'>              <span class="c1">// config object, depending</span>
-</span><span class='line'>              <span class="c1">// on whether the checkbox</span>
-</span><span class='line'>              <span class="c1">// is checked</span>
-</span><span class='line'>              <span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">checked</span> <span class="o">?</span> <span class="nx">config</span><span class="p">[</span><span class="nx">v</span><span class="p">]</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
-</span><span class='line'>  <span class="c1">// use handleClick to create a function</span>
-</span><span class='line'>  <span class="c1">// that has these variables baked in;</span>
-</span><span class='line'>  <span class="c1">// pass the created function as the</span>
-</span><span class='line'>  <span class="c1">// click handling function</span>
-</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span>
-</span><span class='line'>    <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;baz&#39;</span><span class="p">],</span>
-</span><span class='line'>    <span class="nx">myCheckboxConfig</span><span class="p">,</span>
-</span><span class='line'>    <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;#field_&#39;</span> <span class="o">+</span> <span class="nx">field</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="p">)</span>
-</span><span class='line'><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myOtherCheckbox&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span>
-</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span>
-</span><span class='line'>    <span class="p">[</span><span class="s1">&#39;bim&#39;</span><span class="p">,</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="s1">&#39;bop&#39;</span><span class="p">],</span>
-</span><span class='line'>    <span class="nx">myOtherCheckboxConfig</span><span class="p">,</span>
-</span><span class='line'>    <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;input[name=&amp;quot;&#39;</span> <span class="o">+</span> <span class="nx">field</span> <span class="o">+</span> <span class="s1">&#39;&amp;quot;]&#39;</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>  <span class="p">)</span>
-</span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>By creating a function that returns a function, we can isolate what&#8217;s different about the two different handlers while centralizing the pieces that are the same. If your event handling function was slightly less trivial than this one, or if you were binding to five different checkboxes instead of two, the benefit of consolidating the code would be even more substantial.  JavaScript offers plenty of patterns for writing DRY-er code; it&#8217;s important to learn to both recognize and use them. It&#8217;s also important to recognize when you&#8217;re writing un-DRY code in the first place &#8211; copying and pasting code is one crystal-clear indicator, but others are more subtle and you may not identify them on the first go-round. For example, take these two functions; each receives a list item as its only argument and returns either the next or previous list item, returning to the beginning or end of the list if there is no next or previous item.</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">getNextItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">length</span> <span class="o">?</span>
-</span><span class='line'>         <span class="nx">$item</span><span class="p">.</span><span class="nx">next</span><span class="p">()</span> <span class="o">:</span> <span class="nx">$items</span><span class="p">.</span><span class="nx">first</span><span class="p">();</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">getPrevItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">$item</span><span class="p">.</span><span class="nx">prev</span><span class="p">().</span><span class="nx">length</span> <span class="o">?</span>
-</span><span class='line'>                <span class="nx">$item</span><span class="p">.</span><span class="nx">prev</span><span class="p">()</span> <span class="o">:</span> <span class="nx">$items</span><span class="p">.</span><span class="nx">last</span><span class="p">();</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>This felt repetitive when I first wrote it, but I couldn&#8217;t quickly come up with a single function that would work. A little thinking about it, though, led me to this single function which gets a second argument: direction. That argument is used to decide whether to run the item&#8217;s next or previous method, and then whether to run the item&#8217;s first or last method. Besides combining two functions into one, it also eliminates calling next or prev twice inside each function.</p>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">getItem</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$item</span><span class="p">,</span> <span class="nx">direction</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">$returnItem</span> <span class="o">=</span> <span class="nx">$item</span><span class="p">[</span><span class="nx">direction</span><span class="p">]();</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">$returnItem</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span>
-</span><span class='line'>         <span class="nx">$returnItem</span> <span class="o">:</span>
-</span><span class='line'>         <span class="nx">$items</span><span class="p">[(</span><span class="nx">direction</span> <span class="o">==</span> <span class="s1">&#39;next&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;first&#39;</span> <span class="o">:</span> <span class="s1">&#39;last&#39;</span><span class="p">]();</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Learning about patterns and then discovering opportunities to use them is one of the more pleasing parts of my job. I hope this helps you identify some of those opportunities for yourself :)</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -2653,6 +2415,10 @@ function we were using previously when we bound to the click event.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
       </li>
     
@@ -2666,10 +2432,6 @@ function we were using previously when we bound to the click event.</p>
     
       <li class="post">
         <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
   </ul>

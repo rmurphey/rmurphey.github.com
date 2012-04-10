@@ -9,7 +9,11 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Marcus turned me on to subversion when I was working on a project earlier this year and wanted a way to revisit old versions of files. Setting up a &hellip;">
+  <meta name="description" content="Before: 1
+2
+3
+// select all elements with an id or name attribute of fieldName;
+// some are inputs (name attribute), some are td&#39;s (id attribute &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +104,74 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/">13 Seconds: Attribute vs. ID Selectors in jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Before:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// select all elements with an id or name attribute of fieldName;</span>
+</span><span class='line'><span class="c1">// some are inputs (name attribute), some are td&#39;s (id attribute)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span> <span class="o">+</span> <span class="s1">&#39;, [name=&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// give inputs both a name and an id attribute,</span>
+</span><span class='line'><span class="c1">// and then just select fields and td&#39;s via id</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Savings: 13 seconds over the course of selecting &gt; 100 elements. Thank god for Firebug&#8217;s profiler, which pointed me to the problem in a few seconds. Attribute selectors in jQuery are handy, OK, but they don&#8217;t seem to work for large-scale selections.</p>
+
+<p>A side note: vim made the HTML change easy, once I worked through its quirky regexp syntax which requires you to escape the +:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>s/name="\([^"]\+\)" /name="\1" id="\1" /g</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -489,6 +561,10 @@ The new form makes more sense to the client users, reduces errors and omissions,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
       </li>
     
@@ -502,10 +578,6 @@ The new form makes more sense to the client users, reduces errors and omissions,
     
       <li class="post">
         <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
   </ul>

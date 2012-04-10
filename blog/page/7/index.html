@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I used to work in newspapers, and we were diligent about fixing &#8220;bad breaks&#8221; in headlines. Nothing looks worse than a headline that&#8217 &hellip;">
+  <meta name="description" content="I just got a request to edit a static page that showed several of a company&#8217;s employees. Turns out that a bunch of them aren&#8217;t employees &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,48 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/">I Have Discovered a Use for Dreamweaver&#8217;s Design View (No Really)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-18T00:00:00-05:00" pubdate data-updated="true">Jan 18<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/18/i-have-discovered-a-use-for-dreamweaver-s-design-view-no-really/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just got a request to edit a static page that showed several of a company&#8217;s employees. Turns out that a bunch of them aren&#8217;t employees anymore, and the client wanted the page to be updated. I knew before I even opened it that the content was going to be in tables (nested nested tables, in fact), and that rearranging it would be a giant pain.</p>
+
+<p>Dreamweaver design view to the rescue. This thing was <em>made</em> for tables, and in no time I was able to delete what needed to be deleted and rearrange the remaining employees without leaving empty table cells. I didn&#8217;t need to navigate nasty table HTML, and I didn&#8217;t have to worry about accidentally deleting a crucial <code>td</code> that would bring the page to its knees. A quick preview in the browser verified that no harm had been done in my brief foray into design view, and the job was done.</p>
+
+<p>Let it be said: Design view is evil and awful; it seeks to make front-end development accessible to people who have no business going anywhere near front-end development. But it&#8217;s a good tool to have in the toolbox when you&#8217;re faced with editing a table-based page, even if you just use it to find your bearings in the mess of tags.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1290,50 +1332,6 @@ another element in the DOM.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/">jQuery IE7 &#8220;Operation Aborted&#8221; Error</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-14T00:00:00-05:00" pubdate data-updated="true">Dec 14<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its job was to rearrange some elements into tabs once the page was loaded.</p>
-
-<p>In unpredictable cases (sequential reloads had different results), loading the page in IE7 would lead to an &#8220;Operation aborted&#8221; error that provided no additional information. Through some googling, I found out that this was probably related to IE choking when some script was run against the DOM before the DOM was fully loaded.</p>
-
-<p>What puzzled me was that I was using <code>$.ready()</code> to wrap my jQuery, which was supposed to wait for the DOM, but it didn&#8217;t seem to matter. Then I found <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=215410#215410">this</a> &#8211; it turns out that interacting with the DOM via javascript from within a table can make IE all sorts of angry, while interacting with the DOM via javascript from within a div is just fine.</p>
-
-<p>While my case doesn&#8217;t directly match the example above, it seems very possible that the table-based template I was writing for was the source of the headaches. Changing the base HTML template for the page I was working on wasn&#8217;t immediately in the cards, so I split the offending js file into two pieces &#8211; one in the head of the document that contains some basic functions but didn&#8217;t actually do anything, and another right before the closing body tag that does the actual talking to the DOM &#8211; and that seemed to fix it.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1351,6 +1349,10 @@ another element in the DOM.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
       </li>
     
@@ -1364,10 +1366,6 @@ another element in the DOM.</p>
     
       <li class="post">
         <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/08/community-conferences/">Community Conferences</a>
       </li>
     
   </ul>
