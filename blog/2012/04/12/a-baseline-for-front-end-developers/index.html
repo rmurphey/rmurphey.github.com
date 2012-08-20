@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Baseline for Front-End Developers - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Baseline for Front-End Developers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-12T11:30:00-04:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized that it was the sort of thing that might have intimidated the hell out of me a couple of years ago, what with its casual mentions of Node, npm, Homebrew, git, tests, and development and production builds.</p>
+
+<p>Once upon a time, editing files, testing them locally (as best as we could, anyway), and then FTPing them to the server was the essential workflow of a front-end dev. We measured our mettle based on our ability to wrangle IE6 into submission or achieve pixel perfection across browsers. Many members of the community &#8211; myself included &#8211; lacked traditional programming experience. HTML, CSS, and JavaScript &#8211; usually in the form of jQuery &#8211; were self-taught skills.</p>
+
+<p>Something has changed in the last couple of years. Maybe it&#8217;s the result of people starting to take front-end dev seriously, maybe it&#8217;s browser vendors mostly getting their shit together, or maybe it&#8217;s front-end devs &#8211; again, myself included &#8211; coming to see some well-established light about the process of software development.</p>
+
+<p>Whatever it is, I think we&#8217;re seeing the emphasis shift from valuing trivia to valuing tools. There&#8217;s a new set of baseline skills required in order to be successful as a front-end developer, and developers who don&#8217;t meet this baseline are going to start feeling more and more left behind as those who are sharing their knowledge start to assume that certain things go without saying.</p>
+
+<p>Here are a few things that <em>I</em> want to start expecting people to be familiar with, along with some resources you can use if you feel like you need to get up to speed. (Thanks to Paul Irish, Mike Taylor, Angus Croll, and Vlad Filippov for their contributions.)</p>
+
+<h2>JavaScript</h2>
+
+<p>This might go without saying, but simply knowing a JavaScript library isn&#8217;t sufficient any more. I&#8217;m not saying you need to know how to implement all the features of a library in plain JavaScript, but you should know when a library is actually required, and be capable of working with plain old JavaScript when it&#8217;s not.</p>
+
+<p>That means that you&#8217;ve read <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">JavaScript: The Good Parts</a> &#8211; hopefully more than once. You understand data structures like objects and arrays; functions, including how and why you would <code>call</code> and <code>apply</code> them; working with prototypal inheritance; and managing the asynchronicity of it all.</p>
+
+<p>If your plain JS fu is weak, here are some resources to help you out:</p>
+
+<ul>
+<li><a href="http://eloquentjavascript.net">Eloquent Javascript</a>: A wonderful book (also available in print) that takes you back to JavaScript basics</li>
+<li><a href="https://github.com/rmurphey/js-assessment">A Test-Driven JS Assessment</a>: A set of failing tests that cover various JavaScript topics; can you write code to make the tests pass?</li>
+<li><a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 things I learned from the jQuery Source</a> is an oldie but goodie from Paul Irish that shows what you can learn by reading other people&#8217;s code.</li>
+</ul>
+
+
+<h2>Git (and a Github account)</h2>
+
+<p>If you&#8217;re not on Github, you&#8217;re essentially unable to participate in the rich open-source community that has arisen around front-end development technologies. Cloning a repo to try it out should be second-nature to you, and you should understand how to <a href="http://nvie.com/posts/a-successful-git-branching-model/">use branches on collaborative projects</a>.</p>
+
+<p>Need to boost your git skills?</p>
+
+<ul>
+<li><a href="http://help.github.com/">help.github.com</a></li>
+<li><a href="http://help.github.com/git-cheat-sheets/">Github git cheat sheet</a></li>
+<li><a href="http://cheat.errtheblog.com/s/git">More cheat sheet</a></li>
+<li><a href="http://pinboard.in/u:rmurphey/t:git/">More git links</a></li>
+</ul>
+
+
+<h2>Modularity, dependency management, and production builds</h2>
+
+<p>The days of managing dependencies by throwing one more script or style tag on the page are long gone. Even if you haven&#8217;t been able to incorporate great tools like <a href="http://requirejs.org">RequireJS</a> into your workflow at work, you should find time to investigate them in a personal project or in a project like <a href="https://github.com/backbone-boilerplate/backbone-boilerplate">Backbone Boilerplate</a>, because the benefits they convey are huge. RequireJS in particular lets you develop with small, modular JS and CSS files, and then concatenates and minifies them via its optimization tool for production use.</p>
+
+<p>Skeptical of AMD? That&#8217;s no excuse to be doing nothing. At the very least, you should be aware of tools like <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> or <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a> that will intelligently minify your code, and then concatenate those minified files prior to production.</p>
+
+<p>If you&#8217;re writing plain CSS &#8211; that is, if you&#8217;re not using a preprocessor like Sass or Stylus &#8211; RequireJS can help you keep your CSS files modular, too. Use <code>@import</code> statements in a base file to load dependencies for development, and then run the RequireJS <a href="http://requirejs.org/docs/optimization.html#onecss">optimizer</a> on the base file to create a file built for production.</p>
+
+<h2>In-Browser Developer Tools</h2>
+
+<p>Browser-based development tools have improved tremendously over the last couple of years, and they can dramatically improve your development experience if you know how to use them. (Hint: if you&#8217;re still using <code>alert</code> to debug your code, you&#8217;re wasting a lot of time.)</p>
+
+<p>You should probably find one browser whose developer tools you primarily use &#8211; I&#8217;m partial to <a href="https://developers.google.com/chrome-developer-tools/">Google Chrome&#8217;s Developer Tools</a> these days &#8211; but don&#8217;t dismiss the tools in other browsers out of hand, because they are constantly adding useful features based on developer feedback. Opera&#8217;s <a href="http://my.opera.com/dragonfly/blog/">Dragonfly</a> in particular has some features that make its developer tools stand out, such as an (experimental) CSS profiler, customizable keyboard shortcuts, remote debugging without requiring a USB connection, and the ability to save and use custom color palettes.</p>
+
+<p>If your understanding of browser dev tools is limited, <a href="http://fixingthesejquery.com/#slide1">Fixing these jQuery</a> is a great (and not particularly jQuery-centric) overview of debugging, including how to do <a href="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints">step debugging</a> &#8211; a life-altering thing to learn if you don&#8217;t already know it.</p>
+
+<h2>The command line</h2>
+
+<p>Speaking of the command line, being comfortable with it is no longer optional &#8211; you&#8217;re missing out on way too much if you&#8217;re not ready to head over to a terminal window and get your hands dirty. I&#8217;m not saying you have to do <em>everything</em> in the terminal &#8211; I won&#8217;t take your git GUI away from you even though I think you&#8217;ll be better off without it eventually &#8211; but you should absolutely have a terminal window open for whatever project you&#8217;re working on. There are a few command line tasks you should be able to do without thinking:</p>
+
+<ul>
+<li><code>ssh</code> to log in to another machine or server</li>
+<li><code>scp</code> to copy files to another machine or server</li>
+<li><code>ack</code> or <code>grep</code> to find files in a project that contain a string or pattern</li>
+<li><code>find</code> to locate files whose names match a given pattern</li>
+<li><code>git</code> to do at least basic things like <code>add</code>, <code>commit</code>, <code>status</code>, and <code>pull</code></li>
+<li><code>brew</code> to use Homebrew to install packages</li>
+<li><code>npm</code> to install Node packages</li>
+<li><code>gem</code> to install Ruby packages</li>
+</ul>
+
+
+<p>If there are commands you use frequently, edit your <code>.bashrc</code> or <code>.profile</code> or <code>.zshrc</code> or whatever, and create an <a href="http://tldp.org/LDP/abs/html/aliases.html">alias</a> so you don&#8217;t have to type as much. You can also add aliases to your <code>~/.gitconfig</code> file. Gianni Chiappetta&#8217;s <a href="https://github.com/gf3/dotfiles">dotfiles</a> are an excellent inspiration for what&#8217;s possible.</p>
+
+<p><em>Note: If you&#8217;re on Windows, I don&#8217;t begin to know how to help you, aside from suggesting <a href="http://www.cygwin.com/">Cygwin</a>. Right or wrong, participating in the open-source front-end developer community is materially more difficult on a Windows machine. On the bright side, MacBook Airs are cheap, powerful,  and ridiculously portable, and there&#8217;s always Ubuntu or another *nix.</em></p>
+
+<h2>Client-side templating</h2>
+
+<p>It wasn&#8217;t so long ago that it was entirely typical for servers to respond to XHRs with a snippet of HTML, but sometime in the last 12 to 18 months, the front-end dev community saw the light and started demanding pure data from the server instead. Turning that data into HTML ready to be inserted in the DOM can be a messy and unmaintainable process if it&#8217;s done directly in your code. That&#8217;s where <a href="http://www.slideshare.net/garann/using-templates-to-achieve-awesomer-architecture">client-side templating libraries</a> come in: they let you maintain templates that, when mixed with some data, turn into a string of HTML. Need help picking a templating tool? Garann Means&#8217; <a href="http://garann.github.com/template-chooser/">template chooser</a> can point you in the right direction.</p>
+
+<h2>CSS preprocessors</h2>
+
+<p>Paul Irish <a href="https://twitter.com/#!/paul_irish/status/188329390822801409">noted</a> the other day that we&#8217;re starting to see front-end devs write code that&#8217;s very different from what ends up in production, and code written with CSS preprocessors is a shining example of this. There&#8217;s still a vocal crowd that feels that pure CSS is the only way to go, but they&#8217;re <a href="http://www.stuffandnonsense.co.uk/blog/about/less">starting to come around</a>. These tools give you features that arguably should be in CSS proper by now &#8211; variables, math, logic, mixins &#8211; and they can also help smooth over the CSS property prefix mess.</p>
+
+<h2>Testing</h2>
+
+<p>One of the joys of writing modular, loosely coupled code is that your code becomes vastly easier to test, and with tools like <a href="https://github.com/cowboy/grunt">Grunt</a>, setting up a project to include tests has never been easier. Grunt comes with QUnit integration, but there are a host of testing frameworks that you can choose from &#8211; <a href="https://github.com/pivotal/jasmine/wiki">Jasmine</a> and <a href="http://visionmedia.github.com/mocha/">Mocha</a> are a couple of my current favorites &#8211; depending on your preferred style and the makeup of the rest of your stack.</p>
+
+<p>While testing is a joy when your code is modular and loosely coupled, testing code that&#8217;s not well organized can be somewhere between difficult and impossible. On the other hand, forcing yourself to write tests &#8211; perhaps before you even write the code &#8211; will help you organize your thinking <em>and</em> your code. It will also let you refactor your code with greater confidence down the line.</p>
+
+<ul>
+<li>A short <a href="http://vimeo.com/20457625">screencast</a> I recorded about testing your jQuery with Jasmine.</li>
+<li>An example of <a href="https://github.com/cowboy/jquery-bbq/blob/master/unit/unit.js">unit tests</a> on the jquery-bbq plugin.</li>
+</ul>
+
+
+<h2>Process automation (rake/make/grunt/etc.)</h2>
+
+<p>Grunt&#8217;s ability to set up a project with built-in support for unit tests is one example of process automation. The reality of front-end development is that there&#8217;s a whole lot of repetitive stuff we have to do, but as a friend once told me, a good developer is a lazy developer: as a rule of thumb, if you find yourself doing the same thing three times, it&#8217;s time to automate it.</p>
+
+<p>Tools like <code>make</code> have been around for a long time to help us with this, but there&#8217;s also <code>rake</code>, <code>grunt</code>, and others. Learning a language other than JavaScript can be extremely helpful if you want to automate tasks that deal with the filesystem, as Node&#8217;s async nature can become a real burden when you&#8217;re just manipulating files. There are lots of task-specific automation tools, too &#8211; tools for deployment, build generation, code quality assurance, and more.</p>
+
+<h2>Code quality</h2>
+
+<p>If you&#8217;ve ever been bitten by a missing semicolon or an extra comma, you know how much time can be lost to subtle flaws in your code. That&#8217;s why you&#8217;re running your code through a tool like <a href="http://www.jshint.com/">JSHint</a>, right? It&#8217;s <a href="http://www.jshint.com/options/">configurable</a> and has lots of ways to integrate it into your <a href="http://www.jshint.com/platforms/">editor or build process</a>.</p>
+
+<h2>The fine manual</h2>
+
+<p>Alas, there is no manual for front-end development, but <a href="https://developer.mozilla.org/en-US/">MDN</a> comes pretty close. Good front-end devs know to prefix any search engine query with <code>mdn</code> &#8211; for example, <code>mdn javascript arrays</code> &#8211; in order to avoid the for-profit plague that is w3schools.</p>
+
+<h2>The End</h2>
+
+<p>As with anything, reading about these things won&#8217;t make you an expert, or even moderately skilled &#8211; the only surefire way to get better at a thing is to <a href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/">do that thing</a>. Good luck.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-12T11:30:00-04:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/10/greenfielding/" title="Previous Post: Greenfielding">&laquo; Greenfielding</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It's a language, not a religion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/';
+        var disqus_url = 'http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

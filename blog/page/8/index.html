@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its &hellip;">
+  <meta name="description" content="I remember when I first tried to understand how to produce designs for the web &#8211; coming from the paper-based world, it was hard for me to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,101 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/24/how-i-learned-css/">How I Learned CSS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-24T00:00:00-05:00" pubdate data-updated="true">Dec 24<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/24/how-i-learned-css/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I remember when I first tried to understand how to produce designs for the web &#8211; coming from the paper-based world, it was hard for me to accept everything that was suddenly out of my control. When I first tried to grasp CSS with the help of now-defunct Adobe GoLive, I bailed pretty quickly. Table-based layout and font tags didn&#8217;t make much sense to me either &#8211; why did I have to slice up a page into a bunch of adjoining cells, instead of just drawing independent boxes like I did in Quark?</p>
+
+<p>A couple of years later, I decided to try again, motivated by the realization that my <a href="http://gmurphey.com/">eight-years-younger brother</a> seemed to be better at this web stuff than I was. I spent untold hours trying to wrap my brain around <a href="http://www.sustainablewebdesign.com/resources/601/">the difference between margin and padding</a> and exactly how to <a href="http://css.maxdesign.com.au/floatutorial/">get floated elements to bend to my will</a>. I remember the epiphany that one could <a href="http://www.sovavsiti.cz/css/horizontal_menu.html">use left-floated list items for a horizontal menu</a>, or that <a href="http://www.netmechanic.com/news/vol4/html_no22.htm">the right DOCTYPE can force Internet explorer to behave more like a real browser</a>.</p>
+
+<p>These days, I have an honest-to-god job doing this stuff, and every now and then, someone will ask me how they can learn it too. It all makes so much more sense to me than it used to that it&#8217;s hard to remember how I got here. In the interest of getting this stuff written down for passing along, though, here are a few thoughts:</p>
+
+<h3>The Tools</h3>
+
+
+<p>These are things without which the rest is impossible:</p>
+
+<ul>
+<li>
+<strong>A text editor</strong> Notepad will do just fine; for a few bucks, you can get <a href="http://macromates.com/">TextMate</a> for Mac or the <a href="http://www.e-texteditor.com/">e Text Editor</a> for PC. If you use Dreamweaver, hide everything but the file navigator panel and the code editing view. <em>You will learn nothing from Dreamweaver&#8217;s &#8220;design&#8221; view.</em>
+</li>
+<li>
+<strong><a href="http://www.mozilla.com/en-US/firefox/">Firefox</a></strong> You&#8217;ll need to test anything you do in Internet Explorer, but first, you&#8217;ll get it working in Firefox. Whereas Internet Explorer enjoys mocking web standards, Firefox does its best to adhere to them; plus, it has all sorts of extensions that make it easier to troubleshoot your work.</li>
+<li>
+<strong><a href="https://addons.mozilla.org/en-US/firefox/addon/60">Firefox Web Developer Toolbar</a></strong> This has all sorts of useful tools in it, including a real-time CSS editor that opens in the browser&#8217;s sidebar so you try changes to your CSS and see the results immediately.</li>
+<li>
+<strong><a href="https://addons.mozilla.org/en-US/firefox/addon/1843">Firebug</a></strong> This is most useful for Javascript debugging, but it has some nice features for debugging CSS as well.</li>
+<li>
+<strong><a href="http://users.skynet.be/mgueury/mozilla/">HTML Validator</a></strong> Incredibly helpful for finding errors in your HTML.</li>
+</ul>
+
+
+<p>(An aside: A few months ago I booted up an old laptop and found a preview release of Firefox 1.0 installed beside a well-worn Internet Explorer 6; when I abandoned the laptop, I was in the process of abandoning IE too. I can&#8217;t help but wonder how difficult my learning would have continued to be without the arrival of Firefox, which, with the extensions mentioned above, makes it so much more possible to learn all of this stuff in a very tangible, immediate sort of way.)</p>
+
+<h3>Learning with Firefox</h3>
+
+
+<p>Once you have the tools above, open Firefox and start with a page someone else built &#8211; like the one you&#8217;re on right now &#8211; and see what&#8217;s inside. It pays to be curious about every web page you visit; if you see something interesting, view the source and figure out how it got there. Some tips:</p>
+
+<ul>
+<li>
+<code>Ctrl-U</code> will show you the HTML for a page, and with the HTML Validator extension, you can &#8220;clean up&#8221; the HTML so it&#8217;s easier to read.</li>
+<li>
+<code>Ctrl-Shift-E</code> will open the Web Developer Toolbar CSS editor, which will show you the CSS for the page, with a tab for each CSS file. You can edit the CSS in the editor and see the effects immediately.</li>
+<li>
+<code>F12</code> will open Firebug. In the top left of the panel that opens, click the Inspect menu item, then move your mouse back to the page itself and click on an element to find out more about it. You can also click on the HTML tab to view the HTML and expand and collapse sections of it to see the structure of the page. Hovering over an element in the HTML panel will highlight it on the page; clicking on an element will let you find out more about it in the Style and Layout tabs of Firebug. (Firebug is an incredibly powerful tool that you really need to play with to fully appreciate. It&#8217;s a completely non-destructive tool &#8211; you can&#8217;t hurt anything with it unless you try really, really hard &#8211; so don&#8217;t be afraid to click around and see what happens.)</li>
+<li>Remember that these days, lots of page elements are built with Javascript rather than with straight HTML. <code>Ctrl-U</code> will show you only the HTML; Firebug will show you the &#8220;generated source,&#8221; including any elements built with Javascript. Firebug also lets you look at the Javascript on a page, which can be helpful when you&#8217;re trying to understand how something got there.
+</li>
+</ul>
+
+
+
+
+<h3>POSH</h3>
+
+
+<p><a href="http://www.456bereastreet.com/archive/200711/posh_plain_old_semantic_html/">Plain-old semantic HTML</a>. When you go to make a web page, write the simplest HTML you can, and use standard HTML elements whenever humanly possible. Start by creating HTML that represents the actual sections of the page &#8211; header, navigation, sidebar, content, footer &#8211; and give the elements names that say what they <em>are</em>, not where they go. When you think you&#8217;re done, view the HTML in a browser, without CSS, and see if it makes sense. Then, <em>and only then</em>, open the browser&#8217;s CSS editor and start styling the elements. See how far you can get without adding any design-related markup to your HTML. If you find yourself writing convoluted HTML or adding purely presentational markup, to make something work, it&#8217;s time to reconsider your approach. Once you have a good stylesheet started, copy it to your text editor and continue working on it there.</p>
+
+<h3>Strategies</h3>
+
+
+<p>It helps to give yourself deadlines, even if they&#8217;re imaginary. I&#8217;ve learned more about HTML, CSS and Javascript in the past 12 months than I learned in the three years before, and I think that&#8217;s largely because deadlines have forced me to solve problems rather than pondering them.</p>
+
+<p>Don&#8217;t be afraid to do something less than perfectly; there can be value in just getting it done. I constantly look back at things I did three months ago &#8211; let alone three years ago, and sometimes three weeks ago &#8211; and I cringe when I think how differently I would do them today. But half the reason I know what I know now is precisely because I <em>didn&#8217;t</em> know it then, and I learned it along the way. Understanding the building blocks of the web is an iterative process, and you&#8217;ll do better if you remember that <strong>you cannot know everything you wish you knew</strong>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -579,58 +674,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job/">Software Without Which I&#8217;d Be Hard-pressed to Do My Job</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-05T00:00:00-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/05/software-without-which-i-d-be-hard-pressed-to-do-my-job/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li>
-<strong>vim</strong> A sophisticated text editor with no GUI &#8211; everything is text-based, and all commands are issued from the keyboard. Frightening at first, and then so ridiculously efficient that nothing else makes sense.</li>
-<li>
-<strong>Firefox</strong> Great in and of itself, and the ability to add extensions makes it priceless.</li>
-<li>
-<strong>Firebug</strong> One of said Firefox extensions &#8211; as <a href="http://marcus.org/blog/">Marcus</a> said recently, it&#8217;s hard to imagine how Web 2.0 would have happened without it. The Inspect function, the console, the Net view &#8230; without it I&#8217;d be utterly lost.</li>
-<li>
-<strong>Filezilla</strong> I booted up an old computer of mine and found an FTP client I think I had to either pay for or steal, and it wasn&#8217;t half as good as this. I wish it had bookmarks for moving around servers easily &#8230; alas.</li>
-<li>
-<strong>Pidgin</strong> All my instant messaging personas in one application, with pounces, fine-grained status control and logging. Plus: file transfers seem to work better now. Woo.</li>
-<li>
-<strong>cygwin</strong> In an alternate universe, I get to use a Mac. Until that alternate reality arrives, cygwin gives me the power of the terminal in Windows. These days, I always have at least one cygwin window open most of the time, because sometimes, things are just easier on the command line.</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -648,6 +691,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
       </li>
     
@@ -661,10 +708,6 @@
     
       <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-04-10T22:33:42-04:00</updated>
+  <updated>2012-08-20T13:18:16-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,126 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Baseline for Front-End Developers]]></title>
+    <link href="http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/"/>
+    <updated>2012-04-12T11:30:00-04:00</updated>
+    <id>http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers</id>
+    <content type="html"><![CDATA[<p>I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized that it was the sort of thing that might have intimidated the hell out of me a couple of years ago, what with its casual mentions of Node, npm, Homebrew, git, tests, and development and production builds.</p>
+
+<p>Once upon a time, editing files, testing them locally (as best as we could, anyway), and then FTPing them to the server was the essential workflow of a front-end dev. We measured our mettle based on our ability to wrangle IE6 into submission or achieve pixel perfection across browsers. Many members of the community &#8211; myself included &#8211; lacked traditional programming experience. HTML, CSS, and JavaScript &#8211; usually in the form of jQuery &#8211; were self-taught skills.</p>
+
+<p>Something has changed in the last couple of years. Maybe it&#8217;s the result of people starting to take front-end dev seriously, maybe it&#8217;s browser vendors mostly getting their shit together, or maybe it&#8217;s front-end devs &#8211; again, myself included &#8211; coming to see some well-established light about the process of software development.</p>
+
+<p>Whatever it is, I think we&#8217;re seeing the emphasis shift from valuing trivia to valuing tools. There&#8217;s a new set of baseline skills required in order to be successful as a front-end developer, and developers who don&#8217;t meet this baseline are going to start feeling more and more left behind as those who are sharing their knowledge start to assume that certain things go without saying.</p>
+
+<p>Here are a few things that <em>I</em> want to start expecting people to be familiar with, along with some resources you can use if you feel like you need to get up to speed. (Thanks to Paul Irish, Mike Taylor, Angus Croll, and Vlad Filippov for their contributions.)</p>
+
+<h2>JavaScript</h2>
+
+<p>This might go without saying, but simply knowing a JavaScript library isn&#8217;t sufficient any more. I&#8217;m not saying you need to know how to implement all the features of a library in plain JavaScript, but you should know when a library is actually required, and be capable of working with plain old JavaScript when it&#8217;s not.</p>
+
+<p>That means that you&#8217;ve read <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">JavaScript: The Good Parts</a> &#8211; hopefully more than once. You understand data structures like objects and arrays; functions, including how and why you would <code>call</code> and <code>apply</code> them; working with prototypal inheritance; and managing the asynchronicity of it all.</p>
+
+<p>If your plain JS fu is weak, here are some resources to help you out:</p>
+
+<ul>
+<li><a href="http://eloquentjavascript.net">Eloquent Javascript</a>: A wonderful book (also available in print) that takes you back to JavaScript basics</li>
+<li><a href="https://github.com/rmurphey/js-assessment">A Test-Driven JS Assessment</a>: A set of failing tests that cover various JavaScript topics; can you write code to make the tests pass?</li>
+<li><a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 things I learned from the jQuery Source</a> is an oldie but goodie from Paul Irish that shows what you can learn by reading other people&#8217;s code.</li>
+</ul>
+
+
+<h2>Git (and a Github account)</h2>
+
+<p>If you&#8217;re not on Github, you&#8217;re essentially unable to participate in the rich open-source community that has arisen around front-end development technologies. Cloning a repo to try it out should be second-nature to you, and you should understand how to <a href="http://nvie.com/posts/a-successful-git-branching-model/">use branches on collaborative projects</a>.</p>
+
+<p>Need to boost your git skills?</p>
+
+<ul>
+<li><a href="http://help.github.com/">help.github.com</a></li>
+<li><a href="http://help.github.com/git-cheat-sheets/">Github git cheat sheet</a></li>
+<li><a href="http://cheat.errtheblog.com/s/git">More cheat sheet</a></li>
+<li><a href="http://pinboard.in/u:rmurphey/t:git/">More git links</a></li>
+</ul>
+
+
+<h2>Modularity, dependency management, and production builds</h2>
+
+<p>The days of managing dependencies by throwing one more script or style tag on the page are long gone. Even if you haven&#8217;t been able to incorporate great tools like <a href="http://requirejs.org">RequireJS</a> into your workflow at work, you should find time to investigate them in a personal project or in a project like <a href="https://github.com/backbone-boilerplate/backbone-boilerplate">Backbone Boilerplate</a>, because the benefits they convey are huge. RequireJS in particular lets you develop with small, modular JS and CSS files, and then concatenates and minifies them via its optimization tool for production use.</p>
+
+<p>Skeptical of AMD? That&#8217;s no excuse to be doing nothing. At the very least, you should be aware of tools like <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> or <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a> that will intelligently minify your code, and then concatenate those minified files prior to production.</p>
+
+<p>If you&#8217;re writing plain CSS &#8211; that is, if you&#8217;re not using a preprocessor like Sass or Stylus &#8211; RequireJS can help you keep your CSS files modular, too. Use <code>@import</code> statements in a base file to load dependencies for development, and then run the RequireJS <a href="http://requirejs.org/docs/optimization.html#onecss">optimizer</a> on the base file to create a file built for production.</p>
+
+<h2>In-Browser Developer Tools</h2>
+
+<p>Browser-based development tools have improved tremendously over the last couple of years, and they can dramatically improve your development experience if you know how to use them. (Hint: if you&#8217;re still using <code>alert</code> to debug your code, you&#8217;re wasting a lot of time.)</p>
+
+<p>You should probably find one browser whose developer tools you primarily use &#8211; I&#8217;m partial to <a href="https://developers.google.com/chrome-developer-tools/">Google Chrome&#8217;s Developer Tools</a> these days &#8211; but don&#8217;t dismiss the tools in other browsers out of hand, because they are constantly adding useful features based on developer feedback. Opera&#8217;s <a href="http://my.opera.com/dragonfly/blog/">Dragonfly</a> in particular has some features that make its developer tools stand out, such as an (experimental) CSS profiler, customizable keyboard shortcuts, remote debugging without requiring a USB connection, and the ability to save and use custom color palettes.</p>
+
+<p>If your understanding of browser dev tools is limited, <a href="http://fixingthesejquery.com/#slide1">Fixing these jQuery</a> is a great (and not particularly jQuery-centric) overview of debugging, including how to do <a href="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints">step debugging</a> &#8211; a life-altering thing to learn if you don&#8217;t already know it.</p>
+
+<h2>The command line</h2>
+
+<p>Speaking of the command line, being comfortable with it is no longer optional &#8211; you&#8217;re missing out on way too much if you&#8217;re not ready to head over to a terminal window and get your hands dirty. I&#8217;m not saying you have to do <em>everything</em> in the terminal &#8211; I won&#8217;t take your git GUI away from you even though I think you&#8217;ll be better off without it eventually &#8211; but you should absolutely have a terminal window open for whatever project you&#8217;re working on. There are a few command line tasks you should be able to do without thinking:</p>
+
+<ul>
+<li><code>ssh</code> to log in to another machine or server</li>
+<li><code>scp</code> to copy files to another machine or server</li>
+<li><code>ack</code> or <code>grep</code> to find files in a project that contain a string or pattern</li>
+<li><code>find</code> to locate files whose names match a given pattern</li>
+<li><code>git</code> to do at least basic things like <code>add</code>, <code>commit</code>, <code>status</code>, and <code>pull</code></li>
+<li><code>brew</code> to use Homebrew to install packages</li>
+<li><code>npm</code> to install Node packages</li>
+<li><code>gem</code> to install Ruby packages</li>
+</ul>
+
+
+<p>If there are commands you use frequently, edit your <code>.bashrc</code> or <code>.profile</code> or <code>.zshrc</code> or whatever, and create an <a href="http://tldp.org/LDP/abs/html/aliases.html">alias</a> so you don&#8217;t have to type as much. You can also add aliases to your <code>~/.gitconfig</code> file. Gianni Chiappetta&#8217;s <a href="https://github.com/gf3/dotfiles">dotfiles</a> are an excellent inspiration for what&#8217;s possible.</p>
+
+<p><em>Note: If you&#8217;re on Windows, I don&#8217;t begin to know how to help you, aside from suggesting <a href="http://www.cygwin.com/">Cygwin</a>. Right or wrong, participating in the open-source front-end developer community is materially more difficult on a Windows machine. On the bright side, MacBook Airs are cheap, powerful,  and ridiculously portable, and there&#8217;s always Ubuntu or another *nix.</em></p>
+
+<h2>Client-side templating</h2>
+
+<p>It wasn&#8217;t so long ago that it was entirely typical for servers to respond to XHRs with a snippet of HTML, but sometime in the last 12 to 18 months, the front-end dev community saw the light and started demanding pure data from the server instead. Turning that data into HTML ready to be inserted in the DOM can be a messy and unmaintainable process if it&#8217;s done directly in your code. That&#8217;s where <a href="http://www.slideshare.net/garann/using-templates-to-achieve-awesomer-architecture">client-side templating libraries</a> come in: they let you maintain templates that, when mixed with some data, turn into a string of HTML. Need help picking a templating tool? Garann Means&#8217; <a href="http://garann.github.com/template-chooser/">template chooser</a> can point you in the right direction.</p>
+
+<h2>CSS preprocessors</h2>
+
+<p>Paul Irish <a href="https://twitter.com/#!/paul_irish/status/188329390822801409">noted</a> the other day that we&#8217;re starting to see front-end devs write code that&#8217;s very different from what ends up in production, and code written with CSS preprocessors is a shining example of this. There&#8217;s still a vocal crowd that feels that pure CSS is the only way to go, but they&#8217;re <a href="http://www.stuffandnonsense.co.uk/blog/about/less">starting to come around</a>. These tools give you features that arguably should be in CSS proper by now &#8211; variables, math, logic, mixins &#8211; and they can also help smooth over the CSS property prefix mess.</p>
+
+<h2>Testing</h2>
+
+<p>One of the joys of writing modular, loosely coupled code is that your code becomes vastly easier to test, and with tools like <a href="https://github.com/cowboy/grunt">Grunt</a>, setting up a project to include tests has never been easier. Grunt comes with QUnit integration, but there are a host of testing frameworks that you can choose from &#8211; <a href="https://github.com/pivotal/jasmine/wiki">Jasmine</a> and <a href="http://visionmedia.github.com/mocha/">Mocha</a> are a couple of my current favorites &#8211; depending on your preferred style and the makeup of the rest of your stack.</p>
+
+<p>While testing is a joy when your code is modular and loosely coupled, testing code that&#8217;s not well organized can be somewhere between difficult and impossible. On the other hand, forcing yourself to write tests &#8211; perhaps before you even write the code &#8211; will help you organize your thinking <em>and</em> your code. It will also let you refactor your code with greater confidence down the line.</p>
+
+<ul>
+<li>A short <a href="http://vimeo.com/20457625">screencast</a> I recorded about testing your jQuery with Jasmine.</li>
+<li>An example of <a href="https://github.com/cowboy/jquery-bbq/blob/master/unit/unit.js">unit tests</a> on the jquery-bbq plugin.</li>
+</ul>
+
+
+<h2>Process automation (rake/make/grunt/etc.)</h2>
+
+<p>Grunt&#8217;s ability to set up a project with built-in support for unit tests is one example of process automation. The reality of front-end development is that there&#8217;s a whole lot of repetitive stuff we have to do, but as a friend once told me, a good developer is a lazy developer: as a rule of thumb, if you find yourself doing the same thing three times, it&#8217;s time to automate it.</p>
+
+<p>Tools like <code>make</code> have been around for a long time to help us with this, but there&#8217;s also <code>rake</code>, <code>grunt</code>, and others. Learning a language other than JavaScript can be extremely helpful if you want to automate tasks that deal with the filesystem, as Node&#8217;s async nature can become a real burden when you&#8217;re just manipulating files. There are lots of task-specific automation tools, too &#8211; tools for deployment, build generation, code quality assurance, and more.</p>
+
+<h2>Code quality</h2>
+
+<p>If you&#8217;ve ever been bitten by a missing semicolon or an extra comma, you know how much time can be lost to subtle flaws in your code. That&#8217;s why you&#8217;re running your code through a tool like <a href="http://www.jshint.com/">JSHint</a>, right? It&#8217;s <a href="http://www.jshint.com/options/">configurable</a> and has lots of ways to integrate it into your <a href="http://www.jshint.com/platforms/">editor or build process</a>.</p>
+
+<h2>The fine manual</h2>
+
+<p>Alas, there is no manual for front-end development, but <a href="https://developer.mozilla.org/en-US/">MDN</a> comes pretty close. Good front-end devs know to prefix any search engine query with <code>mdn</code> &#8211; for example, <code>mdn javascript arrays</code> &#8211; in order to avoid the for-profit plague that is w3schools.</p>
+
+<h2>The End</h2>
+
+<p>As with anything, reading about these things won&#8217;t make you an expert, or even moderately skilled &#8211; the only surefire way to get better at a thing is to <a href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/">do that thing</a>. Good luck.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Greenfielding]]></title>
@@ -2221,121 +2341,6 @@ join in.</p>
 <p>And so as I sit here, about to finish off the last slides of the year, I fantasize about deleting Keynote from my computer. But I also find myself thinking how I&#8217;m deciding not to do this thing that I&#8217;m kind of good at because I simply can&#8217;t afford to, and it makes me sad. It kills me to think about missing out on that warm fuzzy it-was-all-worth-it moment when everyone claps at the end. And more than anything, I feel like walking away, for however long, means yet one less woman on stage in a field that is desperate for them, and that makes me saddest of all.</p>
 
 <p>There is no point to this post, really, except for me to get some of my thoughts out of my head and for you to know where I&#8217;ve gone if you don&#8217;t see or hear from me as much. It is, alas, time for me to actually do some of that work that all this effort has brought in. We&#8217;ll see when I emerge &#8211; maybe I will feel rejuvenated in the new year, who knows! &#8211; and whenever that is, I hope to see you there.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[jQuery Conference Breakout Session: Women & Conferences]]></title>
-    <link href="http://rmurphey.com/blog/2010/10/19/jquery-breakout-women-and-conferences/"/>
-    <updated>2010-10-19T00:00:00-04:00</updated>
-    <id>http://rmurphey.com/blog/2010/10/19/jquery-breakout-women-and-conferences</id>
-    <content type="html"><![CDATA[<p>I decided to organize a breakout session about women and conferences at the
-<a href="http://events.jquery.org/2010/boston/">jQuery Conference in Boston</a> this past
-weekend, and I couldn&#8217;t be happier about how it went &#8211; it was probably one of
-the more productive sessions of its sort that I&#8217;ve participated in.</p>
-
-<p>My best guess, with the help of some t-shirt size numbers from the most-amazing
-<a href="http://twitter.com/#!/wifelette">Leah Silber</a>, is that the conference
-attendees were about 10% women. This sounds a bit terrible, but on the
-contrary, looking around the room, I felt like women were in fact more
-represented than I&#8217;m accustomed to at other JavaScript-centric conferences.</p>
-
-<p>In setting up the breakout session, I wanted to do two things: one, applaud the
-women who did show up, because they are already part of the solution; two, (at
-the risk of sounding a bit lame), call upon them to be the change that so many
-of us want to see at tech conferences.</p>
-
-<p>I started the session with a small intro/lecture/rant: when we have these
-conversations, we&#8217;re talking about a conference for an open-source project, and
-this means that we &#8211; community members &#8211; need to take some ownership of the
-problem if we want to see more diversity on stage; it shouldn&#8217;t just be up to
-the project or the conference organizers. I&#8217;ve talked to plenty of jQuery team
-members, and the problem is certainly not that they are seeking to exclude
-non-white-male speakers, nor that they are insensitive to the issue; to the
-contrary, they are incredibly interested in diversifying their lineup, but
-they&#8217;re somewhat at a loss as to where to find people who would be good
-speakers. My call to action to the people in attendance was to be part of the
-solution.</p>
-
-<p>My favorite part about the session was that it didn&#8217;t turn into a big bitchfest
-&#8211; I think there was actually some productive discussion that took place. While
-the attendees were mostly women, there was a solid contingent of men. Menno van
-Slooten, in particular, was great &#8211; he talked about his experience as a
-relative outsider whose boss pressured him into submitting a talk to the Bay
-Area jQuery Conference earlier this year. His talk at that conference ended up
-being so well received that he was back to speak in Boston.</p>
-
-<p>At some point during the session, I realized that John Resig was sitting across
-from me. I don&#8217;t want sound like a giddy schoolgirl here &#8211; John&#8217;s just a
-person, and I don&#8217;t want to sound like he graced us with his benevolent
-presence &#8211; but I can&#8217;t tell you how much I think it changed the dynamic of the
-discussion to know that it was being heard by such an influential
-representative. John answered questions directly and honestly, and there was a
-serious sense that he was hearing feedback too &#8211; we weren&#8217;t just talking
-amongst ourselves. His presence dispelled any sense that the project wasn&#8217;t
-interested in the topic; I&#8217;d encourage other prominent people who care about
-these things to make time to take part in similar conversations.</p>
-
-<p>I was kind of amazed to hear how simple the questions were about speaking at a
-jQuery conference. I have given great credence to issues of anxiety, shyness,
-and perceived inadequacy &#8211; and I don&#8217;t think these issues have gone away &#8211;
-but it never occurred to me that people had really basic questions about the
-process of speaking at a conference. This was actually sort of great &#8211; while I
-can&#8217;t singlehandedly get a potential speaker to overcome a sense of anxiety or
-inadequacy, there were so many questions that could be answered simply and
-directly.</p>
-
-<p>To that end, I&#8217;m working on a FAQ for potential speakers at future jQuery
-conferences, addressing basic questions about process, etc., that I hope the
-project will incorporate into future calls for speakers. As a decently
-connected member of the jQuery community, I know who to ask when I have these
-questions, but I naively didn&#8217;t realize how inaccessible the answers could seem
-to &#8220;outsiders.&#8221; Explaining the answers to basic questions is the sort of easy
-but meaningful effort that a conference can make to lower the barriers to new
-speakers, women or men. This should be a no-brainer for any conference that
-wants to its lineup to be interesting,  fresh, and diverse.</p>
-
-<p>Another idea that we talked about was pairing accepted speakers up with a buddy
-of sorts. I have tried to be this buddy, informally, to people who are speaking
-for the first time, but I think it could be worthwhile to formalize the
-process. New speakers could ask their &#8220;buddy&#8221; questions about what it&#8217;s like to
-speak, how to prepare, what to expect from the audience, etc. The speaker would
-be more prepared and comfortable, and the audience would get a better
-presentation.</p>
-
-<p>There was a tremendous lack of clarity surrounding what&#8217;s actually involved in
-submitting a talk to a conference. While I&#8217;m by no means a grizzled veteran of
-the conference circuit &#8211; my first major talk was just a year ago &#8211; my
-experience so far is that submitting a talk is mostly about having a
-well-articulated idea and some semblance of evidence that you can pull it off.
-This, perhaps, is where the process becomes most subjective and biased toward
-&#8220;insiders&#8221; &#8211; people known to give good talks are likely to get the opportunity
-to give talks again &#8211; but I think there&#8217;s plenty of room to overcome any bias.
-People who have made a point of participating in the community, people who have
-made a point of contributing useful content about their chosen topic, will
-generally get the benefit of the doubt. Reaching out to a past speaker, or to
-an established community member, can be a great help in shepherding your talk
-through the process. Again, I&#8217;m hoping that the FAQ can address some of this
-low-hanging fruit.</p>
-
-<p>Regarding jQuery conferences in particular, John made the very good point that
-there is a lot of room for talks that aren&#8217;t specifically about jQuery. There
-were actually lots of these sorts of talks at the conference this weekend &#8211;
-talks about TDD, HTML5, object-oriented CSS, CouchDB, and more. One of the
-lovely things about the jQuery and JavaScript community is that community
-members have a potentially wide area of interest &#8211; any topic related to
-front-end development is likely to be relevant to the audience. John pointed
-out that talks about these tangential topics may be one of the greatest
-opportunities for newcomers to the world of speaking: the speaker is likely to
-be the only one presenting on the topic, and can potentially establish
-themselves as something of a subject matter expert on the topic.</p>
-
-<p>Again, this was one of the more productive conversations I&#8217;ve participated in
-on this topic. If you&#8217;d like to talk to me about it more, don&#8217;t hesitate to
-drop me an email or a tweet or a comment. If you&#8217;re considering venturing into
-the speaking world, I&#8217;m happy to talk with you about that too. Thanks to
-everyone who came, and especially to <a href="http://twitter.com/#!/unruthless">Ruthie BenDor</a> for her support, and I look forward
-to continued discussion.</p>
 ]]></content>
   </entry>
   

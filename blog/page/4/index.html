@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I came across a little code the other day that reminded me I&#8217;ve been meaning to write about JavaScript patterns I take for granted. The code in &hellip;">
+  <meta name="description" content="Over the weekend, there was a tweet announcing that Google was going to provide &#8220;scholarships&#8221; to qualified women to attend JSConf.eu. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,70 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/27/i-need-to-say-a-few-things/">I Need to Say a Few Things.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-07-27T00:00:00-04:00" pubdate data-updated="true">Jul 27<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/07/27/i-need-to-say-a-few-things/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Over the weekend, there was a tweet announcing that Google was going to provide &#8220;scholarships&#8221; to qualified women to attend JSConf.eu. There was then a tweet by another person calling this &#8220;disgusting&#8221; and &#8220;illegal.&#8221; Nicole Sullivan has a <a href="http://www.stubbornella.org/content/2010/07/26/woman-in-technology/">level-headed and well-articulated roundup</a> of the back-and-forth and some of the surrounding issues, and I suggest you read it.</p>
+
+
+
+
+<p>I take no position on the scholarships. I question whether they will have any meaningful or lasting effect. I fear the availability of the scholarships will lead to ill feelings about the women who do attend. Simultaneously, I yearn to discover, against hope, that they make it possible for some highly qualified but unknown woman to gain access to the JavaScript community.  Whatever. Smarter people than me have a better idea than I do as to how effective they will be, and lawyers can tell you whether they&#8217;re illegal. I&#8217;ll stand firmly in the &#8220;no&#8221; camp on the disgusting count.</p>
+
+
+
+
+<p>You know what&#8217;s disgusting? Being groped at a conference after-party by a drunk married man. Opening your hotel door to discover said drunk married man stumbling down the hall, asking himself into your room, and literally having to slam the door in his face. Having a video of you posted on the internet, suggesting that you were engaged in a sexual act with the yayQuery logo. Seeing someone ask, publicly, on Twitter, if anyone knows the name of the hot conference chick.  That, dear reader, is disgusting.</p>
+
+
+
+
+<p>I adore my male friends in the tech community. They have encouraged and supported me and welcomed me into their inner circles. But even they can act like 12-year-old boys sometimes, and while I don&#8217;t begrudge them that, it is hard, because it&#8217;s at those moments that I realize how much I am not them, how much I long to have more than the barest assembly of female peers who have any idea what this is like.  And then I remember: those peers I long for will have to put up with so much shit to be in that cool kid&#8217;s club, and you know what? If Google wants to pay them a measly few hundred bucks to put up with it, maybe that&#8217;s OK. Hell, maybe they ought to pay them more. Perhaps, as ham-handed and questionably productive as the scholarships may be, it&#8217;s only fair to pay women to look the other way when some asshole treats them like a thing instead of a person.</p>
+
+
+
+
+<p>I am angry. I have been angry since Saturday, when this all started. I have spent the last year trying to be the thing that I want to see: the woman on stage. I have formed groups to encourage other women to do the same. I have reached out to women who show potential and tried to give them the encouraging nudge they need that no one really gave me.   And right this very moment, I feel incredibly selfish. This weekend reminded me what I am asking those women to enter into: a world that presents no tangible barriers, but that will objectify them every step of the way. And if these women have the guts &#8211; well, let&#8217;s be community-appropriate here &#8211; if they have the balls to speak up and say that it is hard to be a woman in this field, that it takes a thick skin and determination and a willingness to be one of the boys even when that&#8217;s the last thing in the world they want to do, then they should brace for a chorus of men to rise and tell them they are wrong.</p>
+
+
+
+
+<p>Men, guys, boys: I am not asking you to give up Star Wars and The Matrix. I&#8217;m not even asking you to give up gratuitous phallic references and #twss jokes, though I hope we&#8217;re all grown-up enough to know that there&#8217;s a time and a place. And you know what? If you want to DM your friend about trying to hook up with that hot conference chick, well, good luck with that. We&#8217;re all human.   But for the love of all that is good: this being a woman in your world thing, it&#8217;s not easy, OK? Maybe you can&#8217;t understand it, and I even believe it when you say you don&#8217;t mean it. But when you deny it, you just look like an ass.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1448,12 +1512,132 @@ matures.</p>
 </ul>
 
 
+<p>With those guidelines in mind, we’ll start with this html.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;h1&gt;</span>This is My Nifty Feature<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myFeature&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;sections&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1&quot;</span><span class="nt">&gt;</span>Section 1<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1/content/1&quot;</span><span class="nt">&gt;</span>Section 1 Title 1<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1/content/2&quot;</span><span class="nt">&gt;</span>Section 1 Title 2<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1/content/3&quot;</span><span class="nt">&gt;</span>Section 1 Title 3<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2&quot;</span><span class="nt">&gt;</span>Section 2<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2/content/1&quot;</span><span class="nt">&gt;</span>Section 2 Title 1<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2/content/2&quot;</span><span class="nt">&gt;</span>Section 2 Title 2<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2/content/3&quot;</span><span class="nt">&gt;</span>Section 2 Title 3<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3&quot;</span><span class="nt">&gt;</span>Section 3<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3/content/1&quot;</span><span class="nt">&gt;</span>Section 3 Title 1<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3/content/2&quot;</span><span class="nt">&gt;</span>Section 3 Title 2<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3/content/3&quot;</span><span class="nt">&gt;</span>Section 3 Title 3<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>With those guidelines in mind, we’ll start with <a href="http://www.rebeccamurphey.com/jsmag/object-literal/">this html</a>.  Note that we haven’t included any markup to display the section navigation or the item navigation; those pieces will be added by jQuery since they will only work with jQuery; non-JavaScript users will get nice semantic markup. (If there’s anything surprising or confusing in that HTML, now would be a good time to read up on POSH (plain-old semantic HTML) and progressive enhancement.)</p>
-
-
-
+<p>Note that we haven’t included any markup to display the section navigation or the item navigation; those pieces will be added by jQuery since they will only work with jQuery; non-JavaScript users will get nice semantic markup. (If there’s anything surprising or confusing in that HTML, now would be a good time to read up on POSH (plain-old semantic HTML) and progressive enhancement.)</p></p>
 
 <h3>Step 2: Scaffolding the Object</h3>
 
@@ -2264,77 +2448,6 @@ matures.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/">jQuery Validation: Indicate That at Least One Element in a Group Is Required</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-15T00:00:00-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I had a need today to indicate that at least one of a set of input fields was required. I was hoping there was a direct way to do this in the <a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">jQuery validation plugin</a>; while the method isn&#8217;t quite as straightforward as I was wishing for, it&#8217;s still fairly simple.</p>
-
-<p>To start with, I put <code>class="required_group"</code> on each of the elements in the group. Then, I added a custom validation method:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">addMethod</span><span class="p">(</span><span class="s1">&#39;required_group&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">$module</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.panel&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nx">$module</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.required_group:filled&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&#8230; a custom class rule to take advantage of the new method:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">addClassRules</span><span class="p">(</span><span class="s1">&#39;required_group&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>    <span class="s1">&#39;required_group&#39;</span> <span class="o">:</span> <span class="kc">true</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>&#8230; and finally a custom message for the new method:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">required_group</span> <span class="o">=</span> <span class="s1">&#39;Please fill out at least one of these fields.&#39;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>What I&#8217;d love to see is a way to specify a dependent group without using a custom class rule, but I&#8217;m not sure what this would look like, as all validation rules are either keyed off an element&#8217;s class or the presence of the element&#8217;s name in the rules object. Thoughts? I&#8217;m open to the possibility that there&#8217;s a far better way to solve this &#8211;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -2352,6 +2465,10 @@ matures.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
       </li>
     
@@ -2365,10 +2482,6 @@ matures.</p>
     
       <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
       </li>
     
   </ul>

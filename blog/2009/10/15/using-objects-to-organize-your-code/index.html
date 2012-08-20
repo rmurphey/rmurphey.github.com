@@ -314,12 +314,132 @@
 </ul>
 
 
+<p>With those guidelines in mind, we’ll start with this html.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;h1&gt;</span>This is My Nifty Feature<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;myFeature&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;sections&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1&quot;</span><span class="nt">&gt;</span>Section 1<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1/content/1&quot;</span><span class="nt">&gt;</span>Section 1 Title 1<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1/content/2&quot;</span><span class="nt">&gt;</span>Section 1 Title 2<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/1/content/3&quot;</span><span class="nt">&gt;</span>Section 1 Title 3<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2&quot;</span><span class="nt">&gt;</span>Section 2<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2/content/1&quot;</span><span class="nt">&gt;</span>Section 2 Title 1<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2/content/2&quot;</span><span class="nt">&gt;</span>Section 2 Title 2<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/2/content/3&quot;</span><span class="nt">&gt;</span>Section 2 Title 3<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3&quot;</span><span class="nt">&gt;</span>Section 3<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3/content/1&quot;</span><span class="nt">&gt;</span>Section 3 Title 1<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3/content/2&quot;</span><span class="nt">&gt;</span>Section 3 Title 2<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;li&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h3&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/section/3/content/3&quot;</span><span class="nt">&gt;</span>Section 3 Title 3<span class="nt">&lt;/a&gt;&lt;/h3&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p&gt;</span>The excerpt content for Content Item 3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>With those guidelines in mind, we’ll start with <a href="http://www.rebeccamurphey.com/jsmag/object-literal/">this html</a>.  Note that we haven’t included any markup to display the section navigation or the item navigation; those pieces will be added by jQuery since they will only work with jQuery; non-JavaScript users will get nice semantic markup. (If there’s anything surprising or confusing in that HTML, now would be a good time to read up on POSH (plain-old semantic HTML) and progressive enhancement.)</p>
-
-
-
+<p>Note that we haven’t included any markup to display the section navigation or the item navigation; those pieces will be added by jQuery since they will only work with jQuery; non-JavaScript users will get nice semantic markup. (If there’s anything surprising or confusing in that HTML, now would be a good time to read up on POSH (plain-old semantic HTML) and progressive enhancement.)</p></p>
 
 <h3>Step 2: Scaffolding the Object</h3>
 
@@ -1062,6 +1182,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
       </li>
     
@@ -1075,10 +1199,6 @@
     
       <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
       </li>
     
   </ul>

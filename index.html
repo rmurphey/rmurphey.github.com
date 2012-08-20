@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I&#8217;m officially one-third of the way through my self-imposed month of unemployment before I join Bocoup at the beginning of May, and I&#8217;ve &hellip;">
+  <meta name="description" content="I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,155 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-12T11:30:00-04:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized that it was the sort of thing that might have intimidated the hell out of me a couple of years ago, what with its casual mentions of Node, npm, Homebrew, git, tests, and development and production builds.</p>
+
+<p>Once upon a time, editing files, testing them locally (as best as we could, anyway), and then FTPing them to the server was the essential workflow of a front-end dev. We measured our mettle based on our ability to wrangle IE6 into submission or achieve pixel perfection across browsers. Many members of the community &#8211; myself included &#8211; lacked traditional programming experience. HTML, CSS, and JavaScript &#8211; usually in the form of jQuery &#8211; were self-taught skills.</p>
+
+<p>Something has changed in the last couple of years. Maybe it&#8217;s the result of people starting to take front-end dev seriously, maybe it&#8217;s browser vendors mostly getting their shit together, or maybe it&#8217;s front-end devs &#8211; again, myself included &#8211; coming to see some well-established light about the process of software development.</p>
+
+<p>Whatever it is, I think we&#8217;re seeing the emphasis shift from valuing trivia to valuing tools. There&#8217;s a new set of baseline skills required in order to be successful as a front-end developer, and developers who don&#8217;t meet this baseline are going to start feeling more and more left behind as those who are sharing their knowledge start to assume that certain things go without saying.</p>
+
+<p>Here are a few things that <em>I</em> want to start expecting people to be familiar with, along with some resources you can use if you feel like you need to get up to speed. (Thanks to Paul Irish, Mike Taylor, Angus Croll, and Vlad Filippov for their contributions.)</p>
+
+<h2>JavaScript</h2>
+
+<p>This might go without saying, but simply knowing a JavaScript library isn&#8217;t sufficient any more. I&#8217;m not saying you need to know how to implement all the features of a library in plain JavaScript, but you should know when a library is actually required, and be capable of working with plain old JavaScript when it&#8217;s not.</p>
+
+<p>That means that you&#8217;ve read <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">JavaScript: The Good Parts</a> &#8211; hopefully more than once. You understand data structures like objects and arrays; functions, including how and why you would <code>call</code> and <code>apply</code> them; working with prototypal inheritance; and managing the asynchronicity of it all.</p>
+
+<p>If your plain JS fu is weak, here are some resources to help you out:</p>
+
+<ul>
+<li><a href="http://eloquentjavascript.net">Eloquent Javascript</a>: A wonderful book (also available in print) that takes you back to JavaScript basics</li>
+<li><a href="https://github.com/rmurphey/js-assessment">A Test-Driven JS Assessment</a>: A set of failing tests that cover various JavaScript topics; can you write code to make the tests pass?</li>
+<li><a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 things I learned from the jQuery Source</a> is an oldie but goodie from Paul Irish that shows what you can learn by reading other people&#8217;s code.</li>
+</ul>
+
+
+<h2>Git (and a Github account)</h2>
+
+<p>If you&#8217;re not on Github, you&#8217;re essentially unable to participate in the rich open-source community that has arisen around front-end development technologies. Cloning a repo to try it out should be second-nature to you, and you should understand how to <a href="http://nvie.com/posts/a-successful-git-branching-model/">use branches on collaborative projects</a>.</p>
+
+<p>Need to boost your git skills?</p>
+
+<ul>
+<li><a href="http://help.github.com/">help.github.com</a></li>
+<li><a href="http://help.github.com/git-cheat-sheets/">Github git cheat sheet</a></li>
+<li><a href="http://cheat.errtheblog.com/s/git">More cheat sheet</a></li>
+<li><a href="http://pinboard.in/u:rmurphey/t:git/">More git links</a></li>
+</ul>
+
+
+<h2>Modularity, dependency management, and production builds</h2>
+
+<p>The days of managing dependencies by throwing one more script or style tag on the page are long gone. Even if you haven&#8217;t been able to incorporate great tools like <a href="http://requirejs.org">RequireJS</a> into your workflow at work, you should find time to investigate them in a personal project or in a project like <a href="https://github.com/backbone-boilerplate/backbone-boilerplate">Backbone Boilerplate</a>, because the benefits they convey are huge. RequireJS in particular lets you develop with small, modular JS and CSS files, and then concatenates and minifies them via its optimization tool for production use.</p>
+
+<p>Skeptical of AMD? That&#8217;s no excuse to be doing nothing. At the very least, you should be aware of tools like <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> or <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a> that will intelligently minify your code, and then concatenate those minified files prior to production.</p>
+
+<p>If you&#8217;re writing plain CSS &#8211; that is, if you&#8217;re not using a preprocessor like Sass or Stylus &#8211; RequireJS can help you keep your CSS files modular, too. Use <code>@import</code> statements in a base file to load dependencies for development, and then run the RequireJS <a href="http://requirejs.org/docs/optimization.html#onecss">optimizer</a> on the base file to create a file built for production.</p>
+
+<h2>In-Browser Developer Tools</h2>
+
+<p>Browser-based development tools have improved tremendously over the last couple of years, and they can dramatically improve your development experience if you know how to use them. (Hint: if you&#8217;re still using <code>alert</code> to debug your code, you&#8217;re wasting a lot of time.)</p>
+
+<p>You should probably find one browser whose developer tools you primarily use &#8211; I&#8217;m partial to <a href="https://developers.google.com/chrome-developer-tools/">Google Chrome&#8217;s Developer Tools</a> these days &#8211; but don&#8217;t dismiss the tools in other browsers out of hand, because they are constantly adding useful features based on developer feedback. Opera&#8217;s <a href="http://my.opera.com/dragonfly/blog/">Dragonfly</a> in particular has some features that make its developer tools stand out, such as an (experimental) CSS profiler, customizable keyboard shortcuts, remote debugging without requiring a USB connection, and the ability to save and use custom color palettes.</p>
+
+<p>If your understanding of browser dev tools is limited, <a href="http://fixingthesejquery.com/#slide1">Fixing these jQuery</a> is a great (and not particularly jQuery-centric) overview of debugging, including how to do <a href="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints">step debugging</a> &#8211; a life-altering thing to learn if you don&#8217;t already know it.</p>
+
+<h2>The command line</h2>
+
+<p>Speaking of the command line, being comfortable with it is no longer optional &#8211; you&#8217;re missing out on way too much if you&#8217;re not ready to head over to a terminal window and get your hands dirty. I&#8217;m not saying you have to do <em>everything</em> in the terminal &#8211; I won&#8217;t take your git GUI away from you even though I think you&#8217;ll be better off without it eventually &#8211; but you should absolutely have a terminal window open for whatever project you&#8217;re working on. There are a few command line tasks you should be able to do without thinking:</p>
+
+<ul>
+<li><code>ssh</code> to log in to another machine or server</li>
+<li><code>scp</code> to copy files to another machine or server</li>
+<li><code>ack</code> or <code>grep</code> to find files in a project that contain a string or pattern</li>
+<li><code>find</code> to locate files whose names match a given pattern</li>
+<li><code>git</code> to do at least basic things like <code>add</code>, <code>commit</code>, <code>status</code>, and <code>pull</code></li>
+<li><code>brew</code> to use Homebrew to install packages</li>
+<li><code>npm</code> to install Node packages</li>
+<li><code>gem</code> to install Ruby packages</li>
+</ul>
+
+
+<p>If there are commands you use frequently, edit your <code>.bashrc</code> or <code>.profile</code> or <code>.zshrc</code> or whatever, and create an <a href="http://tldp.org/LDP/abs/html/aliases.html">alias</a> so you don&#8217;t have to type as much. You can also add aliases to your <code>~/.gitconfig</code> file. Gianni Chiappetta&#8217;s <a href="https://github.com/gf3/dotfiles">dotfiles</a> are an excellent inspiration for what&#8217;s possible.</p>
+
+<p><em>Note: If you&#8217;re on Windows, I don&#8217;t begin to know how to help you, aside from suggesting <a href="http://www.cygwin.com/">Cygwin</a>. Right or wrong, participating in the open-source front-end developer community is materially more difficult on a Windows machine. On the bright side, MacBook Airs are cheap, powerful,  and ridiculously portable, and there&#8217;s always Ubuntu or another *nix.</em></p>
+
+<h2>Client-side templating</h2>
+
+<p>It wasn&#8217;t so long ago that it was entirely typical for servers to respond to XHRs with a snippet of HTML, but sometime in the last 12 to 18 months, the front-end dev community saw the light and started demanding pure data from the server instead. Turning that data into HTML ready to be inserted in the DOM can be a messy and unmaintainable process if it&#8217;s done directly in your code. That&#8217;s where <a href="http://www.slideshare.net/garann/using-templates-to-achieve-awesomer-architecture">client-side templating libraries</a> come in: they let you maintain templates that, when mixed with some data, turn into a string of HTML. Need help picking a templating tool? Garann Means&#8217; <a href="http://garann.github.com/template-chooser/">template chooser</a> can point you in the right direction.</p>
+
+<h2>CSS preprocessors</h2>
+
+<p>Paul Irish <a href="https://twitter.com/#!/paul_irish/status/188329390822801409">noted</a> the other day that we&#8217;re starting to see front-end devs write code that&#8217;s very different from what ends up in production, and code written with CSS preprocessors is a shining example of this. There&#8217;s still a vocal crowd that feels that pure CSS is the only way to go, but they&#8217;re <a href="http://www.stuffandnonsense.co.uk/blog/about/less">starting to come around</a>. These tools give you features that arguably should be in CSS proper by now &#8211; variables, math, logic, mixins &#8211; and they can also help smooth over the CSS property prefix mess.</p>
+
+<h2>Testing</h2>
+
+<p>One of the joys of writing modular, loosely coupled code is that your code becomes vastly easier to test, and with tools like <a href="https://github.com/cowboy/grunt">Grunt</a>, setting up a project to include tests has never been easier. Grunt comes with QUnit integration, but there are a host of testing frameworks that you can choose from &#8211; <a href="https://github.com/pivotal/jasmine/wiki">Jasmine</a> and <a href="http://visionmedia.github.com/mocha/">Mocha</a> are a couple of my current favorites &#8211; depending on your preferred style and the makeup of the rest of your stack.</p>
+
+<p>While testing is a joy when your code is modular and loosely coupled, testing code that&#8217;s not well organized can be somewhere between difficult and impossible. On the other hand, forcing yourself to write tests &#8211; perhaps before you even write the code &#8211; will help you organize your thinking <em>and</em> your code. It will also let you refactor your code with greater confidence down the line.</p>
+
+<ul>
+<li>A short <a href="http://vimeo.com/20457625">screencast</a> I recorded about testing your jQuery with Jasmine.</li>
+<li>An example of <a href="https://github.com/cowboy/jquery-bbq/blob/master/unit/unit.js">unit tests</a> on the jquery-bbq plugin.</li>
+</ul>
+
+
+<h2>Process automation (rake/make/grunt/etc.)</h2>
+
+<p>Grunt&#8217;s ability to set up a project with built-in support for unit tests is one example of process automation. The reality of front-end development is that there&#8217;s a whole lot of repetitive stuff we have to do, but as a friend once told me, a good developer is a lazy developer: as a rule of thumb, if you find yourself doing the same thing three times, it&#8217;s time to automate it.</p>
+
+<p>Tools like <code>make</code> have been around for a long time to help us with this, but there&#8217;s also <code>rake</code>, <code>grunt</code>, and others. Learning a language other than JavaScript can be extremely helpful if you want to automate tasks that deal with the filesystem, as Node&#8217;s async nature can become a real burden when you&#8217;re just manipulating files. There are lots of task-specific automation tools, too &#8211; tools for deployment, build generation, code quality assurance, and more.</p>
+
+<h2>Code quality</h2>
+
+<p>If you&#8217;ve ever been bitten by a missing semicolon or an extra comma, you know how much time can be lost to subtle flaws in your code. That&#8217;s why you&#8217;re running your code through a tool like <a href="http://www.jshint.com/">JSHint</a>, right? It&#8217;s <a href="http://www.jshint.com/options/">configurable</a> and has lots of ways to integrate it into your <a href="http://www.jshint.com/platforms/">editor or build process</a>.</p>
+
+<h2>The fine manual</h2>
+
+<p>Alas, there is no manual for front-end development, but <a href="https://developer.mozilla.org/en-US/">MDN</a> comes pretty close. Good front-end devs know to prefix any search engine query with <code>mdn</code> &#8211; for example, <code>mdn javascript arrays</code> &#8211; in order to avoid the for-profit plague that is w3schools.</p>
+
+<h2>The End</h2>
+
+<p>As with anything, reading about these things won&#8217;t make you an expert, or even moderately skilled &#8211; the only surefire way to get better at a thing is to <a href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/">do that thing</a>. Good luck.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1265,452 +1414,6 @@ smart folks eager to take the time to explain.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-06T10:50:00-04:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/07/06/lessons-from-a-rewrite/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>MVC and friends have been around for decades, but it’s only in the last couple
-of years that broad swaths of developers have started applying those patterns
-to JavaScript. As that awareness spreads, developers eager to use their
-newfound insight are presented with a target-rich environment, and the
-temptation to rewrite can be strong.</p>
-
-<blockquote><p>There’s a subtle reason that programmers always want to throw away the code
-and start over. The reason is that they think the old code is a mess. … The reason
-that they think the old code is a mess is because of a cardinal, fundamental
-law of programming: It’s harder to read code than to write it. - <a href="http://www.joelonsoftware.com/articles/fog0000000069.html"> Joel Spolsky
-</a></p></blockquote>
-
-<p>When I started working with <a href="http://toura.com/"> Toura Mobile </a> late last year, they already had
-a product: a web-based CMS to create the structure of a mobile application and
-populate it with content, and a PhoneGap-based application to consume the
-output of the CMS inside a native application. Customers were paying, but the
-development team was finding that delivering new features was a struggle, and
-bug fixes seemed just as likely to break something else as not. They contacted
-me to see whether they should consider a rewrite.</p>
-
-<p>With due deference to Spolsky, I don’t think it was a lack of readability
-driving their inclination to rewrite. In fact, the code wasn’t all that
-difficult to read or follow. The problem was that the PhoneGap side of things
-had been written to solve the problems of a single-purpose, one-off
-application, and it was becoming clear that it needed to be a flexible,
-extensible delivery system for all of the content combinations clients could
-dream up. It wasn’t an app — it was an app that made there be an app.</p>
-
-<blockquote><p>Where a new system concept or new technology is used, one has to build a system
-to throw away, for even the best planning is not so omniscient as to get it
-right the first time. Hence plan to throw one away; you will, anyhow. - Fred
-Brooks, <a href="http://en.wikipedia.org/wiki/The_Mythical_Man-Month"> The Mythical Man Month </a></p></blockquote>
-
-<p>By the time I’d reviewed the code and started writing up my findings, the
-decision had already been made: Toura was going to throw one away and start
-from scratch. For four grueling and exciting months, I helped them figure out
-how to do it better the second time around. In the end, I like to think we’ve
-come up with a solid architecture that’s going to adapt well to clients’
-ever-changing needs. Here, then, are some of the lessons we learned along the
-way.</p>
-
-<h2>Understand what you’re rewriting</h2>
-
-<p>I had spent only a few days with the codebase when we decided that we were
-going to rewrite it. In some ways, this was good — I was a fresh set of eyes,
-someone who could think about the system in a new way — but in other ways, it
-was a major hindrance. We spent a lot of time at the beginning getting me up to
-speed on what, exactly, we were making; things that went without saying for
-existing team members did not, in fact, go without saying for me.</p>
-
-<p>This constant need for explanation and clarification was frustrating at times,
-both for me and for the existing team, but it forced us to state the problem in
-plain terms. The value of this was incredible — as a team, we were far less
-likely to accept assumptions from the original implementation, even assumptions
-that seemed obvious.</p>
-
-<p>One of the key features of Toura applications is the ability to update them
-“over the air” — it’s not necessary to put a new version in an app store in
-order to update an app’s content or even its structure. In the original app,
-this was accomplished via generated SQL diffs of the data. If the app was at
-version 3, and the data in the CMS was at version 10, then the app would
-request a patch file to upgrade version 3 to version 10. The CMS had to
-generate a diff for all possible combinations: version 3 to version 10, version
-4 to version 10, etc. The diff consisted of queries to run against an SQLite
-database on the device. Opportunities for failures or errors were rampant,
-a situation exacerbated by the async nature of the SQLite interface.</p>
-
-<p>In the new app, we replicated the feature with vastly less complexity
-— whenever there is an update, we just make the full data available at an
-app-specific URL as a JSON file, using the same format that we use to provide
-the initial data for the app on the device. The new data is stored on the
-device, but it’s also retained in memory while the application is running via
-Dojo’s Item File Read Store, which allows us to query it synchronously. The
-need for version-by-version diffs has been eliminated.</p>
-
-<p>Restating the problem led to a simpler, more elegant solution that greatly
-reduced the opportunities for errors and failure. As an added benefit, using
-JSON has allowed us to meet needs that we never anticipated — the flexibility
-it provides has become a valuable tool in our toolbox.</p>
-
-<h2>Identify pain points</h2>
-
-<p>If the point of a rewrite is to make development easier, then an important step
-is to figure out what, exactly, is making development hard. Again, this was
-a time to question assumptions — as it turned out, there were things that had
-come to be accepted burdens that were actually relatively easy to address.</p>
-
-<p>One of the biggest examples of this was the time required to develop and test
-anything that might behave differently on one operating system versus another.
-For example, the Android OS has limited support for the audio and video tags,
-so a native workaround is required to play media on Android that is not
-required on iOS.</p>
-
-<p>In the original code, this device-specific branching was handled in a way that
-undoubtedly made sense at the beginning but grew unwieldy over time. Developers
-would create Mustache templates, wrapping the template tags in <code>/* */</code> so the
-templates were actually executable, and then compile those templates into plain
-JavaScript files for production. Here are a few lines from one of those
-templates:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*  */</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="s2">&quot;www/media/&quot;</span> <span class="o">+</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="cm">/*  */</span>
-</span><span class='line'><span class="cm">/*  */</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="p">[</span><span class="nx">Toura</span><span class="p">.</span><span class="nx">getTouraPath</span><span class="p">(),</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="cm">/*  */</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">imagesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">dimensionsList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">namesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">thumbsList</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="cm">/*  */</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="cm">/*  */</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>These templates were impossible to check with a code quality tool like JSHint,
-because it was standard to declare the same variable multiple times. Multiple
-declarations of the same variable meant that the order of those declarations
-was important, which made the templates tremendously fragile. The theoretical
-payoff was smaller code in production, but the cost of that byte shaving was
-high, and the benefit somewhat questionable — after all, we’d be delivering the
-code directly from the device, not over HTTP.</p>
-
-<p>In the rewrite, we used a simple configuration object to specify information
-about the environment, and then we look at the values in that configuration
-object to determine how the app should behave. The configuration object is
-created as part of building a production-ready app, but in development we can
-alter configuration settings at will. Simple <code>if</code> statements replaced fragile
-template tags.</p>
-
-<p>Since Dojo allows specifying code blocks for exclusion based on the settings
-you provide to the build process, we could mark code for exclusion if we really
-didn’t want it in production.</p>
-
-<p>By using a configuration object instead of template tags for branching, we
-eliminated a major pain point in day-to-day development. While nothing matches
-the proving ground of the device itself, it’s now trivial to effectively
-simulate different device experiences from the comfort of the browser. We do
-the majority of our development there, with a high degree of confidence that
-things will work mostly as expected once we reach the device. If you’ve ever
-waited for an app to build and install to a device, then you know how much
-faster it is to just press Command-R in your browser instead.</p>
-
-<h2>Have a communication manifesto</h2>
-
-<p>Deciding that you’re going to embrace an MVC-ish approach to an application is
-a big step, but only a first step — there are a million more decisions you’re
-going to need to make, big and small. One of the widest-reaching decisions to
-make is how you’ll communicate among the various pieces of the application.
-There are all sorts of levels of communication, from application-wide state
-management — what page am I on? — to communication between UI components — when
-a user enters a search term, how do I get and display the results?</p>
-
-<p>From the outset, I had a fairly clear idea of how this should work based on
-past experiences, but at first I took for granted that the other developers
-would see things the same way I did, and I wasn’t necessarily consistent
-myself. For a while we had several different patterns of communication,
-depending on who had written the code and when. Every time you went to use
-a component, it was pretty much a surprise which pattern it would use.</p>
-
-<p>After one too many episodes of frustration, I realized that part of my job was
-going to be to lay down the law about this — it wasn’t that my way was more
-right than others, but rather that we needed to choose a way, or else reuse and
-maintenance was going to become a nightmare. Here’s what I came up with:</p>
-
-<ul>
-<li><code>myComponent.set(key, value)</code> to change state (with the help of setter
-methods from Dojo’s <a href="http://dojotoolkit.org/reference-guide/dijit/_Widget.html">dijit._Widget mixin</a>)</li>
-<li><code>myComponent.on&amp;lt;Event&amp;gt;(componentEventData)</code> to announce state changes
-and user interaction; Dojo lets us
-<a href="http://dojotoolkit.org/reference-guide/dojo/connect.html">connect</a> to the
-execution of arbitrary methods, so other pieces could listen for these
-methods to be executed.</li>
-<li><code>dojo.publish(topic, [ data ])</code> to announce occurrences of app-wide interest,
-such as when the window is resized</li>
-<li><code>myComponent.subscribe(topic)</code> to allow individual components react to
-published topics</li>
-</ul>
-
-
-<p>Once we spelled out the patterns, the immediate benefit
-wasn’t maintainability or reuse; rather, we found that we didn’t have to make
-these decisions on a component-by-component basis anymore, and we could focus
-on the questions that were actually unique to a component. With conventions
-we could rely on, we were constantly discovering new ways to abstract and DRY
-our code, and the consistency across components meant it was easier to work
-with code someone else had written.</p>
-
-<h2>Sanify asynchronicity</h2>
-
-<p>One of the biggest challenges of JavaScript development — well, besides working
-with the DOM — is managing the asynchronicity of it all. In the old system,
-this was dealt with in various ways: sometimes a method would take a success
-callback and a failure callback; other times a function would return an object
-and check one of its properties on an interval.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">images</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">sqlite</span><span class="p">.</span><span class="nx">getMedias</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">onGetComplete</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">incomplete</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">onGetComplete</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">showImagesHelper</span><span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">objs</span><span class="p">,</span> <span class="nx">choice</span><span class="p">)</span>
-</span><span class='line'><span class="p">},</span><span class="mi">10</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The problem here, of course, is that if <code>images.incomplete</code> never gets set to
-false — that is, if the <code>getMedias</code> method fails — then the interval will never
-get cleared. Dojo and now jQuery (since version 1.5) offer a facility for
-handling this situation in an elegant and powerful way. In the new version of
-the app, the above functionality looks something like this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="err">‘</span><span class="nx">image</span><span class="err">’</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">showImages</span><span class="p">,</span> <span class="nx">showImagesFail</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The <code>get</code> method of <code>toura.app.Data</code> returns an <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">immutable promise</a>
-— the promise’s then method makes the resulting value of the asynchronous get
-method available to <code>showImages</code>, but does not allow <code>showImages</code> to alter the
-value. The promise returned by the get method can also be stored in a variable,
-so that additional callbacks can be attached to it.</p>
-
-<p>Using promises vastly simplifies asynchronous code, which can be one of the
-biggest sources of complexity in a non-trivial application. By using promises,
-we got code that was easier to follow, components that were thoroughly
-decoupled, and new flexibility in how we responded to the outcome of an
-asynchronous operation.</p>
-
-<h2>Naming things is hard</h2>
-
-<p>Throughout the course of the rewrite we were constantly confronted with one of
-those pressing questions developers wrestle with: what should I name this
-variable/module/method/thing? Sometimes I would find myself feeling slightly
-absurd about the amount of time we’d spend naming a thing, but just recently
-I was reminded how much power those names have over our thinking.</p>
-
-<p>Every application generated by the Toura CMS consists of a set of “nodes,”
-organized into a hierarchy. With the exception of pages that are standard
-across all apps, such as the search page, the base content type for a page
-inside APP is always a node — or rather, it was, until the other day. I was
-working on a new feature and struggling to figure out how I’d display a piece
-of content that was unique to the app but wasn’t really associated with a node
-at all. I pored over our existing code, seeing the word node on what felt like
-every other line. As an experiment, I changed that word node to baseObj in
-a few high-level files, and suddenly a whole world of solutions opened up to me
-— the name of a thing had limiting my thinking.</p>
-
-<p>The lesson here, for me, is that the time we spent (and spend) figuring out
-what to name a thing is not lost time; perhaps even more importantly, the goal
-should be to give a thing the most generic name that still conveys what the
-thing’s job — in the context in which you’ll use the thing — actually is.</p>
-
-<h2>Never write large apps</h2>
-
-<p>I touched on this earlier, but if there is one lesson I take from every large
-app I’ve worked on, it is this:</p>
-
-<blockquote><p>The secret to building large apps is never build large apps. Break up your
-applications into small pieces. Then, assemble those testable, bite-sized
-pieces into your big application. - Justin Meyer</p></blockquote>
-
-<p>The more tied components are to each other, the less reusable they will be, and
-the more difficult it becomes to make changes to one without accidentally
-affecting another. Much like we had a manifesto of sorts for communication
-among components, we strived for a clear delineation of responsibilities among
-our components. Each one should do one thing and do it well.</p>
-
-<p>For example, simply rendering a page involves several small, single-purpose
-components:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">nodeRoute</span><span class="p">(</span><span class="nx">route</span><span class="p">,</span> <span class="nx">nodeId</span><span class="p">,</span> <span class="nx">pageState</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">pageState</span> <span class="o">=</span> <span class="nx">pageState</span> <span class="o">||</span> <span class="p">{};</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">nodeModel</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">getModel</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">),</span>
-</span><span class='line'>      <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">getCurrentPage</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">nodeModel</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">home</span><span class="p">();</span>
-</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">page</span> <span class="o">||</span> <span class="o">!</span><span class="nx">page</span><span class="p">.</span><span class="nx">node</span> <span class="o">||</span> <span class="nx">nodeId</span> <span class="o">!==</span> <span class="nx">page</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">PageFactory</span><span class="p">.</span><span class="nx">createPage</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">page</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">back</span><span class="p">();</span>
-</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">showPage</span><span class="p">(</span><span class="nx">pf</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">pageState</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">// record node pageview if it is node-only</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">nodeId</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">pageState</span><span class="p">.</span><span class="nx">assetType</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">dojo</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;/node/view&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="nx">route</span><span class="p">.</span><span class="nx">hash</span> <span class="p">]);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The router observes a URL change, parses the parameters for the route from the
-URL, and passes those parameters to a function. The Data component gets the
-relevant data, and then hands it to the PageFactory component to generate the
-page. As the page is generated, the individual components for the page are also
-created and placed in the page. The PageFactory component returns the generated
-page, but at this point the page is not in the DOM. The UI component receives
-it, places it in the DOM, and handles the animation from the old page to the
-new one.</p>
-
-<p>Every step is its own tiny app, making the whole process tremendously testable.
-The output of one step may become the input to another step, but when input and
-output are predictable, the questions our tests need to answer are trivial:
-“When I asked the Data component for the data for node123, did I get the data
-for node123?”</p>
-
-<p>Individual UI components are their own tiny apps as well. On a page that
-displays a videos node, we have a video player component, a video list
-component, and a video caption component. Selecting a video in the list
-announces the selection via the list’s onSelect method. Dojo allows us to
-connect to the execution of object methods, so in the page controller, we have
-this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">videoList</span><span class="p">,</span> <span class="s1">&#39;onSelect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">assetId</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">video</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="err">\</span><span class="nx">_videoById</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoCaption</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="nx">video</span><span class="p">.</span><span class="nx">caption</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoPlayer</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The page controller receives the message and passes it along to the other
-components that need to know about it — components don’t communicate directly
-with one another. This means the component that lists the videos can list
-anything, not just videos — its only job is to announce a selection, not to do
-anything as a result.</p>
-
-<h2>Keep rewriting</h2>
-
-<blockquote><p>It takes confidence to throw work away … When people first start drawing,
-they’re often reluctant to redo parts that aren’t right … they convince
-themselves that the drawing is not that bad, really — in fact, maybe they meant
-it to look that way. - <a href="http://www.paulgraham.com/taste.html">Paul Graham, “Taste for Makers”</a></p></blockquote>
-
-<p>The blank slate offered by a rewrite allows us to fix old mistakes, but
-inevitably we will make new ones in the process. As good stewards of our code,
-we must always be open to the possibility of a better way of doing a thing. “It
-works” should never be mistaken for “it’s done.”</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1726,6 +1429,10 @@ works” should never be mistaken for “it’s done.”</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
       </li>
     
@@ -1739,10 +1446,6 @@ works” should never be mistaken for “it’s done.”</p>
     
       <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
       </li>
     
   </ul>

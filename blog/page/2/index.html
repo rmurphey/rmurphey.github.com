@@ -9,7 +9,8 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="It was three years ago this summer that I got the call, bought the Yuengling, smoked the cigarettes, and began life as an independent consultant. It& &hellip;">
+  <meta name="description" content="MVC and friends have been around for decades, but it’s only in the last couple
+of years that broad swaths of developers have started applying those &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,452 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/06/lessons-from-a-rewrite/">Lessons From a Rewrite</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-06T10:50:00-04:00" pubdate data-updated="true">Jul 6<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/07/06/lessons-from-a-rewrite/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>MVC and friends have been around for decades, but it’s only in the last couple
+of years that broad swaths of developers have started applying those patterns
+to JavaScript. As that awareness spreads, developers eager to use their
+newfound insight are presented with a target-rich environment, and the
+temptation to rewrite can be strong.</p>
+
+<blockquote><p>There’s a subtle reason that programmers always want to throw away the code
+and start over. The reason is that they think the old code is a mess. … The reason
+that they think the old code is a mess is because of a cardinal, fundamental
+law of programming: It’s harder to read code than to write it. - <a href="http://www.joelonsoftware.com/articles/fog0000000069.html"> Joel Spolsky
+</a></p></blockquote>
+
+<p>When I started working with <a href="http://toura.com/"> Toura Mobile </a> late last year, they already had
+a product: a web-based CMS to create the structure of a mobile application and
+populate it with content, and a PhoneGap-based application to consume the
+output of the CMS inside a native application. Customers were paying, but the
+development team was finding that delivering new features was a struggle, and
+bug fixes seemed just as likely to break something else as not. They contacted
+me to see whether they should consider a rewrite.</p>
+
+<p>With due deference to Spolsky, I don’t think it was a lack of readability
+driving their inclination to rewrite. In fact, the code wasn’t all that
+difficult to read or follow. The problem was that the PhoneGap side of things
+had been written to solve the problems of a single-purpose, one-off
+application, and it was becoming clear that it needed to be a flexible,
+extensible delivery system for all of the content combinations clients could
+dream up. It wasn’t an app — it was an app that made there be an app.</p>
+
+<blockquote><p>Where a new system concept or new technology is used, one has to build a system
+to throw away, for even the best planning is not so omniscient as to get it
+right the first time. Hence plan to throw one away; you will, anyhow. - Fred
+Brooks, <a href="http://en.wikipedia.org/wiki/The_Mythical_Man-Month"> The Mythical Man Month </a></p></blockquote>
+
+<p>By the time I’d reviewed the code and started writing up my findings, the
+decision had already been made: Toura was going to throw one away and start
+from scratch. For four grueling and exciting months, I helped them figure out
+how to do it better the second time around. In the end, I like to think we’ve
+come up with a solid architecture that’s going to adapt well to clients’
+ever-changing needs. Here, then, are some of the lessons we learned along the
+way.</p>
+
+<h2>Understand what you’re rewriting</h2>
+
+<p>I had spent only a few days with the codebase when we decided that we were
+going to rewrite it. In some ways, this was good — I was a fresh set of eyes,
+someone who could think about the system in a new way — but in other ways, it
+was a major hindrance. We spent a lot of time at the beginning getting me up to
+speed on what, exactly, we were making; things that went without saying for
+existing team members did not, in fact, go without saying for me.</p>
+
+<p>This constant need for explanation and clarification was frustrating at times,
+both for me and for the existing team, but it forced us to state the problem in
+plain terms. The value of this was incredible — as a team, we were far less
+likely to accept assumptions from the original implementation, even assumptions
+that seemed obvious.</p>
+
+<p>One of the key features of Toura applications is the ability to update them
+“over the air” — it’s not necessary to put a new version in an app store in
+order to update an app’s content or even its structure. In the original app,
+this was accomplished via generated SQL diffs of the data. If the app was at
+version 3, and the data in the CMS was at version 10, then the app would
+request a patch file to upgrade version 3 to version 10. The CMS had to
+generate a diff for all possible combinations: version 3 to version 10, version
+4 to version 10, etc. The diff consisted of queries to run against an SQLite
+database on the device. Opportunities for failures or errors were rampant,
+a situation exacerbated by the async nature of the SQLite interface.</p>
+
+<p>In the new app, we replicated the feature with vastly less complexity
+— whenever there is an update, we just make the full data available at an
+app-specific URL as a JSON file, using the same format that we use to provide
+the initial data for the app on the device. The new data is stored on the
+device, but it’s also retained in memory while the application is running via
+Dojo’s Item File Read Store, which allows us to query it synchronously. The
+need for version-by-version diffs has been eliminated.</p>
+
+<p>Restating the problem led to a simpler, more elegant solution that greatly
+reduced the opportunities for errors and failure. As an added benefit, using
+JSON has allowed us to meet needs that we never anticipated — the flexibility
+it provides has become a valuable tool in our toolbox.</p>
+
+<h2>Identify pain points</h2>
+
+<p>If the point of a rewrite is to make development easier, then an important step
+is to figure out what, exactly, is making development hard. Again, this was
+a time to question assumptions — as it turned out, there were things that had
+come to be accepted burdens that were actually relatively easy to address.</p>
+
+<p>One of the biggest examples of this was the time required to develop and test
+anything that might behave differently on one operating system versus another.
+For example, the Android OS has limited support for the audio and video tags,
+so a native workaround is required to play media on Android that is not
+required on iOS.</p>
+
+<p>In the original code, this device-specific branching was handled in a way that
+undoubtedly made sense at the beginning but grew unwieldy over time. Developers
+would create Mustache templates, wrapping the template tags in <code>/* */</code> so the
+templates were actually executable, and then compile those templates into plain
+JavaScript files for production. Here are a few lines from one of those
+templates:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="s2">&quot;www/media/&quot;</span> <span class="o">+</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="p">[</span><span class="nx">Toura</span><span class="p">.</span><span class="nx">getTouraPath</span><span class="p">(),</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">imagesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">dimensionsList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">namesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">thumbsList</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*  */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These templates were impossible to check with a code quality tool like JSHint,
+because it was standard to declare the same variable multiple times. Multiple
+declarations of the same variable meant that the order of those declarations
+was important, which made the templates tremendously fragile. The theoretical
+payoff was smaller code in production, but the cost of that byte shaving was
+high, and the benefit somewhat questionable — after all, we’d be delivering the
+code directly from the device, not over HTTP.</p>
+
+<p>In the rewrite, we used a simple configuration object to specify information
+about the environment, and then we look at the values in that configuration
+object to determine how the app should behave. The configuration object is
+created as part of building a production-ready app, but in development we can
+alter configuration settings at will. Simple <code>if</code> statements replaced fragile
+template tags.</p>
+
+<p>Since Dojo allows specifying code blocks for exclusion based on the settings
+you provide to the build process, we could mark code for exclusion if we really
+didn’t want it in production.</p>
+
+<p>By using a configuration object instead of template tags for branching, we
+eliminated a major pain point in day-to-day development. While nothing matches
+the proving ground of the device itself, it’s now trivial to effectively
+simulate different device experiences from the comfort of the browser. We do
+the majority of our development there, with a high degree of confidence that
+things will work mostly as expected once we reach the device. If you’ve ever
+waited for an app to build and install to a device, then you know how much
+faster it is to just press Command-R in your browser instead.</p>
+
+<h2>Have a communication manifesto</h2>
+
+<p>Deciding that you’re going to embrace an MVC-ish approach to an application is
+a big step, but only a first step — there are a million more decisions you’re
+going to need to make, big and small. One of the widest-reaching decisions to
+make is how you’ll communicate among the various pieces of the application.
+There are all sorts of levels of communication, from application-wide state
+management — what page am I on? — to communication between UI components — when
+a user enters a search term, how do I get and display the results?</p>
+
+<p>From the outset, I had a fairly clear idea of how this should work based on
+past experiences, but at first I took for granted that the other developers
+would see things the same way I did, and I wasn’t necessarily consistent
+myself. For a while we had several different patterns of communication,
+depending on who had written the code and when. Every time you went to use
+a component, it was pretty much a surprise which pattern it would use.</p>
+
+<p>After one too many episodes of frustration, I realized that part of my job was
+going to be to lay down the law about this — it wasn’t that my way was more
+right than others, but rather that we needed to choose a way, or else reuse and
+maintenance was going to become a nightmare. Here’s what I came up with:</p>
+
+<ul>
+<li><code>myComponent.set(key, value)</code> to change state (with the help of setter
+methods from Dojo’s <a href="http://dojotoolkit.org/reference-guide/dijit/_Widget.html">dijit._Widget mixin</a>)</li>
+<li><code>myComponent.on&amp;lt;Event&amp;gt;(componentEventData)</code> to announce state changes
+and user interaction; Dojo lets us
+<a href="http://dojotoolkit.org/reference-guide/dojo/connect.html">connect</a> to the
+execution of arbitrary methods, so other pieces could listen for these
+methods to be executed.</li>
+<li><code>dojo.publish(topic, [ data ])</code> to announce occurrences of app-wide interest,
+such as when the window is resized</li>
+<li><code>myComponent.subscribe(topic)</code> to allow individual components react to
+published topics</li>
+</ul>
+
+
+<p>Once we spelled out the patterns, the immediate benefit
+wasn’t maintainability or reuse; rather, we found that we didn’t have to make
+these decisions on a component-by-component basis anymore, and we could focus
+on the questions that were actually unique to a component. With conventions
+we could rely on, we were constantly discovering new ways to abstract and DRY
+our code, and the consistency across components meant it was easier to work
+with code someone else had written.</p>
+
+<h2>Sanify asynchronicity</h2>
+
+<p>One of the biggest challenges of JavaScript development — well, besides working
+with the DOM — is managing the asynchronicity of it all. In the old system,
+this was dealt with in various ways: sometimes a method would take a success
+callback and a failure callback; other times a function would return an object
+and check one of its properties on an interval.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">images</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">sqlite</span><span class="p">.</span><span class="nx">getMedias</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">onGetComplete</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">incomplete</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">onGetComplete</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">showImagesHelper</span><span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">objs</span><span class="p">,</span> <span class="nx">choice</span><span class="p">)</span>
+</span><span class='line'><span class="p">},</span><span class="mi">10</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The problem here, of course, is that if <code>images.incomplete</code> never gets set to
+false — that is, if the <code>getMedias</code> method fails — then the interval will never
+get cleared. Dojo and now jQuery (since version 1.5) offer a facility for
+handling this situation in an elegant and powerful way. In the new version of
+the app, the above functionality looks something like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="err">‘</span><span class="nx">image</span><span class="err">’</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">showImages</span><span class="p">,</span> <span class="nx">showImagesFail</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>get</code> method of <code>toura.app.Data</code> returns an <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">immutable promise</a>
+— the promise’s then method makes the resulting value of the asynchronous get
+method available to <code>showImages</code>, but does not allow <code>showImages</code> to alter the
+value. The promise returned by the get method can also be stored in a variable,
+so that additional callbacks can be attached to it.</p>
+
+<p>Using promises vastly simplifies asynchronous code, which can be one of the
+biggest sources of complexity in a non-trivial application. By using promises,
+we got code that was easier to follow, components that were thoroughly
+decoupled, and new flexibility in how we responded to the outcome of an
+asynchronous operation.</p>
+
+<h2>Naming things is hard</h2>
+
+<p>Throughout the course of the rewrite we were constantly confronted with one of
+those pressing questions developers wrestle with: what should I name this
+variable/module/method/thing? Sometimes I would find myself feeling slightly
+absurd about the amount of time we’d spend naming a thing, but just recently
+I was reminded how much power those names have over our thinking.</p>
+
+<p>Every application generated by the Toura CMS consists of a set of “nodes,”
+organized into a hierarchy. With the exception of pages that are standard
+across all apps, such as the search page, the base content type for a page
+inside APP is always a node — or rather, it was, until the other day. I was
+working on a new feature and struggling to figure out how I’d display a piece
+of content that was unique to the app but wasn’t really associated with a node
+at all. I pored over our existing code, seeing the word node on what felt like
+every other line. As an experiment, I changed that word node to baseObj in
+a few high-level files, and suddenly a whole world of solutions opened up to me
+— the name of a thing had limiting my thinking.</p>
+
+<p>The lesson here, for me, is that the time we spent (and spend) figuring out
+what to name a thing is not lost time; perhaps even more importantly, the goal
+should be to give a thing the most generic name that still conveys what the
+thing’s job — in the context in which you’ll use the thing — actually is.</p>
+
+<h2>Never write large apps</h2>
+
+<p>I touched on this earlier, but if there is one lesson I take from every large
+app I’ve worked on, it is this:</p>
+
+<blockquote><p>The secret to building large apps is never build large apps. Break up your
+applications into small pieces. Then, assemble those testable, bite-sized
+pieces into your big application. - Justin Meyer</p></blockquote>
+
+<p>The more tied components are to each other, the less reusable they will be, and
+the more difficult it becomes to make changes to one without accidentally
+affecting another. Much like we had a manifesto of sorts for communication
+among components, we strived for a clear delineation of responsibilities among
+our components. Each one should do one thing and do it well.</p>
+
+<p>For example, simply rendering a page involves several small, single-purpose
+components:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">nodeRoute</span><span class="p">(</span><span class="nx">route</span><span class="p">,</span> <span class="nx">nodeId</span><span class="p">,</span> <span class="nx">pageState</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">pageState</span> <span class="o">=</span> <span class="nx">pageState</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">nodeModel</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">getModel</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">getCurrentPage</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">nodeModel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">home</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">page</span> <span class="o">||</span> <span class="o">!</span><span class="nx">page</span><span class="p">.</span><span class="nx">node</span> <span class="o">||</span> <span class="nx">nodeId</span> <span class="o">!==</span> <span class="nx">page</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">PageFactory</span><span class="p">.</span><span class="nx">createPage</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">page</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">back</span><span class="p">();</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">showPage</span><span class="p">(</span><span class="nx">pf</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">pageState</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// record node pageview if it is node-only</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">nodeId</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">pageState</span><span class="p">.</span><span class="nx">assetType</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dojo</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;/node/view&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="nx">route</span><span class="p">.</span><span class="nx">hash</span> <span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The router observes a URL change, parses the parameters for the route from the
+URL, and passes those parameters to a function. The Data component gets the
+relevant data, and then hands it to the PageFactory component to generate the
+page. As the page is generated, the individual components for the page are also
+created and placed in the page. The PageFactory component returns the generated
+page, but at this point the page is not in the DOM. The UI component receives
+it, places it in the DOM, and handles the animation from the old page to the
+new one.</p>
+
+<p>Every step is its own tiny app, making the whole process tremendously testable.
+The output of one step may become the input to another step, but when input and
+output are predictable, the questions our tests need to answer are trivial:
+“When I asked the Data component for the data for node123, did I get the data
+for node123?”</p>
+
+<p>Individual UI components are their own tiny apps as well. On a page that
+displays a videos node, we have a video player component, a video list
+component, and a video caption component. Selecting a video in the list
+announces the selection via the list’s onSelect method. Dojo allows us to
+connect to the execution of object methods, so in the page controller, we have
+this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">videoList</span><span class="p">,</span> <span class="s1">&#39;onSelect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">assetId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">video</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="err">\</span><span class="nx">_videoById</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoCaption</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="nx">video</span><span class="p">.</span><span class="nx">caption</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoPlayer</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The page controller receives the message and passes it along to the other
+components that need to know about it — components don’t communicate directly
+with one another. This means the component that lists the videos can list
+anything, not just videos — its only job is to announce a selection, not to do
+anything as a result.</p>
+
+<h2>Keep rewriting</h2>
+
+<blockquote><p>It takes confidence to throw work away … When people first start drawing,
+they’re often reluctant to redo parts that aren’t right … they convince
+themselves that the drawing is not that bad, really — in fact, maybe they meant
+it to look that way. - <a href="http://www.paulgraham.com/taste.html">Paul Graham, “Taste for Makers”</a></p></blockquote>
+
+<p>The blank slate offered by a rewrite allows us to fix old mistakes, but
+inevitably we will make new ones in the process. As good stewards of our code,
+we must always be open to the possibility of a better way of doing a thing. “It
+works” should never be mistaken for “it’s done.”</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1253,150 +1700,6 @@ join in.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/10/19/jquery-breakout-women-and-conferences/">jQuery Conference Breakout Session: Women & Conferences</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-10-19T00:00:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/10/19/jquery-breakout-women-and-conferences/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I decided to organize a breakout session about women and conferences at the
-<a href="http://events.jquery.org/2010/boston/">jQuery Conference in Boston</a> this past
-weekend, and I couldn&#8217;t be happier about how it went &#8211; it was probably one of
-the more productive sessions of its sort that I&#8217;ve participated in.</p>
-
-<p>My best guess, with the help of some t-shirt size numbers from the most-amazing
-<a href="http://twitter.com/#!/wifelette">Leah Silber</a>, is that the conference
-attendees were about 10% women. This sounds a bit terrible, but on the
-contrary, looking around the room, I felt like women were in fact more
-represented than I&#8217;m accustomed to at other JavaScript-centric conferences.</p>
-
-<p>In setting up the breakout session, I wanted to do two things: one, applaud the
-women who did show up, because they are already part of the solution; two, (at
-the risk of sounding a bit lame), call upon them to be the change that so many
-of us want to see at tech conferences.</p>
-
-<p>I started the session with a small intro/lecture/rant: when we have these
-conversations, we&#8217;re talking about a conference for an open-source project, and
-this means that we &#8211; community members &#8211; need to take some ownership of the
-problem if we want to see more diversity on stage; it shouldn&#8217;t just be up to
-the project or the conference organizers. I&#8217;ve talked to plenty of jQuery team
-members, and the problem is certainly not that they are seeking to exclude
-non-white-male speakers, nor that they are insensitive to the issue; to the
-contrary, they are incredibly interested in diversifying their lineup, but
-they&#8217;re somewhat at a loss as to where to find people who would be good
-speakers. My call to action to the people in attendance was to be part of the
-solution.</p>
-
-<p>My favorite part about the session was that it didn&#8217;t turn into a big bitchfest
-&#8211; I think there was actually some productive discussion that took place. While
-the attendees were mostly women, there was a solid contingent of men. Menno van
-Slooten, in particular, was great &#8211; he talked about his experience as a
-relative outsider whose boss pressured him into submitting a talk to the Bay
-Area jQuery Conference earlier this year. His talk at that conference ended up
-being so well received that he was back to speak in Boston.</p>
-
-<p>At some point during the session, I realized that John Resig was sitting across
-from me. I don&#8217;t want sound like a giddy schoolgirl here &#8211; John&#8217;s just a
-person, and I don&#8217;t want to sound like he graced us with his benevolent
-presence &#8211; but I can&#8217;t tell you how much I think it changed the dynamic of the
-discussion to know that it was being heard by such an influential
-representative. John answered questions directly and honestly, and there was a
-serious sense that he was hearing feedback too &#8211; we weren&#8217;t just talking
-amongst ourselves. His presence dispelled any sense that the project wasn&#8217;t
-interested in the topic; I&#8217;d encourage other prominent people who care about
-these things to make time to take part in similar conversations.</p>
-
-<p>I was kind of amazed to hear how simple the questions were about speaking at a
-jQuery conference. I have given great credence to issues of anxiety, shyness,
-and perceived inadequacy &#8211; and I don&#8217;t think these issues have gone away &#8211;
-but it never occurred to me that people had really basic questions about the
-process of speaking at a conference. This was actually sort of great &#8211; while I
-can&#8217;t singlehandedly get a potential speaker to overcome a sense of anxiety or
-inadequacy, there were so many questions that could be answered simply and
-directly.</p>
-
-<p>To that end, I&#8217;m working on a FAQ for potential speakers at future jQuery
-conferences, addressing basic questions about process, etc., that I hope the
-project will incorporate into future calls for speakers. As a decently
-connected member of the jQuery community, I know who to ask when I have these
-questions, but I naively didn&#8217;t realize how inaccessible the answers could seem
-to &#8220;outsiders.&#8221; Explaining the answers to basic questions is the sort of easy
-but meaningful effort that a conference can make to lower the barriers to new
-speakers, women or men. This should be a no-brainer for any conference that
-wants to its lineup to be interesting,  fresh, and diverse.</p>
-
-<p>Another idea that we talked about was pairing accepted speakers up with a buddy
-of sorts. I have tried to be this buddy, informally, to people who are speaking
-for the first time, but I think it could be worthwhile to formalize the
-process. New speakers could ask their &#8220;buddy&#8221; questions about what it&#8217;s like to
-speak, how to prepare, what to expect from the audience, etc. The speaker would
-be more prepared and comfortable, and the audience would get a better
-presentation.</p>
-
-<p>There was a tremendous lack of clarity surrounding what&#8217;s actually involved in
-submitting a talk to a conference. While I&#8217;m by no means a grizzled veteran of
-the conference circuit &#8211; my first major talk was just a year ago &#8211; my
-experience so far is that submitting a talk is mostly about having a
-well-articulated idea and some semblance of evidence that you can pull it off.
-This, perhaps, is where the process becomes most subjective and biased toward
-&#8220;insiders&#8221; &#8211; people known to give good talks are likely to get the opportunity
-to give talks again &#8211; but I think there&#8217;s plenty of room to overcome any bias.
-People who have made a point of participating in the community, people who have
-made a point of contributing useful content about their chosen topic, will
-generally get the benefit of the doubt. Reaching out to a past speaker, or to
-an established community member, can be a great help in shepherding your talk
-through the process. Again, I&#8217;m hoping that the FAQ can address some of this
-low-hanging fruit.</p>
-
-<p>Regarding jQuery conferences in particular, John made the very good point that
-there is a lot of room for talks that aren&#8217;t specifically about jQuery. There
-were actually lots of these sorts of talks at the conference this weekend &#8211;
-talks about TDD, HTML5, object-oriented CSS, CouchDB, and more. One of the
-lovely things about the jQuery and JavaScript community is that community
-members have a potentially wide area of interest &#8211; any topic related to
-front-end development is likely to be relevant to the audience. John pointed
-out that talks about these tangential topics may be one of the greatest
-opportunities for newcomers to the world of speaking: the speaker is likely to
-be the only one presenting on the topic, and can potentially establish
-themselves as something of a subject matter expert on the topic.</p>
-
-<p>Again, this was one of the more productive conversations I&#8217;ve participated in
-on this topic. If you&#8217;d like to talk to me about it more, don&#8217;t hesitate to
-drop me an email or a tweet or a comment. If you&#8217;re considering venturing into
-the speaking world, I&#8217;m happy to talk with you about that too. Thanks to
-everyone who came, and especially to <a href="http://twitter.com/#!/unruthless">Ruthie BenDor</a> for her support, and I look forward
-to continued discussion.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1414,6 +1717,10 @@ to continued discussion.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/10/greenfielding/">Greenfielding</a>
       </li>
     
@@ -1427,10 +1734,6 @@ to continued discussion.</p>
     
       <li class="post">
         <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (very) small project with Backbone and Backbone Boilerplate</a>
       </li>
     
   </ul>
