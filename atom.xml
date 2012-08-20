@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-08-20T13:18:16-04:00</updated>
+  <updated>2012-08-20T14:13:50-04:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -59,7 +59,7 @@
 
 <h2>Modularity, dependency management, and production builds</h2>
 
-<p>The days of managing dependencies by throwing one more script or style tag on the page are long gone. Even if you haven&#8217;t been able to incorporate great tools like <a href="http://requirejs.org">RequireJS</a> into your workflow at work, you should find time to investigate them in a personal project or in a project like <a href="https://github.com/backbone-boilerplate/backbone-boilerplate">Backbone Boilerplate</a>, because the benefits they convey are huge. RequireJS in particular lets you develop with small, modular JS and CSS files, and then concatenates and minifies them via its optimization tool for production use.</p>
+<p>The days of managing dependencies by throwing one more script or style tag on the page are long gone. Even if you haven&#8217;t been able to incorporate great tools like <a href="http://requirejs.org">RequireJS</a> into your workflow at work, you should find time to investigate them in a personal project or in a project like <a href="https://github.com/tbranyen/backbone-boilerplate">Backbone Boilerplate</a>, because the benefits they convey are huge. RequireJS in particular lets you develop with small, modular JS and CSS files, and then concatenates and minifies them via its optimization tool for production use.</p>
 
 <p>Skeptical of AMD? That&#8217;s no excuse to be doing nothing. At the very least, you should be aware of tools like <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> or <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a> that will intelligently minify your code, and then concatenate those minified files prior to production.</p>
 
