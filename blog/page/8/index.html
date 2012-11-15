@@ -9,7 +9,8 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I remember when I first tried to understand how to produce designs for the web &#8211; coming from the paper-based world, it was hard for me to &hellip;">
+  <meta name="description" content="updateWithJSON is a jQuery plugin that updates elements on your page based on key/value pairs in a JSON object. Usage: 1
+$.updateWithJSON(jsonData) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,219 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/02/update-page-using-json-data/">Update Page Using JSON Data</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-02T00:00:00-05:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/02/update-page-using-json-data/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/jquery.updateWithJSON.js">updateWithJSON</a> is a jQuery plugin that updates elements on your page based on key/value pairs in a JSON object. Usage:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">updateWithJSON</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/">Here&#8217;s a demo</a>, and here&#8217;s how it works:</p>
+
+<ul>
+<li>iterate over each property/value combination in the JSON object</li>
+<li>look for an element in the DOM that matches the property name
+<ul>
+<li>first, look for an element with a matching <code>id</code> attribute</li>
+<li>if no element with a matching ID is found, look for input, select or textarea elements with a matching <code>name</code> attribute</li>
+</ul>
+</li>
+<li>update the value, contents or selection of the matched element(s) based on the value in the JSON object</li>
+</ul>
+
+
+<p>NOTE: If you have multiple checkboxes with the same <code>name</code> attribute, or a select that allows multiple values, you&#8217;ll need to pass the values of the selected items in an array:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nx">text_input</span><span class="o">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">checkbox_group</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span><span class="s1">&#39;value3&#39;</span><span class="p">],</span>
+</span><span class='line'>  <span class="nx">multi_select</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value4&#39;</span><span class="p">,</span><span class="s1">&#39;value5&#39;</span><span class="p">,</span><span class="s1">&#39;value6&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you use a <code>name</code> attribute like &#8220;input[]&#8221; on a set of related checkboxes, remember that you&#8217;ll need to quote it in the JSON object:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="s1">&#39;input1[]&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span><span class="s1">&#39;value3&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>The back story</h3>
+
+
+<p>For a recent project, I needed to update elements on a page based on some server-side calculations. JSON is a handy way to transport data from the server back to the browser, and jQuery&#8217;s <code>getJSON()</code> method makes it painless. So, for example, I was getting back</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with which I needed to update an element corresponding to &#8220;foo&#8221; and give it the value &#8220;bar&#8221;. Simple enough; on the page I was dealing with, it was easy to put a unique ID on every element that would need to be updated, and I matched that ID with the property name in the JSON object. It was (almost) as simple as this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">name</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;s not always the case, though, that you can easily put a unique ID on each element that will need updating; for example, <a href="http://us.php.net/manual/en/language.variables.external.php#77344">PHP rewards you</a> if you put the same <code>name</code> attribute on related checkboxes. Having checkboxes with the same name but different IDs can quickly get confusing when you&#8217;re dealing with data on the client side and on the server side. The solution above worked in my particular case, but I wanted something that would work more broadly &#8211; say, on pages that had related checkboxes &#8211; and that&#8217;s how I came up with the plugin.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/30/determine-the-order-of-two-dom-elements/">Determine the Order of Two DOM Elements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-30T00:00:00-05:00" pubdate data-updated="true">Dec 30<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/30/determine-the-order-of-two-dom-elements/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Inspired by <a href="http://us.php.net/usort">this</a> from PHP, I wanted a
+utility function to determine whether a given element came before or after
+another element in the DOM.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">order</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$a</span><span class="p">,</span><span class="nx">$b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$b</span> <span class="o">=</span> <span class="nx">$b</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;order-test&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$a</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">$b</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// elements are the same</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$b</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">$elements</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$elements</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="s1">&#39;-first&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">$a</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="s1">&#39;-first&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// $a is first</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">$b</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="s1">&#39;-first&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// $b is first</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">})(</span><span class="nx">jQuery</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -587,93 +801,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/07/standards-for-html-emails/">Standards for HTML Emails?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/07/standards-for-html-emails/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>After a couple of attempts that ended not-so-well, I gave up on HTML emails. I advise people to work with someone who&#8217;s an expert with them, or to at least <a href="http://www.campaignmonitor.com/resources/">use templates that are known to work</a>, and then I wish them well. At a job interview I actually proclaimed my active dislike of HTML emails and general unwillingness to muck with them &#8211; I&#8217;m not sure that went over so well. The news that <a href="http://www.campaignmonitor.com/blog/archives/2007/01/microsoft_takes_email_design_b.html">Outlook 2007 actually took a giant leap backwards in HTML support</a> seals the deal for me. Still, it&#8217;s good to read that <a href="http://www.456bereastreet.com/archive/200712/the_email_standards_project_launches/">some people are trying to bring some sanity to the situation</a>. I wish them luck.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/07/more-on-jquery-selectors/">More on jQuery Selectors</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/07/more-on-jquery-selectors/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Following up on my 13 seconds of selection hell:</p>
-
-<p><a href="http://benjaminsterling.com/jquery-what-are-the-fastest-selector/">jQuery: what are the fastest selectors?</a></p>
-
-<p>Turns out that, as you might expect, <code>$('div.class')</code> is faster than <code>$('.class')</code>, and so is <code>$('div').filter('.class')</code>. Knowing where <em>not</em> to look (&#8220;skip anything that&#8217;s not a div&#8221;) helps make jQuery faster. To which you might say, &#8220;well duh.&#8221; Regardless, the post above does a nice job of demonstrating it pretty plainly, and it&#8217;s a good reminder that, if I&#8217;d wanted to stick with my attribute-based selection, I could have helped my code a little bit by telling it where I expected to find those attributes so it wouldn&#8217;t have had to look through every element on a ridiculously huge page.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#data_entry input, #data_entry select&#39;</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;[name=value]&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/pre&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -691,6 +818,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/11/14/this-is-the-cup-of-coffee/">This is the Cup of Coffee</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/11/new-post/">New Post</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
       </li>
     
@@ -700,14 +835,6 @@
     
       <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
       </li>
     
   </ul>

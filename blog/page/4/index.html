@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Over the weekend, there was a tweet announcing that Google was going to provide &#8220;scholarships&#8221; to qualified women to attend JSConf.eu. &hellip;">
+  <meta name="description" content="There&rsquo;s been a lot of activity around my last post, On jQuery &amp; Large Applications. A number of people have asked me why, exactly, I&rsquo; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,315 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/11/on-rolling-your-own/">On Rolling Your Own</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-11T00:00:00-04:00" pubdate data-updated="true">Aug 11<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/11/on-rolling-your-own/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There&rsquo;s been a lot of activity around my last post, <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">On jQuery &amp; Large Applications</a>. A number of people have asked me why, exactly, I&rsquo;m so opposed to using jQuery as part of a roll-your-own solution.</p>
+
+
+
+
+<p>To answer that, let&rsquo;s start by looking at (some of) the pieces my ideal large application solution might include:</p>
+
+
+
+
+<ul>
+<li>DOM manipulation tools</li>
+<li>Ajax tools</li>
+<li>A dependency management and build system</li>
+<li>Clear patterns for code organization, such as namespaced modules</li>
+<li>An inheritance system, preferably one that offers multiple inheritance, for sharing code across modules and staying DRY</li>
+<li>A non-DOM-centric, loosely coupled API for communication between modules</li>
+<li>A widget system that makes use of the inheritance system, with lifecycle management (setup/teardown) and templating</li>
+<li>A system for maintaining templates separate from JavaScript while interning them into the build to eliminate HTTP requests</li>
+<li>A system for abstracting RESTful server communication</li>
+<li>For a UI-intensive project, a rich widget system pluggable to arbitrary data sources and designed with an easily-extended API</li>
+<li>For an enterprise project, a11y and i18n provisions, as well as clear patterns for file organization</li>
+</ul>
+
+
+
+
+<p>To all of you who have said you can do this yourself, you win. I can&rsquo;t argue with you without sounding like I&rsquo;m saying you&rsquo;re too dumb, and you&rsquo;re probably not.</p>
+
+
+
+
+<p>But here&rsquo;s my question: why? What, exactly &mdash; <strong>exactly</strong> &mdash; do you gain by putting all of this together for yourself, rather than using the pieces you need of a toolkit that provides all of this out of the box? Because here are a few things I think you lose:</p>
+
+
+
+
+<ul>
+<li>Integration. Is your abstracted RESTful data API designed to talk to your widget system that&rsquo;s designed to talk to your template system? That&rsquo;s hott. Now what about when a new version of one of those components comes out that violates an assumption you made?</li>
+<li>Maintenance. I heart the good folks who have put together individual answers to these individual questions, but they have no obligation to continue being the good folks they are, and they certainly have no obligation to do it on any sort of schedule. Remember all those plugins that broke with jQuery 1.4? That sure was fun.</li>
+<li>Documentation. I&rsquo;m going to grant you, right now, that jQuery is one of the best-documented JavaScript libraries out there, hands down. But what about all these other pieces you&rsquo;re putting together? Especially the ones you really are rolling on your own, like that templated widget thing that communicates so nicely with your abstract data API. There are a wealth of resources for understanding, troubleshooting, and using these pieces in established toolkits. Where will the next developer turn when they have questions about yours?</li>
+<li>Experience. Like I said, I get that you&rsquo;re smart. Possibly smarter than me. That&rsquo;s cool. But are you smarter than the combined wisdom of a team of people that has been thinking about these questions for years? Are you sure your solution has thought through all the questions they have?</li>
+</ul>
+
+
+
+
+<p>I&rsquo;ve noticed that, in the conversations I&rsquo;ve had the last few days, it seems to fall to me to &ldquo;prove&rdquo; that a roll-your-own solution that includes jQuery isn&rsquo;t advisable. Perhaps that&rsquo;s fair &mdash; &ldquo;you started it!&rdquo;, you might say, and that I did. But simultaneously, others argue that jQuery never set out to answer these questions, and so it&rsquo;s not jQuery&rsquo;s fault that people are trying to use it in ways it wasn&rsquo;t intended to be used. I have waited in vain to hear a compelling reason why jQuery <em>should</em> be part of a large application solution, to hear why I should recommend a roll-your-own solution that includes jQuery to my clients. The extent of the argument seems to be &ldquo;because I like it, and it doesn&rsquo;t force me to think a certain way.&rdquo;</p>
+
+
+
+
+<p><a href="http://www.youtube.com/watch?v=vciEDI3dD8I">No one puts baby in a corner</a>. Got it. But the straw man-ness of this argument has me, literally, chuckling right now. Let&rsquo;s not confuse a mythical one-size-fits-all solution with a toolkit that provides, well, <em>tools</em>. Tools to do all sorts of things, tools meant to work together, tools developed and tested and maintained by a whole big team of smart people, tools that are, actively, being used in really frigging big, really frigging enterprisey applications.</p>
+
+
+
+
+<p>I very purposefully didn&rsquo;t propose a particular alternate solution in the original post, but it&rsquo;s hardly a secret that my personal favorite, of late, has been Dojo. Not because it purports to solve every problem or prescribes how to solve them, but because it gives me so many tools to use to solve a given problem. Time and again I find that &ldquo;Dojo already did that&rdquo; &mdash; they already wrote the tool I’m wishing I had. Now I don&rsquo;t have to write it, and, perhaps more importantly, I know it was written to work with all of the pieces I&rsquo;m already using, and when I use it I’m not risking duplication of code or a lack of testing, maintenance or support. Win.</p>
+
+
+
+
+<p>But let&rsquo;s be very clear: no one&rsquo;s forcing me to use that component! No one is forcing me to do things a certain way, any more than jQuery is &ldquo;forcing&rdquo; me to think of my application entirely in terms of the DOM. I can write my own component if I want, or use someone else&rsquo;s if I want, or change it a bit if I want! For example, on a current project I pulled in mustache.js because the project had a lot of templates that had already been written to use it. The brilliant thing, though, was that integrating mustache.js into dijit._Templated instead of the standard templating system was trivial. That component, and all the others in Dojo and Dijit, are architected explicitly <em>not</em> to be one-size-fits-all. They provide a rock-solid base for large application development, for getting up and running quickly using a bevy of ready-made solutions, but also provide so many extension points that you can turn those solutions on their head if you want or need.</p>
+
+
+
+
+<p>Garann Means, whose blog you should be reading, took a bit of issue with my original post in <a href="http://www.garann.com/dev/?p=186">model-view-controller and comfy clothes</a>.</p>
+
+
+
+
+<blockquote class="posterous_medium_quote"><p>I do agree that it benefits everyone to be working in the same setup and making use of tools that have been vetted by geniuses whose entire job is to create such things. But I&rsquo;m dubious about any approach which comes too close to promising one size fits all. If you&rsquo;ve ever sewn a dress, you understand that one size fits all is technically possible, but some people are going be left with a lot of excess while others will scarcely be able to breathe.</p></blockquote>
+
+
+
+
+<p>Carrying on that metaphor, these pieces provided by Dojo &mdash; or any other comprehensive toolkit, for that matter &mdash; are but starter patterns, and thread, and scissors, and pins, and a sewing machine, and OK I&rsquo;m stretching the metaphor, now, but my point is they&rsquo;re definitely not finished one-size-fits-nobody garments. On the other hand, if I decide to use jQuery in a large application, it can feel like I&rsquo;ve been given a black marker and some of that crinkly brown paper, and now it’s up to me to draw a pattern and then come up with all those other pieces, too. Intellectually interesting and pleasingly crafty, perhaps, but not particularly efficient, sustainable, repeatable, or maintainable.</p>
+
+
+
+
+<p>So again I ask, in all seriousness and in hopes of fostering a good discussion: Why? jQuery provides you with DOM, Ajax, and event management tools, but little else. There are tools <em>designed</em> for building large applications, designed to provide all of the pieces I want and so many more it&rsquo;s not even funny, and they provide you with DOM, Ajax, and event management tools, too. What&rsquo;s the compelling case for rolling your own solution that includes jQuery instead?</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/09/on-jquery-large-applications/">On jQuery & Large Applications</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-09T00:00:00-04:00" pubdate data-updated="true">Aug 9<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/09/on-jquery-large-applications/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Update: I&rsquo;ve written a separate post on the wisdom of <a href="http://blog.rebeccamurphey.com/on-rolling-your-own">rolling your own</a> large application toolkit that incorporates jQuery.</em></p>
+
+
+
+
+<p>I&rsquo;ve been thinking a lot lately about JavaScript applications. As my skills have evolved, I&rsquo;ve had the privilege of working on more actual applications, and I&rsquo;ve gotten further and further from clients who want to add a bit of Ajax or bling to an otherwise fairly traditional web site.</p>
+
+
+
+
+<p>The most interesting applications I work on are client-side intensive: the server is responsible for providing data as JSON to the client, and most everything else &mdash; templating, state management, data management, site navigation, and of course user interaction &mdash; is left to the client side.</p>
+
+
+
+
+<p>It&rsquo;s a lovely way of writing an application. There&rsquo;s no need for me to touch server-side code; in some cases I work with a server-side developer to decide what the data they send will look like, but in others I just take what an API already provides and make it work. I get to use the same templating framework across projects, regardless of server-side technology, and I can prototype complex interactions before the server side even exists.</p>
+
+
+
+
+<p>This is a land where HTML, CSS, and JavaScript are almost all you need, and I like it. I&rsquo;ve become a firm believer in moving giant hunks of functionality that used to belong to the server over to the client. For a variety of reasons, I think it&rsquo;s clear that this is where most interesting web development is headed, to the extent it&rsquo;s not already there.</p>
+
+
+
+
+<hr />
+
+
+
+
+<p>This style of building an application changes the front-end development game. In fact, &ldquo;development&rdquo; may no longer be an adequate description; we&rsquo;re moving into the realm of engineering, here. We&rsquo;re not using JavaScript to add a bit of bling to our sites &mdash; a slideshow here, some Ajax there &mdash; we&rsquo;re architecting an <em>application</em>, damnit. We can&rsquo;t just write some procedural code that binds a bunch of anonymous functions to some events and call it a day; if we do, I can tell you from experience that we&rsquo;re going to end up with a steaming pile of unmaintainable crap.</p>
+
+
+
+
+<p>Among a host of questions presented by these sorts of applications, some of the most interesting to me are:</p>
+
+
+
+
+<ul>
+<li>What are the units of functionality that will make up the application?</li>
+<li>How will those pieces be organized into units of code?</li>
+<li>How will those pieces communicate with each other?</li>
+<li>How will dependencies between components be expressed and managed while adhering to the principle of loose coupling?</li>
+<li>How will components manifest themselves in the DOM? Do they need to?</li>
+<li>How will we persist data across URL and page loads?</li>
+<li>How will we manage communication with the server?</li>
+<li>How will we make sure users only see the data they&rsquo;re allowed to see?</li>
+</ul>
+
+
+
+
+<p>At the risk of making a broad generalization, this isn&rsquo;t the way today&rsquo;s average JavaScripter learned to think. The mantra of jQuery, the most popular JavaScript library on the internets, is &ldquo;get some elements, do something with them&rdquo; &mdash; perfectly terrible preparation for analyzing an application from a perspective other than the DOM. And, IMHO, therein lies a tremendous problem.</p>
+
+
+
+
+<hr />
+
+
+
+
+<p>As more and more application logic moves to the browser, I&rsquo;m eager to see the JavaScript community rise to the challenge, but instead it feels like the opposite is happening. People with little understanding or appreciation of these questions are taking on projects that demand these questions be answered. The result is a land of fragile code that gets the job done while giving the finger to the next developer; a land of code so tightly coupled, so deeply beholden to the DOM, so blatantly not reusable or extensible or maintainable as to render every subsequent commit a complete crapshoot, as liable to cripple the application as not. The viability of the project is threatened, and so is the reputation of JavaScript.</p>
+
+
+
+
+<p>We are better than this. JavaScript, even that old-fashioned browser kind, is a language worthy of respect, not a thing to be dreaded. But &mdash; and here&rsquo;s the sentence I have struggled 10 months to realize and an hour to write: in order to prove that we are better than this, we must make abundantly clear to the budding developers, to the project managers, to the enterprises, to anyone intending to build a remotely complex JavaScript application, that there&rsquo;s more to JavaScript than jQuery. The questions are bigger, the answers more complex, and the relevant skills, alas, a bit harder to come by.</p>
+
+
+
+
+<p>We have to make clear that, in fact, jQuery is but a hammer. When it comes to building these intensively client-side applications, we&rsquo;re talking about building skyscrapers, for god&rsquo;s sake. The problems solved by a hammer are the least of our concerns.</p>
+
+
+
+
+<hr />
+
+
+
+
+<p>It was just a few months ago that I gave a presentation on <a href="http://www.slideshare.net/rmurphey/building-large-jquery-applications">building large jQuery applications</a>. I emphasized jQuery&rsquo;s role as strictly a DOM and Ajax tool, and demonstrated a few other tools &mdash; John Resig&rsquo;s <a href="http://ejohn.org/blog/simple-javascript-inheritance/">simple inheritance</a>, James Burke&rsquo;s <a href="http://requirejs.org/">RequireJS</a> dependency management and build tool, Jan Lenhardt&rsquo;s <a href="http://github.com/janl/mustache.js/">mustache.js</a> &mdash; that one would want to bring to the table for such an undertaking.</p>
+
+
+
+
+<p>But to what end do we assemble said hodgepodge of tools? Is it just so we can continue to &ldquo;use jQuery&rdquo;?</p>
+
+
+
+
+<p>jQuery&rsquo;s API is, indeed, dead-simple, but we are smart people! We are building skyscrapers! When it&rsquo;s time to write a complex application, and we need all of these things that jQuery doesn&rsquo;t offer, can we not learn to use another hammer &mdash; learn that <code>dojo.place('&lt;div&gt;I am new!&lt;/div&gt;', oldDomElement, 'last')</code> means the same thing as <code>$('&lt;div&gt;I am new!&lt;/div&gt;').appendTo(oldDomElement)</code> &mdash; if learning it gives us access to legions more functionality than jQuery even aspires to provide?</p>
+
+
+
+
+<p>Do we assemble this hodgepodge because finding jQuery developers is perceived as an easier task than finding practitioners of another library, even though someone saying they &ldquo;know jQuery&rdquo; is little indication that they will know how to work with the assembled solution?</p>
+
+
+
+
+<p>Do we do it for the plugin ecosystem &mdash; full of code of varying quality and maintenance &mdash; even though many of the large application needs addressed by those plugins are addressed by other libraries as well, and sometimes better?</p>
+
+
+
+
+<p>And when we do it, when we assemble this collection of tools ourselves, what risks are we accepting? What price will we pay down the road to maintain three or five or 10 different pieces from three or five or 10 different authors, with different release cycles, no guarantee of compatibility or maintenance, and no central project thoughtfully considering their future?</p>
+
+
+
+
+<hr />
+
+
+
+
+<p>I&rsquo;ve wrestled with these questions for months, agonizing during sleepless early-morning hours over how to advise clients on the answers. I&rsquo;m the co-host of yayQuery, a contributor to the jQuery Cookbook, and, I&rsquo;ll venture to say, a decently respected member of the jQuery community. I did not arrive at this conclusion lightly, and I have few illusions it will be well-received, or even heeded.</p>
+
+
+
+
+<p>But I&rsquo;ve grown weary of people championing a tool that simply does not answer the big questions I see in project after intensively client-side project. I&rsquo;ve grown weary of those same people dismissing tools that answer those questions handily and have been answering them for a while now. I cringe when clients tell me they&rsquo;ve chosen jQuery because it was &ldquo;easy,&rdquo; and then watch them predictably struggle with all of the questions it does not answer. And I&rsquo;ve found I can&rsquo;t continue to bite my tongue when people recommend jQuery as an enterprise-grade solution while failing to acknowledge these questions, let alone answer them*.</p>
+
+
+
+
+<hr />
+
+
+
+
+<p>I do not want to see jQuery go away. The simplicity of its API was undeniably instrumental in the rise of JavaScript as a language these last few years. It is a perfect gateway drug, and I greatly enjoy watching people transition from &ldquo;get some elements, do something with them&rdquo; to the elegant patterns of JavaScript itself.</p>
+
+
+
+
+<p>jQuery is an entirely appropriate answer to so many questions, but it falls so short for large applications, forcing you to assemble such a tenuous toolkit of your own, that it simply isn&rsquo;t a viable answer &mdash; or, in my opinion, part of an answer &mdash; for large applications. If we hope to continue to gain respect as a community, we ought to admire jQuery&rsquo;s immense contributions, but we must not be afraid to accept and make very clear its limitations. We do otherwise at our peril.</p>
+
+
+
+
+<hr />
+
+
+
+
+<p><em>*An aside: To its credit, <a href="http://jupiterit.com">JupiterIT</a> has put forward <a href="http://javascriptmvc.com">JavaScriptMVC</a>, the only substantive attempt I&rsquo;ve seen at answering these large application questions using jQuery. I applaud them, but fear their efforts will continue to be somewhat isolated without the support and endorsement of the wider jQuery community. If you have read this far and still have your heart set on a jQuery-centric large application solution, you should by all means take a look at JavaScriptMVC.</em></p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -2318,136 +2627,6 @@ matures.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/19/inaugural-north-carolina-jquery-camp/">Inaugural North Carolina jQuery Camp</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-19T00:00:00-04:00" pubdate data-updated="true">Sep 19<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/09/19/inaugural-north-carolina-jquery-camp/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m just back from the inaugural North Carolina jQuery Camp at <a href="http://www.viget.com">Viget Labs</a> in Durham, N.C., and a couple of people have asked how it went, so I thought I&#8217;d write a quick post. I had a whim a few weeks ago to organize the camp; I envisioned an unstructured day where fellow jQuery developers could get together and talk about how they use the library. I figured that since the jQuery Conference had sold out and had a huge waiting list, getting a couple dozen people together on a Saturday in Durham, N.C. wouldn&#8217;t be that hard.</p>
-
-<p>We had around 25 people show up to the camp today, from novices to experts, including Scott Gonzalez, a contributor to the jQuery UI library. True to my (utter lack of) vision, it was a very unstructured day, but productive and fun I think. My only experience with unconferences was at BarCamp RDU just a few weeks ago, so it took me a bit to get into full go-with-the-flow mode, but when I didn&#8217;t know what to do, I just asked &#8220;what do I do now?&#8221; and usually someone would tell me.</p>
-
-<p>We started out by writing some topic ideas up on the wall, and quickly had enough to get started. I split off with the novices to give an intro to the library, while the main room dug into the topics that had been suggested, starting with a talk by Scott about stateful plugins. Up next was Brian Landau from Viget, showing off the code for his mapping plugin and giving an overview of ScrewUnit; then, David Eisinger, also of Viget, showed us some simple strategies for improving perceived performance.</p>
-
-<p>Lunch &#8211; made possible by the generosity of Rich Orris, FireStream Media, Ignite Social Media, and DesignHammer &#8211; was time for informal conversations and demonstrations. Here&#8217;s Scott and someone whose name I don&#8217;t remember doing some quality whiteboarding:</p>
-
-<div class='p_embed p_image_embed'>
-<img alt="Media_httpfarm3static_bjtwc" height="333" src="http://getfile3.posterous.com/getfile/files.posterous.com/import-vejw/tdlezEdCedqyrontDHsHFjxtjJkAaCpctfsJlbCJAcHbaGJGqyEEeFwgspop/media_httpfarm3static_bjtwC.jpg.scaled500.jpg" width="500" />
-</div>
-
-
-<p>We came back from lunch with a reprise of my presentation from the jQuery Conference about using objects to organize your code, minus FAST FORWARD but otherwise largely intact. I was grateful to have more than 30 minutes this time, and we ended up having some good conversation about code organization in general.</p>
-
-<p>From there it was on to some great show-and-tell &#8211; people are doing excellent things with the library, and doing them with ease &#8211; and then Scott wrapped up the day with an overview of jQuery UI. Probably the biggest hit of the day was Scott&#8217;s &#8220;just one more thing &#8230;&#8221; moment, when he showed us a whole new API for using the position method as a setter, coming soon to a plugin near you. Lots of oohs and aahs about that one.</p>
-
-<p>I said at the end of the day that this first camp was really just a proof of concept &#8211; yes, I can get 25 people to show up to talk about jQuery. I&#8217;m hoping to do another jQuery camp in January, perhaps. There are a few things I&#8217;d like to do differently next time. For one, I&#8217;d like to be a little bit more intentional about having more than one session that&#8217;s suitable for beginners &#8211; a lot of the presentations were super-interesting, but way over the heads of people just getting started.</p>
-
-<p>Also, there were a number of people who signed up who didn&#8217;t make it, which is a shame because I ordered food expecting a larger turnout. I&#8217;d asked people to let me know if they couldn&#8217;t make it, but alas only a handful did. Next time, I think I&#8217;ll charge a token amount to attend &#8211; say $10 or so &#8211; so people will feel a bit more committed. If they don&#8217;t make it, at least their food will be paid for! Charging a few dollars will also help reduce the need for sponsors &#8211; not that I don&#8217;t love the sponsors, just that it was a bit of work and stress to line them up.</p>
-
-<p>Finally, next time I&#8217;d like to be a little bit more intentional about setting up and promoting the event. This time around, I started promoting it before I even had a venue, and shortly after I secured a venue (thank you Viget!) all the slots were filled. Next time around, I might approach that a little bit differently, especially if I can line up a few different venue options.</p>
-
-<p>That&#8217;s my report. For more pictures, visit <a href="http://www.flickr.com/photos/rdmey/tags/ncjquerycamp/">Flickr</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference/">On Speaking at the 2009 jQuery Conference</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-16T00:00:00-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2009</time>
-        
-         | <a href="/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>One of my personal goals for this year was to start being part of the solution to the dearth of female speakers at tech events. Though I&rsquo;ve talked at a couple of smallish local events over the past few months, this past weekend I got to do it in a big way: I presented a talk on using objects to organize your jQuery code to an audience of around 100 people, more by far than I&rsquo;ve ever spoken to before.</p>
-
-
-
-
-<p>[This post isn&rsquo;t so much about the talk itself as my first experience with talking at a conference. If you&rsquo;re interested in the talk, I encourage you to check out the slides, links, and code at the link above.]</p>
-
-
-
-
-<p>I decided I wanted to try to talk at the jQuery conference after I saw the initial very smart, very male speaker lineup. I submitted my talk based on an article I wrote earlier this year, and by the time it was all said and done, mine was the second most popular topic and I was slated to have 30 minutes in &ldquo;the big room.&rdquo;</p>
-
-
-
-
-<p>There is something sort of out-of-body about that moment when I am standing in front of a roomful of people right before I talk &mdash; I had it when I gave my first Refresh talk, when I taught my first jQuery class, when I spoke at my first BarCamp RDU, and yet again this weekend. For that moment, in my head, I am a complete and utter case, and can&rsquo;t quite fathom that I thought this was a good idea. And then I start talking, and then it is OK. And then when it&rsquo;s over, people clap, and I like that part.</p>
-
-
-
-
-<p>Back when I set out to start speaking more, I decided to take an improv class. For six weeks, we practiced being spontaneously funny, and at the end, we got up on stage in front of a bunch of strangers and tried to do it for real. Knowing what that feels like &mdash; what it feels like to run up the aisle like you&rsquo;re excited when really you&rsquo;re terrified because you&rsquo;ve never done this before and in real life you sit at a desk all day and talk to no one and what were you thinking? &mdash; makes the thought of talking to a bunch of strangers about what you actually know how to do seem like a completely reasonable thing.</p>
-
-
-
-
-<p>My experience this weekend was nothing short of excellent &mdash; people I barely knew rallied around me throughout the weekend to help me improve my presentation (most notably Chris Williams, organizer of JSConf, to whom I owe many thanks for all the images &mdash; especially the Liger). The audience graciously tolerated the part in the middle where I had to leave the podium to (very publicly) blow my nose. People asked great questions, and audience members gently pointed out things I might want to rethink. With the exception of one creepy off-the-wall comment about my &ldquo;fine-boned features,&rdquo; the reaction was overwhelmingly positive.</p>
-
-
-
-
-<p>Reliable sources told me that of 300 attendees, approximately 282 were men. I was the only woman to submit a talk. So this is the part where I encourage other women to do the same. I think women, on the whole (of course there are exceptions), are way more inclined than men to think they aren&rsquo;t good enough speakers, that they don&rsquo;t know a topic well enough to tell it to other people. Two truths: one, the speaking skills of the speakers I&rsquo;ve seen have been all over the map; two, you&rsquo;d be surprised how much you actually know about a topic, especially given the right audience. Go speak at a small event &mdash; a local meetup, a Refresh, even a lunch-and-learn at your office. Get to know the people who do speak at events, and discover that they&rsquo;re people just like you. Go out on a limb and try something that&rsquo;s</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -2465,6 +2644,14 @@ matures.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/11/14/this-is-the-cup-of-coffee/">This is the Cup of Coffee</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/11/new-post/">New Post</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
       </li>
     
@@ -2474,14 +2661,6 @@ matures.</p>
     
       <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
       </li>
     
   </ul>

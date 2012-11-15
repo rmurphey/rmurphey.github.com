@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: front-end development | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/front-end-development/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2012-11-15T16:29:43-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How I learned CSS]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/24/how-i-learned-css/"/>
+    <updated>2007-12-24T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/24/how-i-learned-css</id>
+    <content type="html"><![CDATA[<p>I remember when I first tried to understand how to produce designs for the web -- coming from the paper-based world, it was hard for me to accept everything that was suddenly out of my control. When I first tried to grasp CSS with the help of now-defunct Adobe GoLive, I bailed pretty quickly. Table-based layout and font tags didn't make much sense to me either -- why did I have to slice up a page into a bunch of adjoining cells, instead of just drawing independent boxes like I did in Quark?</p>
+
+<p>A couple of years later, I decided to try again, motivated by the realization that my <a href="http://gmurphey.com/">eight-years-younger brother</a> seemed to be better at this web stuff than I was. I spent untold hours trying to wrap my brain around <a href="http://www.sustainablewebdesign.com/resources/601/">the difference between margin and padding</a> and exactly how to <a href="http://css.maxdesign.com.au/floatutorial/">get floated elements to bend to my will</a>. I remember the epiphany that one could <a href="http://www.sovavsiti.cz/css/horizontal_menu.html">use left-floated list items for a horizontal menu</a>, or that <a href="http://www.netmechanic.com/news/vol4/html_no22.htm">the right DOCTYPE can force Internet explorer to behave more like a real browser</a>.</p>
+
+<p>These days, I have an honest-to-god job doing this stuff, and every now and then, someone will ask me how they can learn it too. It all makes so much more sense to me than it used to that it's hard to remember how I got here. In the interest of getting this stuff written down for passing along, though, here are a few thoughts:</p>
+
+<h3>The Tools</h3>
+
+
+<p>These are things without which the rest is impossible:</p>
+
+<ul>
+<li>
+<strong>A text editor</strong> Notepad will do just fine; for a few bucks, you can get <a href="http://macromates.com/">TextMate</a> for Mac or the <a href="http://www.e-texteditor.com/">e Text Editor</a> for PC. If you use Dreamweaver, hide everything but the file navigator panel and the code editing view. <em>You will learn nothing from Dreamweaver's "design" view.</em>
+</li>
+<li>
+<strong><a href="http://www.mozilla.com/en-US/firefox/">Firefox</a></strong> You'll need to test anything you do in Internet Explorer, but first, you'll get it working in Firefox. Whereas Internet Explorer enjoys mocking web standards, Firefox does its best to adhere to them; plus, it has all sorts of extensions that make it easier to troubleshoot your work.</li>
+<li>
+<strong><a href="https://addons.mozilla.org/en-US/firefox/addon/60">Firefox Web Developer Toolbar</a></strong> This has all sorts of useful tools in it, including a real-time CSS editor that opens in the browser's sidebar so you try changes to your CSS and see the results immediately.</li>
+<li>
+<strong><a href="https://addons.mozilla.org/en-US/firefox/addon/1843">Firebug</a></strong> This is most useful for Javascript debugging, but it has some nice features for debugging CSS as well.</li>
+<li>
+<strong><a href="http://users.skynet.be/mgueury/mozilla/">HTML Validator</a></strong> Incredibly helpful for finding errors in your HTML.</li>
+</ul>
+
+
+<p>(An aside: A few months ago I booted up an old laptop and found a preview release of Firefox 1.0 installed beside a well-worn Internet Explorer 6; when I abandoned the laptop, I was in the process of abandoning IE too. I can't help but wonder how difficult my learning would have continued to be without the arrival of Firefox, which, with the extensions mentioned above, makes it so much more possible to learn all of this stuff in a very tangible, immediate sort of way.)</p>
+
+<h3>Learning with Firefox</h3>
+
+
+<p>Once you have the tools above, open Firefox and start with a page someone else built -- like the one you're on right now -- and see what's inside. It pays to be curious about every web page you visit; if you see something interesting, view the source and figure out how it got there. Some tips:</p>
+
+<ul>
+<li>
+<code>Ctrl-U</code> will show you the HTML for a page, and with the HTML Validator extension, you can "clean up" the HTML so it's easier to read.</li>
+<li>
+<code>Ctrl-Shift-E</code> will open the Web Developer Toolbar CSS editor, which will show you the CSS for the page, with a tab for each CSS file. You can edit the CSS in the editor and see the effects immediately.</li>
+<li>
+<code>F12</code> will open Firebug. In the top left of the panel that opens, click the Inspect menu item, then move your mouse back to the page itself and click on an element to find out more about it. You can also click on the HTML tab to view the HTML and expand and collapse sections of it to see the structure of the page. Hovering over an element in the HTML panel will highlight it on the page; clicking on an element will let you find out more about it in the Style and Layout tabs of Firebug. (Firebug is an incredibly powerful tool that you really need to play with to fully appreciate. It's a completely non-destructive tool -- you can't hurt anything with it unless you try really, really hard -- so don't be afraid to click around and see what happens.)</li>
+<li>Remember that these days, lots of page elements are built with Javascript rather than with straight HTML. <code>Ctrl-U</code> will show you only the HTML; Firebug will show you the "generated source," including any elements built with Javascript. Firebug also lets you look at the Javascript on a page, which can be helpful when you're trying to understand how something got there.
+</li>
+</ul>
+
+
+
+
+<h3>POSH</h3>
+
+
+<p><a href="http://www.456bereastreet.com/archive/200711/posh_plain_old_semantic_html/">Plain-old semantic HTML</a>. When you go to make a web page, write the simplest HTML you can, and use standard HTML elements whenever humanly possible. Start by creating HTML that represents the actual sections of the page -- header, navigation, sidebar, content, footer -- and give the elements names that say what they <em>are</em>, not where they go. When you think you're done, view the HTML in a browser, without CSS, and see if it makes sense. Then, <em>and only then</em>, open the browser's CSS editor and start styling the elements. See how far you can get without adding any design-related markup to your HTML. If you find yourself writing convoluted HTML or adding purely presentational markup, to make something work, it's time to reconsider your approach. Once you have a good stylesheet started, copy it to your text editor and continue working on it there.</p>
+
+<h3>Strategies</h3>
+
+
+<p>It helps to give yourself deadlines, even if they're imaginary. I've learned more about HTML, CSS and Javascript in the past 12 months than I learned in the three years before, and I think that's largely because deadlines have forced me to solve problems rather than pondering them.</p>
+
+<p>Don't be afraid to do something less than perfectly; there can be value in just getting it done. I constantly look back at things I did three months ago -- let alone three years ago, and sometimes three weeks ago -- and I cringe when I think how differently I would do them today. But half the reason I know what I know now is precisely because I <em>didn't</em> know it then, and I learned it along the way. Understanding the building blocks of the web is an iterative process, and you'll do better if you remember that <strong>you cannot know everything you wish you knew</strong>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[jQuery IE7 "Operation Aborted" error]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error/"/>
+    <updated>2007-12-14T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error</id>
+    <content type="html"><![CDATA[<p>I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its job was to rearrange some elements into tabs once the page was loaded.</p>
+
+<p>In unpredictable cases (sequential reloads had different results), loading the page in IE7 would lead to an "Operation aborted" error that provided no additional information. Through some googling, I found out that this was probably related to IE choking when some script was run against the DOM before the DOM was fully loaded.</p>
+
+<p>What puzzled me was that I was using <code>$.ready()</code> to wrap my jQuery, which was supposed to wait for the DOM, but it didn't seem to matter. Then I found <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=215410#215410">this</a> -- it turns out that interacting with the DOM via javascript from within a table can make IE all sorts of angry, while interacting with the DOM via javascript from within a div is just fine.</p>
+
+<p>While my case doesn't directly match the example above, it seems very possible that the table-based template I was writing for was the source of the headaches. Changing the base HTML template for the page I was working on wasn't immediately in the cards, so I split the offending js file into two pieces -- one in the head of the document that contains some basic functions but didn't actually do anything, and another right before the closing body tag that does the actual talking to the DOM -- and that seemed to fix it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Insert jQuery into any page using a bookmarklet]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/"/>
+    <updated>2007-12-10T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet</id>
+    <content type="html"><![CDATA[<p>Ever wish you could use jQuery on a page at the drop of a hat, without having access to the page itself? Well I'll be damned, <a href="http://simonwillison.net/2007/Aug/15/jquery/">you can</a>.</p>
+
+<p>(This is one of those things that in hindsight seems so painfully obvious that I'm almost embarrassed to admit that it never occurred to me, but admit it I will.)</p>
+
+<p>For those working with jQuery 1.2.1, here is an <a>updated Insert jQuery 1.2.1 bookmarket</a>, and here is the code for the bookmarklet in its entirety:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="k">void</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">s</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">s</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://code.jquery.com/jquery-1.2.1.js&#39;</span><span class="p">;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">s</span><span class="p">);}())</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I came across this in a recent post at <a href="http://morethanseven.net/posts/debug-web-pages-with-jquery-and-jash">Morethanseven</a>, but the Simon Willison post is from August, so this is probably a bit of old news. I'm still excited though.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using ems for font sizing in css]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/09/using-ems-for-font-sizing-in-css/"/>
+    <updated>2007-12-09T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/09/using-ems-for-font-sizing-in-css</id>
+    <content type="html"><![CDATA[<p>A List Apart had a great article recently on <a href="http://www.alistapart.com/articles/howtosizetextincss/">using 'em' for CSS font-size declarations</a>, which served as great back-up for some conversations I'd been having among coworkers. (It turns out that people who didn't have a former life in print don't necessarily understand what an em is: a self-referential unit of font size measurement, equal to the height of the capital letter M. Back in the typesetting days, it was a unit for measuring space, especially horizontal space, in the form of an "em dash" (rendered now as <code>&amp;mdash;</code>) or an "em space." There was also a sister unit, the "en.")</p>
+
+<p>Anyway: I just came across <a href="http://benjaminsterling.com/using-em-for-font-size-learning-on-the-go/">this post</a>, by someone trying to put ems into practice; at the end, he gets into tools for doing conversions from pixels to ems, and it struck a surprising nerve with me.</p>
+
+<p>Here's the thing: While I can see how pixel conversion seems useful when you first make the switch from px to em, I think the whole point of using ems instead of pixels is to embrace the concept that, on the web, sizes are relative, not absolute. If you're focused on matching an absolute size in a mockup by converting pixels to ems, the chances seem good that you're dealing with a layout that wasn't intended to work with relatively sized text to begin with, and/or that your ultimate product won't work if the user makes a different decision than you about how they will consume it.</p>
+
+<p>If you receive a Photoshop mockup where body copy is 10px tall, I think it's a tremendous waste of time to measure that 10px and convert it to ems -- 10px on my 1024x768 monitor is a far cry from 10px on my 1600x1200 monitor, nevermind on the HDTV sitting across the room.</p>
+
+<p>When you're designing and styling text for the web, better to:</p>
+
+<ul>
+<li>Assume from the start that users will consume your site differently than you do.</li>
+<li>Make decisions in your design, CSS and HTML that will consistently convey the content and hierarchy of your site, regardless of how it is consumed.</li>
+<li>Assume that the user knows better than you what a good base text size is for them.</li>
+<li>Use a reset styleheet — I like <a href="http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/">Eric Meyer's CSS Reset Reloaded</a> — to set everything to that base size.</li>
+<li>Vary the sizes of elements <em>relatively</em> using ems.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Remixing trac with jQuery]]></title>
+    <link href="http://rmurphey.com/blog/2007/12/03/remixing-trac-with-jquery/"/>
+    <updated>2007-12-03T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2007/12/03/remixing-trac-with-jquery</id>
+    <content type="html"><![CDATA[<p>I love <a href="http://trac.edgewall.org/">trac</a>, and I've been doing lots of work lately to customize it so our clients can use it to send us requests. With the configurable workflow option offered in <a href="http://trac.edgewall.org/milestone/0.11">version 0.11</a>, it became the perfect way for us to manage and track client requests. By connecting it to the subversion repository we use for version control of client files, we've virtually eliminated the need for back-and-forth emails -- everything is in one place.</p>
+
+<p>Since trac is intended more for managing a development project than for managing an ongoing client relationship, I've had to make some changes to the out-of-the-box version. I don't know Python, and I was having a hard time getting a developer to dive in at the level I needed on a non-billable project. Lucky for me, version 0.11 also includes jQuery (version 1.1.3.1). After a couple of chats with a developer and a few "duh" moments, it became clear that I could do most of what I needed without messing around under the hood.</p>
+
+<p>The story so far:</p>
+
+<ul>
+<li>Our clients use trac for internal approval of a request before it gets sent to us -- a content provider can enter a request, which then gets reviewed by a manager. We needed a way to assign this manager to the ticket, without the manager becoming the "owner" of the ticket. Initially, we had content providers entering their manager's email address into the Cc: field, but that didn't go over well. Now, jQuery reuses the existing Assign to menu to build a manager dropdown, with the usernames of our employees removed. When the ticket is submitted, the manager is added to the Cc: field automatically.
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// build the new dropdown</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">custom_cc_select</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-form&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">custom_cc_select</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-owner option&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">excludedManagers</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-cc&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// add the selected manager to the cc field on ticket submit</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.ticket form&#39;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">oldCc</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">manager</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-cc option:selected&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">oldCc</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">oldCC</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">manager</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">manager</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</li>
+
+<li>The standard trac ticket fields were exactly what we needed, but the labels for them were a little confusing to client users. Plus, the form was ugly. A few lines of jQuery created a new section in the form, moved the fields to that section without their table-based layout, reordered the fields and and relabeled them. For example:
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-component&#39;</span><span class="p">).</span> <span class="c1">// get the component dropdown</span>
+</span><span class='line'><span class="nx">remove</span><span class="p">().</span> <span class="c1">// remove it from the DOM but maintain access to it</span>
+</span><span class='line'><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#custom-form&#39;</span><span class="p">).</span> <span class="c1">// put it at the end of the #custom-form div</span>
+</span><span class='line'><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;Request Type&#39;</span><span class="p">);</span> <span class="c1">// put a new label before it</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+The new form makes more sense to the client users, reduces errors and omissions, and looks better too.</li>
+
+<li>For certain client requests, a more complex form is required. Trac offers custom fields, but that solution seemed too limiting. With a few more lines of jQuery, I set up a system that watches the Component dropdown. When certain components are chosen, the standard submission form is hidden, and a new form is put in its place using jQuery's load() method. The replacement content can include HTML, standard form elements and javascript; when the form is submitted, javascript assembles the field values into a well-formatted description.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

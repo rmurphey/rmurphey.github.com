@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized &hellip;">
+  <meta name="description" content="This is the cup of coffee I was making earlier this week when Melissa gave me a thumbs-up while she talked on the phone to a woman in Pennsylvania &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,196 @@
 </div>
 
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/14/this-is-the-cup-of-coffee/">This Is the Cup of Coffee</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-14T10:40:00-05:00" pubdate data-updated="true">Nov 14<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/14/this-is-the-cup-of-coffee/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://farm9.staticflickr.com/8482/8187360514_db246b4ac9.jpg" width="400"></p>
+
+<p>This is the cup of coffee I was making earlier this week when Melissa gave me a thumbs-up while she talked on the phone to a woman in Pennsylvania who had just finished telling Melissa that yes, indeed, after 10 weeks or three years of waiting depending on how you count, a 29-year-old woman who&#8217;s due to give birth in Iowa at the beginning of February has decided that Melissa and I should be so lucky as to get to be her baby girl&#8217;s forever family.</p>
+
+<p>Most people get to post ultrasound pictures on Twitter at moments like these, but for now this will suffice to remind me of the moment I found out I would get to be a mom. My head is spinning, and while on the one hand it&#8217;s a little difficult to fathom that this is all just 10 weeks away, on the other hand I&#8217;m counting down the days.</p>
+
+<p>Our adoption will be an open one; the meaning of &#8220;open&#8221; varies widely, but in our case it means we talked to the birth mother before she chose us, we&#8217;ll be meeting her in a few weeks, we&#8217;ll do our very best to be in Iowa for the delivery, and we&#8217;ll stay in touch with letters and pictures afterwards. Melissa and I are grateful that we&#8217;ll be able to adopt as a couple, though we are saddened that we have to adopt outside of our home state of North Carolina in order to do so. It&#8217;s important to us that our child have both of us as her <em>legal</em> parents, and I don&#8217;t hesitate to say that it&#8217;s downright shitty that we have to jump through significant legal and financial hoops &#8211; and stay in a hotel in Iowa with a newborn for an unknown number of days &#8211; to make it so. It is what it is, and good people are working and voting to make it better, and it can&#8217;t happen fast enough.</p>
+
+<p>I&#8217;ve learned a lot about adoption these past few months, and I know a lot of people have a lot of questions, some of which they&#8217;re reluctant to ask. If you&#8217;re interested in learning more, I <em>highly</em> recommend <a href="http://www.amazon.com/In-On-It-Adoption-Relatives/dp/0982876505/ref=sr_1_1?ie=UTF8&amp;qid=1352948795&amp;sr=8-1&amp;keywords=in+on+it">In On It: What Adoptive Parents Would Like You to Know About Adoption</a>. You&#8217;re also welcome to ask me questions if you see me in real life or on the internets &#8211; I can&#8217;t promise I&#8217;ll know the answers, but I promise to do my best.</p>
+
+<p>In the meantime, wish us luck :)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/11/new-post/">New Post</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-11T00:00:00-05:00" pubdate data-updated="true">Nov 11<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/11/new-post/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>z</p>
+
+<p>I just got done presenting <a href="">Writing Testable JavaScript</a> at <a href="">Full Frontal 2012</a>, a fantastic conference in beautiful Brighton in the UK, organized and hosted by the amazing Remy and Julie Sharp. As it turns out, the last <a href="">go-to post about writing testable JavaScript</a> was written a few years ago; I wanted to try to write down some thoughts based on my presentation in hopes they might help folks out now that there are some great tools that make testing JavaScript a lot easier than it was back then.</p>
+
+<p>A couple of months ago, I asked people on Twitter a couple of months ago what was making it hard to get started with JavaScript. Several people wrote to say they were stumped about how to write JavaScript that was testable in the first place &#8211; they knew that certain patterns made JavaScript hard to test, but they didn&#8217;t seem to know how best to avoid those patterns. To that end, I want to spend the rest of this post talking about how to write testable JavaScript, and specifically about how to incorporate <a href="">unit tests</a> into your development process.</p>
+
+<h2>Why Test?</h2>
+
+<p>Unlike in some other languages, testing hasn&#8217;t been a strong part of JavaScript culture. However, it&#8217;s becoming more relevant as we take on more complex tasks with JavaScript, and as we discover that our code is sometimes living a longer life than we ever thought possible. The move toward testing is an acknowledgement of a few facts of development life:</p>
+
+<ul>
+<li><strong>You will design your code</strong>. Before you write a line of code, you spend 10 seconds, 10 minutes, or maybe even a couple of hours thinking about how you&#8217;ll approach a problem. Unit testing makes that design process a more methodical one.</li>
+<li><strong>You will test your code</strong>. Whether your method of testing is refreshing your browser, sending code to QA, writing tests, or waiting for users to report bugs, your code will be tested one way or another. Automated testing allows that testing to happen earlier, and with minimal effort.</li>
+<li><strong>You will need to touch your code again</strong>. Remember that feature your boss said was solidly specified and would never need to change? Remember that code you just needed to get out the door and you&#8217;d revisit it as soon as you had time? You know how that ended up. Testing lets you refactor with greater confidence.</li>
+<li><strong>Other people will use your code</strong>. Maybe it&#8217;s a new team member, or your client, or a third party &#8211; regardless, tests help others understand what they can expect of your code, and give them ample warning when they break it.</li>
+<li><strong>There will be bugs</strong>. No matter how much testing you do, there are almost guaranteed to be bugs. Bugs don&#8217;t mean testing was a failure or a waste of effort &#8211; they&#8217;re just an opportunity to write another test.</li>
+</ul>
+
+
+<h2>An Example App</h2>
+
+<p>For the rest of this post, we&#8217;ll look at a simple example app:</p>
+
+<p><img src="" alt="" /></p>
+
+<p>A user searches for a term, and search results appear; a user can then click on the &#8220;Like&#8221; button next to a search result to add it to the list of liked results on the right.</p>
+
+<p>A traditional jQuery-style approach to this application might look something like this:</p>
+
+<p><a href="">gist</a></p>
+
+<h2>Integration Tests</h2>
+
+<p>When it comes to verifying that this code &#8220;works,&#8221; the best we can do is test that the eventual outcome is what we expect it to be &#8211; that is, when a user searches for something, do they eventually see the right results? These sorts of tests are called <em>integration tests</em> &#8211; they test whether pieces of a system work together.</p>
+
+<p>We can use Selenium to write these tests, and there are Selenium packages for Ruby, Java, Python, and even JavaScript. The JavaScript flavor is callback-heavy without much benefit, but here&#8217;s what a Selenium test might look like in Ruby, using <a href="">Capybara</a>:</p>
+
+<p><a href="">gist</a></p>
+
+<p>The code simply states a series of user interactions, and verifies that the page looks as it should at the end of those interactions. Here&#8217;s a video of the tests running:</p>
+
+<p><a href="">video</a></p>
+
+<p>Integration tests are great for verifying that pieces of your app are working together, and if you don&#8217;t have any tests at all, they&#8217;re the first kind of tests that you should write before you start tearing your code apart. But while they do somewhat assist with refactoring, they don&#8217;t help you design your code in the first place, and they don&#8217;t really tell other developers what they can expect of your code. For that, we need unit tests.</p>
+
+<h2>Unit Tests</h2>
+
+<p>Unit tests test <em>units of functionality</em>: given input X, did I get output Y? If we look again at the <a href="">traditional implementation</a>, it&#8217;s incredibly difficult to unit test: we can&#8217;t even get access to individual units of functionality. Does the query get sent correctly? Are the results populated correctly with the data returned by the server? Are form submissions prevented when a search is pending?</p>
+
+<p>There are a few characteristics that make this code difficult to test:</p>
+
+<ul>
+<li><strong>Anonymous functions</strong> Functions that don&#8217;t have names can&#8217;t be called, so we can&#8217;t test that their output is correct for a given input.</li>
+<li><strong>Complex functions</strong> Functions that do lots of things can have side effects that are difficult to test.</li>
+<li><strong>Lack of configurability</strong> The code is filled with hard-coded selectors, which means we have to replicate the entire DOM it expects in order to test any of it.</li>
+<li><strong>Hidden or shared state</strong> As an example: the pending state of the search form is closed inside the form&#8217;s submit handler, where we can&#8217;t test that it&#8217;s accurately set or released.</li>
+<li><strong>Tight coupling</strong> The event handler on a search result&#8217;s &#8220;Like&#8221; button updates the list of liked results directly, which means the results list needs to &#8220;know&#8221; about the liked results. Likewise, the search form needs to know about the results list, and its submit handler communicates directly with the server.</li>
+</ul>
+
+
+<h3>Rethinking Our Code</h3>
+
+<p>My colleague <a href="">Adam Sontag</a> calls this &#8220;choose-your-own-adventure&#8221; code: on any given line, you don&#8217;t know what might happen next. If we want testable code, our first step is to embrace a less-tangled approach. Most client-side functionality can be broken down into four areas of responsibility:</p>
+
+<ul>
+<li>Presentation/interaction</li>
+<li>Data/server communication</li>
+<li>Application state</li>
+<li>The glue that connects the first three</li>
+</ul>
+
+
+<p>If we look at our traditional code, these four areas of responsibility are intermingled:</p>
+
+<p><img src="" alt="" /></p>
+
+<p>A more reasonable approach to our application might be broken down into a few pieces:</p>
+
+<ul>
+<li>Presentation/interaction: The search form, the search results, and the likes</li>
+<li>Data/server communication: Fetching the results from the server based on a provided search term</li>
+<li>Application state: The current search term and other client-side state information</li>
+<li>Glue: Setting up the above pieces, and brokering communication between them</li>
+</ul>
+
+
+<p>Once we&#8217;ve sketched out the general layout of our application, based on the four areas of responsibility, there are a few guiding principles we can follow to make our implementation more testable:</p>
+
+<ul>
+<li>Use constructors to create instances</li>
+<li>Support configurability</li>
+<li>Keep methods simple</li>
+<li>Don&#8217;t intermingle responsibilities</li>
+</ul>
+
+
+<p>We&#8217;ll see how these four principles play out below, but there&#8217;s one last principle to mention that <em>guarantees</em> our code will be testable, and tested: test first.</p>
+
+<h3>Test First</h3>
+
+<p>I&#8217;m the first to admit that I don&#8217;t always test, and I don&#8217;t always test first. Some people swear by it, and it certainly has many advantages. When I do write tests first, it has a dramatic effect on how I think about writing my code. I&#8217;m forced to think about the API that different modules will need to expose, and I&#8217;m forced to think about what a given module needs to <em>do</em>. Then, I write those requirements out in plain English, and then I write code that will prove that the requirements are met.</p>
+
+<p>One of the best feelings in the world, as a developer, is writing your tests first, writing implementations that make those tests pass, and then firing up the application in the browser and seeing it just work. Even if you don&#8217;t test first as a rule, I strongly encourage trying it for a little while, at least to see how it affects your process and when it might be a useful approach for you.</p>
+
+<h2>Writing Our Tests</h2>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1164,256 +1354,6 @@ site</a>, but if you&#8217;re reading this, you&#8217;re probably a JavaScript d
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-25T08:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/07/25/switching-to-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m taking a stab at starting a new blog at
-<a href="http://rmurphey.com">rmurphey.com</a>, powered by
-<a href="http://octopress.org/">Octopress</a>, which is a set of tools, themes, and other
-goodness around a static site generator (SSG) called
-<a href="https://github.com/mojombo/jekyll">jekyll</a>. A couple of people have noticed
-the new site and wondered what I&#8217;m doing, so I thought I&#8217;d take a couple of
-minutes to explain.</p>
-
-<p>My old blog at <a href="http://blog.rebeccamurphey.com">blog.rebeccamurphey.com</a> is
-managed using <a href="http://posterous.com">Posterous</a>. It used to be a self-hosted
-WordPress site, but self-hosted WordPress sites are so 2009. One too many
-attacks by hackers made it way more trouble than it seemed to be worth.
-Posterous made switching from a WordPress install pretty easy, so, I did that.
-All told, it took a few hours, and I was pretty happy.</p>
-
-<p>For a few reasons, the old blog isn&#8217;t going anywhere:</p>
-
-<ul>
-<li>I ran into some trouble importing the old content into jekyll. I was tired
-and I didn&#8217;t investigate the issues too much, so they&#8217;re probably solveable,
-but &#8230;</li>
-<li>Some of the old content just isn&#8217;t that good, and since time is a finite
-resource, I don&#8217;t want to get too wrapped up in moving it over. Plus &#8230;</li>
-<li>Frighteningly or otherwise, some of my posts have become reference material
-on the internet. If I move them, I&#8217;ve got to deal with redirections, and I
-have a feeling that&#8217;s not going to be an easy task with Posterous.</li>
-</ul>
-
-
-<p>In hindsight, I should have switched directly from WordPress to an SSG. Despite
-my many complaints about Posterous &#8211; misformatted posts, lack of comment
-hyperlinks, a sign-in requirement for commenting, and lots more &#8211; in the end
-my decision to switch to a static site generator instead was more about having
-easy control over my content <em>on my filesystem</em>.</p>
-
-<p><a href="http://blog.guestlistapp.com/post/2304152860/five-reasons-to-use-a-static-site-generator-instead-of">This article</a>
-explains it well, but the bottom line, I think, is that static site generators
-are blogging tools for people who don&#8217;t need all the bullshit that&#8217;s been added
-to online tools in the interest of making them usable by people who don&#8217;t know
-wtf they&#8217;re doing. So, yes, to use an SSG, you have to know wtf you&#8217;re doing,
-and for me that&#8217;s a good thing: the tool gets out of my way and lets me focus
-on the writing.</p>
-
-<p>As for Octopress, it seems pretty damn nifty &#8211; the default theme looks gorgeous on my
-desktop and on my phone, and it seems they&#8217;ve taken care to put common
-customization points in a single sass file. All that aside, though, one of my favorite parts
-about it is that my content is truly my content. If Octopress pisses me off &#8211;
-though I hope it won&#8217;t! &#8211; then I can simply take my markdown files and put
-them in some other SSG, upload the whole thing to my GitHub pages, and be done
-with it. Win all around.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/24/object-literals/">Using Object Literals for Flow Control and Settings</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-24T00:00:00-04:00" pubdate data-updated="true">Jul 24<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/07/24/object-literals/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I got an email the other day from someone reading through <a href="http://jqfundamentals.com">jQuery Fundamentals</a> &#8211; they&#8217;d come across the section
-about patterns for performance and compression, which is based on a
-presentation by <a href="http://paulirish.com">Paul Irish</a> gave back at the 2009 jQuery
-Conference in Boston.</p>
-
-<p>In that section, there&#8217;s a bit about alternative patterns for flow control &#8211;
-that is, deciding what a program should do next. We&#8217;re all familiar with the
-standard if statement:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isAnimal</span><span class="p">(</span><span class="nx">thing</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">thing</span> <span class="o">===</span> <span class="s1">&#39;dog&#39;</span> <span class="o">||</span> <span class="nx">thing</span> <span class="o">===</span> <span class="s1">&#39;cat&#39;</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;yes!&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>What stumped the person who emailed me, though, was when the same logic as we
-see above was written like this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isAnimal</span><span class="p">(</span><span class="nx">thing</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(({</span> <span class="nx">cat</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dog</span> <span class="o">:</span> <span class="mi">1</span> <span class="p">})[</span> <span class="nx">thing</span> <span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;yes!&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>What&#8217;s happening here is that we&#8217;re using a throwaway object literal to express
-the conditions under which we will say a <code>thing</code> is an animal. We could have
-stored the object in a variable first:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">isAnimal</span><span class="p">(</span><span class="nx">thing</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">animals</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">cat</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">dog</span> <span class="o">:</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">animals</span><span class="p">[</span> <span class="nx">thing</span> <span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;yes!&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>However, that variable&#8217;s only purpose would be to provide this one lookup, so
-it can be argued that the version that doesn&#8217;t bother setting the variable is
-more economical. Reasonable people can probably disagree about whether this
-economy of bytes is a good tradeoff for readability &#8211; something like this is
-perfectly readable to a seasoned developer, but potentially puzzling otherwise
-&#8211; but it&#8217;s an interesting example of how we can use literals in JavaScript
-without bothering to store a value in a variable.</p>
-
-<p>The pattern works with an array, too:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">animalByIndex</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="p">[</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;dog&#39;</span> <span class="p">][</span> <span class="nx">index</span> <span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&#8217;s also useful for looking up values generally, which is how I find myself
-using it most often these days in my work with <a href="http://toura.com">Toura</a>, where
-we routinely branch our code depending on the form factor of the device we&#8217;re
-targeting:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">getBlingLevel</span><span class="p">(</span><span class="nx">device</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="p">({</span>
-</span><span class='line'>    <span class="nx">phone</span> <span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tablet</span> <span class="o">:</span> <span class="mi">200</span>
-</span><span class='line'>  <span class="p">})[</span> <span class="nx">device</span><span class="p">.</span><span class="nx">type</span> <span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As an added benefit, constructs that use this pattern will return the
-conveniently falsy <code>undefined</code> if you try to look up a value that doesn&#8217;t have
-a corresponding property in the object literal.</p>
-
-<p>A great way to come across techniques like this is to read the source code of
-your favorite library (and other libraries too). Unfortunately, once
-discovered, these patterns can be difficult to decipher, even if you have
-pretty good Google fu. Just in case your neighborhood blogger isn&#8217;t available,
-IRC is alive and well in 2011, and it&#8217;s an excellent place to get access to
-smart folks eager to take the time to explain.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1429,6 +1369,14 @@ smart folks eager to take the time to explain.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/11/14/this-is-the-cup-of-coffee/">This is the Cup of Coffee</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/11/new-post/">New Post</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
       </li>
     
@@ -1438,14 +1386,6 @@ smart folks eager to take the time to explain.</p>
     
       <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a>
       </li>
     
   </ul>

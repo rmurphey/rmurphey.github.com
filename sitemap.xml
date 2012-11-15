@@ -2,23 +2,23 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/03/my-case-for-standards-based-web-layouts/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:53:46-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/03/remixing-trac-with-jquery/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:53:59-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://rmurphey.com/blog/2007/12/04/getting-non-developers-on-the-subversion-bandwagon/
         </loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:54:09-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://rmurphey.com/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/
         </loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:54:22-05:00</lastmod>
     </url>
     <url>
         <loc>
@@ -28,31 +28,31 @@
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/07/more-on-jquery-selectors/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:54:33-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/07/standards-for-html-emails/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:55:05-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/09/datejs/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:55:18-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://rmurphey.com/blog/2007/12/09/for-only-25-more-this-gift-card-comes-in-green/
         </loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:55:29-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/09/using-ems-for-font-sizing-in-css/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:55:42-05:00</lastmod>
     </url>
     <url>
         <loc>
             http://rmurphey.com/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/
         </loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:55:56-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/11/in-case-you-thought-ie6-was-going-away/</loc>
@@ -60,19 +60,19 @@
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/12/jquery-build-table-from-json-data/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:56:11-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/14/jquery-ie7-operation-aborted-error/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:56:27-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/24/how-i-learned-css/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:56:54-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2007/12/30/determine-the-order-of-two-dom-elements/</loc>
-        <lastmod>2012-06-16T17:02:50-04:00</lastmod>
+        <lastmod>2012-11-11T10:57:08-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/blog/2008/01/02/update-page-using-json-data/</loc>
@@ -389,11 +389,19 @@
         <lastmod>2012-08-20T14:13:41-04:00</lastmod>
     </url>
     <url>
+        <loc>http://rmurphey.com/blog/2012/11/11/new-post/</loc>
+        <lastmod>2012-11-15T13:02:59-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://rmurphey.com/blog/2012/11/14/this-is-the-cup-of-coffee/</loc>
+        <lastmod>2012-11-15T16:28:02-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://rmurphey.com/blog/archives/</loc>
-        <lastmod>2012-08-20T14:13:41-04:00</lastmod>
+        <lastmod>2012-11-15T16:28:02-05:00</lastmod>
     </url>
     <url>
         <loc>http://rmurphey.com/</loc>
-        <lastmod>2012-08-20T14:13:41-04:00</lastmod>
+        <lastmod>2012-11-15T16:28:02-05:00</lastmod>
     </url>
 </urlset>
