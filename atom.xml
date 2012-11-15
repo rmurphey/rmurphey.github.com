@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2012-11-15T16:29:43-05:00</updated>
+  <updated>2012-11-15T16:36:02-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -29,119 +29,6 @@
 <p>I&#8217;ve learned a lot about adoption these past few months, and I know a lot of people have a lot of questions, some of which they&#8217;re reluctant to ask. If you&#8217;re interested in learning more, I <em>highly</em> recommend <a href="http://www.amazon.com/In-On-It-Adoption-Relatives/dp/0982876505/ref=sr_1_1?ie=UTF8&amp;qid=1352948795&amp;sr=8-1&amp;keywords=in+on+it">In On It: What Adoptive Parents Would Like You to Know About Adoption</a>. You&#8217;re also welcome to ask me questions if you see me in real life or on the internets &#8211; I can&#8217;t promise I&#8217;ll know the answers, but I promise to do my best.</p>
 
 <p>In the meantime, wish us luck :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[New Post]]></title>
-    <link href="http://rmurphey.com/blog/2012/11/11/new-post/"/>
-    <updated>2012-11-11T00:00:00-05:00</updated>
-    <id>http://rmurphey.com/blog/2012/11/11/new-post</id>
-    <content type="html"><![CDATA[<p>z</p>
-
-<p>I just got done presenting <a href="">Writing Testable JavaScript</a> at <a href="">Full Frontal 2012</a>, a fantastic conference in beautiful Brighton in the UK, organized and hosted by the amazing Remy and Julie Sharp. As it turns out, the last <a href="">go-to post about writing testable JavaScript</a> was written a few years ago; I wanted to try to write down some thoughts based on my presentation in hopes they might help folks out now that there are some great tools that make testing JavaScript a lot easier than it was back then.</p>
-
-<p>A couple of months ago, I asked people on Twitter a couple of months ago what was making it hard to get started with JavaScript. Several people wrote to say they were stumped about how to write JavaScript that was testable in the first place &#8211; they knew that certain patterns made JavaScript hard to test, but they didn&#8217;t seem to know how best to avoid those patterns. To that end, I want to spend the rest of this post talking about how to write testable JavaScript, and specifically about how to incorporate <a href="">unit tests</a> into your development process.</p>
-
-<h2>Why Test?</h2>
-
-<p>Unlike in some other languages, testing hasn&#8217;t been a strong part of JavaScript culture. However, it&#8217;s becoming more relevant as we take on more complex tasks with JavaScript, and as we discover that our code is sometimes living a longer life than we ever thought possible. The move toward testing is an acknowledgement of a few facts of development life:</p>
-
-<ul>
-<li><strong>You will design your code</strong>. Before you write a line of code, you spend 10 seconds, 10 minutes, or maybe even a couple of hours thinking about how you&#8217;ll approach a problem. Unit testing makes that design process a more methodical one.</li>
-<li><strong>You will test your code</strong>. Whether your method of testing is refreshing your browser, sending code to QA, writing tests, or waiting for users to report bugs, your code will be tested one way or another. Automated testing allows that testing to happen earlier, and with minimal effort.</li>
-<li><strong>You will need to touch your code again</strong>. Remember that feature your boss said was solidly specified and would never need to change? Remember that code you just needed to get out the door and you&#8217;d revisit it as soon as you had time? You know how that ended up. Testing lets you refactor with greater confidence.</li>
-<li><strong>Other people will use your code</strong>. Maybe it&#8217;s a new team member, or your client, or a third party &#8211; regardless, tests help others understand what they can expect of your code, and give them ample warning when they break it.</li>
-<li><strong>There will be bugs</strong>. No matter how much testing you do, there are almost guaranteed to be bugs. Bugs don&#8217;t mean testing was a failure or a waste of effort &#8211; they&#8217;re just an opportunity to write another test.</li>
-</ul>
-
-
-<h2>An Example App</h2>
-
-<p>For the rest of this post, we&#8217;ll look at a simple example app:</p>
-
-<p><img src="" alt="" /></p>
-
-<p>A user searches for a term, and search results appear; a user can then click on the &#8220;Like&#8221; button next to a search result to add it to the list of liked results on the right.</p>
-
-<p>A traditional jQuery-style approach to this application might look something like this:</p>
-
-<p><a href="">gist</a></p>
-
-<h2>Integration Tests</h2>
-
-<p>When it comes to verifying that this code &#8220;works,&#8221; the best we can do is test that the eventual outcome is what we expect it to be &#8211; that is, when a user searches for something, do they eventually see the right results? These sorts of tests are called <em>integration tests</em> &#8211; they test whether pieces of a system work together.</p>
-
-<p>We can use Selenium to write these tests, and there are Selenium packages for Ruby, Java, Python, and even JavaScript. The JavaScript flavor is callback-heavy without much benefit, but here&#8217;s what a Selenium test might look like in Ruby, using <a href="">Capybara</a>:</p>
-
-<p><a href="">gist</a></p>
-
-<p>The code simply states a series of user interactions, and verifies that the page looks as it should at the end of those interactions. Here&#8217;s a video of the tests running:</p>
-
-<p><a href="">video</a></p>
-
-<p>Integration tests are great for verifying that pieces of your app are working together, and if you don&#8217;t have any tests at all, they&#8217;re the first kind of tests that you should write before you start tearing your code apart. But while they do somewhat assist with refactoring, they don&#8217;t help you design your code in the first place, and they don&#8217;t really tell other developers what they can expect of your code. For that, we need unit tests.</p>
-
-<h2>Unit Tests</h2>
-
-<p>Unit tests test <em>units of functionality</em>: given input X, did I get output Y? If we look again at the <a href="">traditional implementation</a>, it&#8217;s incredibly difficult to unit test: we can&#8217;t even get access to individual units of functionality. Does the query get sent correctly? Are the results populated correctly with the data returned by the server? Are form submissions prevented when a search is pending?</p>
-
-<p>There are a few characteristics that make this code difficult to test:</p>
-
-<ul>
-<li><strong>Anonymous functions</strong> Functions that don&#8217;t have names can&#8217;t be called, so we can&#8217;t test that their output is correct for a given input.</li>
-<li><strong>Complex functions</strong> Functions that do lots of things can have side effects that are difficult to test.</li>
-<li><strong>Lack of configurability</strong> The code is filled with hard-coded selectors, which means we have to replicate the entire DOM it expects in order to test any of it.</li>
-<li><strong>Hidden or shared state</strong> As an example: the pending state of the search form is closed inside the form&#8217;s submit handler, where we can&#8217;t test that it&#8217;s accurately set or released.</li>
-<li><strong>Tight coupling</strong> The event handler on a search result&#8217;s &#8220;Like&#8221; button updates the list of liked results directly, which means the results list needs to &#8220;know&#8221; about the liked results. Likewise, the search form needs to know about the results list, and its submit handler communicates directly with the server.</li>
-</ul>
-
-
-<h3>Rethinking Our Code</h3>
-
-<p>My colleague <a href="">Adam Sontag</a> calls this &#8220;choose-your-own-adventure&#8221; code: on any given line, you don&#8217;t know what might happen next. If we want testable code, our first step is to embrace a less-tangled approach. Most client-side functionality can be broken down into four areas of responsibility:</p>
-
-<ul>
-<li>Presentation/interaction</li>
-<li>Data/server communication</li>
-<li>Application state</li>
-<li>The glue that connects the first three</li>
-</ul>
-
-
-<p>If we look at our traditional code, these four areas of responsibility are intermingled:</p>
-
-<p><img src="" alt="" /></p>
-
-<p>A more reasonable approach to our application might be broken down into a few pieces:</p>
-
-<ul>
-<li>Presentation/interaction: The search form, the search results, and the likes</li>
-<li>Data/server communication: Fetching the results from the server based on a provided search term</li>
-<li>Application state: The current search term and other client-side state information</li>
-<li>Glue: Setting up the above pieces, and brokering communication between them</li>
-</ul>
-
-
-<p>Once we&#8217;ve sketched out the general layout of our application, based on the four areas of responsibility, there are a few guiding principles we can follow to make our implementation more testable:</p>
-
-<ul>
-<li>Use constructors to create instances</li>
-<li>Support configurability</li>
-<li>Keep methods simple</li>
-<li>Don&#8217;t intermingle responsibilities</li>
-</ul>
-
-
-<p>We&#8217;ll see how these four principles play out below, but there&#8217;s one last principle to mention that <em>guarantees</em> our code will be testable, and tested: test first.</p>
-
-<h3>Test First</h3>
-
-<p>I&#8217;m the first to admit that I don&#8217;t always test, and I don&#8217;t always test first. Some people swear by it, and it certainly has many advantages. When I do write tests first, it has a dramatic effect on how I think about writing my code. I&#8217;m forced to think about the API that different modules will need to expose, and I&#8217;m forced to think about what a given module needs to <em>do</em>. Then, I write those requirements out in plain English, and then I write code that will prove that the requirements are met.</p>
-
-<p>One of the best feelings in the world, as a developer, is writing your tests first, writing implementations that make those tests pass, and then firing up the application in the browser and seeing it just work. Even if you don&#8217;t test first as a rule, I strongly encourage trying it for a little while, at least to see how it affects your process and when it might be a useful approach for you.</p>
-
-<h2>Writing Our Tests</h2>
 ]]></content>
   </entry>
   
@@ -2195,6 +2082,222 @@ was.</p>
 
 <p>I hope you&rsquo;ll stick around.</p>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Deferreds coming to jQuery 1.5?]]></title>
+    <link href="http://rmurphey.com/blog/2010/12/25/deferreds-coming-to-jquery/"/>
+    <updated>2010-12-25T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/12/25/deferreds-coming-to-jquery</id>
+    <content type="html"><![CDATA[<p><em>I have updated this post to show the code using the API that was released in jQuery 1.5.0.</em></p>
+
+<p>A few weeks ago, a <a href="https://github.com/jquery/jquery/commit/ab3ba4a81252c4357a7aab5f24d765d41d47986e">major rewrite of jQuery&#8217;s Ajax functionality</a>
+landed in the jQuery GitHub repo. Thanks to <a href="http://www.jaubourg.net/">Julian Aubourg</a>, jQuery looks like it will get a feature
+that I&#8217;ve desperately wished it had ever since I started spending time with
+Dojo:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doAjax</span><span class="p">(</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">req</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;let&#39;s see that again!&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// return the request object so other</span>
+</span><span class='line'>  <span class="c1">// things can bind to it too!</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doAjax</span><span class="p">().</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Once more, with feeling!&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Starting with 1.5 (I&#8217;m guessing), users will be able to easily attach callbacks
+to XHRs &#8230; later! And pass around the return value of <code>$.ajax</code> as an actually
+useful object with a familiar API, rather than just getting back the native
+XHR! No longer will we have to bundle up callback functionality &#8211; some of
+which might be optional, or depend on other code &#8211; inside our success or error
+callbacks. So hott.</p>
+
+<p>When I heard that these Ajax changes had landed, I got to thinking about how
+Dojo provides its ability to belatedly attach success and error handlers to its
+XHRs: underlying its XHR methods is
+<a href="http://dojotoolkit.org/reference-guide/dojo/Deferred.html#dojo-deferred">dojo.Deferred</a>.
+It <strong>allows users to assign callback functions for success and error conditions
+for a task that may not complete immediately.</strong> Dojo makes use of this for its
+XHR stuff, but it&#8217;s incredibly useful generically, too:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doSomethingAsync</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doSomethingAsync</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span> <span class="c1">// logs &#39;hello world&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, Dojo provided the late callback functionality via deferreds. jQuery now had
+late callback functionality. Was the deferred functionality hidden in the
+jQuery Ajax rewrite, waiting to be exposed? Julian and I and several others got
+to talking in the jQuery development IRC channel, and decided it seemed like an
+interesting and viable idea. A few days later, Julian&#8217;s <a href="https://github.com/jquery/jquery/commit/116c82b027a03a7a5670fa580fa9af819cc1cc03">first draft of jQuery.Deferred</a>
+landed in a branch on GitHub.</p>
+
+<p>It&#8217;s early days, but there have been a lot of good discussions already about
+the proposed API and how it should work. Through all of the conversations I&#8217;ve
+been part of, it&#8217;s become really clear that no one cares about deferreds until
+you show them what they actually mean: the ability to register an interest in
+the outcome of arbitrary asynchronous behavior, <em>even if the outcome has
+already occurred</em>. Even better, you can register your interest in the outcome
+of behavior that <em>may or may not be asynchronous</em>.</p>
+
+<p>I assure you that once you have experienced this, you will wonder how you lived
+without it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">doSomethingMaybeAsync</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">data</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">value</span> <span class="o">:</span> <span class="nx">val</span> <span class="p">},</span>
+</span><span class='line'>    <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">doSomethingMaybeAsync</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;The value for foo is&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;ll also be possible to do something like you see below. I&#8217;m not sure what
+the exact API will be for creating a generic deferred instance, but I hope it
+will be something along these lines:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doIt</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doIt</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span> <span class="p">},</span> <span class="nx">errorFn</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These changes are sitting in a <a href="https://github.com/jquery/jquery/tree/deferred">branch in the jQuery GitHub repo</a> as we speak, and I think
+it&#8217;s likely we&#8217;ll see them move to master sooner than later. It&#8217;s a nice story
+of collaboration and community participation that helped make something good &#8211;
+the Ajax rewrite &#8211; even better.</p>
+
+<p>It&#8217;s exciting to see jQuery venture a bit more into the abstract. My
+experiences with Dojo core so far make me think there are probably more
+opportunities for these sorts of utilities that would be of high value for
+a substantial number of jQuery users. On the other hand, one of the constant
+themes of our conversations about deferreds has been the potential for
+confusion with the new methods. Will the API look familiar and jQuery-like, or
+will users be confused about the ability to chain methods on something other
+than a jQuery selection? Are there bigger-picture considerations when it comes
+to adding new constructors to the jQuery namespace? It&#8217;ll be interesting to see
+how these questions sort themselves out, especially if other similar features
+appear that don&#8217;t fall neatly under the well-established
+DOM/Ajax/Events/Effects umbrella.</p>
+
+<p>The <a href="https://github.com/jquery/jquery/commits/deferred">conversation&#8217;s happening on GitHub</a> &#8211; I hope you&#8217;ll
+join in.</p>
 ]]></content>
   </entry>
   

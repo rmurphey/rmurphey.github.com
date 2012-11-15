@@ -9,10 +9,8 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="I&#8217;m taking a stab at starting a new blog at
-rmurphey.com, powered by
-Octopress, which is a set of tools, themes, and other
-goodness around a &hellip;">
+  <meta name="description" content="I got an email the other day from someone reading through jQuery Fundamentals &#8211; they&#8217;d come across the section
+about patterns for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,93 +101,6 @@ goodness around a &hellip;">
 </div>
 
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/25/switching-to-octopress/">Switching to Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-25T08:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/07/25/switching-to-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m taking a stab at starting a new blog at
-<a href="http://rmurphey.com">rmurphey.com</a>, powered by
-<a href="http://octopress.org/">Octopress</a>, which is a set of tools, themes, and other
-goodness around a static site generator (SSG) called
-<a href="https://github.com/mojombo/jekyll">jekyll</a>. A couple of people have noticed
-the new site and wondered what I&#8217;m doing, so I thought I&#8217;d take a couple of
-minutes to explain.</p>
-
-<p>My old blog at <a href="http://blog.rebeccamurphey.com">blog.rebeccamurphey.com</a> is
-managed using <a href="http://posterous.com">Posterous</a>. It used to be a self-hosted
-WordPress site, but self-hosted WordPress sites are so 2009. One too many
-attacks by hackers made it way more trouble than it seemed to be worth.
-Posterous made switching from a WordPress install pretty easy, so, I did that.
-All told, it took a few hours, and I was pretty happy.</p>
-
-<p>For a few reasons, the old blog isn&#8217;t going anywhere:</p>
-
-<ul>
-<li>I ran into some trouble importing the old content into jekyll. I was tired
-and I didn&#8217;t investigate the issues too much, so they&#8217;re probably solveable,
-but &#8230;</li>
-<li>Some of the old content just isn&#8217;t that good, and since time is a finite
-resource, I don&#8217;t want to get too wrapped up in moving it over. Plus &#8230;</li>
-<li>Frighteningly or otherwise, some of my posts have become reference material
-on the internet. If I move them, I&#8217;ve got to deal with redirections, and I
-have a feeling that&#8217;s not going to be an easy task with Posterous.</li>
-</ul>
-
-
-<p>In hindsight, I should have switched directly from WordPress to an SSG. Despite
-my many complaints about Posterous &#8211; misformatted posts, lack of comment
-hyperlinks, a sign-in requirement for commenting, and lots more &#8211; in the end
-my decision to switch to a static site generator instead was more about having
-easy control over my content <em>on my filesystem</em>.</p>
-
-<p><a href="http://blog.guestlistapp.com/post/2304152860/five-reasons-to-use-a-static-site-generator-instead-of">This article</a>
-explains it well, but the bottom line, I think, is that static site generators
-are blogging tools for people who don&#8217;t need all the bullshit that&#8217;s been added
-to online tools in the interest of making them usable by people who don&#8217;t know
-wtf they&#8217;re doing. So, yes, to use an SSG, you have to know wtf you&#8217;re doing,
-and for me that&#8217;s a good thing: the tool gets out of my way and lets me focus
-on the writing.</p>
-
-<p>As for Octopress, it seems pretty damn nifty &#8211; the default theme looks gorgeous on my
-desktop and on my phone, and it seems they&#8217;ve taken care to put common
-customization points in a single sass file. All that aside, though, one of my favorite parts
-about it is that my content is truly my content. If Octopress pisses me off &#8211;
-though I hope it won&#8217;t! &#8211; then I can simply take my markdown files and put
-them in some other SSG, upload the whole thing to my GitHub pages, and be done
-with it. Win all around.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1616,6 +1527,251 @@ was.</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/25/deferreds-coming-to-jquery/">Deferreds Coming to jQuery 1.5?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-25T00:00:00-05:00" pubdate data-updated="true">Dec 25<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/12/25/deferreds-coming-to-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>I have updated this post to show the code using the API that was released in jQuery 1.5.0.</em></p>
+
+<p>A few weeks ago, a <a href="https://github.com/jquery/jquery/commit/ab3ba4a81252c4357a7aab5f24d765d41d47986e">major rewrite of jQuery&#8217;s Ajax functionality</a>
+landed in the jQuery GitHub repo. Thanks to <a href="http://www.jaubourg.net/">Julian Aubourg</a>, jQuery looks like it will get a feature
+that I&#8217;ve desperately wished it had ever since I started spending time with
+Dojo:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doAjax</span><span class="p">(</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">req</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;let&#39;s see that again!&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// return the request object so other</span>
+</span><span class='line'>  <span class="c1">// things can bind to it too!</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doAjax</span><span class="p">().</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Once more, with feeling!&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Starting with 1.5 (I&#8217;m guessing), users will be able to easily attach callbacks
+to XHRs &#8230; later! And pass around the return value of <code>$.ajax</code> as an actually
+useful object with a familiar API, rather than just getting back the native
+XHR! No longer will we have to bundle up callback functionality &#8211; some of
+which might be optional, or depend on other code &#8211; inside our success or error
+callbacks. So hott.</p>
+
+<p>When I heard that these Ajax changes had landed, I got to thinking about how
+Dojo provides its ability to belatedly attach success and error handlers to its
+XHRs: underlying its XHR methods is
+<a href="http://dojotoolkit.org/reference-guide/dojo/Deferred.html#dojo-deferred">dojo.Deferred</a>.
+It <strong>allows users to assign callback functions for success and error conditions
+for a task that may not complete immediately.</strong> Dojo makes use of this for its
+XHR stuff, but it&#8217;s incredibly useful generically, too:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doSomethingAsync</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doSomethingAsync</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span> <span class="c1">// logs &#39;hello world&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, Dojo provided the late callback functionality via deferreds. jQuery now had
+late callback functionality. Was the deferred functionality hidden in the
+jQuery Ajax rewrite, waiting to be exposed? Julian and I and several others got
+to talking in the jQuery development IRC channel, and decided it seemed like an
+interesting and viable idea. A few days later, Julian&#8217;s <a href="https://github.com/jquery/jquery/commit/116c82b027a03a7a5670fa580fa9af819cc1cc03">first draft of jQuery.Deferred</a>
+landed in a branch on GitHub.</p>
+
+<p>It&#8217;s early days, but there have been a lot of good discussions already about
+the proposed API and how it should work. Through all of the conversations I&#8217;ve
+been part of, it&#8217;s become really clear that no one cares about deferreds until
+you show them what they actually mean: the ability to register an interest in
+the outcome of arbitrary asynchronous behavior, <em>even if the outcome has
+already occurred</em>. Even better, you can register your interest in the outcome
+of behavior that <em>may or may not be asynchronous</em>.</p>
+
+<p>I assure you that once you have experienced this, you will wonder how you lived
+without it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">doSomethingMaybeAsync</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">data</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">value</span> <span class="o">:</span> <span class="nx">val</span> <span class="p">},</span>
+</span><span class='line'>    <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">doSomethingMaybeAsync</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;The value for foo is&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;ll also be possible to do something like you see below. I&#8217;m not sure what
+the exact API will be for creating a generic deferred instance, but I hope it
+will be something along these lines:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doIt</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doIt</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span> <span class="p">},</span> <span class="nx">errorFn</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These changes are sitting in a <a href="https://github.com/jquery/jquery/tree/deferred">branch in the jQuery GitHub repo</a> as we speak, and I think
+it&#8217;s likely we&#8217;ll see them move to master sooner than later. It&#8217;s a nice story
+of collaboration and community participation that helped make something good &#8211;
+the Ajax rewrite &#8211; even better.</p>
+
+<p>It&#8217;s exciting to see jQuery venture a bit more into the abstract. My
+experiences with Dojo core so far make me think there are probably more
+opportunities for these sorts of utilities that would be of high value for
+a substantial number of jQuery users. On the other hand, one of the constant
+themes of our conversations about deferreds has been the potential for
+confusion with the new methods. Will the API look familiar and jQuery-like, or
+will users be confused about the ability to chain methods on something other
+than a jQuery selection? Are there bigger-picture considerations when it comes
+to adding new constructors to the jQuery namespace? It&#8217;ll be interesting to see
+how these questions sort themselves out, especially if other similar features
+appear that don&#8217;t fall neatly under the well-established
+DOM/Ajax/Events/Effects umbrella.</p>
+
+<p>The <a href="https://github.com/jquery/jquery/commits/deferred">conversation&#8217;s happening on GitHub</a> &#8211; I hope you&#8217;ll
+join in.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1637,10 +1793,6 @@ was.</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/11/new-post/">New Post</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
       </li>
     
@@ -1650,6 +1802,10 @@ was.</p>
     
       <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
       </li>
     
   </ul>

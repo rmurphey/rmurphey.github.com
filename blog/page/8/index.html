@@ -9,8 +9,12 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="updateWithJSON is a jQuery plugin that updates elements on your page based on key/value pairs in a JSON object. Usage: 1
-$.updateWithJSON(jsonData) &hellip;">
+  <meta name="description" content="Inspired by this from PHP, I wanted a
+utility function to determine whether a given element came before or after
+another element in the DOM. 1
+2
+3
+4 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,114 +105,6 @@ $.updateWithJSON(jsonData) &hellip;">
 </div>
 
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/01/02/update-page-using-json-data/">Update Page Using JSON Data</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-02T00:00:00-05:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2008</time>
-        
-         | <a href="/blog/2008/01/02/update-page-using-json-data/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/jquery.updateWithJSON.js">updateWithJSON</a> is a jQuery plugin that updates elements on your page based on key/value pairs in a JSON object. Usage:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">updateWithJSON</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/">Here&#8217;s a demo</a>, and here&#8217;s how it works:</p>
-
-<ul>
-<li>iterate over each property/value combination in the JSON object</li>
-<li>look for an element in the DOM that matches the property name
-<ul>
-<li>first, look for an element with a matching <code>id</code> attribute</li>
-<li>if no element with a matching ID is found, look for input, select or textarea elements with a matching <code>name</code> attribute</li>
-</ul>
-</li>
-<li>update the value, contents or selection of the matched element(s) based on the value in the JSON object</li>
-</ul>
-
-
-<p>NOTE: If you have multiple checkboxes with the same <code>name</code> attribute, or a select that allows multiple values, you&#8217;ll need to pass the values of the selected items in an array:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="nx">text_input</span><span class="o">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">checkbox_group</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span><span class="s1">&#39;value3&#39;</span><span class="p">],</span>
-</span><span class='line'>  <span class="nx">multi_select</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value4&#39;</span><span class="p">,</span><span class="s1">&#39;value5&#39;</span><span class="p">,</span><span class="s1">&#39;value6&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If you use a <code>name</code> attribute like &#8220;input[]&#8221; on a set of related checkboxes, remember that you&#8217;ll need to quote it in the JSON object:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="s1">&#39;input1[]&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span><span class="s1">&#39;value3&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h3>The back story</h3>
-
-
-<p>For a recent project, I needed to update elements on a page based on some server-side calculations. JSON is a handy way to transport data from the server back to the browser, and jQuery&#8217;s <code>getJSON()</code> method makes it painless. So, for example, I was getting back</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>with which I needed to update an element corresponding to &#8220;foo&#8221; and give it the value &#8220;bar&#8221;. Simple enough; on the page I was dealing with, it was easy to put a unique ID on every element that would need to be updated, and I matched that ID with the property name in the JSON object. It was (almost) as simple as this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">name</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&#8217;s not always the case, though, that you can easily put a unique ID on each element that will need updating; for example, <a href="http://us.php.net/manual/en/language.variables.external.php#77344">PHP rewards you</a> if you put the same <code>name</code> attribute on related checkboxes. Having checkboxes with the same name but different IDs can quickly get confusing when you&#8217;re dealing with data on the client side and on the server side. The solution above worked in my particular case, but I wanted something that would work more broadly &#8211; say, on pages that had related checkboxes &#8211; and that&#8217;s how I came up with the plugin.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -801,6 +697,44 @@ another element in the DOM.</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/07/standards-for-html-emails/">Standards for HTML Emails?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-07T00:00:00-05:00" pubdate data-updated="true">Dec 7<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/07/standards-for-html-emails/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After a couple of attempts that ended not-so-well, I gave up on HTML emails. I advise people to work with someone who&#8217;s an expert with them, or to at least <a href="http://www.campaignmonitor.com/resources/">use templates that are known to work</a>, and then I wish them well. At a job interview I actually proclaimed my active dislike of HTML emails and general unwillingness to muck with them &#8211; I&#8217;m not sure that went over so well. The news that <a href="http://www.campaignmonitor.com/blog/archives/2007/01/microsoft_takes_email_design_b.html">Outlook 2007 actually took a giant leap backwards in HTML support</a> seals the deal for me. Still, it&#8217;s good to read that <a href="http://www.456bereastreet.com/archive/200712/the_email_standards_project_launches/">some people are trying to bring some sanity to the situation</a>. I wish them luck.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -822,10 +756,6 @@ another element in the DOM.</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/11/11/new-post/">New Post</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>
       </li>
     
@@ -835,6 +765,10 @@ another element in the DOM.</p>
     
       <li class="post">
         <a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a language, not a religion</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/26/bocoup/">Bocoup</a>
       </li>
     
   </ul>
