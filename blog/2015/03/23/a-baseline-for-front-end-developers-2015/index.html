@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Baseline for Front-End [JS] Developers: 2015 - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="It&#8217;s been almost three years since I wrote A Baseline for Front-End Developers, probably my most popular post ever. Three years later, I still &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Baseline for Front-End [JS] Developers: 2015</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-23T21:12:00-05:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2015</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>It&#8217;s been almost three years since I wrote <a href="http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a>, probably my most popular post ever. Three years later, I still get Twitter mentions from people who are discovering it for the first time.</p>
+
+<p>In some ways, my words have aged well: there is, shockingly, nothing from that 2012 post that has me hanging my head in shame. Still, though: three years is a long time, and a whole lot has changed. In 2012 I encouraged people to learn browser dev tools and get on the module bandwagon; CSS pre-processors and client-side templating were still worthy of mention as new-ish things that people might not be sold on; and JSHint was a welcome relief from the #getoffmylawn admonitions &#8211; accurate though they may have been &#8211; of JSLint.</p>
+
+<p>It&#8217;s 2015. I want to write an update, but as I sit down to do just that, I realize a couple of things. One, it&#8217;s arguably not fair to call this stuff a &#8220;baseline&#8221; &#8211; if you thought that about the original post, you&#8217;ll find it doubly true for this one. One could argue we should consider the good-enough-to-get-a-job skills to be the &#8220;baseline.&#8221; But there are a whole lot of front-end jobs to choose from, and getting one doesn&#8217;t establish much of a baseline. For me, I don&#8217;t want to get a job; I want to get invited to great jobs. I don&#8217;t want to go to work; I want to go to work with talented people. And I don&#8217;t want to be satisfied with knowing enough to do the work that needed to be done yesterday; I want to know how to do the work that will need to get done tomorrow.</p>
+
+<p>Two, my world has become entirely JavaScript-centric: knowledge of the ins and outs of CSS has become less and less relevant to my day-to-day work, except where performance is concerned. I know there are plenty of very smart front-end developers for whom this isn&#8217;t true, but I have also noticed a growing gulf between those who focus on CSS and those who focus on JavaScript. That&#8217;s probably a subject for another blog post, but I bring it up just to say: I am woefully unequipped to make recommendations about what you should know about CSS these days, so I&#8217;m not going to try.</p>
+
+<p>In short: if this list of things doesn&#8217;t fit your vision of the front-end world, that&#8217;s OK! We&#8217;re both still good people. Promise.</p>
+
+<h2>JavaScript</h2>
+
+<p>Remember back in 2009 when you read that HTML5 would be ready to use in 2014, and that seemed like a day that would never come? If so, you&#8217;re well prepared for the slow-but-steady emergence of ES6 (which is now called <a href="https://esdiscuss.org/topic/javascript-2015">ES2015</a>, a name that is sure to catch on any day now), the next version of JavaScript. Getting my bearings with ES6 &#8211; er, ES2015 &#8211; is hands-down my biggest JavaScript to-do item at the moment; it is going to be somewhere between game-changing and life-altering, what with classes, real privacy, better functions and arguments, <code>import</code>-able modules, and so much more. Those who are competent and productive with the new syntax will have no trouble standing out in the JS community. Required reading:</p>
+
+<ul>
+<li><a href="https://leanpub.com/understandinges6/read/">Understanding ES6</a>, a work-in-progress book being developed in the open by Nicholas Zakas.</li>
+<li><a href="http://babeljs.io/">BabelJS</a>, a tool that lets you write ES6 today and &#8220;compile&#8221; it to ES5 that will run in current browsers. They also have a good <a href="http://babeljs.io/docs/learn-es6/">learning</a> section.</li>
+<li><a href="http://es6rocks.com/">ES6 Rocks</a>, with various posts that explore ES6 features, semantics, and gotchas.</li>
+</ul>
+
+
+<p>Do you need to be an ES6/ES2015 expert? Probably not today, but you should know at least as much about it as your peers, and possibly more. It&#8217;s also worth at least entertaining the possibility of writing your next greenfield project using ES6; the future will be here before you know it.</p>
+
+<p>New language features aside, you should be able to speak fluently about the asynchronicity of JavaScript, and using callbacks and promises to manage it. You should have well-formed opinions about strategies for loading applications in the browser and communicating between pieces of an application. You should maybe have a favorite application development framework, but not at the expense of having a general understanding of how other frameworks operate, and the tradeoffs you accept when you chooose one.</p>
+
+<h2>Modules &amp; Build Tools</h2>
+
+<p>There&#8217;s no debate that modules should be the building blocks of client-side web applications. Back in 2012, there was lots of debate about what <em>kind</em> of modules we should use for building apps destined for the browser &#8211; <a href="https://github.com/amdjs/amdjs-api/blob/master/AMD.md">AMD</a> or <a href="http://webpack.github.io/docs/commonjs.html">CommonJS</a>. The somewhat-gross <a href="https://github.com/umdjs/umd">UMD</a> wrapper arose to try to avoid answering the question while still allowing code reuse &#8211; because hey, what&#8217;s a few more bytes between friends?</p>
+
+<p>I don&#8217;t feel like this debate is anywhere near resolved, but this is the area where I feel like we&#8217;ve seen the largest transformation since my 2012 article, though perhaps that&#8217;s a reflection of my personal change of heart. I&#8217;m not ready to say that I&#8217;m done with AMD, but let&#8217;s just say I&#8217;m floored by how practical it has become to develop and deploy web applications using CommonJS, including modules imported with <code>npm</code>.</p>
+
+<p>With much love for all that <a href="http://requirejs.org/">RequireJS</a> has contributed to the module conversation, I&#8217;m a bit enamored of <a href="http://webpack.github.io/">webpack</a> right now. Its features &#8211; such as easy-to-understand build flags &#8211; feel more accessible than RequireJS. Its hot-swap builds via its built-in dev server make for a fast and delightful development story. It doesn&#8217;t force an AMD vs. CommonJS decision, because it supports both. It also comes with a ton of loaders, making it fairly trivial to do lots of common tasks. <a href="http://browserify.org/">Browserify</a> is worth knowing about, but lags far behind Webpack in my opinion. Smart people I trust tell me that <a href="https://github.com/systemjs/systemjs">systemjs</a> is also a serious contender in this space, but I haven&#8217;t used it yet, and its docs leave me wanting. Its companion package manager <a href="http://jspm.io/">jspm</a> is intriguing, allowing you to pull in modules from multiple sources including npm, but I&#8217;m a bit wary of combining those two concerns. Then again, I never thought I&#8217;d break up with AMD, yet here I seem to be, so we&#8217;ll see.</p>
+
+<p>I still long for a day when we stop having module and build tool debates, and there is a single module system and sharing code between arbitrary projects becomes realistic and trivial without the overhead of UMD. Ideally, the arrival of <a href="http://www.2ality.com/2014/09/es6-modules-final.html">ES6 modules</a> will bring that day &#8211; and transpilers will fill in the gaps as the day draws closer &#8211; but I find it just as likely that we&#8217;ll keep finding ways to make it complicated.</p>
+
+<p>In the meantime, front-end developers need to have an opinion about at least a couple of build tools and the associated module system, and that opinion should be backed up by experience. For better or worse, JavaScript is still in a state where the module decision you make will inform the rest of your project.</p>
+
+<h2>Testing</h2>
+
+<p>Testing of client-side code has become more commonplace, and a few new testing frameworks have arrived on the scene, including <a href="http://karma-runner.github.io/0.12/index.html">Karma</a> and <a href="https://theintern.github.io/">Intern</a>. I find Intern&#8217;s promise-based approach to async testing to be particulary pleasing, though I confess that I still write most of my tests using <a href="http://mochajs.org/">Mocha</a> &#8211; sometimes I&#8217;m just a creature of habit.</p>
+
+<p>The main blocker to testing is the code that front-end devs tend to write. I gave a talk toward the end of 2012 about <a href="https://www.youtube.com/watch?v=OzjogCFO4Zo">writing testable JavaScript</a>, and followed up with an <a href="http://alistapart.com/article/writing-testable-javascript">article</a> on the topic a few months later.</p>
+
+<p>The second biggest blocker to testing remains the tooling. Webdriver is still a huge pain to work with. Continuous automated testing of a complex UI across all supported browsers continues to be either impossible, or so practically expensive that it might as well be impossible &#8211; and nevermind mobile. We&#8217;re still largely stuck doing lightweight automated functional tests on a small subset of supported browser/device/OS combinations, and leaning as hard as we can on lower-level tests that can run quickly and inexpensively. This is a bummer.</p>
+
+<p>If you&#8217;re interested in improving the problem of untested &#8211; or untestable &#8211; code, the single most valuable book you can read is <a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a>. The author, Michael Feathers, defines &#8220;legacy code&#8221; as any code that does not have tests. On the topic of testing, the baseline is to accept the truth of that statement, even if other constraints are preventing you from addressing it.</p>
+
+<h2>Process Automation</h2>
+
+<p>You, hopefully, take for granted the existence of <a href="http://gruntjs.com/">Grunt</a> for task automation. <a href="http://gulpjs.com/">Gulp</a> and <a href="http://broccolijs.com/">Broccoli</a> provide a different approach to automating builds in particular. I haven&#8217;t used Broccoli, and I&#8217;ve only dabbled in Gulp, but I&#8217;ve definitely come to appreciate some of the limitations of Grunt when it comes to automating complex tasks that depend on other services &#8211; especially when that task needs to run thousands of times a day.</p>
+
+<p>The arrival of <a href="http://yeoman.io/">Yeoman</a> was a mere 45 days away when I wrote my 2012 post. I confess I didn&#8217;t use it when it first came out, but recently I&#8217;ve been a) starting projects from scratch using unfamiliar tech; and b) trying to figure out how to standardize our approach to developing third-party JS apps at Bazaarvoice. Yeoman really shines in both of these cases. A simple <code>yo react-webpack</code> from the command line creates a whole new project for you, with all the bells and whistles you could possibly want &#8211; tests, a dev server, a hello world app, and more. If React and Webpack aren&#8217;t your thing, there&#8217;s probably a generator to meet your needs, and it&#8217;s also easy to create your own.</p>
+
+<p>Given that Yeoman is a tool that you generally use only at the start of a project, and given that new projects don&#8217;t get started all the time, it&#8217;s mostly just something worth knowing about. Unless, of course, you&#8217;re also trying to standardize practices across projects &#8211; then it might be a bit more valuable.</p>
+
+<p>Broccoli has gotten its biggest adoption as the basis for ember-cli, and  folks I trust suggest that pairing may get a makeover &#8211; and a new name &#8211; to form the basis of a Grunt/Yeoman replacement in the future. Development on both Grunt and Yeoman has certainly slowed down, so it will be interesting to see what the future brings there.</p>
+
+<h2>Code Quality</h2>
+
+<p>If you, like me, start to twitch when you see code that violates a project&#8217;s well-documented style guide, then tools like <a href="http://jscs.info/">JSCS</a> and <a href="http://eslint.org/">ESLint</a> are godsends, and neither of them existed for you to know about them back in 2012. They both provide a means to document your style guide rules, and then verify your code against those rules automatically, before it ever makes it into a pull request. Which brings me to &#8230;</p>
+
+<h2>Git</h2>
+
+<p>I don&#8217;t think a whole lot has changed in the world of Git workflows since 2012, and I&#8217;d like to point out Github <em>still</em> hasn&#8217;t made branch names linkable on the pull request page, for f@#$s sake.</p>
+
+<p>You should obviously be comfortable working with feature branches, rebasing your work on the work of others, squashing commits using interactive rebase, and doing work in small units that are unlikely to cause conflicts whenever possible. Another Git tool to add to your toolbox if you haven&#8217;t already is the ability to run hooks &#8211; specifically, pre-push and pre-commit hooks to run your tests and execute any code quality checks. You can write them yourself, but tools like <a href="https://www.npmjs.com/package/ghooks">ghooks</a> make it so trivial that there&#8217;s little excuse not to integrate them into your workflow.</p>
+
+<h2>Client-Side Templating</h2>
+
+<p>This may be the thing I got the most wrong in my original post, for some definition of &#8220;wrong.&#8221; Client-side templating is still highly valuable, of course &#8211; so valuable that it will be built-in to ES 2015 &#8211; but there can be too much of a good thing. It&#8217;s been a hard-earned lesson for lots of teams that moving all rendering to the browser has high costs when it comes to performance, and thus has the &#8220;generate all the HTML client-side&#8221; approach rightfully fallen out of favor. Smart projects are now generating HTML server-side &#8211; maybe even pre-generating it, and storing it as static files that can be served quickly &#8211; and then &#8220;hydrating&#8221; that HTML client-side, updating it with client-side templates as events warrant.</p>
+
+<p>The new expectation here &#8211; and I say this to myself as much as to anyone else &#8211; is that you are considering the performance implications of your decisions, and maybe not restricting yourself quite so thoroughly to the realm of the browser. Which, conveniently, leads to &#8230;</p>
+
+<h2>Node</h2>
+
+<p>You say you know JavaScript, so these days I expect that you can hop on over to the Node side of things and at least pitch in, if not get at least knee-deep. Yes, there are file systems and streams and servers &#8211; and some paradigms that are fundamentally different from front-end dev &#8211; but front-end developers who keep the back end at arm&#8217;s length are definitely limiting their potential.</p>
+
+<p>Even if your actual production back-end doesn&#8217;t use Node, it&#8217;s an invaluable tool when it comes to keeping you from getting blocked by back-end development. At the very least, you should be familiar with how to <a href="https://docs.npmjs.com/cli/init">initialize a Node project</a>; how to set up an <a href="http://expressjs.com/">Express</a> server and routes; and how use the <a href="https://www.npmjs.com/package/request">request</a> module to proxy requests.</p>
+
+<h2>The End</h2>
+
+<p>Thanks to Paul, Alex, Adam, and Ralph for their thorough review of this post, and for generously pointing out places where I could do better. Thank them for the good parts, and blame any errors on me.</p>
+
+<p>With that, good luck. See you again in another three years, perhaps.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-23T21:12:00-05:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/26/writing-conference-proposals/" title="Previous Post: Writing Conference Proposals">&laquo; Writing Conference Proposals</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/';
+        var disqus_url = 'http://rmurphey.com/blog/2015/03/23/a-baseline-for-front-end-developers-2015/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

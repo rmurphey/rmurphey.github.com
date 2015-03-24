@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>On gaining respect as a front-end developer - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="Someone wrote me today: Where I work, design is highly valued with the leader of that group being our Creative Director, back end programmers are &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">On Gaining Respect as a Front-end Developer</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-13T00:00:00-05:00" pubdate data-updated="true">Apr 13<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Someone wrote me today:</p>
+
+<blockquote class="posterous_medium_quote">Where I work, design is highly valued with the leader of that group being our Creative Director, back end programmers are also highly valued, but front end &#8230; not so much. Partly I think its that I don&#8217;t toot my horn but I know there are other reasons. At times, my bosses haven&#8217;t even understood what it is that I do. Back end programmers look down on front end assuming that its trivial or something that should be relegated to compilers.
+
+I was wondering if this is a common thing or more so something that is happening at my particular company, and if you have any advice or pointers on this.</blockquote>
+
+
+<p>I thought my response might be worth sharing:</p>
+
+<p>I do think this attitude is common but not necessarily the rule. In my experience, I&#8217;ve found that by having a proven value proposition, you can gain converts and respect.</p>
+
+<p>Front end developers are in a unique position to improve page performance (perceived and actual) by using best practices such as the <a href="http://developer.yahoo.com/yslow/">YSlow</a> tests. Front end developers are also in a unique position to help develop templating systems and to write thoughtful CSS, both of which help enable the rapid prototyping and rollout of new features. A focus on results and best practices &#8211; demonstrating that you aren&#8217;t just pushing pixels around &#8211; is the key.</p>
+
+<p>Back end developers respect people who think like they do. Be mindful of opportunities for abstraction and reuse. Write <a href="http://www.slideshare.net/stubbornella/object-oriented-css">object-oriented CSS</a> and JavaScript. Craft solutions that are maintainable and documented. Learn and make use of <a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">version control</a> <a href="http://svnbook.red-bean.com/nightly/en/svn.intro.quickstart.html">systems</a>. Look for opportunities to participate in developer conversations about new features, and understand what the back end developers are up against. They&#8217;ll appreciate all of this.</p>
+
+<p>Take the time to teach and to learn. Be sure you have at least a passing understanding of the code the back end developers are writing, and leap at opportunities to share your knowledge. I&#8217;ve worked with more than one back end developer who was surprised to discover what all they didn&#8217;t know about the front end, and through our conversations about how we approached problems, we both learned a lot.</p>
+
+<p>Finally: identify opportunities for quick victories, execute on them, and make the results known. Benchmark before and after. Can you reduce the number of HTTP requests on a page, decreasing both the perceived and actual rendering time? Are you keeping your JavaScript out of the &lt;head&gt; as much as possible, preventing pages from stalling while rendering? Can you write JavaScript that is primed for reuse, and demonstrate opportunities for that reuse? Has your carefully crafted CSS allowed the rapid rollout of a new feature? Don&#8217;t be afraid to tell these stories &#8211; they&#8217;ll tend to strengthen your position by clarifying the important role the front-end developer plays in a site.</p>
+
+<p>Good luck :)</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-13T00:00:00-05:00" pubdate data-updated="true">Apr 13<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development-/'>development,</a>, <a class='category' href='/blog/categories/front-end/'>front-end</a>, <a class='category' href='/blog/categories/thoughts/'>thoughts</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/" title="Previous Post: CSS vs. Tables: Maybe the design is to blame?">&laquo; CSS vs. Tables: Maybe the design is to blame?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/" title="Next Post: jQuery validation: Indicate that at least one element in a group is required">jQuery validation: Indicate that at least one element in a group is required &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/';
+        var disqus_url = 'http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

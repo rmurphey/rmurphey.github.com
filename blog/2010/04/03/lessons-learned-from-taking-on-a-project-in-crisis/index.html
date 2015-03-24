@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Lessons Learned from Taking On a Project in Crisis  - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you&#8217;ve most &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Lessons Learned From Taking on a Project in Crisis</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-03T00:00:00-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2010</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you&#8217;ve most certainly heard of. I developed the entire front-end &#8211; HTML, CSS, and JavaScript &#8211; for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I&#8217;ve learned, in hopes that I can benefit from my experience in the future.</p>
+
+
+
+
+<ul>
+    <li>Demand all technical source material up front, such as functional specs, mockups, work that&#8217;s been done to date, etc. Give the client a fixed amount of time to deliver that source material, and don&#8217;t make a decision about taking on the project until you&#8217;ve seen it. What the client can deliver in that fixed amount of time will shed a lot of light on the state of the project and whether their expectations are realistic.</li>
+    <li>Set clear time expectations. Am I willing to work 16 hours a day? Am I expected to? Are there hours during which I&#8217;ll be expected to be available? Am I willing to work on the weekend?</li>
+    <li>Find out whether the client expects me to be available after the imminent deadline, and to what extent. The last thing I want is to snatch defeat from the jaws of victory by being unable to support the code I&#8217;ve written.</li>
+    <li>Do not accept responsibility for commitments made on my behalf. The recruiter said I&#8217;d be available six hours a day when I told him four? Not my problem. The client committed to having a feature ready for review without consulting me? They probably won&#8217;t make that mistake again.</li>
+    <li>Ascertain the rest of the team&#8217;s commitment to the project. If I&#8217;m expected to work long hours, will they be there during those long hours to get me what I need? Are there any constraints on their availability?</li>
+    <li>Establish a single point of contact at the client, and make clear I&#8217;ll be depending on them to get me any information I need and I&#8217;ll be treating their decisions as final. Insist that they participate in all calls I&#8217;m expected to participate in.</li>
+    <li>Limit the amount of work I do before I have access to all client systems I&#8217;ll need access to: version control, testing environments, ticketing systems, etc.</li>
+    <li>Insist on a ticketing system. I&#8217;m new to the project and I have a lot to get up to speed on. I don&#8217;t want emails flying at me from all directions &#8211; decisions and technical requirements need to be documented in a single place that everyone can see. This is my only insurance when someone wants to know why something isn&#8217;t done, or why it wasn&#8217;t done the way they expected.</li>
+    <li>Insist on version control, even if it&#8217;s something crappy like CVS. I&#8217;ll need a way to make sure the rest of the team has access to my latest and greatest. FTP blows, especially when I&#8217;m FTPing to a server where another developer is constantly deploying a new build, overwriting my work.</li>
+</ul>
+
+
+
+
+<p>What other advice do you have?</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-03T00:00:00-05:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development-/'>development,</a>, <a class='category' href='/blog/categories/dojo-/'>dojo,</a>, <a class='category' href='/blog/categories/freelancing-/'>freelancing,</a>, <a class='category' href='/blog/categories/front-end/'>front-end</a>, <a class='category' href='/blog/categories/thoughts/'>thoughts</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/03/18/txjs-js-bbq-you/" title="Previous Post: TXJS: JS + BBQ + You">&laquo; TXJS: JS + BBQ + You</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/06/17/announcing-jquery-fundamentals-an-open-source-jquery-training-curriculum/" title="Next Post: Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum">Announcing jQuery Fundamentals: An Open-Source jQuery Training Curriculum &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/';
+        var disqus_url = 'http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

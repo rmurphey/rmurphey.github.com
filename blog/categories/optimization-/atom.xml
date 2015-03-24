@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: optimization, | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/optimization-/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Avoid bare class selectors in jQuery]]></title>
+    <link href="http://rmurphey.com/blog/2008/12/05/avoid-bare-class-selectors-in-jquery/"/>
+    <updated>2008-12-05T00:00:00-06:00</updated>
+    <id>http://rmurphey.com/blog/2008/12/05/avoid-bare-class-selectors-in-jquery</id>
+    <content type="html"><![CDATA[<p>It just happened again: I was looking at someone else's jQuery and I came across something like this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="err">/&lt;em&gt; do something &lt;/em&gt;/ });</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This is a classic case of "just because you can, doesn't mean you should." This little bit of jQuery will, indeed, find every element on a page with a class of "button", but that's exactly the problem: it has to look at every element on the page to figure out which ones match the selector. It seems short and sweet, like so much of jQuery is, but on a page with a lot of elements, this selector can actually take a non-trivial amount of time to run.</p>
+
+<p>There are a few ways to avoid this:</p>
+
+<ul>
+<li>If the element you're after has an ID attribute, use it. That's the single-fastest way to find an element. However, don't gratuitously add ID attributes to elements; the other methods below are perfectly good.</li>
+<li>Specify the type of element you're after. For example, <code>$('input.button')</code>. This will tell jQuery that it's only looking for inputs, so it can disregard anything on the page that isn't an input. If you're looking for multiple element types, tell jQuery that: <code>$('input.button, a.button')</code>
+</li>
+<li>Give jQuery some information about where to look for the element. For example: <code>$('#myForm .button')</code>
+</li>
+<li>Use an element you've already found to tell jQuery where to find the element:
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$ul</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myUnorderedList&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$ul</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.selected&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

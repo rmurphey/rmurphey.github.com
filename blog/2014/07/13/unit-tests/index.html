@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Writing Unit Tests for Existing JavaScript - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="My team at Bazaarvoice has been spending a lot of time lately thinking about quality and how we can have greater confidence that our software is &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2014/07/13/unit-tests/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Writing Unit Tests for Existing JavaScript</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-13T21:21:00-05:00" pubdate data-updated="true">Jul 13<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>My team at <a href="http://www.bazaarvoice.com/careers/">Bazaarvoice</a> has been spending a lot of time lately thinking about quality and how we can have greater confidence that our software is working as it should.</p>
+
+<p>We&#8217;ve long had functional tests in place that attempt to ask questions like &#8220;When a user clicks a button, will The Widget do The Thing?&#8221; These tests tell us a fair amount about the state of our product, but we&#8217;ve found that they&#8217;re brittle &#8211; even after we abstracted away the CSS selectors that they rely on &#8211; and that they take approximately forever to run, especially if we want to run them in all of the browsers we support. The quality of the tests themselves is all over the map, too &#8211; some of them are in fact unit tests, not really testing anything <em>functional</em> at all.</p>
+
+<p>A few months ago we welcomed a new QA lead to our team as part of our renewed focus on quality. Having a team member who is taking a thoughtful, systematic approach to quality is a game-changer &#8211; he&#8217;s not just making sure that new features work, but rather has scrutinized our entire approach to delivering quality software, to great effect.</p>
+
+<p>One of the things he has repeatedly emphasized is the need to push our tests down the stack. Our functional tests should be black-box &#8211; writing them shouldn&#8217;t require detailed knowledge of how the software works under the hood. Our unit tests, on the other hand, should provide broad and detailed coverage of the actual code base. In an ideal world, functional tests can be few and slow-ish, because they serve as an infrequent smoke test of the application; unit tests should be thorough, but execute quickly enough that we run them all the time.</p>
+
+<p>Until now, our unit tests have been entirely focused on utility and framework code &#8211; do we properly parse a URL, for example? &#8211; not on code that&#8217;s up close and personal with getting The Widget to do The Thing. I&#8217;d told myself that this was fine and right and good, but in reality I was pretty terrified of trying to bolt unit tests onto feature code of incredibly varying quality, months or even years after it was first written.</p>
+
+<p>A week or so ago, thanks to some coaxing/chiding from fellow team members, I decided to bite the bullet and see just how bad it would be. A week later, I feel like I&#8217;ve taken the first ten steps in a marathon. Of course, taking those first steps involves making the decision to run, and doing enough training ahead of time that you don&#8217;t die, so in that regard I&#8217;ve come a long way already. Here&#8217;s what I&#8217;ve done and learned so far.</p>
+
+<h3>Step 0</h3>
+
+<p>I was lucky in that I wasn&#8217;t starting entirely from scratch, but if you don&#8217;t already have a unit testing framework in place, don&#8217;t fret &#8211; it&#8217;s pretty easy to set up. We use <a href="http://gruntjs.com/">Grunt</a> with <a href="http://visionmedia.github.io/mocha/">Mocha</a> as our test framework and <a href="https://github.com/LearnBoost/expect.js/">expect.js</a> as our assertion library, but if I were starting over today I&#8217;d take a pretty serious look at <a href="http://theintern.io/">Intern</a>.</p>
+
+<p>Our unit tests are organized into suites. Each suite consists of a number of files, each of which tests a single AMD module. Most of the modules under test when I started down this path were pretty isolated &#8211; they didn&#8217;t have a ton of dependencies generally, and had very few runtime dependencies. They didn&#8217;t interact with other modules that much. Almost all of the existing unit test files loaded a module, executed its methods, and inspected the return value. No big deal.</p>
+
+<p>Feature-related code &#8211; especially already-written feature-related code &#8211; is a different story. Views have templates. Models expect data. Models pass information to views, and views pass information to models. Some models need parents; others expect children. And pretty much everything depended on a global-ish message broker to pass information around.</p>
+
+<p>Since the code was originally written without tests, we are guaranteed that it would be in various states of testability, but a broad rewrite for testability is of course off the table. We&#8217;ll rewrite targeted pieces, but doing so comes with great risk. For the most part, our goal will be to write tests for what we have, then refactor cautiously once tests are in place.</p>
+
+<p>We decided that the first place to start was with models, so I found the simplest model I could:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;framework/bmodel&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;underscore&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">BModel</span><span class="p">,</span> <span class="nx">_</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">BModel</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">options</span> <span class="o">:</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;mediaViewer&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why do we have a model that does approximately nothing? I&#8217;m not going to attempt to answer that, though there are Reasons &#8211; but for the sake of this discussion, it certainly provides an easy place to start.</p>
+
+<p>I created a new suite for model tests, and added a file to the suite to test the model. I could tell you that I naively plowed ahead thinking that I could just load the module and write some assertions, but that would be a lie.</p>
+
+<h3>Mocking: Squire.js</h3>
+
+<p>I knew from writing other tests, on this project and projects in the past, that I was going to need to &#8220;mock&#8221; some of my dependencies. For example, we have a module called <code>ENV</code> that is used for &#8230; well, way too much, though it&#8217;s better than it used to be. A large portion of <code>ENV</code> isn&#8217;t used by any given module, but <code>ENV</code> itself is required by essentially every model and view.</p>
+
+<p><a href="https://github.com/iammerrick/Squire.js/">Squire.js</a> is a really fantastic library for doing mocking in RequireJS-land. It lets you override how a certain dependency will be fulfilled; so, when a module under test asks for <code>'ENV'</code>, you can use Squire to say &#8220;use this object that I&#8217;ve hand-crafted for this specific test instead.&#8221;</p>
+
+<p>I created an Injector module that does the work of loading Squire, plus mocking a couple of things that will be missing when the tests are executed in Node-land.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;squire&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;jquery&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">Squire</span><span class="p">,</span> <span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">injector</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">injector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Squire</span><span class="p">(</span><span class="s1">&#39;_BV&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">injector</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;jquery&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">$</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">injector</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;window&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">{};</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">injector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Squire</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">injector</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, I wired up the test to see how far I could get without mocking anything. Note that the main module doesn&#8217;t actually load the thing we&#8217;re going to test &#8211; first, it sets up the mocks by calling the <code>injector</code> function, and then it uses the created injector to require the module we want to test. Just like a normal <code>require</code>, the <code>injector.require</code> is async, so we have to let our test framework know to wait until it&#8217;s loaded before proceeding with our assertions.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;test/unit/injector&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">injector</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">injector</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">MediaViewer</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;MediaViewer Model&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">injector</span><span class="p">.</span><span class="nx">require</span><span class="p">([</span>
+</span><span class='line'>        <span class="s1">&#39;bv/c2013/model/mediaViewer&#39;</span>
+</span><span class='line'>      <span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">M</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">MediaViewer</span> <span class="o">=</span> <span class="nx">M</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">done</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should be named&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaViewer</span><span class="p">({});</span>
+</span><span class='line'>      <span class="nx">expect</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;mediaViewer&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should mix in provided options&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaViewer</span><span class="p">({},</span> <span class="p">{</span> <span class="nx">foo</span> <span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">});</span>
+</span><span class='line'>      <span class="nx">expect</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">foo</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This, of course, still failed pretty spectacularly. In real life, a model gets instantiated with a component, and a model also expects to have access to an <code>ENV</code> that has knowledge of the component. Creating a &#8220;real&#8221; component and letting the &#8220;real&#8221; <code>ENV</code> know about it would be an exercise in <a href="https://www.youtube.com/watch?v=7s664NsLeFM">inventing the universe</a>, and this is exactly what mocks are for.</p>
+
+<p>While the &#8220;real&#8221; <code>ENV</code> is a Backbone model that is instantiated using customer-specific configuration data, a much simpler <code>ENV</code> suffices for the sake of testing a model&#8217;s functionality:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;backbone&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">Backbone</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">injector</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">injector</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;ENV&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">ENV</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">componentManager</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">find</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nx">opts</span><span class="p">.</span><span class="nx">component</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">ENV</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">injector</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Likewise, a &#8220;real&#8221; component is complicated and difficult to create, but the pieces of a component that this model needs to function are limited. Here&#8217;s what the component mock ended up looking like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;underscore&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">settings</span> <span class="o">=</span> <span class="nx">settings</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">settings</span><span class="p">.</span><span class="nx">features</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">features</span> <span class="o">||</span> <span class="p">[];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">trigger</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
+</span><span class='line'>      <span class="nx">hasFeature</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">refName</span><span class="p">,</span> <span class="nx">featureName</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">features</span><span class="p">,</span> <span class="nx">featureName</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">getScope</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s1">&#39;scope&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>      <span class="nx">contentType</span> <span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">contentType</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">componentId</span> <span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">views</span> <span class="o">:</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="p">};</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the case of both mocks, we&#8217;ve taken some dramatic shortcuts: the real <code>hasFeature</code> method of a component is a lot more complicated, but in the component mock we create a <code>hasFeature</code> method whose return value can be easily known by the test that uses the mock. Likewise, the behavior of the <code>componentManager</code>&#8217;s <code>find</code> method is complex in real life, but in our mock, the method just returns the same thing all the time. Our mocks are designed to be configurable by &#8211; and predictable for &#8211; the test that uses it.</p>
+
+<p>Knowing what to mock and when and how is a learned skill. It&#8217;s entirely possible to mock something in such a way that a unit test passes but the actual functionality is broken. We actually have pretty decent tests around our real component code, but not so much around our real <code>ENV</code> code. We should probably fix that, and then I can feel better about mocking <code>ENV</code> as needed.</p>
+
+<p>So far, my approach has been: try to make a test pass without mocking anything, and then mock as little as possible after that. I&#8217;ve also made a point of trying to centralize our mocks in a single place, so we aren&#8217;t reinventing the wheel for every test.</p>
+
+<p>Finally: when I first set up the injector module, I accidentally made it so that the same injector would be shared by any test that included the module. This is bad, because you end up sharing mocks across tests &#8211; violating the &#8220;only mock what you must&#8221; rule. The injector module shown above is correct in that it returns a function that can be used to create a new injector, rather than the injector itself.</p>
+
+<p>Here&#8217;s what the final MediaViewer test ended up looking like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="c1">// This properly sets up Squire and mocks window and jQuery</span>
+</span><span class='line'>  <span class="c1">// if necessary (for running tests from the command line).</span>
+</span><span class='line'>  <span class="s1">&#39;test/unit/injector&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// This is a function that mocks the ENV module.</span>
+</span><span class='line'>  <span class="s1">&#39;test/unit/mocks/ENV&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// This is a function that mocks a component.</span>
+</span><span class='line'>  <span class="s1">&#39;test/unit/mocks/component&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">injector</span><span class="p">,</span> <span class="nx">ENVMock</span><span class="p">,</span> <span class="nx">component</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">injector</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// This will become the constructor for the model under test.</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">MediaViewer</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Create an object that can serve as a model&#39;s component.</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">component</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// We also need to mock the ENV module and make it aware of</span>
+</span><span class='line'>  <span class="c1">// the fake component we just created.</span>
+</span><span class='line'>  <span class="nx">ENVMock</span><span class="p">(</span><span class="nx">injector</span><span class="p">,</span> <span class="p">{</span> <span class="nx">component</span> <span class="o">:</span> <span class="nx">c</span> <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;MediaViewer Model&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">injector</span><span class="p">.</span><span class="nx">require</span><span class="p">([</span>
+</span><span class='line'>        <span class="s1">&#39;bv/c2013/model/mediaViewer&#39;</span>
+</span><span class='line'>      <span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">M</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">MediaViewer</span> <span class="o">=</span> <span class="nx">M</span><span class="p">;</span>
+</span><span class='line'>        <span class="nx">done</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should be named&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaViewer</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">component</span> <span class="o">:</span> <span class="nx">c</span>
+</span><span class='line'>      <span class="p">},</span> <span class="p">{});</span>
+</span><span class='line'>      <span class="nx">expect</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;mediaViewer&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should mix in provided options&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MediaViewer</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">component</span> <span class="o">:</span> <span class="nx">c</span>
+</span><span class='line'>      <span class="p">},</span> <span class="p">{</span> <span class="nx">foo</span> <span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">expect</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">foo</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Spying: Sinon</h3>
+
+<p>After my stunning success with writing 49 lines of test code to test a 13-line model, I was feeling optimistic about testing views, too. I decided to tackle this fairly simple view first:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;framework/bview&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;underscore&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;hbs!contentAuthorProfileInline&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;mf!bv/c2013/messages/avatar&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;bv/util/productInfo&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;framework/util/bvtracker&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s1">&#39;util/specialKeys&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">BView</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">template</span><span class="p">,</span> <span class="nx">msgPack</span><span class="p">,</span> <span class="nx">ProductInfo</span><span class="p">,</span> <span class="nx">BVTracker</span><span class="p">,</span> <span class="nx">specialKeys</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">BView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;inlineProfile&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">templateName</span> <span class="o">:</span> <span class="s1">&#39;contentAuthorProfileInline&#39;</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">events</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;click .bv-content-author-name .bv-fullprofile-popup-target&#39;</span> <span class="o">:</span> <span class="s1">&#39;launchProfile&#39;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">template</span> <span class="o">:</span> <span class="nx">template</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">msgpacks</span> <span class="o">:</span> <span class="p">[</span><span class="nx">msgPack</span><span class="p">],</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">launchProfile</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// use r&amp;r component outlet to trigger full profile popup component event</span>
+</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">getTopModel</span><span class="p">().</span><span class="nx">trigger</span><span class="p">(</span> <span class="s1">&#39;showfullprofile&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Author&#39;</span><span class="p">)</span> <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">BVTracker</span><span class="p">.</span><span class="nx">feature</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">type</span> <span class="o">:</span> <span class="s1">&#39;Used&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;Click&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">detail1</span> <span class="o">:</span> <span class="s1">&#39;ViewProfileButton&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">detail2</span> <span class="o">:</span> <span class="s1">&#39;AuthorAvatar&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">bvProduct</span> <span class="o">:</span> <span class="nx">ProductInfo</span><span class="p">.</span><span class="nx">getType</span><span class="p">(</span><span class="k">this</span><span class="p">),</span>
+</span><span class='line'>        <span class="nx">productId</span> <span class="o">:</span> <span class="nx">ProductInfo</span><span class="p">.</span><span class="nx">getId</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It turned out that I needed to do the same basic mocking for this as I did for the model, but this code presented a couple of interesting things to consider.</p>
+
+<p>First, I wanted to test that <code>this.getTopModel().trigger(...)</code> triggered the proper event, but the <code>getTopModel</code> method was implemented in <code>BView</code>, not the code under test, and without a whole lot of gymnastics, it wasn&#8217;t going to return an object with a <code>trigger</code> method.</p>
+
+<p>Second, I wanted to know that <code>BVTracker.feature</code> was getting called with the right values, so I needed a way to inspect the object that got passed to it, but without doing something terrible like exposing it globally.</p>
+
+<p>Enter <a href="http://sinonjs.org">Sinon</a> and its <a href="http://sinonjs.org/docs/#spies">spies</a>. Spies let you observe methods as they are called. You can either let the method still do its thing while watching how it is called, or simply replace the method with a spy.</p>
+
+<p>I solved the first problem by defining my own <code>getTopModel</code> method on the model instance, and having it return an object. I gave that object a <code>trigger</code> method that was actually just a spy &#8211; for the sake of my test, I didn&#8217;t care what trigger <em>did</em>, only how it was called. Other tests [will eventually] ensure that triggering this event has the desired effect on the targeted model, but for the sake of this test, we don&#8217;t care.</p>
+
+<p>Here&#8217;s what the test looks like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;#launchProfile&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">spy</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">v</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">before</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">spy</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InlineProfile</span><span class="p">({</span>
+</span><span class='line'>      <span class="c1">// model and component are defined elsewhere</span>
+</span><span class='line'>      <span class="nx">component</span> <span class="o">:</span> <span class="nx">component</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">model</span> <span class="o">:</span> <span class="nx">model</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">v</span><span class="p">.</span><span class="nx">getTopModel</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">trigger</span> <span class="o">:</span> <span class="nx">spy</span>
+</span><span class='line'>      <span class="p">};</span>
+</span><span class='line'>    <span class="p">};</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should trigger showfullprofile event on top model&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">v</span><span class="p">.</span><span class="nx">launchProfile</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">expect</span><span class="p">(</span><span class="nx">spy</span><span class="p">.</span><span class="nx">lastCall</span><span class="p">.</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;showfullprofile&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">expect</span><span class="p">(</span><span class="nx">spy</span><span class="p">.</span><span class="nx">lastCall</span><span class="p">.</span><span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I solved the second problem &#8211; the need to see what&#8217;s getting passed to <code>BVTracker.feature</code> &#8211; by creating a <code>BVTracker</code> mock where every method is just a spy:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// This is a mock for BVTracker that can be used by unit tests.</span>
+</span><span class='line'><span class="nx">define</span><span class="p">([</span>
+</span><span class='line'>  <span class="s1">&#39;underscore&#39;</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">_</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">injector</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">BVTracker</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">injector</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;framework/util/bvtracker&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">_</span><span class="p">([</span>
+</span><span class='line'>        <span class="s1">&#39;error&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s1">&#39;pageview&#39;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s1">&#39;feature&#39;</span>
+</span><span class='line'>      <span class="p">]).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">BVTracker</span><span class="p">[</span><span class="nx">event</span><span class="p">]</span> <span class="o">=</span> <span class="nx">sinon</span><span class="p">.</span><span class="nx">spy</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">BVTracker</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>My test looked at the <code>BVTracker.feature</code> spy to see what it got when the view&#8217;s <code>launchProfile</code> method was called:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should send a feature analytics event&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">v</span><span class="p">.</span><span class="nx">launchProfile</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="nx">BVTracker</span><span class="p">.</span><span class="nx">feature</span><span class="p">.</span><span class="nx">lastCall</span><span class="p">.</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">type</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;Used&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;Click&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">detail1</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;ViewProfileButton&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">detail2</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;AuthorAvatar&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">bvProduct</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;RatingsAndReviews&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">expect</span><span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">productId</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;product1&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&#8217;ve barely touched on what you can do with spies, or with Sinon in general. Besides providing simple spy functionality, Sinon delivers a host of functionality that makes tests easier to write &#8211; swaths of which I haven&#8217;t even begun to explore. One part I have explored is its ability to create fake XHRs and to fake whole servers, allowing you to test how your code behaves when things go wrong on the server. Do yourself a favor and spend some time reading through the excellent <a href="http://sinonjs.org/docs/">docs</a>.</p>
+
+<h3>What to test &#8230; and not</h3>
+
+<p>I&#8217;ve written tests now for a tiny handful of models and views. Setting up the mocks was a bit of a hurdle &#8211; and there were plenty of other hurdles that are too specific to our project for me to talk about them in detail &#8211; but overall, the hardest part has been figuring out what, exactly, to test. I crafted the examples above to be pretty straightforward, but reality is a lot more complicated.</p>
+
+<p>Writing tests for existing code requires first understanding the code that&#8217;s being tested and identifying interesting moments in that code. If there&#8217;s an operation that affects the &#8220;public&#8221; experience of the module &#8211; for example, if the value of a model attribute changes &#8211; then we need to write a test that covers that operation&#8217;s side effect(s). If there&#8217;s code that runs conditionally, we need to test the behavior of that code when that condition is true &#8211; and when it&#8217;s not. If there are six possible conditions, we need to test them all. If a model behaves completely differently when it has a parent &#8211; and this happens far too often in our code &#8211; then we need to simulate the parent case, and simulate the standalone case.</p>
+
+<p>It can be tempting to try to test the implementation details of existing code &#8211; and difficult to realize that you&#8217;re doing it even when you don&#8217;t mean to. I try to stay focused on testing how other code might consume and interact with the module I&#8217;m testing. For example, if the module I&#8217;m testing triggers an event in a certain situation, I&#8217;m going to write a test that proves it, because some other code is probably expecting that event to get triggered. However, I&#8217;m not going to test that a method of a certain name gets called in a certain case &#8211; that&#8217;s an implementation detail that might change.</p>
+
+<p>The exercise of writing unit tests against existing code proves to be a phenomenal incentive to write better code in the future. One comes to develop a great appreciation of methods that have return values, not side effects. One comes to loathe the person &#8211; often one&#8217;s past self &#8211; who authored complex, nested conditional logic. One comes to worship small methods that do exactly one thing.</p>
+
+<p>So far, I haven&#8217;t rewritten any of the code I&#8217;ve been testing, even when I&#8217;ve spotted obvious flaws, and even when rewriting would make the tests themselves easier to write. I don&#8217;t know how long I&#8217;ll be able to stick to this; there are some specific views and models that I know will be nearly impossible to test without revisiting their innards. When that becomes necessary, I&#8217;m hoping I can do it incrementally, testing as I go &#8211; and that our functional tests will give me the cover I need to know I haven&#8217;t gone horribly wrong.</p>
+
+<h3>Spreading the love</h3>
+
+<p>Our team&#8217;s next step is to widen the effort to get better unit test coverage of our code. We have something like 100 modules that need testing, and their size and complexity are all over the map. Over the coming weeks, we&#8217;ll start to divide and conquer.</p>
+
+<p>One thing I&#8217;ve done to try to make the effort easier is to create a scaffolding task using Grunt. Running <code>grunt scaffold-test:model:modelName</code> will generate a basic file that includes mocking that&#8217;s guaranteed to be needed, as well as the basic instantiation that will be required and a couple of simple tests.</p>
+
+<p>There&#8217;s another senior team member who has led an effort in the past to apply unit tests to an existing code base, and he&#8217;s already warned me to expect a bit of a bumpy road as the team struggles through the inevitable early challenges of trying to write unit tests for existing feature code. I expect there to be a pretty steep hill to climb at first, but at the very least, the work I&#8217;ve done so far has &#8211; hopefully &#8211; gotten us to the top of the vertical wall that had been standing in our way.</p>
+
+<h3>Further Reading</h3>
+
+<p>I&#8217;m not exactly the first person to write about this. You may find these items interesting:</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/3476054/can-unit-testing-be-successfully-added-into-an-existing-production-project-if-s">On adding unit tests to existing code</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/207401/writing-tests-for-existing-code">On whether it&#8217;s worth the effort</a></li>
+<li><a href="http://www.amazon.com/gp/product/0131177052">Working Effectively with Legacy Code</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-13T21:21:00-05:00" pubdate data-updated="true">Jul 13<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2014/07/13/unit-tests/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2014/07/13/unit-tests/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/01/austin/" title="Previous Post: Austin">&laquo; Austin</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/01/11/office-hours/" title="Next Post: Office Hours for Aspiring Speakers">Office Hours for Aspiring Speakers &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2014/07/13/unit-tests/';
+        var disqus_url = 'http://rmurphey.com/blog/2014/07/13/unit-tests/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

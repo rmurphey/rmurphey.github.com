@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: open-source | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/open-source/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Bocoup]]></title>
+    <link href="http://rmurphey.com/blog/2012/03/26/bocoup/"/>
+    <updated>2012-03-26T10:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2012/03/26/bocoup</id>
+    <content type="html"><![CDATA[<p><img src="/images/bocoup.png" alt="bocoup" /></p>
+
+<p>It wasn't so long ago that I was giving my first talk about JavaScript at the
+2009 jQuery Conference, and it was there that Bocoup's Boaz Sender and Rick
+Waldron created the (now-defunct) objectlateral.com, a celebration of an
+unfortunate typo in the conference program's listing of my talk.</p>
+
+<p>A bond was forged, and ever since I've watched as <a href="http://bocoup.com">Bocoup</a>
+has grown and prospered. I've watched them do mind-boggling work for the likes
+of Mozilla, The Guardian, Google, and others, all while staying true to their
+mission of embracing, contributing to, and evangelizing open-web technologies.</p>
+
+<p>Today, I'm beyond excited -- and also a wee bit humbled -- to announce that
+<a href="http://weblog.bocoup.com/welcome-rebecca-murphey">I'm joining their consulting team</a>.
+As part of that role, I look forward to spending even more time working on and
+talking about patterns and best practices for developing client-side JavaScript
+applications. I also hope to work on new <a href="http://training.bocoup.com/">training offerings</a>
+aimed at helping people make great client-side applications with web technology.</p>
+
+<p>New beginnings have a terrible tendency to be accompanied by endings, and while
+the Bocoup opportunity is one I couldn't refuse, it's with a heavy heart that I
+bid farewell to the team at Toura. I'm proud of what we've built together, and
+that we've shared so much of it with the developer community in the form of
+<a href="http://github.com/Toura/mulberry">Mulberry</a>. The beauty of open source means
+that I fully expect to continue working on and with Mulberry once I leave
+Toura, but I know it won't be the same.</p>
+
+<p>I'll be spending the next few days tying up loose ends at Toura, and then I'm
+taking a break in April to hit JSConf, spend some time in Berlin, and head to
+Warsaw to speak at <a href="http://2012.front-trends.com/">FrontTrends</a>. I'll make my
+way back home in time to start with Bocoup on May 1.</p>
+
+<p>And so. To my teammates at Toura: I wish you nothing but the best, and look
+forward to hearing news of your continued success. To Bocoup: Thanks for
+welcoming me to the family. It's been a long time coming, and I'm glad the day
+is finally here.</p>
+]]></content>
+  </entry>
+  
+</feed>

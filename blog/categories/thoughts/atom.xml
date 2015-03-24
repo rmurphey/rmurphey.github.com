@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: thoughts | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/thoughts/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[I need to say a few things.]]></title>
+    <link href="http://rmurphey.com/blog/2010/07/27/i-need-to-say-a-few-things/"/>
+    <updated>2010-07-27T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/07/27/i-need-to-say-a-few-things</id>
+    <content type="html"><![CDATA[<p>Over the weekend, there was a tweet announcing that Google was going to provide "scholarships" to qualified women to attend JSConf.eu. There was then a tweet by another person calling this "disgusting" and "illegal." Nicole Sullivan has a <a href="http://www.stubbornella.org/content/2010/07/26/woman-in-technology/">level-headed and well-articulated roundup</a> of the back-and-forth and some of the surrounding issues, and I suggest you read it.</p>
+
+
+
+
+<p>I take no position on the scholarships. I question whether they will have any meaningful or lasting effect. I fear the availability of the scholarships will lead to ill feelings about the women who do attend. Simultaneously, I yearn to discover, against hope, that they make it possible for some highly qualified but unknown woman to gain access to the JavaScript community.  Whatever. Smarter people than me have a better idea than I do as to how effective they will be, and lawyers can tell you whether they're illegal. I'll stand firmly in the "no" camp on the disgusting count.</p>
+
+
+
+
+<p>You know what's disgusting? Being groped at a conference after-party by a drunk married man. Opening your hotel door to discover said drunk married man stumbling down the hall, asking himself into your room, and literally having to slam the door in his face. Having a video of you posted on the internet, suggesting that you were engaged in a sexual act with the yayQuery logo. Seeing someone ask, publicly, on Twitter, if anyone knows the name of the hot conference chick.  That, dear reader, is disgusting.</p>
+
+
+
+
+<p>I adore my male friends in the tech community. They have encouraged and supported me and welcomed me into their inner circles. But even they can act like 12-year-old boys sometimes, and while I don't begrudge them that, it is hard, because it's at those moments that I realize how much I am not them, how much I long to have more than the barest assembly of female peers who have any idea what this is like.  And then I remember: those peers I long for will have to put up with so much shit to be in that cool kid's club, and you know what? If Google wants to pay them a measly few hundred bucks to put up with it, maybe that's OK. Hell, maybe they ought to pay them more. Perhaps, as ham-handed and questionably productive as the scholarships may be, it's only fair to pay women to look the other way when some asshole treats them like a thing instead of a person.</p>
+
+
+
+
+<p>I am angry. I have been angry since Saturday, when this all started. I have spent the last year trying to be the thing that I want to see: the woman on stage. I have formed groups to encourage other women to do the same. I have reached out to women who show potential and tried to give them the encouraging nudge they need that no one really gave me.   And right this very moment, I feel incredibly selfish. This weekend reminded me what I am asking those women to enter into: a world that presents no tangible barriers, but that will objectify them every step of the way. And if these women have the guts -- well, let's be community-appropriate here -- if they have the balls to speak up and say that it is hard to be a woman in this field, that it takes a thick skin and determination and a willingness to be one of the boys even when that's the last thing in the world they want to do, then they should brace for a chorus of men to rise and tell them they are wrong.</p>
+
+
+
+
+<p>Men, guys, boys: I am not asking you to give up Star Wars and The Matrix. I'm not even asking you to give up gratuitous phallic references and #twss jokes, though I hope we're all grown-up enough to know that there's a time and a place. And you know what? If you want to DM your friend about trying to hook up with that hot conference chick, well, good luck with that. We're all human.   But for the love of all that is good: this being a woman in your world thing, it's not easy, OK? Maybe you can't understand it, and I even believe it when you say you don't mean it. But when you deny it, you just look like an ass.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons Learned from Taking On a Project in Crisis ]]></title>
+    <link href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/"/>
+    <updated>2010-04-03T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis</id>
+    <content type="html"><![CDATA[<p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you've most certainly heard of. I developed the entire front-end -- HTML, CSS, and JavaScript -- for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I've learned, in hopes that I can benefit from my experience in the future.</p>
+
+
+
+
+<ul>
+    <li>Demand all technical source material up front, such as functional specs, mockups, work that's been done to date, etc. Give the client a fixed amount of time to deliver that source material, and don't make a decision about taking on the project until you've seen it. What the client can deliver in that fixed amount of time will shed a lot of light on the state of the project and whether their expectations are realistic.</li>
+    <li>Set clear time expectations. Am I willing to work 16 hours a day? Am I expected to? Are there hours during which I'll be expected to be available? Am I willing to work on the weekend?</li>
+    <li>Find out whether the client expects me to be available after the imminent deadline, and to what extent. The last thing I want is to snatch defeat from the jaws of victory by being unable to support the code I've written.</li>
+    <li>Do not accept responsibility for commitments made on my behalf. The recruiter said I'd be available six hours a day when I told him four? Not my problem. The client committed to having a feature ready for review without consulting me? They probably won't make that mistake again.</li>
+    <li>Ascertain the rest of the team's commitment to the project. If I'm expected to work long hours, will they be there during those long hours to get me what I need? Are there any constraints on their availability?</li>
+    <li>Establish a single point of contact at the client, and make clear I'll be depending on them to get me any information I need and I'll be treating their decisions as final. Insist that they participate in all calls I'm expected to participate in.</li>
+    <li>Limit the amount of work I do before I have access to all client systems I'll need access to: version control, testing environments, ticketing systems, etc.</li>
+    <li>Insist on a ticketing system. I'm new to the project and I have a lot to get up to speed on. I don't want emails flying at me from all directions -- decisions and technical requirements need to be documented in a single place that everyone can see. This is my only insurance when someone wants to know why something isn't done, or why it wasn't done the way they expected.</li>
+    <li>Insist on version control, even if it's something crappy like CVS. I'll need a way to make sure the rest of the team has access to my latest and greatest. FTP blows, especially when I'm FTPing to a server where another developer is constantly deploying a new build, overwriting my work.</li>
+</ul>
+
+
+
+
+<p>What other advice do you have?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On speaking at the 2009 jQuery Conference]]></title>
+    <link href="http://rmurphey.com/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference/"/>
+    <updated>2009-09-16T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2009/09/16/on-speaking-at-the-2009-jquery-conference</id>
+    <content type="html"><![CDATA[<p>One of my personal goals for this year was to start being part of the solution to the dearth of female speakers at tech events. Though I&rsquo;ve talked at a couple of smallish local events over the past few months, this past weekend I got to do it in a big way: I presented a talk on using objects to organize your jQuery code to an audience of around 100 people, more by far than I&rsquo;ve ever spoken to before.</p>
+
+
+
+
+<p>[This post isn&rsquo;t so much about the talk itself as my first experience with talking at a conference. If you&rsquo;re interested in the talk, I encourage you to check out the slides, links, and code at the link above.]</p>
+
+
+
+
+<p>I decided I wanted to try to talk at the jQuery conference after I saw the initial very smart, very male speaker lineup. I submitted my talk based on an article I wrote earlier this year, and by the time it was all said and done, mine was the second most popular topic and I was slated to have 30 minutes in &ldquo;the big room.&rdquo;</p>
+
+
+
+
+<p>There is something sort of out-of-body about that moment when I am standing in front of a roomful of people right before I talk &mdash; I had it when I gave my first Refresh talk, when I taught my first jQuery class, when I spoke at my first BarCamp RDU, and yet again this weekend. For that moment, in my head, I am a complete and utter case, and can&rsquo;t quite fathom that I thought this was a good idea. And then I start talking, and then it is OK. And then when it&rsquo;s over, people clap, and I like that part.</p>
+
+
+
+
+<p>Back when I set out to start speaking more, I decided to take an improv class. For six weeks, we practiced being spontaneously funny, and at the end, we got up on stage in front of a bunch of strangers and tried to do it for real. Knowing what that feels like &mdash; what it feels like to run up the aisle like you&rsquo;re excited when really you&rsquo;re terrified because you&rsquo;ve never done this before and in real life you sit at a desk all day and talk to no one and what were you thinking? &mdash; makes the thought of talking to a bunch of strangers about what you actually know how to do seem like a completely reasonable thing.</p>
+
+
+
+
+<p>My experience this weekend was nothing short of excellent &mdash; people I barely knew rallied around me throughout the weekend to help me improve my presentation (most notably Chris Williams, organizer of JSConf, to whom I owe many thanks for all the images &mdash; especially the Liger). The audience graciously tolerated the part in the middle where I had to leave the podium to (very publicly) blow my nose. People asked great questions, and audience members gently pointed out things I might want to rethink. With the exception of one creepy off-the-wall comment about my &ldquo;fine-boned features,&rdquo; the reaction was overwhelmingly positive.</p>
+
+
+
+
+<p>Reliable sources told me that of 300 attendees, approximately 282 were men. I was the only woman to submit a talk. So this is the part where I encourage other women to do the same. I think women, on the whole (of course there are exceptions), are way more inclined than men to think they aren&rsquo;t good enough speakers, that they don&rsquo;t know a topic well enough to tell it to other people. Two truths: one, the speaking skills of the speakers I&rsquo;ve seen have been all over the map; two, you&rsquo;d be surprised how much you actually know about a topic, especially given the right audience. Go speak at a small event &mdash; a local meetup, a Refresh, even a lunch-and-learn at your office. Get to know the people who do speak at events, and discover that they&rsquo;re people just like you. Go out on a limb and try something that&rsquo;s</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On gaining respect as a front-end developer]]></title>
+    <link href="http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/"/>
+    <updated>2009-04-13T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer</id>
+    <content type="html"><![CDATA[<p>Someone wrote me today:</p>
+
+<blockquote class="posterous_medium_quote">Where I work, design is highly valued with the leader of that group being our Creative Director, back end programmers are also highly valued, but front end ... not so much. Partly I think its that I don't toot my horn but I know there are other reasons. At times, my bosses haven't even understood what it is that I do. Back end programmers look down on front end assuming that its trivial or something that should be relegated to compilers.
+
+I was wondering if this is a common thing or more so something that is happening at my particular company, and if you have any advice or pointers on this.</blockquote>
+
+
+<p>I thought my response might be worth sharing:</p>
+
+<p>I do think this attitude is common but not necessarily the rule. In my experience, I've found that by having a proven value proposition, you can gain converts and respect.</p>
+
+<p>Front end developers are in a unique position to improve page performance (perceived and actual) by using best practices such as the <a href="http://developer.yahoo.com/yslow/">YSlow</a> tests. Front end developers are also in a unique position to help develop templating systems and to write thoughtful CSS, both of which help enable the rapid prototyping and rollout of new features. A focus on results and best practices -- demonstrating that you aren't just pushing pixels around -- is the key.</p>
+
+<p>Back end developers respect people who think like they do. Be mindful of opportunities for abstraction and reuse. Write <a href="http://www.slideshare.net/stubbornella/object-oriented-css">object-oriented CSS</a> and JavaScript. Craft solutions that are maintainable and documented. Learn and make use of <a href="http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">version control</a> <a href="http://svnbook.red-bean.com/nightly/en/svn.intro.quickstart.html">systems</a>. Look for opportunities to participate in developer conversations about new features, and understand what the back end developers are up against. They'll appreciate all of this.</p>
+
+<p>Take the time to teach and to learn. Be sure you have at least a passing understanding of the code the back end developers are writing, and leap at opportunities to share your knowledge. I've worked with more than one back end developer who was surprised to discover what all they didn't know about the front end, and through our conversations about how we approached problems, we both learned a lot.</p>
+
+<p>Finally: identify opportunities for quick victories, execute on them, and make the results known. Benchmark before and after. Can you reduce the number of HTTP requests on a page, decreasing both the perceived and actual rendering time? Are you keeping your JavaScript out of the &lt;head&gt; as much as possible, preventing pages from stalling while rendering? Can you write JavaScript that is primed for reuse, and demonstrate opportunities for that reuse? Has your carefully crafted CSS allowed the rapid rollout of a new feature? Don't be afraid to tell these stories -- they'll tend to strengthen your position by clarifying the important role the front-end developer plays in a site.</p>
+
+<p>Good luck :)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Salivating over server-side Javascript]]></title>
+    <link href="http://rmurphey.com/blog/2008/01/04/salivating-over-server-side-javascript/"/>
+    <updated>2008-01-04T00:00:00-06:00</updated>
+    <id>http://rmurphey.com/blog/2008/01/04/salivating-over-server-side-javascript</id>
+    <content type="html"><![CDATA[<p>I came across <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html">The End of Web Frameworks</a> in my dzone RSS feed this morning, and it echoes a thought that runs through my brain as I get more and more comfortable with jQuery: who needs the server when you've got Javascript? Wouldn't it be great if the server just handed out data, and the client figured out what to do with it? After talking directly to the DOM for the last several months, a trip back to PHP left me utterly disoriented for a few minutes -- why, exactly, couldn't I take the anchors from that unordered list I'd just built 50 lines ago and reuse their hrefs for something else?</p>
+
+<p>As a <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html#c8132224153158413680">couple</a> of <a href="http://unclescript.blogspot.com/2008/01/end-of-web-frameworks.html#c5149909265291802708">commenters</a> pointed out, it's not that easy -- there's still graceful degradation (the yin to progressive enhancement's yang?) to worry about. It's easy to say "oh, I don't have to worry about that," but until the day that's actually <em>true</em>, Javascript on the client side simply can only supplement good, solid, server-generated markup.</p>
+
+<p>That's why stuff like <a href="http://groups.google.com/group/jquery-en/browse_thread/thread/38d8d0c295b2919b">this discussion about server-side jQuery</a> has me nearly salivating. I'm imagining getting JSON data from a simple bit of server-side code that's not encumbered by messy markup and then writing some Javascript to build the DOM of my dreams. The added bonus would be server-side code that could serve that clean, pretty JSON data up to anyone I wanted to have it.</p>
+
+<p>Of course, that DOM would still need to use semantic HTML and not rely on client-side Javascript for anything -- and not just because a visually or otherwise impaired person might drop by someday and want to use my site. <a href="http://blogs.cnet.com/8301-13530_1-9782891-28.html">Progressive enhancement is good for SEO</a>, too, (and so are web standards in general). One only wishes that would lead SEO-focused companies to fall all over themselves in pursuit of it :)</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>EnterpriseDojo.com uses jQuery!  - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="And you should too &#8230; for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">EnterpriseDojo.com Uses jQuery!</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-21T00:00:00-05:00" pubdate data-updated="true">Aug 21<span>st</span>, 2010</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>And you should too &#8230; for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
+
+
+<p>Here&#8217;s an idea: Let&#8217;s have an honest discussion about when a given solution makes sense and when it doesn&#8217;t, rather than mocking a contributor to that discussion for choosing a perfectly appropriate tool for a perfectly mundane task. <a href="http://enterprisedojo.com">EnterpriseDojo.com</a> is a blog about using Dojo in the enterprise, not a blog about using Dojo on blogs.&nbsp;Snickering at its use of jQuery is approximately as useful as pointing to <a href="http://www.google.com/trends?q=jquery%2Cdojo%2Cyui">this graph</a> and saying case closed, leaving more reasonable, thoughtful people to explain <a href="http://stackoverflow.com/questions/2450696/what-happened-to-dojo-in-2008/2451785#2451785">all the ways that graph doesn&#8217;t tell us a&nbsp;damn thing</a>.&nbsp;</p>
+
+
+<p>I want to be very clear, as the dust settles around my several recent rants: jQuery has its place, and it is a very, very big place. It is a lovely DOM, Ajax, and events library, and a great way to get certain things done quickly, especially for people who may not have the luxury of learning the inner workings of JavaScript (noble a goal as that is).&nbsp;There was a time when DOM and Ajax and events questions felt like&nbsp;<em>the</em> questions of the day, and jQuery showed us how to answer those questions using a simple, easy-to-learn API that suddenly made JavaScript accessible to the masses. Other libraries solved the same questions but those solutions felt ugly and clunky and goshdarnit, <em>hard</em>, and I give jQuery the utmost credit for making JavaScript suck so much less when all I wanted to do was show or hide or slide a thing or load some content onto my page. I&#8217;ll even grant that it can be used as a piece of a large application solution, though I question the wisdom of doing so for reasons outlined in <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">another post</a>. Heck, I&#8217;ll even grant that &#8220;enterprises&#8221; aren&#8217;t off their rockers to use it &#8211; for the things it was meant to be used for.&nbsp;</p>
+
+
+<p>What upsets me is when smart people seem to say that jQuery&#8217;s victory in an internet-wide popularity contest suggests, well, anything at all when it comes to more complex needs. It upsets me because my clients hear those suggestions, look at that same well-marketed graph, and I am left explaining to them that, yes, jQuery is popular, but it&#8217;s popular because it answers a small set of questions easily and well &#8211; even for people who don&#8217;t even know JavaScript! &#8211; and you, dear client, have vastly larger questions than that.</p>
+
+
+<p>At the end of the day, these toolkit decisions ought to be about more than a popularity contest; jQuery may be the right answer, or part of the right answer, but it&#8217;s imperative, to me, that my clients understand the scope of the question first. It&#8217;s imperative that they make their decisions based on a full understanding of pros and cons, risk and reward, cost and benefit &#8211; not based on a graph, not based on a popularity contest.</p>
+
+
+<p>So again I say: we, as a community, and especially the influential ones among us, do well when we elevate the conversation beyond that contest and acknowledge that choosing the right toolkit depends on first understanding what you&#8217;re choosing the toolkit for. We do well when we educate teams and decisionmakers on the lessons we&#8217;ve learned in the time since DOM, Ajax, and events were the big question of the day, on the best practices that have emerged, on the situations where we&#8217;ve, gasp, had to look beyond jQuery &#8211; either to other tools or other toolkits &#8211; for the answers. And we do well when we start showing them how they can do the same.</p>
+
+
+<p><em>An aside: Some people I like a lot have pointed out that in the midst of all of my complaining, I have not come out and offered a solution. This is fair. Two things: One, I have not wanted this conversation to collapse into Dojo vs. jQuery vs. YUI vs. Ext vs. MooTools vs. whatever, because if it does, I think we&#8217;ve missed the crux of the matter: that different tools do different things, that some set out to answer complex questions and some do not. If anyone has been unclear, which I rather doubt, my personal preference of late has been to use Dojo. I do not recommend using Dojo for everything under the sun, but I find it offers a lot of utility when writing non-trivial applications. I cannot make a compelling argument for using it vs. YUI, simply because I don&#8217;t know YUI well enough. I can&#8217;t even make a compelling argument for using it vs. Ext, except for licensing issues that may or may not be relevant in a given scenario. Two, if you&#8217;re disappointed that I haven&#8217;t offered a solution, especially a jQuery-based one, I apologize. However, I feel there are too many viable existing solutions out there already, and I haven&#8217;t come up with a good reason to promote a jQuery-based solution besides jQuery&#8217;s popularity. And, well, see above for my thoughts on that.</em></p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-21T00:00:00-05:00" pubdate data-updated="true">Aug 21<span>st</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dojo-/'>dojo,</a>, <a class='category' href='/blog/categories/jquery-/'>jquery,</a>, <a class='category' href='/blog/categories/large-applications/'>large-applications</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/08/14/2-years-in-some-thoughts-on-working-for-yourself/" title="Previous Post: 2 Years In, Some Thoughts on Working for Yourself">&laquo; 2 Years In, Some Thoughts on Working for Yourself</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/08/24/dear-conference-organizer/" title="Next Post: Dear conference organizer">Dear conference organizer &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/';
+        var disqus_url = 'http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

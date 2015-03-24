@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: stumbleupon | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/stumbleupon/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Suspicious StumbleUpon Bounce Rates?]]></title>
+    <link href="http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/"/>
+    <updated>2008-01-03T00:00:00-06:00</updated>
+    <id>http://rmurphey.com/blog/2008/01/03/suspicious-stumbleupon-bounce-rates</id>
+    <content type="html"><![CDATA[<p>I've been promoting some of my blog posts by submitting them to <a href="http://www.stumbleupon.com">StumbleUpon</a>, and it's been generating a fair bit of traffic -- my post "How I Learned CSS" has done especially well. I've been watching my site using Google Analytics, and I've noticed that visitors from StumbleUpon have a substantially lower <a href="http://en.wikipedia.org/wiki/Bounce_Rate">bounce rate</a> than, say, visitors from <a href="http://www.dzone.com">dzone</a>. So I think, "yay, StumbleUpon" and start submitting anything interesting I write to there.</p>
+
+<p>But in poking around in my Google Analytics a bit more, I've also noticed that, on pages that I've promoted through SU, I'm seeing strange navigation patterns: for "How I Learned CSS," 40% of visits to the page came from the page itself (and, as it logically follows, 40% of next pages were the page itself). The page was viewed a total of 4,700 times, but a little more than 2,800 of those pageviews were unique. Since bounce rate basically measures whether a new arrival went to another page before leaving the site, I'm not sure it shouldn't count as a bounce if the second page the user visits is the same as the one they were already on.</p>
+
+<p>I'm not seeing this pattern with pages I don't promote on SU, which makes me curious. SU is clearly driving a ton of traffic to my site; it's just not clear that the traffic is actually resulting in the remarkably low bounce rate that Google Analytics shows. If I took out the 40% of people whose next page was the page they were already on, I'm left with not even 1% of people who went to another, different page on the site before leaving -- and suddenly dzone is looking good again.</p>
+
+<p>I did a Google search and didn't come up with much except <a href="http://www.wpdesigner.com/2007/09/15/wwmd-reduce-bounce-rate/#comment-87245">this</a>, which discusses the importance of bounce rate, and <a href="http://www.seowife.com/stumbleupon-advertising/">this</a>, which suggests using StumbleUpon to reduce your bounce rate.</p>
+
+<p>I'm curious whether anyone else is seeing this, and whether it's actually related to StumbleUpon, Google Analytics, or something else. If I had to guess, I'd imagine that this is a result of people using the StumbleUpon toolbar (since it's not happening in all cases), and maybe the toolbar is pre-visiting the page on the user's behalf to make sure it still exists?</p>
+
+<p>Update: See the comments and a more <a href="http://www.jamieharrop.com/2007/11/05/my-stumbleupon-analysis-a-poor-500-traffic-increase/">in-depth discussion</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

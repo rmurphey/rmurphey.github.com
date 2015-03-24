@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mulberry: A development framework for mobile apps - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;ll be getting on stage in a bit at CapitolJS, another
+great event from Chris Williams, the creator of JSConf and all-around
+conference &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2011/09/18/introducing-mulberry/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Mulberry: A Development Framework for Mobile Apps</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-18T11:30:00-05:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ll be getting on stage in a bit at <a href="http://capitoljs.com">CapitolJS</a>, another
+great event from Chris Williams, the creator of JSConf and all-around
+conference organizer extraordinaire. My schtick at conferences in the past has
+been to talk about the pain and pitfalls of large app development with
+JavaScript, but this time is a little different: I&#8217;ll be announcing that <a href="http://toura.com">Toura Mobile</a> has created a framework built on top of PhoneGap that
+aims eliminate some of those pains and pitfalls for mobile developers. We&#8217;re
+calling it <a href="http://mulberry.toura.com">Mulberry</a>, and you&#8217;ll be seeing it on GitHub in the next few weeks.</p>
+
+<p><strong>tl;dr</strong>: <a href="http://mulberry.toura.com">go here</a> and <a href="http://mulberry.toura.com/#tour">watch this video</a>.</p>
+
+<p>While the lawyers are dotting the i&#8217;s and crossing the t&#8217;s as far as getting the code in your hands &#8211; we&#8217;re aiming for a permissive license similar to the licenses for PhoneGap and Dojo &#8211; I wanted to tell you a little bit about it.</p>
+
+<p>Mulberry is two things. First, it&#8217;s command line tools (written in Ruby) that help you rapidly scaffold and configure an app, create content using simple Markdown and YAML, and test it in your browser, in a simulator, and on device. Second, and much more exciting to me as a JavaScript developer, it&#8217;s a framework built on top of the Dojo Toolkit for structuring an application and adding custom functionality in a sane way.</p>
+
+<p>Mulberry lets you focus on the things that are unique to your application. It provides an underlying framework that includes a &#8220;router&#8221; for managing application state; built-in components and templates for displaying standard content types like text, audios, videos, feeds, and images; a simple API for defining custom functionality and integrating it with the system; and an HTML/CSS framework that uses SASS and HAML templates to make it easy to style your apps.</p>
+
+<p>The basics of setting up an app are pretty well covered at the <a href="http://mulberry.toura.com">Mulberry
+site</a>, but if you&#8217;re reading this, you&#8217;re probably a JavaScript developer, so I want to focus here on what Mulberry can do for you. First, though, let me back up and cover some terminology: Mulberry apps consist of a set of &#8220;nodes&#8221;; each node is assigned a template, and each template consists of components arranged in a layout. Nodes can have assets associated with them &#8211; text, audio, images, video, feeds, and data.</p>
+
+<p>It&#8217;s the data asset that provides the most power to developers &#8211; you can create an arbitrary object, associate it with a node, and then any components that are in the template that&#8217;s being used to display the node will get access to that data.</p>
+
+<p>A Twitter component offers a simple example. A node might have a data asset like this associated with it:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span> <span class="nx">term</span> <span class="o">:</span> <span class="s1">&#39;capitoljs&#39;</span><span class="p">,</span> <span class="nx">type</span> <span class="o">:</span> <span class="s1">&#39;twitter&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We could define a custom template for this page (<code>mulberry create_template Twitter</code>), and tell that template to include a Twitter component:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">Twitter</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">screens</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">index</span>
+</span><span class='line'>      <span class="l-Scalar-Plain">regions</span><span class="p-Indicator">:</span>
+</span><span class='line'>        <span class="p-Indicator">-</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">size</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">fixed</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">scrollable</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">components</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PageNav</span>
+</span><span class='line'>        <span class="p-Indicator">-</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">size</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">flex</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">scrollable</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'>          <span class="l-Scalar-Plain">components</span><span class="p-Indicator">:</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">PageHeaderImage</span>
+</span><span class='line'>            <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">custom:Twitter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we&#8217;d define our Twitter component (<code>mulberry create_component Twitter</code>), which would create the skeleton of a component file:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;client.components.Twitter&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;Twitter&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">componentTemplate</span> <span class="o">:</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;client.components&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitter/Twitter.haml&#39;</span><span class="p">),</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">prep</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One of the things the skeleton contains is a reference to the template for the component. The <code>create_component</code> command creates this file, which defines the DOM structure for the component. For the sake of this component, that template will just need to contain one line:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nt">%ul</span><span class="nc">.component.twitter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As I mentioned earlier, Mulberry components automatically get access to all of the assets that are attached to the node they&#8217;re displaying. This information is available as an object at <code>this.node</code>. Mulberry components also have two default methods that you can implement: the <code>prep</code> method and the <code>init</code> method.</p>
+
+<p>The <code>prep</code> method is an opportunity to prepare your data before it&#8217;s rendered using the template; we won&#8217;t use it for the Twitter component, because the Twitter component will go out and fetch its data <em>after</em> the template is rendered. This is where the <code>init</code> method comes in &#8211; this is where you can tell your component what to do. Here&#8217;s what our Twitter component ends up looking like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">dojo</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;client.components.Twitter&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">mulberry</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;Twitter&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">componentTemplate</span> <span class="o">:</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;client.components&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitter/Twitter.haml&#39;</span><span class="p">),</span>
+</span><span class='line'>  <span class="nx">tweetTemplate</span> <span class="o">:</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;client.components&#39;</span><span class="p">,</span> <span class="s1">&#39;Twitter/Tweet.haml&#39;</span><span class="p">),</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;twitter&#39;</span>
+</span><span class='line'>        <span class="p">})[</span><span class="mi">0</span><span class="p">].</span><span class="nx">json</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://search.twitter.com/search.json?q=&#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">term</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span> <span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">proxy</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;_onLoad&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">_onLoad</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">tweets</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">results</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">tpl</span> <span class="o">=</span> <span class="nx">mulberry</span><span class="p">.</span><span class="nx">haml</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tweetTemplate</span><span class="p">),</span>
+</span><span class='line'>        <span class="nx">html</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">tweets</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tweet</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">tweet</span><span class="p">.</span><span class="nx">link</span> <span class="o">=</span> <span class="s1">&#39;http://twitter.com/capitoljs/status/&#39;</span> <span class="o">+</span> <span class="nx">tweet</span><span class="p">.</span><span class="nx">id_str</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">locale</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span>
+</span><span class='line'>            <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">tweet</span><span class="p">.</span><span class="nx">created_at</span><span class="p">),</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">datePattern</span> <span class="o">:</span> <span class="s1">&#39;EEE&#39;</span><span class="p">,</span>
+</span><span class='line'>              <span class="nx">timePattern</span> <span class="o">:</span> <span class="s1">&#39;h:m a&#39;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>          <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="nx">tweet</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">tweet</span><span class="p">.</span><span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span>
+</span><span class='line'>            <span class="sr">/@(\S+)/g</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;&lt;a href=&#39;http://twitter.com/#!/$1&#39;&gt;@$1&lt;/a&gt;&quot;</span>
+</span><span class='line'>          <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">return</span> <span class="nx">tpl</span><span class="p">(</span><span class="nx">tweet</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">$domNode</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">refreshScroller</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that when we define the <code>data</code> variable in the init method, we look at <code>this.node.data</code>, which is an array of all of the data objects associated with the node. We filter this array to find the first data object that is the right type &#8211; this means we can have lots of different data objects associated with a given node.</p>
+
+<p>Note also that there&#8217;s a property <code>this.$domNode</code> that we&#8217;re calling jQuery methods on, and that we&#8217;re using jQuery&#8217;s <code>$.ajax</code> &#8211; Mulberry apps come with jQuery enabled by default, and if it&#8217;s enabled, helpers like <code>this.$domNode</code> become available to you. This means that very little knowledge of Dojo is required to start adding your own functionality to an app &#8211; if you need it, though, the full power of the Dojo Toolkit is available to you too.</p>
+
+<p>Here&#8217;s what our component ends up looking like, with a little bit of custom CSS applied to our app:</p>
+
+<p><img src="http://www.rebeccamurphey.com/i/4e760b2ff3b5b.jpg" title="A Mulberry app using a custom Twitter component" alt="screenshot" /></p>
+
+<p>This is a pretty basic demo &#8211; Twitter is, indeed, the new <code>hello world</code> &#8211; but I hope it gives you a little bit of an idea about what you might be able to build with Mulberry. We&#8217;ve been using it in production to create content-rich mobile apps for our users for months now (connected to a web-based CMS instead of the filesystem, of course), and we&#8217;ve designed it specifically to be flexible enough to meet arbitrary client requests without the need to re-architect the underlying application.</p>
+
+<p>If you know JavaScript, HTML, and CSS, Mulberry is a powerful tool to rapidly create a content-rich mobile application while taking advantage of an established infrastructure, rather than building it yourself. I&#8217;m excited to see what you&#8217;ll do with it!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-18T11:30:00-05:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2011/09/18/introducing-mulberry/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2011/09/18/introducing-mulberry/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/07/25/switching-to-octopress/" title="Previous Post: Switching to Octopress">&laquo; Switching to Octopress</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/03/08/community-conferences/" title="Next Post: Community Conferences">Community Conferences &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2011/09/18/introducing-mulberry/';
+        var disqus_url = 'http://rmurphey.com/blog/2011/09/18/introducing-mulberry/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

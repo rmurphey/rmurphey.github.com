@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;ve been promoting some of my blog posts by submitting them to StumbleUpon, and it&#8217;s been generating a fair bit of traffic &#8211; my &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/9/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/">Suspicious StumbleUpon Bounce Rates?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-03T00:00:00-06:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/03/suspicious-stumbleupon-bounce-rates/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve been promoting some of my blog posts by submitting them to <a href="http://www.stumbleupon.com">StumbleUpon</a>, and it&#8217;s been generating a fair bit of traffic &#8211; my post &#8220;How I Learned CSS&#8221; has done especially well. I&#8217;ve been watching my site using Google Analytics, and I&#8217;ve noticed that visitors from StumbleUpon have a substantially lower <a href="http://en.wikipedia.org/wiki/Bounce_Rate">bounce rate</a> than, say, visitors from <a href="http://www.dzone.com">dzone</a>. So I think, &#8220;yay, StumbleUpon&#8221; and start submitting anything interesting I write to there.</p>
+
+<p>But in poking around in my Google Analytics a bit more, I&#8217;ve also noticed that, on pages that I&#8217;ve promoted through SU, I&#8217;m seeing strange navigation patterns: for &#8220;How I Learned CSS,&#8221; 40% of visits to the page came from the page itself (and, as it logically follows, 40% of next pages were the page itself). The page was viewed a total of 4,700 times, but a little more than 2,800 of those pageviews were unique. Since bounce rate basically measures whether a new arrival went to another page before leaving the site, I&#8217;m not sure it shouldn&#8217;t count as a bounce if the second page the user visits is the same as the one they were already on.</p>
+
+<p>I&#8217;m not seeing this pattern with pages I don&#8217;t promote on SU, which makes me curious. SU is clearly driving a ton of traffic to my site; it&#8217;s just not clear that the traffic is actually resulting in the remarkably low bounce rate that Google Analytics shows. If I took out the 40% of people whose next page was the page they were already on, I&#8217;m left with not even 1% of people who went to another, different page on the site before leaving &#8211; and suddenly dzone is looking good again.</p>
+
+<p>I did a Google search and didn&#8217;t come up with much except <a href="http://www.wpdesigner.com/2007/09/15/wwmd-reduce-bounce-rate/#comment-87245">this</a>, which discusses the importance of bounce rate, and <a href="http://www.seowife.com/stumbleupon-advertising/">this</a>, which suggests using StumbleUpon to reduce your bounce rate.</p>
+
+<p>I&#8217;m curious whether anyone else is seeing this, and whether it&#8217;s actually related to StumbleUpon, Google Analytics, or something else. If I had to guess, I&#8217;d imagine that this is a result of people using the StumbleUpon toolbar (since it&#8217;s not happening in all cases), and maybe the toolbar is pre-visiting the page on the user&#8217;s behalf to make sure it still exists?</p>
+
+<p>Update: See the comments and a more <a href="http://www.jamieharrop.com/2007/11/05/my-stumbleupon-analysis-a-poor-500-traffic-increase/">in-depth discussion</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/02/update-page-using-json-data/">Update Page Using JSON Data</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-02T00:00:00-06:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/02/update-page-using-json-data/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/jquery.updateWithJSON.js">updateWithJSON</a> is a jQuery plugin that updates elements on your page based on key/value pairs in a JSON object. Usage:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">updateWithJSON</span><span class="p">(</span><span class="nx">jsonData</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://www.rebeccamurphey.com/jquery/updateWithJSON/">Here&#8217;s a demo</a>, and here&#8217;s how it works:</p>
+
+<ul>
+<li>iterate over each property/value combination in the JSON object</li>
+<li>look for an element in the DOM that matches the property name
+<ul>
+<li>first, look for an element with a matching <code>id</code> attribute</li>
+<li>if no element with a matching ID is found, look for input, select or textarea elements with a matching <code>name</code> attribute</li>
+</ul>
+</li>
+<li>update the value, contents or selection of the matched element(s) based on the value in the JSON object</li>
+</ul>
+
+
+<p>NOTE: If you have multiple checkboxes with the same <code>name</code> attribute, or a select that allows multiple values, you&#8217;ll need to pass the values of the selected items in an array:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nx">text_input</span><span class="o">:</span> <span class="s1">&#39;value1&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">checkbox_group</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span><span class="s1">&#39;value3&#39;</span><span class="p">],</span>
+</span><span class='line'>  <span class="nx">multi_select</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value4&#39;</span><span class="p">,</span><span class="s1">&#39;value5&#39;</span><span class="p">,</span><span class="s1">&#39;value6&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you use a <code>name</code> attribute like &#8220;input[]&#8221; on a set of related checkboxes, remember that you&#8217;ll need to quote it in the JSON object:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="s1">&#39;input1[]&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span><span class="s1">&#39;value3&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h3>The back story</h3>
+
+
+<p>For a recent project, I needed to update elements on a page based on some server-side calculations. JSON is a handy way to transport data from the server back to the browser, and jQuery&#8217;s <code>getJSON()</code> method makes it painless. So, for example, I was getting back</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with which I needed to update an element corresponding to &#8220;foo&#8221; and give it the value &#8220;bar&#8221;. Simple enough; on the page I was dealing with, it was easy to put a unique ID on every element that would need to be updated, and I matched that ID with the property name in the JSON object. It was (almost) as simple as this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="nx">name</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;s not always the case, though, that you can easily put a unique ID on each element that will need updating; for example, <a href="http://us.php.net/manual/en/language.variables.external.php#77344">PHP rewards you</a> if you put the same <code>name</code> attribute on related checkboxes. Having checkboxes with the same name but different IDs can quickly get confusing when you&#8217;re dealing with data on the client side and on the server side. The solution above worked in my particular case, but I wanted something that would work more broadly &#8211; say, on pages that had related checkboxes &#8211; and that&#8217;s how I came up with the plugin.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/30/determine-the-order-of-two-dom-elements/">Determine the Order of Two DOM Elements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-30T00:00:00-06:00" pubdate data-updated="true">Dec 30<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/30/determine-the-order-of-two-dom-elements/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Inspired by <a href="http://us.php.net/usort">this</a> from PHP, I wanted a
+utility function to determine whether a given element came before or after
+another element in the DOM.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">order</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$a</span><span class="p">,</span><span class="nx">$b</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$a</span> <span class="o">=</span> <span class="nx">$a</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$b</span> <span class="o">=</span> <span class="nx">$b</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="s1">&#39;order-test&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$a</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">$b</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// elements are the same</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$b</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">$elements</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$elements</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="s1">&#39;-first&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">$a</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="s1">&#39;-first&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// $a is first</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">$b</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="s1">&#39;-first&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// $b is first</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">})(</span><span class="nx">jQuery</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/24/how-i-learned-css/">How I Learned CSS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-24T00:00:00-06:00" pubdate data-updated="true">Dec 24<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/24/how-i-learned-css/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I remember when I first tried to understand how to produce designs for the web &#8211; coming from the paper-based world, it was hard for me to accept everything that was suddenly out of my control. When I first tried to grasp CSS with the help of now-defunct Adobe GoLive, I bailed pretty quickly. Table-based layout and font tags didn&#8217;t make much sense to me either &#8211; why did I have to slice up a page into a bunch of adjoining cells, instead of just drawing independent boxes like I did in Quark?</p>
+
+<p>A couple of years later, I decided to try again, motivated by the realization that my <a href="http://gmurphey.com/">eight-years-younger brother</a> seemed to be better at this web stuff than I was. I spent untold hours trying to wrap my brain around <a href="http://www.sustainablewebdesign.com/resources/601/">the difference between margin and padding</a> and exactly how to <a href="http://css.maxdesign.com.au/floatutorial/">get floated elements to bend to my will</a>. I remember the epiphany that one could <a href="http://www.sovavsiti.cz/css/horizontal_menu.html">use left-floated list items for a horizontal menu</a>, or that <a href="http://www.netmechanic.com/news/vol4/html_no22.htm">the right DOCTYPE can force Internet explorer to behave more like a real browser</a>.</p>
+
+<p>These days, I have an honest-to-god job doing this stuff, and every now and then, someone will ask me how they can learn it too. It all makes so much more sense to me than it used to that it&#8217;s hard to remember how I got here. In the interest of getting this stuff written down for passing along, though, here are a few thoughts:</p>
+
+<h3>The Tools</h3>
+
+
+<p>These are things without which the rest is impossible:</p>
+
+<ul>
+<li>
+<strong>A text editor</strong> Notepad will do just fine; for a few bucks, you can get <a href="http://macromates.com/">TextMate</a> for Mac or the <a href="http://www.e-texteditor.com/">e Text Editor</a> for PC. If you use Dreamweaver, hide everything but the file navigator panel and the code editing view. <em>You will learn nothing from Dreamweaver&#8217;s &#8220;design&#8221; view.</em>
+</li>
+<li>
+<strong><a href="http://www.mozilla.com/en-US/firefox/">Firefox</a></strong> You&#8217;ll need to test anything you do in Internet Explorer, but first, you&#8217;ll get it working in Firefox. Whereas Internet Explorer enjoys mocking web standards, Firefox does its best to adhere to them; plus, it has all sorts of extensions that make it easier to troubleshoot your work.</li>
+<li>
+<strong><a href="https://addons.mozilla.org/en-US/firefox/addon/60">Firefox Web Developer Toolbar</a></strong> This has all sorts of useful tools in it, including a real-time CSS editor that opens in the browser&#8217;s sidebar so you try changes to your CSS and see the results immediately.</li>
+<li>
+<strong><a href="https://addons.mozilla.org/en-US/firefox/addon/1843">Firebug</a></strong> This is most useful for Javascript debugging, but it has some nice features for debugging CSS as well.</li>
+<li>
+<strong><a href="http://users.skynet.be/mgueury/mozilla/">HTML Validator</a></strong> Incredibly helpful for finding errors in your HTML.</li>
+</ul>
+
+
+<p>(An aside: A few months ago I booted up an old laptop and found a preview release of Firefox 1.0 installed beside a well-worn Internet Explorer 6; when I abandoned the laptop, I was in the process of abandoning IE too. I can&#8217;t help but wonder how difficult my learning would have continued to be without the arrival of Firefox, which, with the extensions mentioned above, makes it so much more possible to learn all of this stuff in a very tangible, immediate sort of way.)</p>
+
+<h3>Learning with Firefox</h3>
+
+
+<p>Once you have the tools above, open Firefox and start with a page someone else built &#8211; like the one you&#8217;re on right now &#8211; and see what&#8217;s inside. It pays to be curious about every web page you visit; if you see something interesting, view the source and figure out how it got there. Some tips:</p>
+
+<ul>
+<li>
+<code>Ctrl-U</code> will show you the HTML for a page, and with the HTML Validator extension, you can &#8220;clean up&#8221; the HTML so it&#8217;s easier to read.</li>
+<li>
+<code>Ctrl-Shift-E</code> will open the Web Developer Toolbar CSS editor, which will show you the CSS for the page, with a tab for each CSS file. You can edit the CSS in the editor and see the effects immediately.</li>
+<li>
+<code>F12</code> will open Firebug. In the top left of the panel that opens, click the Inspect menu item, then move your mouse back to the page itself and click on an element to find out more about it. You can also click on the HTML tab to view the HTML and expand and collapse sections of it to see the structure of the page. Hovering over an element in the HTML panel will highlight it on the page; clicking on an element will let you find out more about it in the Style and Layout tabs of Firebug. (Firebug is an incredibly powerful tool that you really need to play with to fully appreciate. It&#8217;s a completely non-destructive tool &#8211; you can&#8217;t hurt anything with it unless you try really, really hard &#8211; so don&#8217;t be afraid to click around and see what happens.)</li>
+<li>Remember that these days, lots of page elements are built with Javascript rather than with straight HTML. <code>Ctrl-U</code> will show you only the HTML; Firebug will show you the &#8220;generated source,&#8221; including any elements built with Javascript. Firebug also lets you look at the Javascript on a page, which can be helpful when you&#8217;re trying to understand how something got there.
+</li>
+</ul>
+
+
+
+
+<h3>POSH</h3>
+
+
+<p><a href="http://www.456bereastreet.com/archive/200711/posh_plain_old_semantic_html/">Plain-old semantic HTML</a>. When you go to make a web page, write the simplest HTML you can, and use standard HTML elements whenever humanly possible. Start by creating HTML that represents the actual sections of the page &#8211; header, navigation, sidebar, content, footer &#8211; and give the elements names that say what they <em>are</em>, not where they go. When you think you&#8217;re done, view the HTML in a browser, without CSS, and see if it makes sense. Then, <em>and only then</em>, open the browser&#8217;s CSS editor and start styling the elements. See how far you can get without adding any design-related markup to your HTML. If you find yourself writing convoluted HTML or adding purely presentational markup, to make something work, it&#8217;s time to reconsider your approach. Once you have a good stylesheet started, copy it to your text editor and continue working on it there.</p>
+
+<h3>Strategies</h3>
+
+
+<p>It helps to give yourself deadlines, even if they&#8217;re imaginary. I&#8217;ve learned more about HTML, CSS and Javascript in the past 12 months than I learned in the three years before, and I think that&#8217;s largely because deadlines have forced me to solve problems rather than pondering them.</p>
+
+<p>Don&#8217;t be afraid to do something less than perfectly; there can be value in just getting it done. I constantly look back at things I did three months ago &#8211; let alone three years ago, and sometimes three weeks ago &#8211; and I cringe when I think how differently I would do them today. But half the reason I know what I know now is precisely because I <em>didn&#8217;t</em> know it then, and I learned it along the way. Understanding the building blocks of the web is an iterative process, and you&#8217;ll do better if you remember that <strong>you cannot know everything you wish you knew</strong>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/">jQuery IE7 &#8220;Operation Aborted&#8221; Error</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-14T00:00:00-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its job was to rearrange some elements into tabs once the page was loaded.</p>
+
+<p>In unpredictable cases (sequential reloads had different results), loading the page in IE7 would lead to an &#8220;Operation aborted&#8221; error that provided no additional information. Through some googling, I found out that this was probably related to IE choking when some script was run against the DOM before the DOM was fully loaded.</p>
+
+<p>What puzzled me was that I was using <code>$.ready()</code> to wrap my jQuery, which was supposed to wait for the DOM, but it didn&#8217;t seem to matter. Then I found <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=215410#215410">this</a> &#8211; it turns out that interacting with the DOM via javascript from within a table can make IE all sorts of angry, while interacting with the DOM via javascript from within a div is just fine.</p>
+
+<p>While my case doesn&#8217;t directly match the example above, it seems very possible that the table-based template I was writing for was the source of the headaches. Changing the base HTML template for the page I was working on wasn&#8217;t immediately in the cards, so I split the offending js file into two pieces &#8211; one in the head of the document that contains some basic functions but didn&#8217;t actually do anything, and another right before the closing body tag that does the actual talking to the DOM &#8211; and that seemed to fix it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/12/jquery-build-table-from-json-data/">jQuery: Build Table From JSON Data</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-12T00:00:00-06:00" pubdate data-updated="true">Dec 12<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/12/jquery-build-table-from-json-data/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Given data like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>   <span class="s2">&quot;GUEST&quot;</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;visits&#39;</span> <span class="o">:</span> <span class="mi">1734070</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;visits_pct&#39;</span> <span class="o">:</span> <span class="mi">74</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;users&#39;</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;net_pv&#39;</span> <span class="o">:</span> <span class="mi">3432781</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;users_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;pv_pct&#39;</span> <span class="o">:</span> <span class="mi">13</span>
+</span><span class='line'>   <span class="p">},</span>
+</span><span class='line'>   <span class="s1">&#39;Logged In&#39;</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;visits&#39;</span> <span class="o">:</span> <span class="mi">4240</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;visits_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;users&#39;</span> <span class="o">:</span> <span class="mi">177</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;net_pv&#39;</span> <span class="o">:</span> <span class="mi">188112</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;users_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;pv_pct&#39;</span> <span class="o">:</span> <span class="mi">0</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&#8230; a little jQuery ditty to make a table out of the data:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">rowLabel</span><span class="p">,</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">header</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$table</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">$thead</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;thead tr&#39;</span><span class="p">,</span><span class="nx">$table</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">$thead</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">headerLabel</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">$thead</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">headerLabel</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>        <span class="nx">header</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">$table</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">$tr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;tr:last&#39;</span><span class="p">,</span><span class="nx">$table</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$tr</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">rowLabel</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">j</span><span class="p">,</span><span class="nx">cellData</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">$tr</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">cellData</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&#8217;ll come back and do something more interesting with this eventually, just wanted to jot it down for now.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/11/in-case-you-thought-ie6-was-going-away/">In Case You Thought IE6 Was Going Away</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-11T00:00:00-06:00" pubdate data-updated="true">Dec 11<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/11/in-case-you-thought-ie6-was-going-away/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Microsoft has released <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=21EABB90-958F-4B64-B5F1-73D0A413C8EF&amp;displaylang=en">yet another version</a> (the third, I think) of their timebombed XP/IE6 image for use with their <a href="http://www.microsoft.com/windows/products/winfamily/virtualpc/default.mspx">Virtual PC Console</a>. (Why they keep timebombing it is a mystery to me &#8211; it&#8217;s as if they think one of these days, approximately six months from whenever they release a new version, there won&#8217;t be a need for IE6 testing anymore.)</p>
+
+<p>I have not a single kind word for IE6, and about the best I can say about IE7 is that a) it sucks less than IE6 and b) some proprietary software I have to use for client work crashes a bit less often in it than in Firefox. That said, both IE6 and IE7 are a fact of life, and it&#8217;s also a fact of life that Microsoft saw fit to ensure that you can&#8217;t easily run both side-by side &#8211; which is why you have this whole Virtual PC setup. <em>If</em> you can get the Virtual Machine Additions, Shared Networking, and Shared Folders all to work (at the same time, if you&#8217;re lucky!), then this is a decent kludge to let you test your sites in IE6.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/">Insert jQuery Into Any Page Using a Bookmarklet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-10T00:00:00-06:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ever wish you could use jQuery on a page at the drop of a hat, without having access to the page itself? Well I&#8217;ll be damned, <a href="http://simonwillison.net/2007/Aug/15/jquery/">you can</a>.</p>
+
+<p>(This is one of those things that in hindsight seems so painfully obvious that I&#8217;m almost embarrassed to admit that it never occurred to me, but admit it I will.)</p>
+
+<p>For those working with jQuery 1.2.1, here is an <a>updated Insert jQuery 1.2.1 bookmarket</a>, and here is the code for the bookmarklet in its entirety:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="k">void</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">s</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">s</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://code.jquery.com/jquery-1.2.1.js&#39;</span><span class="p">;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">s</span><span class="p">);}())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I came across this in a recent post at <a href="http://morethanseven.net/posts/debug-web-pages-with-jquery-and-jash">Morethanseven</a>, but the Simon Willison post is from August, so this is probably a bit of old news. I&#8217;m still excited though.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/09/using-ems-for-font-sizing-in-css/">Using Ems for Font Sizing in Css</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-09T00:00:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/09/using-ems-for-font-sizing-in-css/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A List Apart had a great article recently on <a href="http://www.alistapart.com/articles/howtosizetextincss/">using &#8216;em&#8217; for CSS font-size declarations</a>, which served as great back-up for some conversations I&#8217;d been having among coworkers. (It turns out that people who didn&#8217;t have a former life in print don&#8217;t necessarily understand what an em is: a self-referential unit of font size measurement, equal to the height of the capital letter M. Back in the typesetting days, it was a unit for measuring space, especially horizontal space, in the form of an &#8220;em dash&#8221; (rendered now as <code>&amp;mdash;</code>) or an &#8220;em space.&#8221; There was also a sister unit, the &#8220;en.&#8221;)</p>
+
+<p>Anyway: I just came across <a href="http://benjaminsterling.com/using-em-for-font-size-learning-on-the-go/">this post</a>, by someone trying to put ems into practice; at the end, he gets into tools for doing conversions from pixels to ems, and it struck a surprising nerve with me.</p>
+
+<p>Here&#8217;s the thing: While I can see how pixel conversion seems useful when you first make the switch from px to em, I think the whole point of using ems instead of pixels is to embrace the concept that, on the web, sizes are relative, not absolute. If you&#8217;re focused on matching an absolute size in a mockup by converting pixels to ems, the chances seem good that you&#8217;re dealing with a layout that wasn&#8217;t intended to work with relatively sized text to begin with, and/or that your ultimate product won&#8217;t work if the user makes a different decision than you about how they will consume it.</p>
+
+<p>If you receive a Photoshop mockup where body copy is 10px tall, I think it&#8217;s a tremendous waste of time to measure that 10px and convert it to ems &#8211; 10px on my 1024x768 monitor is a far cry from 10px on my 1600x1200 monitor, nevermind on the HDTV sitting across the room.</p>
+
+<p>When you&#8217;re designing and styling text for the web, better to:</p>
+
+<ul>
+<li>Assume from the start that users will consume your site differently than you do.</li>
+<li>Make decisions in your design, CSS and HTML that will consistently convey the content and hierarchy of your site, regardless of how it is consumed.</li>
+<li>Assume that the user knows better than you what a good base text size is for them.</li>
+<li>Use a reset styleheet — I like <a href="http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/">Eric Meyer&#8217;s CSS Reset Reloaded</a> — to set everything to that base size.</li>
+<li>Vary the sizes of elements <em>relatively</em> using ems.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/09/for-only-25-more-this-gift-card-comes-in-green/">For Only $25 More, This Gift Card Comes in Green</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-09T00:00:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/09/for-only-25-more-this-gift-card-comes-in-green/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I was just at the online Apple store to buy an iTunes gift card for my mother (who hopefully will not be reading this blog) &#8211; when you arrive from iTunes, it drops you on a page where you can choose from a variety of gift card designs. On this screen, it seems that there is a 1:1 relationship between colors and denominations &#8211; for example, the $25 card only comes in red.</p>
+
+<p>I picked my denomination, and was taken to a page where I could enter a personalized message. Below that, I was offered the opportunity to &#8220;change theme&#8221;:</p>
+
+<div class='p_embed p_image_embed'>
+<img alt="" src="http://blog.rebeccamurphey.com/wp-content/uploads/2007/12/itunes-change-theme.png" />
+</div>
+
+
+<p>I wasn&#8217;t much a fan of the red, so I clicked to choose the green, entered my personalized message, and clicked add to cart &#8211; and only then did I find out that changing the theme also changed my order to a more expensive card. That&#8217;s either extremely poor design, or extremely sketchy.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/10/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

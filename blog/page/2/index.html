@@ -1,0 +1,1214 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I spoke at the Times Open Source Science Fair a couple of weeks ago. I&#8217;ll admit that I was pretty skeptical of the concept when I was first &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/25/times-open-science-fair/">Show & Tell</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-25T20:20:00-06:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/25/times-open-science-fair/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I spoke at the <a href="http://opensourcesciencefair.com/">Times Open Source Science Fair</a> a couple of weeks ago. I&#8217;ll admit that I was pretty skeptical of the concept when I was first asked, but as someone who used to work as an editor at a tiny newspaper in upstate New York, I wasn&#8217;t about to say no when the Times asked me to come say hi.</p>
+
+<p>A few days before the event, I got an email asking me for information about what I&#8217;d be showing off at my booth. Booth? Wat? They weren&#8217;t kidding about the science fair thing, but what the heck was I going to show at a booth?</p>
+
+<p>It turns out this is basically the best idea ever. I recruited my Bocoup colleague <a href="http://twitter.com/rwaldron">Rick Waldron</a> to join me, and together we spent a whirlwind hour showing off <a href="https://github.com/rwldrn/johnny-five">robots powered by JavaScript</a> to an endless stream of people walking up to our booth. Rick did a great job of setting up a demo that people could play with, and they took turns moving <a href="https://www.sparkfun.com/products/9119">sliding potentiometers</a> that controlled <a href="https://www.sparkfun.com/products/9064">servos</a> that moved an arm with a gripper at the end, trying to pick up Bocoup stickers. Ours was one of about a <a href="http://open.blogs.nytimes.com/2012/11/21/open-source-science-fair-exhibitor-experiences/">dozen booths</a> showing off open-source projects, and the room was a wonderful madhouse.</p>
+
+<p>After a break for dinner, I, <a href="http://twitter.com/jashkenas">Jeremy Ashkenas</a>, and <a href="http://twitter.com/holman">Zach Holman</a> each gave 20-minute talks, but the talks were really just icing on the evening. The &#8220;science fair&#8221; format promoted such <em>intentional interaction</em>, in a way that traditional conferences just can&#8217;t, no matter how great the hall track or the parties may be. The format invited and encouraged attendees to talk to the presenters &#8211; indeed, if they didn&#8217;t talk to the presenters, there wasn&#8217;t much else for them to do. By the time the official talks came around, a super-casual, super-conversational atmosphere had already been established, and the energy that created was tangibly different from any event I&#8217;ve been to before.</p>
+
+<p>I love conferences, and the sharing of knowledge that happens there, and there&#8217;s a whole lot to be said for their speaker-audience format &#8211; don&#8217;t get me wrong. But I&#8217;d also love to see more events figure out how to integrate this show and tell format. &#8220;Booths&#8221; don&#8217;t need to mean &#8220;vendors trying to sell things&#8221; &#8211; they can actually be a great opportunity to facilitate conversation, and to let open source contributors show off their hard work.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/21/recent-talks/">Recent Talks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-21T10:40:00-06:00" pubdate data-updated="true">Nov 21<span>st</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/21/recent-talks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://infrequently.org/2012/11/bits-and-remainders/">A post from Alex Russell</a> reminded me that I&#8217;ve given a number of talks in the last few months, and some of them even have video on the internet.</p>
+
+<p>I&#8217;ve been ridiculously spoiled to get to travel all over the place these last few months &#8211; San Francisco, New York, Amsterdam, Berlin, Brighton &#8211; and speak at some truly first-class conferences, sharing the stage, sharing meals, and sharing beers with some seriously amazing folks. My <a href="http://rmurphey.com/blog/2012/11/14/this-is-the-cup-of-coffee/">recent news</a> means I&#8217;ll be doing a lot less travel for the next little bit, but I&#8217;m ever-so-grateful for the opportunities I&#8217;ve had and the people I&#8217;ve gotten to see and meet these last few months.</p>
+
+<h3>Writing Testable JavaScript</h3>
+
+<p>This is the first talk I&#8217;ve developed that I&#8217;ve managed to give several times in rapid succession: three times in six days, including at <a href="http://2012.full-frontal.org/">Full Frontal</a>, the online <a href="http://environmentsforhumans.com/2012/javascript-summit/">JS Summit</a>, and to a group of developers at the New York Times. There&#8217;s no video yet, but the <a href="https://speakerdeck.com/rmurphey/writing-testable-javascript-mocha-version">slides are here</a>, and there should be video soon, I think.</p>
+
+<p><script async class="speakerdeck-embed" data-id="eb8bb4800ff201308f97123138155402" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script></p>
+
+
+<h3>JS Minty Fresh</h3>
+
+<p>A fun talk at <a href="http://fronteers.nl/congres/2012">Fronteers</a> about eliminating code smells from your JavaScript. The best feedback I got afterwards was from an attendee who said they felt at the beginning of the talk like the material was going to be too basic for them, and by the end of the talk, the material was nearly over their head. &#8220;I guess that makes you a good teacher,&#8221; he said. Aw!</p>
+
+<iframe src="http://player.vimeo.com/video/53416986?badge=0" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+
+
+<p><a href="http://vimeo.com/53416986">Rebecca Murphey | JS Minty Fresh: Identifying and Eliminating Smells in Your Code Base | Fronteers 2012</a> from <a href="http://vimeo.com/fronteers">Fronteers</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+
+
+<p><a href="http://rmurphey.com/js-minty-fresh/presentation/">Slides</a></p>
+
+<p>If you like this, you should also check out the <a href="http://training.bocoup.com/screencasts/">screencasts</a> we released at Bocoup earlier this week.</p>
+
+<h3>Beyond the DOM: Sane Structure for JS Apps</h3>
+
+<p>An update of my code organization talk, delivered at the <a href="http://events.jquery.org/2012/sf/">jQuery Conference in San Francisco</a>. It&#8217;s fun for me to see how my thinking around code organization has evolved and improved since my first, now-almost-embarassing talk at the 2009 jQuery Conference in Boston.</p>
+
+<iframe width="500" height="281" src="http://www.youtube.com/embed/cd7HHN6IkrU" frameborder="0" allowfullscreen></iframe>
+
+
+<p><a href="https://speakerdeck.com/rmurphey/jquery-conference-sf-2012-beyond-the-dom-sane-structure-for-js-apps">Slides</a></p>
+
+<h3>Johnny Five: Bringing the JavaScript Culture to Hardware</h3>
+
+<p>This one was from the New York Times <a href="http://opensourcesciencefair.com/">Open Source Science Fair</a>, a fun night of about a dozen folks presenting open-source projects at &#8220;booths,&#8221; followed by short talks about open source by Jeremy Ashkenas, me, and Zach Holman. The slides don&#8217;t necessarily stand on their own very well, but the short version is: use JavaScript to make things in the real world, because it&#8217;s ridiculously easy and ridiculously fun.</p>
+
+<p><script async class="speakerdeck-embed" data-id="6ab92f30161e0130f5111231381d612b" data-ratio="1.2994923857868" src="//speakerdeck.com/assets/embed.js"></script></p>
+
+
+<h3>Getting Better at JavaScript</h3>
+
+<p>I put this together as a quickie for the Berlin <a href="http://up.front.ug/">UpFront</a> user group &#8211; it was the first talk I gave with my broken foot, and the last talk I&#8217;d give for weeks because I lost my voice a couple of hours later. There&#8217;s not a whole lot here, but it was a fun talk and a fun group, and a topic that I get plenty of questions about. Again, no video, but here are the slides:</p>
+
+<p><script async class="speakerdeck-embed" data-id="50746953453e4d0002081c02" data-ratio="1.2994923857868" src="//speakerdeck.com/assets/embed.js"></script></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/11/14/this-is-the-cup-of-coffee/">This Is the Cup of Coffee</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-14T10:40:00-06:00" pubdate data-updated="true">Nov 14<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/11/14/this-is-the-cup-of-coffee/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://farm9.staticflickr.com/8482/8187360514_db246b4ac9.jpg" width="400"></p>
+
+<p>This is the cup of coffee I was making earlier this week when Melissa gave me a thumbs-up while she talked on the phone to a woman in Pennsylvania who had just finished telling Melissa that yes, indeed, after 10 weeks or three years of waiting depending on how you count, a 29-year-old woman who&#8217;s due to give birth in Iowa at the beginning of February has decided that Melissa and I should be so lucky as to get to be her baby girl&#8217;s forever family.</p>
+
+<p>Most people get to post ultrasound pictures on Twitter at moments like these, but for now this will suffice to remind me of the moment I found out I would get to be a mom. My head is spinning, and while on the one hand it&#8217;s a little difficult to fathom that this is all just 10 weeks away, on the other hand I&#8217;m counting down the days.</p>
+
+<p>Our adoption will be an open one; the meaning of &#8220;open&#8221; varies widely, but in our case it means we talked to the birth mother before she chose us, we&#8217;ll be meeting her in a few weeks, we&#8217;ll do our very best to be in Iowa for the delivery, and we&#8217;ll stay in touch with letters and pictures afterwards. Melissa and I are grateful that we&#8217;ll be able to adopt as a couple, though we are saddened that we have to adopt outside of our home state of North Carolina in order to do so. It&#8217;s important to us that our child have both of us as her <em>legal</em> parents, and I don&#8217;t hesitate to say that it&#8217;s downright shitty that we have to jump through significant legal and financial hoops &#8211; and stay in a hotel in Iowa with a newborn for an unknown number of days &#8211; to make it so. It is what it is, and good people are working and voting to make it better, and it can&#8217;t happen fast enough.</p>
+
+<p>I&#8217;ve learned a lot about adoption these past few months, and I know a lot of people have a lot of questions, some of which they&#8217;re reluctant to ask. If you&#8217;re interested in learning more, I <em>highly</em> recommend <a href="http://www.amazon.com/In-On-It-Adoption-Relatives/dp/0982876505/ref=sr_1_1?ie=UTF8&amp;qid=1352948795&amp;sr=8-1&amp;keywords=in+on+it">In On It: What Adoptive Parents Would Like You to Know About Adoption</a>. You&#8217;re also welcome to ask me questions if you see me in real life or on the internets &#8211; I can&#8217;t promise I&#8217;ll know the answers, but I promise to do my best.</p>
+
+<p>In the meantime, wish us luck :)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/12/a-baseline-for-front-end-developers/">A Baseline for Front-End Developers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-12T11:30:00-05:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/12/a-baseline-for-front-end-developers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I wrote a README the other day for a project that I&#8217;m hoping other developers will look at and learn from, and as I was writing it, I realized that it was the sort of thing that might have intimidated the hell out of me a couple of years ago, what with its casual mentions of Node, npm, Homebrew, git, tests, and development and production builds.</p>
+
+<p>Once upon a time, editing files, testing them locally (as best as we could, anyway), and then FTPing them to the server was the essential workflow of a front-end dev. We measured our mettle based on our ability to wrangle IE6 into submission or achieve pixel perfection across browsers. Many members of the community &#8211; myself included &#8211; lacked traditional programming experience. HTML, CSS, and JavaScript &#8211; usually in the form of jQuery &#8211; were self-taught skills.</p>
+
+<p>Something has changed in the last couple of years. Maybe it&#8217;s the result of people starting to take front-end dev seriously, maybe it&#8217;s browser vendors mostly getting their shit together, or maybe it&#8217;s front-end devs &#8211; again, myself included &#8211; coming to see some well-established light about the process of software development.</p>
+
+<p>Whatever it is, I think we&#8217;re seeing the emphasis shift from valuing trivia to valuing tools. There&#8217;s a new set of baseline skills required in order to be successful as a front-end developer, and developers who don&#8217;t meet this baseline are going to start feeling more and more left behind as those who are sharing their knowledge start to assume that certain things go without saying.</p>
+
+<p>Here are a few things that <em>I</em> want to start expecting people to be familiar with, along with some resources you can use if you feel like you need to get up to speed. (Thanks to Paul Irish, Mike Taylor, Angus Croll, and Vlad Filippov for their contributions.)</p>
+
+<h2>JavaScript</h2>
+
+<p>This might go without saying, but simply knowing a JavaScript library isn&#8217;t sufficient any more. I&#8217;m not saying you need to know how to implement all the features of a library in plain JavaScript, but you should know when a library is actually required, and be capable of working with plain old JavaScript when it&#8217;s not.</p>
+
+<p>That means that you&#8217;ve read <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">JavaScript: The Good Parts</a> &#8211; hopefully more than once. You understand data structures like objects and arrays; functions, including how and why you would <code>call</code> and <code>apply</code> them; working with prototypal inheritance; and managing the asynchronicity of it all.</p>
+
+<p>If your plain JS fu is weak, here are some resources to help you out:</p>
+
+<ul>
+<li><a href="http://eloquentjavascript.net">Eloquent Javascript</a>: A wonderful book (also available in print) that takes you back to JavaScript basics</li>
+<li><a href="https://github.com/rmurphey/js-assessment">A Test-Driven JS Assessment</a>: A set of failing tests that cover various JavaScript topics; can you write code to make the tests pass?</li>
+<li><a href="http://paulirish.com/2010/10-things-i-learned-from-the-jquery-source/">10 things I learned from the jQuery Source</a> is an oldie but goodie from Paul Irish that shows what you can learn by reading other people&#8217;s code.</li>
+</ul>
+
+
+<h2>Git (and a Github account)</h2>
+
+<p>If you&#8217;re not on Github, you&#8217;re essentially unable to participate in the rich open-source community that has arisen around front-end development technologies. Cloning a repo to try it out should be second-nature to you, and you should understand how to <a href="http://nvie.com/posts/a-successful-git-branching-model/">use branches on collaborative projects</a>.</p>
+
+<p>Need to boost your git skills?</p>
+
+<ul>
+<li><a href="http://help.github.com/">help.github.com</a></li>
+<li><a href="http://help.github.com/git-cheat-sheets/">Github git cheat sheet</a></li>
+<li><a href="http://cheat.errtheblog.com/s/git">More cheat sheet</a></li>
+<li><a href="http://pinboard.in/u:rmurphey/t:git/">More git links</a></li>
+</ul>
+
+
+<h2>Modularity, dependency management, and production builds</h2>
+
+<p>The days of managing dependencies by throwing one more script or style tag on the page are long gone. Even if you haven&#8217;t been able to incorporate great tools like <a href="http://requirejs.org">RequireJS</a> into your workflow at work, you should find time to investigate them in a personal project or in a project like <a href="https://github.com/tbranyen/backbone-boilerplate">Backbone Boilerplate</a>, because the benefits they convey are huge. RequireJS in particular lets you develop with small, modular JS and CSS files, and then concatenates and minifies them via its optimization tool for production use.</p>
+
+<p>Skeptical of AMD? That&#8217;s no excuse to be doing nothing. At the very least, you should be aware of tools like <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a> or <a href="https://developers.google.com/closure/compiler/">Closure Compiler</a> that will intelligently minify your code, and then concatenate those minified files prior to production.</p>
+
+<p>If you&#8217;re writing plain CSS &#8211; that is, if you&#8217;re not using a preprocessor like Sass or Stylus &#8211; RequireJS can help you keep your CSS files modular, too. Use <code>@import</code> statements in a base file to load dependencies for development, and then run the RequireJS <a href="http://requirejs.org/docs/optimization.html#onecss">optimizer</a> on the base file to create a file built for production.</p>
+
+<h2>In-Browser Developer Tools</h2>
+
+<p>Browser-based development tools have improved tremendously over the last couple of years, and they can dramatically improve your development experience if you know how to use them. (Hint: if you&#8217;re still using <code>alert</code> to debug your code, you&#8217;re wasting a lot of time.)</p>
+
+<p>You should probably find one browser whose developer tools you primarily use &#8211; I&#8217;m partial to <a href="https://developers.google.com/chrome-developer-tools/">Google Chrome&#8217;s Developer Tools</a> these days &#8211; but don&#8217;t dismiss the tools in other browsers out of hand, because they are constantly adding useful features based on developer feedback. Opera&#8217;s <a href="http://my.opera.com/dragonfly/blog/">Dragonfly</a> in particular has some features that make its developer tools stand out, such as an (experimental) CSS profiler, customizable keyboard shortcuts, remote debugging without requiring a USB connection, and the ability to save and use custom color palettes.</p>
+
+<p>If your understanding of browser dev tools is limited, <a href="http://fixingthesejquery.com/#slide1">Fixing these jQuery</a> is a great (and not particularly jQuery-centric) overview of debugging, including how to do <a href="https://developers.google.com/chrome-developer-tools/docs/scripts-breakpoints">step debugging</a> &#8211; a life-altering thing to learn if you don&#8217;t already know it.</p>
+
+<h2>The command line</h2>
+
+<p>Speaking of the command line, being comfortable with it is no longer optional &#8211; you&#8217;re missing out on way too much if you&#8217;re not ready to head over to a terminal window and get your hands dirty. I&#8217;m not saying you have to do <em>everything</em> in the terminal &#8211; I won&#8217;t take your git GUI away from you even though I think you&#8217;ll be better off without it eventually &#8211; but you should absolutely have a terminal window open for whatever project you&#8217;re working on. There are a few command line tasks you should be able to do without thinking:</p>
+
+<ul>
+<li><code>ssh</code> to log in to another machine or server</li>
+<li><code>scp</code> to copy files to another machine or server</li>
+<li><code>ack</code> or <code>grep</code> to find files in a project that contain a string or pattern</li>
+<li><code>find</code> to locate files whose names match a given pattern</li>
+<li><code>git</code> to do at least basic things like <code>add</code>, <code>commit</code>, <code>status</code>, and <code>pull</code></li>
+<li><code>brew</code> to use Homebrew to install packages</li>
+<li><code>npm</code> to install Node packages</li>
+<li><code>gem</code> to install Ruby packages</li>
+</ul>
+
+
+<p>If there are commands you use frequently, edit your <code>.bashrc</code> or <code>.profile</code> or <code>.zshrc</code> or whatever, and create an <a href="http://tldp.org/LDP/abs/html/aliases.html">alias</a> so you don&#8217;t have to type as much. You can also add aliases to your <code>~/.gitconfig</code> file. Gianni Chiappetta&#8217;s <a href="https://github.com/gf3/dotfiles">dotfiles</a> are an excellent inspiration for what&#8217;s possible.</p>
+
+<p><em>Note: If you&#8217;re on Windows, I don&#8217;t begin to know how to help you, aside from suggesting <a href="http://www.cygwin.com/">Cygwin</a>. Right or wrong, participating in the open-source front-end developer community is materially more difficult on a Windows machine. On the bright side, MacBook Airs are cheap, powerful,  and ridiculously portable, and there&#8217;s always Ubuntu or another *nix.</em></p>
+
+<h2>Client-side templating</h2>
+
+<p>It wasn&#8217;t so long ago that it was entirely typical for servers to respond to XHRs with a snippet of HTML, but sometime in the last 12 to 18 months, the front-end dev community saw the light and started demanding pure data from the server instead. Turning that data into HTML ready to be inserted in the DOM can be a messy and unmaintainable process if it&#8217;s done directly in your code. That&#8217;s where <a href="http://www.slideshare.net/garann/using-templates-to-achieve-awesomer-architecture">client-side templating libraries</a> come in: they let you maintain templates that, when mixed with some data, turn into a string of HTML. Need help picking a templating tool? Garann Means&#8217; <a href="http://garann.github.com/template-chooser/">template chooser</a> can point you in the right direction.</p>
+
+<h2>CSS preprocessors</h2>
+
+<p>Paul Irish <a href="https://twitter.com/#!/paul_irish/status/188329390822801409">noted</a> the other day that we&#8217;re starting to see front-end devs write code that&#8217;s very different from what ends up in production, and code written with CSS preprocessors is a shining example of this. There&#8217;s still a vocal crowd that feels that pure CSS is the only way to go, but they&#8217;re <a href="http://www.stuffandnonsense.co.uk/blog/about/less">starting to come around</a>. These tools give you features that arguably should be in CSS proper by now &#8211; variables, math, logic, mixins &#8211; and they can also help smooth over the CSS property prefix mess.</p>
+
+<h2>Testing</h2>
+
+<p>One of the joys of writing modular, loosely coupled code is that your code becomes vastly easier to test, and with tools like <a href="https://github.com/cowboy/grunt">Grunt</a>, setting up a project to include tests has never been easier. Grunt comes with QUnit integration, but there are a host of testing frameworks that you can choose from &#8211; <a href="https://github.com/pivotal/jasmine/wiki">Jasmine</a> and <a href="http://visionmedia.github.com/mocha/">Mocha</a> are a couple of my current favorites &#8211; depending on your preferred style and the makeup of the rest of your stack.</p>
+
+<p>While testing is a joy when your code is modular and loosely coupled, testing code that&#8217;s not well organized can be somewhere between difficult and impossible. On the other hand, forcing yourself to write tests &#8211; perhaps before you even write the code &#8211; will help you organize your thinking <em>and</em> your code. It will also let you refactor your code with greater confidence down the line.</p>
+
+<ul>
+<li>A short <a href="http://vimeo.com/20457625">screencast</a> I recorded about testing your jQuery with Jasmine.</li>
+<li>An example of <a href="https://github.com/cowboy/jquery-bbq/blob/master/unit/unit.js">unit tests</a> on the jquery-bbq plugin.</li>
+</ul>
+
+
+<h2>Process automation (rake/make/grunt/etc.)</h2>
+
+<p>Grunt&#8217;s ability to set up a project with built-in support for unit tests is one example of process automation. The reality of front-end development is that there&#8217;s a whole lot of repetitive stuff we have to do, but as a friend once told me, a good developer is a lazy developer: as a rule of thumb, if you find yourself doing the same thing three times, it&#8217;s time to automate it.</p>
+
+<p>Tools like <code>make</code> have been around for a long time to help us with this, but there&#8217;s also <code>rake</code>, <code>grunt</code>, and others. Learning a language other than JavaScript can be extremely helpful if you want to automate tasks that deal with the filesystem, as Node&#8217;s async nature can become a real burden when you&#8217;re just manipulating files. There are lots of task-specific automation tools, too &#8211; tools for deployment, build generation, code quality assurance, and more.</p>
+
+<h2>Code quality</h2>
+
+<p>If you&#8217;ve ever been bitten by a missing semicolon or an extra comma, you know how much time can be lost to subtle flaws in your code. That&#8217;s why you&#8217;re running your code through a tool like <a href="http://www.jshint.com/">JSHint</a>, right? It&#8217;s <a href="http://www.jshint.com/options/">configurable</a> and has lots of ways to integrate it into your <a href="http://www.jshint.com/platforms/">editor or build process</a>.</p>
+
+<h2>The fine manual</h2>
+
+<p>Alas, there is no manual for front-end development, but <a href="https://developer.mozilla.org/en-US/">MDN</a> comes pretty close. Good front-end devs know to prefix any search engine query with <code>mdn</code> &#8211; for example, <code>mdn javascript arrays</code> &#8211; in order to avoid the for-profit plague that is w3schools.</p>
+
+<h2>The End</h2>
+
+<p>As with anything, reading about these things won&#8217;t make you an expert, or even moderately skilled &#8211; the only surefire way to get better at a thing is to <a href="http://rmurphey.com/blog/2011/05/20/getting-better-at-javascript/">do that thing</a>. Good luck.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/10/greenfielding/">Greenfielding</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-10T12:19:00-05:00" pubdate data-updated="true">Apr 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m officially one-third of the way through my self-imposed month of unemployment before I join <a href="http://bocoup.com">Bocoup</a> at the beginning of May, and I&#8217;ve been spending most of what would normally be my working hours on a small demo to support talks at <a href="http://2012.front-trends.com/">conferences</a> I will be <a href="http://backboneconf.com/">speaking at</a> this <a href="http://2012.texasjavascript.com/">summer</a>. It&#8217;s just a <a href="https://github.com/rmurphey/srchr-demo">little app</a> that searches various services, and displays the results &#8211; so simple that, when I showed it to Melissa, she helpfully asked why I wouldn&#8217;t just use Google.</p>
+
+<p>It&#8217;s been about 18 months since I last got to start a project from scratch &#8211; in that case, the codebase that became <a href="http://mulberry.toura.com">Mulberry</a> &#8211; but even then, I didn&#8217;t have control over the full stack of technologies, just the JavaScript side of things. Over the course of my time on that project, I came to be extremely familiar with Dojo, fairly competent with Jasmine, decently comfortable with Ruby and its go-to simple server Sinatra, and somewhat conversational in Sass.</p>
+
+<p>I spent most of my time on that project working with technologies with which I was already pretty comfortable. Interactions with new technologies came in dribs and drabs (except for that one time I decided to test my Ruby skills by rewriting our entire build process), and all of my learning was backed up by a whole lot of institutional knowledge.</p>
+
+<p>The consulting world, of course, is a wee bit different: you interact frequently with new technologies, and you never know what a client might ask you to do. Learning comes in bursts, and the ability to quickly come up to speed with a technology is imperative. On a six-week project, you can&#8217;t spend the first 40 hours getting your bearings.</p>
+
+<p>Even though I spent three years as a consultant, returning to that world of constant learning was feeling a tad intimidating. And so for this project, I decided to make a point of leaving that comfort zone, and intentionally chose technologies &#8211; Node, Bootstrap, Backbone, Mocha, RequireJS &#8211; that I hadn&#8217;t really had a chance to work with in depth (or at all).</p>
+
+<h2>On Learning</h2>
+
+<p>Greenfield projects are few and far between, and it&#8217;s easy to get in a rut by sticking with the tools you already know. Some of my most exciting times at Toura weren&#8217;t when I was writing JavaScript, but rather when I was learning how to talk to the computer in a whole new language. Greenfielding a personal project is a special treat &#8211; it never really has to be &#8220;finished,&#8221; and no one&#8217;s going to be mad at you if it turns out you made a shitty choice, so you&#8217;re free to try things that are less of a sure thing than they would need to be if you were getting paid.</p>
+
+<p>Speaking personally, it can also be a little intimidating to learn a new thing because learning often involves asking for help, and asking for help requires admitting that I don&#8217;t already know how to do the thing that people might expect I already know how to do.</p>
+
+<p>Sometimes the thing that gets in the way of starting a new learning project is actually the fear that I will get stuck. What does it mean if the person who talks at conferences about principles code organization can&#8217;t figure out how best to structure a particular app with Backbone? What does it mean if the person who&#8217;s been encouraging people to build their JavaScript can&#8217;t get RequireJS to generate a proper build? What will I say to <a href="http://blog.izs.me/">Isaac</a>, now that he is standing in front of me and introducing himself, when I have not in fact spent any quality time with Node prior to this past weekend?</p>
+
+<p>Lucky for me, it turns out that all of this is mostly in my head. While I often preface my questions with a small dose of humility and embarrassment, it turns out that well articulated questions are usually greeted with thoughtful and helpful answers. If anything, I&#8217;m trying to be more communicative about the learning that I do, because I think it&#8217;s important that people feel comfortable acknowledging that they used to not know a certain thing, and now they do. I also try to gently remind people that just because they have known something for months or years doesn&#8217;t mean they should look down upon the person enthusiastically blogging about it today.</p>
+
+<p>On that note &#8230; here&#8217;s what&#8217;s new to me these past couple of weeks :)</p>
+
+<h2>Twitter Bootstrap</h2>
+
+<p>I&#8217;ve written a lot of demo apps, and while my coding style has changed over the years, one thing has remained constant: they all look fairly terrible. In theory, we&#8217;re all smart enough to know that what a demo looks like doesn&#8217;t have any bearing on what it explains, but in reality a good-looking demo is simply more compelling, if only because the viewer isn&#8217;t distracted by the bad design.</p>
+
+<p>With this in mind, I decided to give <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> a try. When I first arrived at the site, I started looking for docs about how to set it up, but it turns out that I vastly overestimated Bootstrap&#8217;s complexity. Drop a style tag into your page (and, optionally, another style tag for the responsive CSS), look at the <a href="http://twitter.github.com/bootstrap/examples.html">examples</a>, and start writing your markup.</p>
+
+<p>What I really loved is that there were patterns for everything I needed, and those patterns were easy to follow and implement. Within an hour or so I had a respectable-looking HTML page with markup that didn&#8217;t seem to suck &#8211; that is, it looked good <em>and</em> it was a decent starting point if I ever wanted to apply a custom design.</p>
+
+<h2>Node</h2>
+
+<p>If you&#8217;ve ever talked to me about Node, you know that I have pretty mixed feelings about it &#8211; some days I feel like the people writing JavaScript in the browser really would have benefited if the people who have gravitated to Node had stuck around to invest their collective smarts in the world where 99% of JavaScript is still written. But that doesn&#8217;t really have anything to do with Node the technology, so much as Node the new shiny thing unburdened by browser differences.</p>
+
+<p>I&#8217;ve actually visited Node a couple of times previously &#8211; if you haven&#8217;t at least installed it, you might be living under a rock &#8211; and I was flattered that <a href="http://dev.garann.com">Garann</a> asked me to review her book <a href="http://shop.oreilly.com/product/0636920023258.do">Node for Front-End Developers</a>, but past experiences had left me frustrated.</p>
+
+<p>This time, something was different. I don&#8217;t rule out that it might be me, or even that learning some of the ins and outs of Ruby might have prepared me to understand Node &#8211; and packages and dependency management and writing for the server instead of the browser &#8211; better this time around. It could also be that the Node ecosystem has reached a point of maturity that it just hadn&#8217;t reached the last time I poked around.</p>
+
+<p>Regardless, I found that everything made a whole lot more sense this time, and my struggles this time were about forgetting to stringify an object before sending it as a response to a request, not about getting the server to start in the first place. I used the <code>q</code> module to give me my beloved promises for managing all the asynchronicity, and generally found it ridiculously pleasant to leave behind all the context switching I&#8217;d grown accustomed to while using JavaScript and Ruby side by side. I&#8217;ll probably still turn to Ruby for automating things on the command line (though I continue to be intrigued by <a href="https://github.com/cowboy/grunt">grunt</a>), but I&#8217;m ready to admit that it&#8217;s time for me to add Node to my toolbox.</p>
+
+<h2>Mocha</h2>
+
+<p>To be honest, I&#8217;d just planned on using <a href="https://github.com/pivotal/jasmine">Jasmine</a> for writing tests for this project, mostly because I&#8217;d never set up Jasmine myself, and I was interested in maybe getting it working with grunt for headless testing. I ended up bailing on that plan when, in the course of some Googling for answers about Jasmine, I came across <a href="http://visionmedia.github.com/mocha/">Mocha</a>.</p>
+
+<p>Mocha is a super-flexible testing framework that runs on Node and in the browser. You can choose your assertion library &#8211; that is, you can choose to write your tests like <code>assert(1, 1).ok()</code> or <code>expect(1).to.be(1)</code> depending on your preference. I decided to use the latter style, with the help of <a href="https://github.com/LearnBoost/expect.js">expect.js</a>. You can also choose your reporting style, including the ability to generate docs from your tests.</p>
+
+<p>I had to do a bit of finagling to get the browser-based tests working with my
+RequireJS setup, and ultimately I ended up just using my app&#8217;s server, running
+in dev mode, to serve the tests in the browser. I&#8217;m still working out how best
+to run just one test at a time in the browser, but all in all, discovering Mocha has probably been the best part of working on this project.</p>
+
+<h2>RequireJS</h2>
+
+<p><a href="http://requirejs.org/">RequireJS</a> is another tool that I&#8217;ve dabbled with in the past, but for the last 18 months I&#8217;ve been spending most of my time with Dojo&#8217;s pre-AMD build system, so I had some catching up to do. I don&#8217;t have a ton to say about RequireJS except:</p>
+
+<ul>
+<li>It&#8217;s gotten even easier to use since I last visited it.</li>
+<li>The docs are great and also gorgeous.</li>
+<li>While I haven&#8217;t had to bother him lately, James Burke, the author and maintainer of RequireJS, is a kind and incredibly helpful soul.</li>
+<li>The <a href="http://requirejs.org/docs/api.html#text"><code>text!</code></a> plugin makes working with client-side templates incredibly simple, without cluttering up your HTML with templates in script tags or hard-coding your templates into your JavaScript.</li>
+<li>The <a href="https://github.com/tbranyen/use.js"><code>use!</code></a> plugin makes it painless to treat libraries that don&#8217;t include AMD support just like libraries that do. I hear it might become an official plugin soon; I hope it will.</li>
+</ul>
+
+
+<h2>Backbone</h2>
+
+<p>This part was a tough choice, and I actually set out to use a different framework but ended up getting cold feet &#8211; even though this was just a personal project, it did need to reach some semblance of done-ness in some reasonable period of time. After a little bit of poking around at other options, I decided that, barring completely copping out and using Dojo, Backbone was going to be the best tool for this particular job on this particular schedule.</p>
+
+<p>I&#8217;m pretty torn about this, because I decided to use a framework that I <em>know</em> has shortcomings and limited magic, and I <em>know</em> that other options would serve me better in the long term. But I also know that the long term doesn&#8217;t exactly matter for this particular project. The thing that swayed me, really, was that with Backbone, I didn&#8217;t feel like I needed to grasp a whole slew of concepts before I could write my first line of code.</p>
+
+<p>I looked up plenty of things along the way, and rewrote my fair share of code when I discovered that I&#8217;d been Doing It Wrong, but I was able to maintain a constant forward momentum. With the other options I considered, I felt like I was going to have to climb a ladder of unknown height before making any forward progress.</p>
+
+<p>I feel like I made the right choice for this project, but it&#8217;s a choice I&#8217;d spend a lot more time on for a &#8220;real&#8221; project, and I&#8217;d be much more inclined to invest the initial energy in getting up to speed if the payoff was clearer. This, though, is a choice that people seem to be consistently terrible at, and so I feel like I should beat myself up about it just a little. It&#8217;s all too common to dig a ginormous hole for ourselves by choosing the technology that lets us start writing code the soonest; on the flip side, it&#8217;s all too common to choose a technology that&#8217;s complete overkill for the task at hand.</p>
+
+<h2>The End</h2>
+
+<p>The master branch of the <a href="https://github.com/rmurphey/srchr-demo">repo for the project</a> should be mostly stable (if incomplete) if you want to check it out. I&#8217;m going to close comments on this post in the hopes that you&#8217;ll write your own post about what you&#8217;ve been learning instead :)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a Language, Not a Religion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T11:18:00-05:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have six things to say:</p>
+
+<ol>
+<li><p>I am in a committed relationship with my partner Melissa. We will celebrate
+six years together on Sunday. We contribute frequently to political causes.</p></li>
+<li><p>I was deeply saddened yesterday to learn that Brendan Eich contributed money
+in support of a <a href="http://en.wikipedia.org/wiki/California_Proposition_8">political initiative</a> that
+sought to <em>rescind the court-established right for same-sex couples to
+marry</em> in the state of California. It has changed my view of him as a
+person, despite the fact that we have had a positive and professional
+relationship and he has been a great supporter of my JavaScript career. I
+think he is on the wrong side of history, and I hope that courts will
+continue to agree with me.</p></li>
+<li><p>I had a frank, private, and face-to-face conversation with Brendan about the
+issue during JSConf. I shared my disappointment, sadness, and disagreement.</p></li>
+<li><p>I have been dismayed to see this incident interpreted as a statement about
+the JavaScript community as a whole. This community is made up of so many
+people who believe so many different things, and yesterday I was reminded
+that they are all just people, and JavaScript is just a language, not a
+religion.  I shudder to think of a world where there is a political litmus
+test for entry into the community.  Indeed, I am extremely torn about
+introducing personal politics into my professional life*, as I fear it will
+encourage professional colleagues to opine about personal beliefs that are
+frankly none of their business. One of the great joys of working with
+computers is that they <a href="http://raganwald.posterous.com/a-womans-story">do not care who I am or what I believe</a>;
+I realize that to ask the same of people is unreasonable, but inviting
+politics into the workplace is a treacherously slippery slope. Unless my
+personal belief system presents an <em>imminent danger</em> to my colleagues, I am
+loath to welcome discussion of it by people who otherwise have no
+substantial or personal relationship with me.</p></li>
+<li><p>I believe individual companies must determine how best to address these
+issues, as their attitude toward them can have a significant impact on their
+ability to hire and retain talented people. I support <em>constructive
+pressure</em> on companies to align themselves with or distance themselves from
+political causes, but I would not support a company that prohibited its
+employees from participating in the political process. I urge anyone who is
+hurt or offended by this incident to engage with Brendan and Mozilla
+personally and professionally. Brendan is wrong on this issue, but he is a
+thoughtful and intelligent person, and he is also a human being.</p></li>
+<li><p>Finally: If this incident has made you angry or sad or disappointed, the most effective
+thing you can do is follow in Brendan&#8217;s footsteps by <strong>putting your money
+where your mouth is</strong>. Money speaks volumes in the American political
+system, and there are campaigns in progress right now that will <a href="http://www.protectncfamilies.org/">impact the rights of gays and lesbians</a>.
+Your <a href="https://protectallncfamilies.ngpvanhost.com/crmapi/contribute">contribution</a>
+of $50, $100, or $1,000 &#8211; or, in lieu of money, your time &#8211; will have far
+more impact than yet another angry tweet.</p></li>
+</ol>
+
+
+<p>And now I shall turn off the internet for a bit. Comments are disabled.
+Shocker, I know.</p>
+
+<p>* <em>It bears mentioning that, in certain cases, people making political
+contributions are required to include information about their employer. The
+inclusion of this information does not indicate that the employer supports &#8211;
+or is even aware of &#8211; the contribution.</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/26/bocoup/">Bocoup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-26T10:00:00-05:00" pubdate data-updated="true">Mar 26<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/26/bocoup/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/bocoup.png" alt="bocoup" /></p>
+
+<p>It wasn&#8217;t so long ago that I was giving my first talk about JavaScript at the
+2009 jQuery Conference, and it was there that Bocoup&#8217;s Boaz Sender and Rick
+Waldron created the (now-defunct) objectlateral.com, a celebration of an
+unfortunate typo in the conference program&#8217;s listing of my talk.</p>
+
+<p>A bond was forged, and ever since I&#8217;ve watched as <a href="http://bocoup.com">Bocoup</a>
+has grown and prospered. I&#8217;ve watched them do mind-boggling work for the likes
+of Mozilla, The Guardian, Google, and others, all while staying true to their
+mission of embracing, contributing to, and evangelizing open-web technologies.</p>
+
+<p>Today, I&#8217;m beyond excited &#8211; and also a wee bit humbled &#8211; to announce that
+<a href="http://weblog.bocoup.com/welcome-rebecca-murphey">I&#8217;m joining their consulting team</a>.
+As part of that role, I look forward to spending even more time working on and
+talking about patterns and best practices for developing client-side JavaScript
+applications. I also hope to work on new <a href="http://training.bocoup.com/">training offerings</a>
+aimed at helping people make great client-side applications with web technology.</p>
+
+<p>New beginnings have a terrible tendency to be accompanied by endings, and while
+the Bocoup opportunity is one I couldn&#8217;t refuse, it&#8217;s with a heavy heart that I
+bid farewell to the team at Toura. I&#8217;m proud of what we&#8217;ve built together, and
+that we&#8217;ve shared so much of it with the developer community in the form of
+<a href="http://github.com/Toura/mulberry">Mulberry</a>. The beauty of open source means
+that I fully expect to continue working on and with Mulberry once I leave
+Toura, but I know it won&#8217;t be the same.</p>
+
+<p>I&#8217;ll be spending the next few days tying up loose ends at Toura, and then I&#8217;m
+taking a break in April to hit JSConf, spend some time in Berlin, and head to
+Warsaw to speak at <a href="http://2012.front-trends.com/">FrontTrends</a>. I&#8217;ll make my
+way back home in time to start with Bocoup on May 1.</p>
+
+<p>And so. To my teammates at Toura: I wish you nothing but the best, and look
+forward to hearing news of your continued success. To Bocoup: Thanks for
+welcoming me to the family. It&#8217;s been a long time coming, and I&#8217;m glad the day
+is finally here.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/25/girls-and-computers/">Girls and Computers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-25T12:00:00-05:00" pubdate data-updated="true">Mar 25<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/25/girls-and-computers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After a week that seemed just chock full of
+<a href="http://storify.com/ireneros/sexist-language-earns-sqoot-lots-of-fury">people</a>
+being <a href="http://storify.com/charlesarthur/oh-hai-sexism">stupid</a> about women in
+technology, I just found myself thinking back on how it was that I ended up
+doing this whole computer thing in the first place.  I recorded a video a while
+back for the <a href="http://highvisibilityproject.org/2011/10/rebecca-murphey/">High Visibility Project</a>, but that
+really just told the story of how I ended up doing web development. The story
+of how I got into computers begain when I was unequivocally a girl. It was
+1982.</p>
+
+<p>Back then, my dad made eyeglasses. My mom stayed at home with me and my
+year-old sister &#8211; which she&#8217;d continue to do til I was a teenager, when my
+brother finally entered kindergarten eight years later. Their mortgage was $79
+&#8211; about $190 in today&#8217;s dollars &#8211; which is a good thing because my dad made
+about $13,000 a year. We lived in Weedsport, New York, a small town just
+outside of Syracuse. We walked to the post office to get our mail. The farmers
+who lived just outside town were the rich people. In the winters the fire
+department filled a small depression behind the elementary school with water
+for a tiny skating rink. There were dish-to-pass suppers in the gym at church.</p>
+
+<p>In 1982, Timex came out with the <a href="http://en.wikipedia.org/wiki/Timex_Sinclair">Timex Sinclair TS-1000</a>,
+selling 500,000 of them in just six months. The computer, a few times thicker
+than the original iPad but with about the same footprint, cost $99.95 &#8211; more
+than that mortgage payment. When everyone else in town was getting cable,
+my parents decided that three channels were good enough for them &#8211; it&#8217;s
+possible they still had a black-and-white TV &#8211; and bought a computer instead.</p>
+
+<p><img src="/images/ts1000.JPG" alt="Timex Sinclair TS-1000" /></p>
+
+<p>I remember tiny snippets of that time &#8211; playing kickball in my best friend
+Beth&#8217;s yard, getting in trouble for tricking my mother into giving us milk that
+we used to make mud pies, throwing sand in the face of my friend Nathan
+because I didn&#8217;t yet appreciate that it really sucks to get sand thrown in your
+face &#8211; but I vividly remember sitting in the living room of our house on
+Horton Street with my father, playing with the computer.</p>
+
+<p>A cassette player was our disk drive, and we had to set the volume just right
+in order to read anything off a tape &#8211; there was actually some semblance of a
+flight simulator program that we&#8217;d play, after listening to the tape player
+screech for minutes on end. Eventually we upgraded the computer with a
+fist-sized brick of RAM that we plugged into the back of the computer, bumping
+our total capacity from 2K to 34K. I wrote programs in BASIC, though for the
+life of me I can&#8217;t remember what any of them did. The programs that were the
+most fun, though, were the ones whose assembly I painstakingly transcribed,
+with my five-year-old fingers, from the back of magazines &#8211; pages and pages of
+letters and numbers I didn&#8217;t understand on any level, and yet they made magic
+happen if I got every single one right.</p>
+
+<p>A string of computers followed. My parents bought a <a href="http://en.wikipedia.org/wiki/Coleco_Adam">Coleco Adam</a> when we moved
+to Horseheads, New York &#8211; apparently the computer came with a certificate
+redeemable for $500 upon my graduation from high school, but Coleco folded long
+before they could cash it in. I made my first real money by typing a crazy
+lady&#8217;s crazy manuscript about crazy food into an Apple IIe that we had plugged
+into our TV, and my uncle and I spent almost the entirety of his visit from
+Oklahoma writing a game of Yahtzee! on that computer, again in BASIC.</p>
+
+<p><img src="/images/rebecca-computer.jpg" alt="Me at a computer fair at the mall with my sister, my mother, and my friend
+Michael" /></p>
+
+<p><em>Above: Me at a computer fair at the mall with my sister, my
+mother, and my friend Michael. &#8220;You were giving us all a tutorial, I can tell,&#8221;
+says my mom. Note the 5-1/4&#8221; external floppy drive.</em></p>
+
+<p>In middle school, I started a school newspaper, and I think we used some
+prehistoric version of PageMaker to lay it out. When high school rolled around,
+I toiled through hand-crafting the perfect letters and lines and arrows in
+Technical Drawing so I could take CAD and CAM classes and make the computer
+draw letters and lines and arrows for me, and quickly proceeded to school just
+about every boy in the class. In my senior year of high school, I oversaw the
+school yearbook&#8217;s transition from laying out pages on paper to laying out pages
+with computers, this time the vaguely portable (it had a handle on the back!)
+<a href="http://en.wikipedia.org/wiki/Macintosh_Classic">Mac Classic</a>.
+We used PageMaker again; the screen was black and white and 9&#8221;, diagonally.</p>
+
+<p><img src="/images/mac-classic.jpg" alt="Macintosh Classic" /></p>
+
+<p>It was around then that a friend gave me a modem and &#8211; to his eventual
+chagrin, when he got the bill &#8211; access to his Delphi account, giving me my
+first taste of the whole Internet thing in the form of telnet, gopher, and IRC.
+When I went to college the following year, I took with me a computer with
+perhaps a 10MB hard drive, and no mouse.</p>
+
+<p>Once again I found myself poring over magazines to discover URIs and,
+eventually, URLs that I could type to discover a whole new world of
+information. In 1995, I spent the summer making my college newspaper&#8217;s web
+site, previewing it in Lynx &#8211; it felt like there wasn&#8217;t much to learn when
+there was so little difference between the markup and what I saw on the screen.
+I would go to the computer lab to use NCSA&#8217;s Mosaic on the powerful RISC 6000
+workstations, because they had a mouse. Yahoo! was about one year old. My
+friend Dave, who lived down the street, installed Windows 95 that summer and
+invited me over to show me. It was amazing. We were living in the future.</p>
+
+<p>My early years with computers seem pretty tame &#8211; I wasn&#8217;t tearing them apart
+or building my own or doing anything particularly interesting with them, but I
+was using them, I was telling them what to do and they were mostly listening,
+and <em>it never made me feel like I was weird</em>. To the contrary, it made me
+feel powerful and empowered. I felt like a part of this ever-growing community
+of people who understood, eventually, that computers were going to change the
+world. It was the people who didn&#8217;t understand this who were weird and beneath
+us. It was the people who understood computers better than me of whom I stood in
+awe.</p>
+
+<p>I can barely remember a time when computers weren&#8217;t a part of my life, and yet
+when they first entered my life, their presence was incredibly exceptional.
+These days, of course, computers are ubiquitous, but interaction with them at
+the copy-assembly-from-the-back-of-a-magazine level is almost nonexistent.
+Parents who can approach a computer with the same awe and wonder and
+determination as a child &#8211; as I must imagine that my dad did in 1982 &#8211; are
+likely equally rare.</p>
+
+<p>In some ways, it is like the very ubiquity of technology has led us back to a
+world where socially normative gender roles take hold all over again, and the
+effort we&#8217;re going to need to put into overcoming that feels overwhelming
+sometimes. Words can&#8217;t express my gratitude for the parents I have, for
+that $99.95 investment they made in me, and for fact that I was lucky enough to
+be 5 and full of wonder in 1982.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/">Thoughts on a (Very) Small Project With Backbone and Backbone Boilerplate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-11T21:30:00-05:00" pubdate data-updated="true">Mar 11<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I worked with <a href="http://documentcloud.github.com/backbone/">Backbone</a> and the
+<a href="https://github.com/tbranyen/backbone-boilerplate">Backbone Boilerplate</a> for
+the first time last weekend, putting together a small <a href="https://github.com/rmurphey/bvjs">demo app</a> for a presentation I gave last week at
+BazaarVoice. I realize I&#8217;m about 18 months late to the Backbone party, here,
+but I wanted to write down my thoughts, mostly because I&#8217;m pretty sure they&#8217;ll
+change as I get a chance to work with both tools more.</p>
+
+<h2>Backbone</h2>
+
+<p>Backbone describes itself as a tool that &#8220;gives structure to web applications,&#8221;
+but, at the risk of sounding pedantic, I think it would be more accurate to say
+that it gives you tools that can help you structure your applications. There&#8217;s
+incredibly little prescription about how to use the tools that Backbone
+provides, and I have a feeling that the code I wrote to build my simple app
+looks a lot different than what someone else might come up with.</p>
+
+<p>This lack of prescription feels good and bad &#8211; good, because I was able to use
+Backbone to pretty quickly set up an infrastructure that mirrored ones I&#8217;ve
+built in the past; bad, because it leaves open the possibility of lots of
+people inventing lots of wheels. To its credit, it packs a lot of power in a
+very small package &#8211; 5.3k in production &#8211; but a real app is going to require
+layering a lot more functionality on top of it. Ultimately, the best way to
+think of Backbone is as the client-side app boilerplate you&#8217;d otherwise have to
+write yourself.</p>
+
+<p>My biggest complaint about Backbone is probably how unopinionated it is about
+the view layer. Its focus seems to be entirely on the data layer, but the view
+is still where we spend the vast majority of our time. Specifically, I think
+Backbone could take a page from Dojo, and embrace the concept of &#8220;templated
+widgets&#8221;, because that&#8217;s what people seem to be doing with Backbone views
+anyway: mixing data with a template to create a DOM fragment, placing that
+fragment on the page, listening for user interaction with the fragment, and
+updating it as required. Backbone provides for some of this, specifically the
+event stuff, but it leaves you to write your own functionality when it comes to
+templating, placing, and updating. I think this is a solveable problem without
+a whole lot of code, and want to spend some time trying to prove it, but I know
+I need to look into the Backbone Layout Manager before I get too carried away.</p>
+
+<h2>Backbone Boilerplate</h2>
+
+<p>This project from Tim Branyen was a life-saver &#8211; it gave me an absolutely
+enormous head start when it came to incorporating
+<a href="http://requirejs.org/">RequireJS</a>, setting up my application directories, and
+setting up a development server. It also included some great inline docs that
+helped me get my bearings with Backbone.</p>
+
+<p>There are a couple of ways I think the boilerplate could be improved, and I&#8217;d be
+curious for others&#8217; opinions:</p>
+
+<ul>
+<li>The sample app includes the concept of &#8220;modules,&#8221; which seem to be a single
+file that include the models, collections, views, and routes for a &#8230;
+module. I don&#8217;t love the idea of combining all of this into a single file,
+because it seems to discourage smart reuse and unit testing of each piece of
+functionality. In the app I created, I abandoned the concept of modules, and
+instead broke my app into &#8220;components&#8221;, &#8220;controllers&#8221;, and &#8220;services&#8221;. I
+explain this breakdown in a bit more depth in the <a href="http://www.slideshare.net/rmurphey/bvjs">presentation I gave at BazaarVoice</a>. I&#8217;m not sure this is
+the right answer for all apps, but I think modules oversimplify things.</li>
+<li>The boilerplate includes a <code>namespace.js</code> file. It defines a namespace
+object, and that object includes a <code>fetchTemplate</code> method. It seems this
+method should only be used by views, and so I&#8217;d rather see something along
+the lines of an enhanced View that provides this functionality. That&#8217;s what I
+did with the <a href="https://github.com/rmurphey/bvjs/blob/master/app/components/base.js">base component module</a>
+in my sample app.</li>
+<li>I&#8217;m super-glad to see Jasmine included in the test directory, but
+unfortunately the examples show how to write Jasmine tests, not Jasmine tests
+for a Backbone app. As a community, we definitely need to be showing more
+examples of how to test things, and this seems like a good opportunity to
+distribute that knowledge.</li>
+</ul>
+
+
+<h2>Overall</h2>
+
+<p>I feel a little silly that I&#8217;m just now getting around to spending any time
+with Backbone, and I know that I only scratched the surface, but I like what I
+saw. I think it&#8217;s important to take it for what it is: an uber-tiny library
+that gets you pointed in the right direction. What I really want to see are
+fuller-fledged frameworks that build on top of Backbone, because I think
+there&#8217;s a lot more that can be standardized beyond what Backbone offers. I&#8217;m
+hoping to have a bit more time in April to dig in, and hopefully I can flesh
+out some of these ideas into something useful.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/08/community-conferences/">Community Conferences</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-08T08:29:00-06:00" pubdate data-updated="true">Mar 8<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/08/community-conferences/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In 2010, I helped put on the first TXJS. We sold our first tickets for $29, and
+I think the most expensive tickets went for something like $129. We had about
+200 people buy tickets, we had speakers like Douglas Crockford, Paul Irish, and
+John Resig, and we had sponsors like Facebook and Google. Our total budget was
+something like $30,000, and every out-of-town speaker had their travel and
+accommodations paid for.</p>
+
+<p>In May, O&#8217;Reilly Media is holding another JavaScript conference in San
+Francisco, called FluentConf. I recently came to know that they are charging
+$100,000 for top-tier sponsorships, and that they are offering a 10-minute
+keynote as part of the package.</p>
+
+<p>This turned my stomach, and not just because I believe it cheapens the
+experience of attendees, who will pay hundreds of dollars themselves. What
+really upset me was that a few weeks ago, I was approached to be on the speaker
+selection committee of FluentConf, and that conversation led me to discover
+that FluentConf would not be paying for speaker travel and accommodations. And
+so the other day, I tweeted:</p>
+
+<blockquote><p>conference #protip: save your money &#8211; and your speaking skills &#8211; for events that don&#8217;t sell their keynotes for $100k</p></blockquote>
+
+<p>Last night, I was at the Ginger Man in Austin, and I checked the Twitters,
+discovering that Peter Cooper, one of the chairs of FluentConf, had replied to
+a conversation that arose from that tweet:</p>
+
+<blockquote><p>@rmurphey @tomdale If you&#8217;re referring to Fluent, that is news to me.</p></blockquote>
+
+<p>I will accept the weird fact that the co-chair of a conference didn&#8217;t know its
+speaking slots were for sale &#8211; I gather that it is essentially a volunteer
+role, and the co-chairs aren&#8217;t necessarily in the driver&#8217;s seat when it comes
+to decisions like this. I let Peter know that, indeed, I had a PDF that
+outlined all the sponsorship options.</p>
+
+<p>This is the part where, in some alternate reality, a mutual understanding of
+the offensiveness of this fact would have been achieved. What happened instead
+was a whole lot of name-calling, misquoting, and general weirdness.</p>
+
+<p>Here&#8217;s the deal. Conferences can run their event however they want, and they
+can make money hand over fist. They can even claim they are the giving
+JavaScript developers &#8220;an event of their own,&#8221; ignoring the existence of
+the actual community-run JavaScript events that have been around for years now.  I
+probably won&#8217;t go to or speak at an event that makes money hand over fist, but
+I don&#8217;t have any problem with the existence of such events, or with people&#8217;s
+involvement with them.  However, when a conference is making money hand over
+fist &#8211; my back of the napkin calculations would suggest that FluentConf stands
+to have revenues of well over a million dollars &#8211; then that conference has no
+excuse not to pay the relatively paltry costs associated with speaker travel
+and accommodations.</p>
+
+<p>A conference does not exist without its speakers. Those who speak at an event
+&#8211; the good ones, anyway &#8211; spend countless hours preparing and rehearsing, and
+they are away from home and work for days. While I do not discount the benefits
+that accrue to good speakers, the costs of being a speaker are non-trivial &#8211;
+and that&#8217;s <em>before</em> you get into the dollar costs of travel and accommodations.</p>
+
+<p>When an event is unwilling to cover even those hard costs &#8211; nevermind the
+preparation time and time away from work and home &#8211; it materially affects the
+selection of speakers.  It&#8217;s even worse when those same conferences claim to
+desire <a href="http://fluentconf.com/fluent2012/public/content/about#diversity">diversity</a>;
+the people they claim to want so badly are the very people most likely to be
+discouraged when they find out they have to pay their own way to the stage.</p>
+
+<p>In the conversation last night, I made this point:</p>
+
+<blockquote><p>when only the people who can afford to speak can speak, then only the people who can afford to speak will
+speak.</p></blockquote>
+
+<p>Amy Hoy responded with a criticism of community-run conferences:</p>
+
+<blockquote><p>and when only ppl who can order a ticket in 3 seconds can afford to come, only ppl who can order a ticket in 3 seconds can come</p></blockquote>
+
+<p>I know that getting tickets to the actual community-run events is hard, but
+that is because the community-run events flat-out ignore the economics of
+supply and demand, choosing instead to sell tickets at affordable prices even
+if it means they will sell out in a heartbeat, leaving a boatload of potential
+profit on the table. And yet those events &#8211; JSConf, TXJS, and the like &#8211; have
+still figured out how to cover speaker costs and provide attendees and sponsors
+with unforgettable experiences.</p>
+
+<p>When an event with revenues exceeding a million dollars is unwilling to cover
+those costs, while simultaneously selling speaking slots, I do not hesitate for
+a moment to call that event out, and I do not hesitate to call
+on <a href="http://fluentconf.com/fluent2012/public/content/about#commitee">respected members of the community</a> to sever
+their ties with the event. I&#8217;m not embarrassed about it, and you can call me all
+the names you want.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

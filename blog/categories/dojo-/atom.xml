@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dojo, | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/dojo-/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons From a Rewrite]]></title>
+    <link href="http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite/"/>
+    <updated>2011-07-06T10:50:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2011/07/06/lessons-from-a-rewrite</id>
+    <content type="html"><![CDATA[<p>MVC and friends have been around for decades, but it’s only in the last couple
+of years that broad swaths of developers have started applying those patterns
+to JavaScript. As that awareness spreads, developers eager to use their
+newfound insight are presented with a target-rich environment, and the
+temptation to rewrite can be strong.</p>
+
+<blockquote><p>There’s a subtle reason that programmers always want to throw away the code
+and start over. The reason is that they think the old code is a mess. … The reason
+that they think the old code is a mess is because of a cardinal, fundamental
+law of programming: It’s harder to read code than to write it. - <a href="http://www.joelonsoftware.com/articles/fog0000000069.html"> Joel Spolsky
+</a></p></blockquote>
+
+<p>When I started working with <a href="http://toura.com/"> Toura Mobile </a> late last year, they already had
+a product: a web-based CMS to create the structure of a mobile application and
+populate it with content, and a PhoneGap-based application to consume the
+output of the CMS inside a native application. Customers were paying, but the
+development team was finding that delivering new features was a struggle, and
+bug fixes seemed just as likely to break something else as not. They contacted
+me to see whether they should consider a rewrite.</p>
+
+<p>With due deference to Spolsky, I don’t think it was a lack of readability
+driving their inclination to rewrite. In fact, the code wasn’t all that
+difficult to read or follow. The problem was that the PhoneGap side of things
+had been written to solve the problems of a single-purpose, one-off
+application, and it was becoming clear that it needed to be a flexible,
+extensible delivery system for all of the content combinations clients could
+dream up. It wasn’t an app — it was an app that made there be an app.</p>
+
+<blockquote><p>Where a new system concept or new technology is used, one has to build a system
+to throw away, for even the best planning is not so omniscient as to get it
+right the first time. Hence plan to throw one away; you will, anyhow. - Fred
+Brooks, <a href="http://en.wikipedia.org/wiki/The_Mythical_Man-Month"> The Mythical Man Month </a></p></blockquote>
+
+<p>By the time I’d reviewed the code and started writing up my findings, the
+decision had already been made: Toura was going to throw one away and start
+from scratch. For four grueling and exciting months, I helped them figure out
+how to do it better the second time around. In the end, I like to think we’ve
+come up with a solid architecture that’s going to adapt well to clients’
+ever-changing needs. Here, then, are some of the lessons we learned along the
+way.</p>
+
+<h2>Understand what you’re rewriting</h2>
+
+<p>I had spent only a few days with the codebase when we decided that we were
+going to rewrite it. In some ways, this was good — I was a fresh set of eyes,
+someone who could think about the system in a new way — but in other ways, it
+was a major hindrance. We spent a lot of time at the beginning getting me up to
+speed on what, exactly, we were making; things that went without saying for
+existing team members did not, in fact, go without saying for me.</p>
+
+<p>This constant need for explanation and clarification was frustrating at times,
+both for me and for the existing team, but it forced us to state the problem in
+plain terms. The value of this was incredible — as a team, we were far less
+likely to accept assumptions from the original implementation, even assumptions
+that seemed obvious.</p>
+
+<p>One of the key features of Toura applications is the ability to update them
+“over the air” — it’s not necessary to put a new version in an app store in
+order to update an app’s content or even its structure. In the original app,
+this was accomplished via generated SQL diffs of the data. If the app was at
+version 3, and the data in the CMS was at version 10, then the app would
+request a patch file to upgrade version 3 to version 10. The CMS had to
+generate a diff for all possible combinations: version 3 to version 10, version
+4 to version 10, etc. The diff consisted of queries to run against an SQLite
+database on the device. Opportunities for failures or errors were rampant,
+a situation exacerbated by the async nature of the SQLite interface.</p>
+
+<p>In the new app, we replicated the feature with vastly less complexity
+— whenever there is an update, we just make the full data available at an
+app-specific URL as a JSON file, using the same format that we use to provide
+the initial data for the app on the device. The new data is stored on the
+device, but it’s also retained in memory while the application is running via
+Dojo’s Item File Read Store, which allows us to query it synchronously. The
+need for version-by-version diffs has been eliminated.</p>
+
+<p>Restating the problem led to a simpler, more elegant solution that greatly
+reduced the opportunities for errors and failure. As an added benefit, using
+JSON has allowed us to meet needs that we never anticipated — the flexibility
+it provides has become a valuable tool in our toolbox.</p>
+
+<h2>Identify pain points</h2>
+
+<p>If the point of a rewrite is to make development easier, then an important step
+is to figure out what, exactly, is making development hard. Again, this was
+a time to question assumptions — as it turned out, there were things that had
+come to be accepted burdens that were actually relatively easy to address.</p>
+
+<p>One of the biggest examples of this was the time required to develop and test
+anything that might behave differently on one operating system versus another.
+For example, the Android OS has limited support for the audio and video tags,
+so a native workaround is required to play media on Android that is not
+required on iOS.</p>
+
+<p>In the original code, this device-specific branching was handled in a way that
+undoubtedly made sense at the beginning but grew unwieldy over time. Developers
+would create Mustache templates, wrapping the template tags in <code>/* */</code> so the
+templates were actually executable, and then compile those templates into plain
+JavaScript files for production. Here are a few lines from one of those
+templates:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">/&lt;em&gt; &lt;/sup&gt; &lt;/em&gt;/</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="s2">&quot;www/media/&quot;</span> <span class="o">+</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="err">/&lt;em&gt;  &lt;/em&gt;/</span>
+</span><span class='line'><span class="o">/&lt;</span><span class="nx">em</span><span class="o">&gt;</span>  <span class="o">&lt;</span><span class="sr">/em&gt;/</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">mediaPath</span> <span class="o">=</span> <span class="p">[</span><span class="nx">Toura</span><span class="p">.</span><span class="nx">getTouraPath</span><span class="p">(),</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">currentId</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="err">/&lt;em&gt;  &lt;/em&gt;/</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">imagesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">dimensionsList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">namesList</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">thumbsList</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="err">/&lt;em&gt;  &lt;/em&gt;/</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="err">/&lt;em&gt;  &lt;/em&gt;/</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>These templates were impossible to check with a code quality tool like JSHint,
+because it was standard to declare the same variable multiple times. Multiple
+declarations of the same variable meant that the order of those declarations
+was important, which made the templates tremendously fragile. The theoretical
+payoff was smaller code in production, but the cost of that byte shaving was
+high, and the benefit somewhat questionable — after all, we’d be delivering the
+code directly from the device, not over HTTP.</p>
+
+<p>In the rewrite, we used a simple configuration object to specify information
+about the environment, and then we look at the values in that configuration
+object to determine how the app should behave. The configuration object is
+created as part of building a production-ready app, but in development we can
+alter configuration settings at will. Simple <code>if</code> statements replaced fragile
+template tags.</p>
+
+<p>Since Dojo allows specifying code blocks for exclusion based on the settings
+you provide to the build process, we could mark code for exclusion if we really
+didn’t want it in production.</p>
+
+<p>By using a configuration object instead of template tags for branching, we
+eliminated a major pain point in day-to-day development. While nothing matches
+the proving ground of the device itself, it’s now trivial to effectively
+simulate different device experiences from the comfort of the browser. We do
+the majority of our development there, with a high degree of confidence that
+things will work mostly as expected once we reach the device. If you’ve ever
+waited for an app to build and install to a device, then you know how much
+faster it is to just press Command-R in your browser instead.</p>
+
+<h2>Have a communication manifesto</h2>
+
+<p>Deciding that you’re going to embrace an MVC-ish approach to an application is
+a big step, but only a first step — there are a million more decisions you’re
+going to need to make, big and small. One of the widest-reaching decisions to
+make is how you’ll communicate among the various pieces of the application.
+There are all sorts of levels of communication, from application-wide state
+management — what page am I on? — to communication between UI components — when
+a user enters a search term, how do I get and display the results?</p>
+
+<p>From the outset, I had a fairly clear idea of how this should work based on
+past experiences, but at first I took for granted that the other developers
+would see things the same way I did, and I wasn’t necessarily consistent
+myself. For a while we had several different patterns of communication,
+depending on who had written the code and when. Every time you went to use
+a component, it was pretty much a surprise which pattern it would use.</p>
+
+<p>After one too many episodes of frustration, I realized that part of my job was
+going to be to lay down the law about this — it wasn’t that my way was more
+right than others, but rather that we needed to choose a way, or else reuse and
+maintenance was going to become a nightmare. Here’s what I came up with:</p>
+
+<ul>
+<li><code>myComponent.set(key, value)</code> to change state (with the help of setter
+methods from Dojo’s <a href="http://dojotoolkit.org/reference-guide/dijit/_Widget.html">dijit._Widget mixin</a>)</li>
+<li><code>myComponent.on&amp;lt;Event&amp;gt;(componentEventData)</code> to announce state changes
+and user interaction; Dojo lets us
+<a href="http://dojotoolkit.org/reference-guide/dojo/connect.html">connect</a> to the
+execution of arbitrary methods, so other pieces could listen for these
+methods to be executed.</li>
+<li><code>dojo.publish(topic, [ data ])</code> to announce occurrences of app-wide interest,
+such as when the window is resized</li>
+<li><code>myComponent.subscribe(topic)</code> to allow individual components react to
+published topics</li>
+</ul>
+
+
+<p>Once we spelled out the patterns, the immediate benefit
+wasn’t maintainability or reuse; rather, we found that we didn’t have to make
+these decisions on a component-by-component basis anymore, and we could focus
+on the questions that were actually unique to a component. With conventions
+we could rely on, we were constantly discovering new ways to abstract and DRY
+our code, and the consistency across components meant it was easier to work
+with code someone else had written.</p>
+
+<h2>Sanify asynchronicity</h2>
+
+<p>One of the biggest challenges of JavaScript development — well, besides working
+with the DOM — is managing the asynchronicity of it all. In the old system,
+this was dealt with in various ways: sometimes a method would take a success
+callback and a failure callback; other times a function would return an object
+and check one of its properties on an interval.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">images</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">sqlite</span><span class="p">.</span><span class="nx">getMedias</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="s2">&quot;image&quot;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">onGetComplete</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">incomplete</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">onGetComplete</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">showImagesHelper</span><span class="p">(</span><span class="nx">images</span><span class="p">.</span><span class="nx">objs</span><span class="p">,</span> <span class="nx">choice</span><span class="p">)</span>
+</span><span class='line'><span class="p">},</span><span class="mi">10</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The problem here, of course, is that if <code>images.incomplete</code> never gets set to
+false — that is, if the <code>getMedias</code> method fails — then the interval will never
+get cleared. Dojo and now jQuery (since version 1.5) offer a facility for
+handling this situation in an elegant and powerful way. In the new version of
+the app, the above functionality looks something like this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="err">‘</span><span class="nx">image</span><span class="err">’</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">showImages</span><span class="p">,</span> <span class="nx">showImagesFail</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The <code>get</code> method of <code>toura.app.Data</code> returns an <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">immutable promise</a>
+— the promise’s then method makes the resulting value of the asynchronous get
+method available to <code>showImages</code>, but does not allow <code>showImages</code> to alter the
+value. The promise returned by the get method can also be stored in a variable,
+so that additional callbacks can be attached to it.</p>
+
+<p>Using promises vastly simplifies asynchronous code, which can be one of the
+biggest sources of complexity in a non-trivial application. By using promises,
+we got code that was easier to follow, components that were thoroughly
+decoupled, and new flexibility in how we responded to the outcome of an
+asynchronous operation.</p>
+
+<h2>Naming things is hard</h2>
+
+<p>Throughout the course of the rewrite we were constantly confronted with one of
+those pressing questions developers wrestle with: what should I name this
+variable/module/method/thing? Sometimes I would find myself feeling slightly
+absurd about the amount of time we’d spend naming a thing, but just recently
+I was reminded how much power those names have over our thinking.</p>
+
+<p>Every application generated by the Toura CMS consists of a set of “nodes,”
+organized into a hierarchy. With the exception of pages that are standard
+across all apps, such as the search page, the base content type for a page
+inside APP is always a node — or rather, it was, until the other day. I was
+working on a new feature and struggling to figure out how I’d display a piece
+of content that was unique to the app but wasn’t really associated with a node
+at all. I pored over our existing code, seeing the word node on what felt like
+every other line. As an experiment, I changed that word node to baseObj in
+a few high-level files, and suddenly a whole world of solutions opened up to me
+— the name of a thing had limiting my thinking.</p>
+
+<p>The lesson here, for me, is that the time we spent (and spend) figuring out
+what to name a thing is not lost time; perhaps even more importantly, the goal
+should be to give a thing the most generic name that still conveys what the
+thing’s job — in the context in which you’ll use the thing — actually is.</p>
+
+<h2>Never write large apps</h2>
+
+<p>I touched on this earlier, but if there is one lesson I take from every large
+app I’ve worked on, it is this:</p>
+
+<blockquote><p>The secret to building large apps is never build large apps. Break up your
+applications into small pieces. Then, assemble those testable, bite-sized
+pieces into your big application. - Justin Meyer</p></blockquote>
+
+<p>The more tied components are to each other, the less reusable they will be, and
+the more difficult it becomes to make changes to one without accidentally
+affecting another. Much like we had a manifesto of sorts for communication
+among components, we strived for a clear delineation of responsibilities among
+our components. Each one should do one thing and do it well.</p>
+
+<p>For example, simply rendering a page involves several small, single-purpose
+components:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">nodeRoute</span><span class="p">(</span><span class="nx">route</span><span class="p">,</span> <span class="nx">nodeId</span><span class="p">,</span> <span class="nx">pageState</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">pageState</span> <span class="o">=</span> <span class="nx">pageState</span> <span class="o">||</span> <span class="p">{};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="kd">var</span> <span class="nx">nodeModel</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">getModel</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">),</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>  <span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">getCurrentPage</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">nodeModel</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">home</span><span class="p">();</span>
+</span><span class='line'><span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">page</span> <span class="o">||</span> <span class="o">!</span><span class="nx">page</span><span class="p">.</span><span class="nx">node</span> <span class="o">||</span> <span class="nx">nodeId</span> <span class="o">!==</span> <span class="nx">page</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">page</span> <span class="o">=</span> <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">PageFactory</span><span class="p">.</span><span class="nx">createPage</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">page</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">back</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">toura</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">showPage</span><span class="p">(</span><span class="nx">pf</span><span class="p">,</span> <span class="nx">nodeModel</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">page</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">pageState</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="c1">// record node pageview if it is node-only</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">nodeId</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="o">!</span><span class="nx">pageState</span><span class="p">.</span><span class="nx">assetType</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">dojo</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;/node/view&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="nx">route</span><span class="p">.</span><span class="nx">hash</span> <span class="p">]);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The router observes a URL change, parses the parameters for the route from the
+URL, and passes those parameters to a function. The Data component gets the
+relevant data, and then hands it to the PageFactory component to generate the
+page. As the page is generated, the individual components for the page are also
+created and placed in the page. The PageFactory component returns the generated
+page, but at this point the page is not in the DOM. The UI component receives
+it, places it in the DOM, and handles the animation from the old page to the
+new one.</p>
+
+<p>Every step is its own tiny app, making the whole process tremendously testable.
+The output of one step may become the input to another step, but when input and
+output are predictable, the questions our tests need to answer are trivial:
+“When I asked the Data component for the data for node123, did I get the data
+for node123?”</p>
+
+<p>Individual UI components are their own tiny apps as well. On a page that
+displays a videos node, we have a video player component, a video list
+component, and a video caption component. Selecting a video in the list
+announces the selection via the list’s onSelect method. Dojo allows us to
+connect to the execution of object methods, so in the page controller, we have
+this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">videoList</span><span class="p">,</span> <span class="s1">&#39;onSelect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">assetId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">video</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_videoById</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoCaption</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="nx">video</span><span class="p">.</span><span class="nx">caption</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">videoPlayer</span><span class="p">.</span><span class="nx">play</span><span class="p">(</span><span class="nx">assetId</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The page controller receives the message and passes it along to the other
+components that need to know about it — components don’t communicate directly
+with one another. This means the component that lists the videos can list
+anything, not just videos — its only job is to announce a selection, not to do
+anything as a result.</p>
+
+<h2>Keep rewriting</h2>
+
+<blockquote><p>It takes confidence to throw work away … When people first start drawing,
+they’re often reluctant to redo parts that aren’t right … they convince
+themselves that the drawing is not that bad, really — in fact, maybe they meant
+it to look that way. - <a href="http://www.paulgraham.com/taste.html">Paul Graham, “Taste for Makers”</a></p></blockquote>
+
+<p>The blank slate offered by a rewrite allows us to fix old mistakes, but
+inevitably we will make new ones in the process. As good stewards of our code,
+we must always be open to the possibility of a better way of doing a thing. “It
+works” should never be mistaken for “it’s done.”</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Making sense of dojo.when: A simple XHR caching example]]></title>
+    <link href="http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/"/>
+    <updated>2010-08-29T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example</id>
+    <content type="html"><![CDATA[<p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
+
+
+
+
+<p>This is one of those things that was super-neat when I read about it, but it took me a while to incorporate it into my code &mdash; it&rsquo;s only in the last couple of weeks that I&rsquo;ve had that wonderful moment when I&rsquo;ve said &ldquo;oh, I could totally use <code>dojo.when</code> for that!&rdquo; Moments like these make me very happy.</p>
+
+
+
+
+<p>It&rsquo;s pretty common that an application makes an Ajax request for some data, and then caches that data so the request won&rsquo;t have to happen again; the pattern might look something like this:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">])</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">handleResponse</span><span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]);</span>
+</span><span class='line'><span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
+</span><span class='line'><span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here we have a function that takes an ID; the function looks in the cache to see if there&rsquo;s a value stored for the ID, and if so, it passes the stored value to a <code>handleResponse</code> function. If not, it does an XHR to get the data; when the XHR succeeds, it stores the data in the cache and, again, passes the value to the <code>handleResponse</code> function.</p>
+
+
+
+
+<p>There&rsquo;s nothing strictly wrong with this, but I discovered that some neat abstraction opportunities became more clear when I switched to using <code>dojo.when</code> instead:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">||</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
+</span><span class='line'>  <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}),</span>
+</span><span class='line'><span class="nx">handleResponse</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now we&rsquo;re telling our <code>getSomeStuff</code> function to look for a cached value; if it finds one, <code>dojo.when</code> will immediately pass that value to the <code>handleResponse</code> function. If it doesn&rsquo;t find one, it will run the XHR, and <code>dojo.when</code> will magically pass the XHR&rsquo;s response to the <code>handleResponse</code> function instead. This is hot.</p>
+
+
+
+
+<p>This works because <code>dojo.xhrGet</code> returns a &ldquo;promise&rdquo; object with a <code>then</code> method. <code>dojo.when</code> looks to see whether it got a promise object as its first argument; if so, it uses the <code>then</code> method of the promise object to attach the callback provided as the second argument to <code>dojo.when</code>. If not, it simply calls the callback immediately on the first argument. The real magic is actually in <code>dojo.Deferred</code>, not in <code>dojo.when</code> itself. Since all of Dojo&rsquo;s XHR methods return a <code>dojo.Deferred</code> promise, <code>dojo.when</code> will &ldquo;just work.&rdquo;</p>
+
+
+
+
+<p>I found that I was going through my application and ripping out instances of the old code, replacing it with the new. And then I had that &ldquo;oh sh*t I&rsquo;m copying and pasting, aren&rsquo;t I &hellip;&rdquo; moment, and saw my way to an abstraction.</p>
+
+
+
+
+<p>In my application, I was actually caching the responses using the URL from which I&rsquo;d requested them, which works out to be a perfectly unique ID for the data. (This particular part may or may not work in your application.) My abstraction was an essentially drop-in replacement for <code>dojo.xhrGet</code> calls:</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">cacheableXhrGet</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>  <span class="nx">req</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">||</span>
+</span><span class='line'>        <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">(</span><span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
+</span><span class='line'>          <span class="c1">// override the load handler</span>
+</span><span class='line'>          <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span> <span class="nx">settings</span><span class="p">));</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">load</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I can pass a settings object to <code>cacheableXhrGet</code> that looks exactly like the object I&rsquo;d pass to <code>dojo.xhrGet</code>, but replace the <code>load</code> function before actually passing it to <code>dojo.xhrGet</code>. But before the XHR even has a chance to get set up, I check my cache for a stored response; if I find one, I store it in the <code>req</code> variable, but otherwise I store the XHR there.</p>
+
+
+
+
+<p>In either case, the function defined at <code>settings.load</code> gets the proper response value via <code>dojo.when</code>. For bonus points, I then return either the cached value or the XHR &mdash; which means <em>other code can use the return value of <code>cacheableXhrGet</code> for its own <code>dojo.when</code></em>. How neat is that?</p>
+
+
+
+
+<h2>Conclusion</h2>
+
+
+
+
+<p>Promises and deferred&rsquo;s are a really pleasant tool to have in your JavaScript arsenal once you get the hang of them, and <code>dojo.when</code> seems like a great place to start understanding them.</p>
+
+
+
+
+<p>Out of the box, Dojo makes use of deferreds for all of its XHR functionality, meaning that you can pass around the return value of any Dojo XHR method and do fun things you can&rsquo;t do with jQuery&rsquo;s <code>$.ajax</code>, like add more callbacks to a request after you&rsquo;ve set it up.</p>
+
+
+
+
+<p>I&rsquo;ve just recently started realizing when I could incorporate <a href="http://docs.dojocampus.org/dojo/Deferred"><code>dojo.Deferred</code></a> functionality into my own code &mdash; again, now that I&rsquo;ve got the hang of it, I&rsquo;m pretty sure it&rsquo;s going to dramatically change how I write asynchronous code.</p>
+
+
+
+
+<p><em>Disclaimer: This post contains sample code for illustration purposes. In reality it&rsquo;s all namespaced and these naked functions are actually methods in classes and stuff, and the real code doesn&rsquo;t even look much like the code you see here. I&rsquo;ve also completely ignored questions of when to clear or invalidate the cache. You&rsquo;ve been warned.</em></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[EnterpriseDojo.com uses jQuery! ]]></title>
+    <link href="http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery/"/>
+    <updated>2010-08-21T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/08/21/enterprisedojo-com-uses-jquery</id>
+    <content type="html"><![CDATA[<p>And you should too ... for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
+
+
+<p>Here's an idea: Let's have an honest discussion about when a given solution makes sense and when it doesn't, rather than mocking a contributor to that discussion for choosing a perfectly appropriate tool for a perfectly mundane task. <a href="http://enterprisedojo.com">EnterpriseDojo.com</a> is a blog about using Dojo in the enterprise, not a blog about using Dojo on blogs.&nbsp;Snickering at its use of jQuery is approximately as useful as pointing to <a href="http://www.google.com/trends?q=jquery%2Cdojo%2Cyui">this graph</a> and saying case closed, leaving more reasonable, thoughtful people to explain <a href="http://stackoverflow.com/questions/2450696/what-happened-to-dojo-in-2008/2451785#2451785">all the ways that graph doesn't tell us a&nbsp;damn thing</a>.&nbsp;</p>
+
+
+<p>I want to be very clear, as the dust settles around my several recent rants: jQuery has its place, and it is a very, very big place. It is a lovely DOM, Ajax, and events library, and a great way to get certain things done quickly, especially for people who may not have the luxury of learning the inner workings of JavaScript (noble a goal as that is).&nbsp;There was a time when DOM and Ajax and events questions felt like&nbsp;<em>the</em> questions of the day, and jQuery showed us how to answer those questions using a simple, easy-to-learn API that suddenly made JavaScript accessible to the masses. Other libraries solved the same questions but those solutions felt ugly and clunky and goshdarnit, <em>hard</em>, and I give jQuery the utmost credit for making JavaScript suck so much less when all I wanted to do was show or hide or slide a thing or load some content onto my page. I'll even grant that it can be used as a piece of a large application solution, though I question the wisdom of doing so for reasons outlined in <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">another post</a>. Heck, I'll even grant that "enterprises" aren't off their rockers to use it -- for the things it was meant to be used for.&nbsp;</p>
+
+
+<p>What upsets me is when smart people seem to say that jQuery's victory in an internet-wide popularity contest suggests, well, anything at all when it comes to more complex needs. It upsets me because my clients hear those suggestions, look at that same well-marketed graph, and I am left explaining to them that, yes, jQuery is popular, but it's popular because it answers a small set of questions easily and well -- even for people who don't even know JavaScript! -- and you, dear client, have vastly larger questions than that.</p>
+
+
+<p>At the end of the day, these toolkit decisions ought to be about more than a popularity contest; jQuery may be the right answer, or part of the right answer, but it's imperative, to me, that my clients understand the scope of the question first. It's imperative that they make their decisions based on a full understanding of pros and cons, risk and reward, cost and benefit -- not based on a graph, not based on a popularity contest.</p>
+
+
+<p>So again I say: we, as a community, and especially the influential ones among us, do well when we elevate the conversation beyond that contest and acknowledge that choosing the right toolkit depends on first understanding what you're choosing the toolkit for. We do well when we educate teams and decisionmakers on the lessons we've learned in the time since DOM, Ajax, and events were the big question of the day, on the best practices that have emerged, on the situations where we've, gasp, had to look beyond jQuery -- either to other tools or other toolkits -- for the answers. And we do well when we start showing them how they can do the same.</p>
+
+
+<p><em>An aside: Some people I like a lot have pointed out that in the midst of all of my complaining, I have not come out and offered a solution. This is fair. Two things: One, I have not wanted this conversation to collapse into Dojo vs. jQuery vs. YUI vs. Ext vs. MooTools vs. whatever, because if it does, I think we've missed the crux of the matter: that different tools do different things, that some set out to answer complex questions and some do not. If anyone has been unclear, which I rather doubt, my personal preference of late has been to use Dojo. I do not recommend using Dojo for everything under the sun, but I find it offers a lot of utility when writing non-trivial applications. I cannot make a compelling argument for using it vs. YUI, simply because I don't know YUI well enough. I can't even make a compelling argument for using it vs. Ext, except for licensing issues that may or may not be relevant in a given scenario. Two, if you're disappointed that I haven't offered a solution, especially a jQuery-based one, I apologize. However, I feel there are too many viable existing solutions out there already, and I haven't come up with a good reason to promote a jQuery-based solution besides jQuery's popularity. And, well, see above for my thoughts on that.</em></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[On Rolling Your Own]]></title>
+    <link href="http://rmurphey.com/blog/2010/08/11/on-rolling-your-own/"/>
+    <updated>2010-08-11T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/08/11/on-rolling-your-own</id>
+    <content type="html"><![CDATA[<p>There&rsquo;s been a lot of activity around my last post, <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">On jQuery &amp; Large Applications</a>. A number of people have asked me why, exactly, I&rsquo;m so opposed to using jQuery as part of a roll-your-own solution.</p>
+
+
+
+
+<p>To answer that, let&rsquo;s start by looking at (some of) the pieces my ideal large application solution might include:</p>
+
+
+
+
+<ul>
+<li>DOM manipulation tools</li>
+<li>Ajax tools</li>
+<li>A dependency management and build system</li>
+<li>Clear patterns for code organization, such as namespaced modules</li>
+<li>An inheritance system, preferably one that offers multiple inheritance, for sharing code across modules and staying DRY</li>
+<li>A non-DOM-centric, loosely coupled API for communication between modules</li>
+<li>A widget system that makes use of the inheritance system, with lifecycle management (setup/teardown) and templating</li>
+<li>A system for maintaining templates separate from JavaScript while interning them into the build to eliminate HTTP requests</li>
+<li>A system for abstracting RESTful server communication</li>
+<li>For a UI-intensive project, a rich widget system pluggable to arbitrary data sources and designed with an easily-extended API</li>
+<li>For an enterprise project, a11y and i18n provisions, as well as clear patterns for file organization</li>
+</ul>
+
+
+
+
+<p>To all of you who have said you can do this yourself, you win. I can&rsquo;t argue with you without sounding like I&rsquo;m saying you&rsquo;re too dumb, and you&rsquo;re probably not.</p>
+
+
+
+
+<p>But here&rsquo;s my question: why? What, exactly &mdash; <strong>exactly</strong> &mdash; do you gain by putting all of this together for yourself, rather than using the pieces you need of a toolkit that provides all of this out of the box? Because here are a few things I think you lose:</p>
+
+
+
+
+<ul>
+<li>Integration. Is your abstracted RESTful data API designed to talk to your widget system that&rsquo;s designed to talk to your template system? That&rsquo;s hott. Now what about when a new version of one of those components comes out that violates an assumption you made?</li>
+<li>Maintenance. I heart the good folks who have put together individual answers to these individual questions, but they have no obligation to continue being the good folks they are, and they certainly have no obligation to do it on any sort of schedule. Remember all those plugins that broke with jQuery 1.4? That sure was fun.</li>
+<li>Documentation. I&rsquo;m going to grant you, right now, that jQuery is one of the best-documented JavaScript libraries out there, hands down. But what about all these other pieces you&rsquo;re putting together? Especially the ones you really are rolling on your own, like that templated widget thing that communicates so nicely with your abstract data API. There are a wealth of resources for understanding, troubleshooting, and using these pieces in established toolkits. Where will the next developer turn when they have questions about yours?</li>
+<li>Experience. Like I said, I get that you&rsquo;re smart. Possibly smarter than me. That&rsquo;s cool. But are you smarter than the combined wisdom of a team of people that has been thinking about these questions for years? Are you sure your solution has thought through all the questions they have?</li>
+</ul>
+
+
+
+
+<p>I&rsquo;ve noticed that, in the conversations I&rsquo;ve had the last few days, it seems to fall to me to &ldquo;prove&rdquo; that a roll-your-own solution that includes jQuery isn&rsquo;t advisable. Perhaps that&rsquo;s fair &mdash; &ldquo;you started it!&rdquo;, you might say, and that I did. But simultaneously, others argue that jQuery never set out to answer these questions, and so it&rsquo;s not jQuery&rsquo;s fault that people are trying to use it in ways it wasn&rsquo;t intended to be used. I have waited in vain to hear a compelling reason why jQuery <em>should</em> be part of a large application solution, to hear why I should recommend a roll-your-own solution that includes jQuery to my clients. The extent of the argument seems to be &ldquo;because I like it, and it doesn&rsquo;t force me to think a certain way.&rdquo;</p>
+
+
+
+
+<p><a href="http://www.youtube.com/watch?v=vciEDI3dD8I">No one puts baby in a corner</a>. Got it. But the straw man-ness of this argument has me, literally, chuckling right now. Let&rsquo;s not confuse a mythical one-size-fits-all solution with a toolkit that provides, well, <em>tools</em>. Tools to do all sorts of things, tools meant to work together, tools developed and tested and maintained by a whole big team of smart people, tools that are, actively, being used in really frigging big, really frigging enterprisey applications.</p>
+
+
+
+
+<p>I very purposefully didn&rsquo;t propose a particular alternate solution in the original post, but it&rsquo;s hardly a secret that my personal favorite, of late, has been Dojo. Not because it purports to solve every problem or prescribes how to solve them, but because it gives me so many tools to use to solve a given problem. Time and again I find that &ldquo;Dojo already did that&rdquo; &mdash; they already wrote the tool I’m wishing I had. Now I don&rsquo;t have to write it, and, perhaps more importantly, I know it was written to work with all of the pieces I&rsquo;m already using, and when I use it I’m not risking duplication of code or a lack of testing, maintenance or support. Win.</p>
+
+
+
+
+<p>But let&rsquo;s be very clear: no one&rsquo;s forcing me to use that component! No one is forcing me to do things a certain way, any more than jQuery is &ldquo;forcing&rdquo; me to think of my application entirely in terms of the DOM. I can write my own component if I want, or use someone else&rsquo;s if I want, or change it a bit if I want! For example, on a current project I pulled in mustache.js because the project had a lot of templates that had already been written to use it. The brilliant thing, though, was that integrating mustache.js into dijit._Templated instead of the standard templating system was trivial. That component, and all the others in Dojo and Dijit, are architected explicitly <em>not</em> to be one-size-fits-all. They provide a rock-solid base for large application development, for getting up and running quickly using a bevy of ready-made solutions, but also provide so many extension points that you can turn those solutions on their head if you want or need.</p>
+
+
+
+
+<p>Garann Means, whose blog you should be reading, took a bit of issue with my original post in <a href="http://www.garann.com/dev/?p=186">model-view-controller and comfy clothes</a>.</p>
+
+
+
+
+<blockquote class="posterous_medium_quote"><p>I do agree that it benefits everyone to be working in the same setup and making use of tools that have been vetted by geniuses whose entire job is to create such things. But I&rsquo;m dubious about any approach which comes too close to promising one size fits all. If you&rsquo;ve ever sewn a dress, you understand that one size fits all is technically possible, but some people are going be left with a lot of excess while others will scarcely be able to breathe.</p></blockquote>
+
+
+
+
+<p>Carrying on that metaphor, these pieces provided by Dojo &mdash; or any other comprehensive toolkit, for that matter &mdash; are but starter patterns, and thread, and scissors, and pins, and a sewing machine, and OK I&rsquo;m stretching the metaphor, now, but my point is they&rsquo;re definitely not finished one-size-fits-nobody garments. On the other hand, if I decide to use jQuery in a large application, it can feel like I&rsquo;ve been given a black marker and some of that crinkly brown paper, and now it’s up to me to draw a pattern and then come up with all those other pieces, too. Intellectually interesting and pleasingly crafty, perhaps, but not particularly efficient, sustainable, repeatable, or maintainable.</p>
+
+
+
+
+<p>So again I ask, in all seriousness and in hopes of fostering a good discussion: Why? jQuery provides you with DOM, Ajax, and event management tools, but little else. There are tools <em>designed</em> for building large applications, designed to provide all of the pieces I want and so many more it&rsquo;s not even funny, and they provide you with DOM, Ajax, and event management tools, too. What&rsquo;s the compelling case for rolling your own solution that includes jQuery instead?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons Learned from Taking On a Project in Crisis ]]></title>
+    <link href="http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis/"/>
+    <updated>2010-04-03T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2010/04/03/lessons-learned-from-taking-on-a-project-in-crisis</id>
+    <content type="html"><![CDATA[<p>I just got done with an emergency project for an agency developing a public-facing application for a mutinational technology client you've most certainly heard of. I developed the entire front-end -- HTML, CSS, and JavaScript -- for a non-trivial application with a limited spec in just seven days. The experience was so eye-opening that I feel the need to write down some of the things I've learned, in hopes that I can benefit from my experience in the future.</p>
+
+
+
+
+<ul>
+    <li>Demand all technical source material up front, such as functional specs, mockups, work that's been done to date, etc. Give the client a fixed amount of time to deliver that source material, and don't make a decision about taking on the project until you've seen it. What the client can deliver in that fixed amount of time will shed a lot of light on the state of the project and whether their expectations are realistic.</li>
+    <li>Set clear time expectations. Am I willing to work 16 hours a day? Am I expected to? Are there hours during which I'll be expected to be available? Am I willing to work on the weekend?</li>
+    <li>Find out whether the client expects me to be available after the imminent deadline, and to what extent. The last thing I want is to snatch defeat from the jaws of victory by being unable to support the code I've written.</li>
+    <li>Do not accept responsibility for commitments made on my behalf. The recruiter said I'd be available six hours a day when I told him four? Not my problem. The client committed to having a feature ready for review without consulting me? They probably won't make that mistake again.</li>
+    <li>Ascertain the rest of the team's commitment to the project. If I'm expected to work long hours, will they be there during those long hours to get me what I need? Are there any constraints on their availability?</li>
+    <li>Establish a single point of contact at the client, and make clear I'll be depending on them to get me any information I need and I'll be treating their decisions as final. Insist that they participate in all calls I'm expected to participate in.</li>
+    <li>Limit the amount of work I do before I have access to all client systems I'll need access to: version control, testing environments, ticketing systems, etc.</li>
+    <li>Insist on a ticketing system. I'm new to the project and I have a lot to get up to speed on. I don't want emails flying at me from all directions -- decisions and technical requirements need to be documented in a single place that everyone can see. This is my only insurance when someone wants to know why something isn't done, or why it wasn't done the way they expected.</li>
+    <li>Insist on version control, even if it's something crappy like CVS. I'll need a way to make sure the rest of the team has access to my latest and greatest. FTP blows, especially when I'm FTPing to a server where another developer is constantly deploying a new build, overwriting my work.</li>
+</ul>
+
+
+
+
+<p>What other advice do you have?</p>
+
+]]></content>
+  </entry>
+  
+</feed>

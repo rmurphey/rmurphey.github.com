@@ -1,0 +1,2518 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="About 9 months ago, I released jQuery Fundamentals, a free, online training curriculum for people interested in learning jQuery based on material I& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/page/4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession/">The Future of jQuery Fundamentals (and a Confession)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-17T00:00:00-05:00" pubdate data-updated="true">Mar 17<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/03/17/the-future-of-jquery-fundamentals-and-a-confession/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>About 9 months ago, <a href="http://blog.rebeccamurphey.com/2010/06/17/open-source-jquery-training">I released</a> <a href="http://jqfundamentals.com/book/">jQuery Fundamentals</a>, a free, online training curriculum for people interested in learning jQuery based on material I&rsquo;d assembled while leading jQuery trainings.</p>
+
+
+
+
+<p>The response was and has continued to be amazing: not only has the book seen hundreds of thousands of visits, but it has also received content contributions and bug reports from dozens of people. It has become something of a collaborative work, and one of the go-to resources for jQuery and beginning JavaScript learning. It has been used to teach classes internally at companies and at colleges and universities, and it&rsquo;s been translated into multiple languages. It&rsquo;s even made me a tad bit of money &mdash; I recently granted a license to Webucator to create derivative works for their <a href="http://www.webucator.com/webdesign/jquery.cfm">jQuery class</a> &mdash; and landed me near the top of Google&rsquo;s search results for &ldquo;jQuery training&rdquo;.</p>
+
+
+
+
+<p>And so here is where we get to the confession part: while I&rsquo;ve stayed very much in touch with the evolution of jQuery these last couple of years, written gobs of sample code in efforts to make people better at using the library, and even played a bit of a role in some of the new features in jQuery 1.5, the last time I chose the library for a project was in the fall of 2008. The last time I used it on a project at all was in the summer of 2010, and in a matter of a few weeks I was gutting the fragile, bug-ridden, DOM-centric code and re-writing the single-page application with &mdash; wait for it! &mdash; Dojo. jQuery and I have gone from being in a committed relationship to seeing other people to pretty much just saying hi on Facebook now and again.</p>
+
+
+
+
+<p>This has put me in a strange place with jQuery Fundamentals &mdash; I want to be investing my energy supporting projects that I <em>use</em>, and while I can still write jQuery just fine and stay in touch with what&rsquo;s going on with it, I really don&rsquo;t &hellip; <em>use</em> it. That&rsquo;s made it increasingly difficult to continue maintaining jQuery Fundamentals as a resource for the jQuery community.</p>
+
+
+
+
+<h2>Burying the Lede</h2>
+
+
+
+
+<p>At the jQuery conference in Boston last fall, John Resig invited me to participate in a conversation about an effort by the project to create a learning resource for the community, and through the course of that and future conversations, jQuery Fundamentals has found its new home.</p>
+
+
+
+
+<p>I&rsquo;ve been working actively with jQuery team member (and <a href="http://yayquery.com">yayQuery</a> co-host) Adam J. Sontag and community member Dan Heberden to get the book into good shape as it transitions to being &ldquo;owned&rdquo; by the jQuery project. I&rsquo;ve also donated a third of the proceeds of the Webucator licensing arrangement to the jQuery project, to recognize the contributions of the community and to give even a wee bit of financial support to the learning efforts.</p>
+
+
+
+
+<p>Adam, Dan, and I will be working hard to address some of the <a href="https://github.com/rmurphey/jqfundamentals/issues">open issues</a> with the book in the coming weeks. If you&rsquo;re interested in helping, drop me an email, hit me up on Twitter, or just submit a pull request (though you may want to talk to us first if the solution to an issue isn&rsquo;t straightforward). From formatting fixes to writing new content to updating the book to reflect the changes in jQuery 1.5, there&rsquo;s a lot to be done.</p>
+
+
+
+
+<h2>What&rsquo;s Next?</h2>
+
+
+
+
+<p>These days I&rsquo;m working with a fantastic client doing mobile application development with PhoneGap and Dojo. It&rsquo;s pretty much the most challenging, engaging, rewarding project I&rsquo;ve had an opportunity to work on in nearly three years of independent consulting. These days, when I get the very inquiries I hoped to get by releasing jQuery Fundamentals in the first place, I direct people to the excellent folks at <a href="http://bocoup.com">Bocoup</a>. Slowly, I&rsquo;m recalibrating my efforts and attention toward the projects that make my day-to-day development life better. As soon as I feel like jQuery Fundamentals is in a good place where I don&rsquo;t have to worry about its future, you can expect to see a lot more learning-related content coming from me again; just, this time, it probably won&rsquo;t be about jQuery.</p>
+
+
+
+
+<p>I hope you&rsquo;ll stick around.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/25/deferreds-coming-to-jquery/">Deferreds Coming to jQuery 1.5?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-25T00:00:00-06:00" pubdate data-updated="true">Dec 25<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/12/25/deferreds-coming-to-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>I have updated this post to show the code using the API that was released in jQuery 1.5.0.</em></p>
+
+<p>A few weeks ago, a <a href="https://github.com/jquery/jquery/commit/ab3ba4a81252c4357a7aab5f24d765d41d47986e">major rewrite of jQuery&#8217;s Ajax functionality</a>
+landed in the jQuery GitHub repo. Thanks to <a href="http://www.jaubourg.net/">Julian Aubourg</a>, jQuery looks like it will get a feature
+that I&#8217;ve desperately wished it had ever since I started spending time with
+Dojo:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doAjax</span><span class="p">(</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">req</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;let&#39;s see that again!&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// return the request object so other</span>
+</span><span class='line'>  <span class="c1">// things can bind to it too!</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doAjax</span><span class="p">().</span><span class="nx">success</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Once more, with feeling!&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Starting with 1.5 (I&#8217;m guessing), users will be able to easily attach callbacks
+to XHRs &#8230; later! And pass around the return value of <code>$.ajax</code> as an actually
+useful object with a familiar API, rather than just getting back the native
+XHR! No longer will we have to bundle up callback functionality &#8211; some of
+which might be optional, or depend on other code &#8211; inside our success or error
+callbacks. So hott.</p>
+
+<p>When I heard that these Ajax changes had landed, I got to thinking about how
+Dojo provides its ability to belatedly attach success and error handlers to its
+XHRs: underlying its XHR methods is
+<a href="http://dojotoolkit.org/reference-guide/dojo/Deferred.html#dojo-deferred">dojo.Deferred</a>.
+It <strong>allows users to assign callback functions for success and error conditions
+for a task that may not complete immediately.</strong> Dojo makes use of this for its
+XHR stuff, but it&#8217;s incredibly useful generically, too:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doSomethingAsync</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doSomethingAsync</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span> <span class="c1">// logs &#39;hello world&#39;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, Dojo provided the late callback functionality via deferreds. jQuery now had
+late callback functionality. Was the deferred functionality hidden in the
+jQuery Ajax rewrite, waiting to be exposed? Julian and I and several others got
+to talking in the jQuery development IRC channel, and decided it seemed like an
+interesting and viable idea. A few days later, Julian&#8217;s <a href="https://github.com/jquery/jquery/commit/116c82b027a03a7a5670fa580fa9af819cc1cc03">first draft of jQuery.Deferred</a>
+landed in a branch on GitHub.</p>
+
+<p>It&#8217;s early days, but there have been a lot of good discussions already about
+the proposed API and how it should work. Through all of the conversations I&#8217;ve
+been part of, it&#8217;s become really clear that no one cares about deferreds until
+you show them what they actually mean: the ability to register an interest in
+the outcome of arbitrary asynchronous behavior, <em>even if the outcome has
+already occurred</em>. Even better, you can register your interest in the outcome
+of behavior that <em>may or may not be asynchronous</em>.</p>
+
+<p>I assure you that once you have experienced this, you will wonder how you lived
+without it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">doSomethingMaybeAsync</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">data</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">value</span> <span class="o">:</span> <span class="nx">val</span> <span class="p">},</span>
+</span><span class='line'>    <span class="nx">dataType</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">success</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">cache</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">doSomethingMaybeAsync</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;The value for foo is&quot;</span><span class="p">,</span> <span class="nx">resp</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&#8217;ll also be possible to do something like you see below. I&#8217;m not sure what
+the exact API will be for creating a generic deferred instance, but I hope it
+will be something along these lines:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">doIt</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">doIt</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resp</span><span class="p">);</span> <span class="p">},</span> <span class="nx">errorFn</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>These changes are sitting in a <a href="https://github.com/jquery/jquery/tree/deferred">branch in the jQuery GitHub repo</a> as we speak, and I think
+it&#8217;s likely we&#8217;ll see them move to master sooner than later. It&#8217;s a nice story
+of collaboration and community participation that helped make something good &#8211;
+the Ajax rewrite &#8211; even better.</p>
+
+<p>It&#8217;s exciting to see jQuery venture a bit more into the abstract. My
+experiences with Dojo core so far make me think there are probably more
+opportunities for these sorts of utilities that would be of high value for
+a substantial number of jQuery users. On the other hand, one of the constant
+themes of our conversations about deferreds has been the potential for
+confusion with the new methods. Will the API look familiar and jQuery-like, or
+will users be confused about the ability to chain methods on something other
+than a jQuery selection? Are there bigger-picture considerations when it comes
+to adding new constructors to the jQuery namespace? It&#8217;ll be interesting to see
+how these questions sort themselves out, especially if other similar features
+appear that don&#8217;t fall neatly under the well-established
+DOM/Ajax/Events/Effects umbrella.</p>
+
+<p>The <a href="https://github.com/jquery/jquery/commits/deferred">conversation&#8217;s happening on GitHub</a> &#8211; I hope you&#8217;ll
+join in.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/20/on-conferencing/">On Conferencing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-20T00:00:00-06:00" pubdate data-updated="true">Nov 20<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/11/20/on-conferencing/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m a few hours away from finalizing my slides for the Rich Web Experience in Ft. Lauderdale next month. I&#8217;ll be presenting on basic tips for refactoring your jQuery; I think it&#8217;s a decent presentation &#8211; the part of it I&#8217;ve finished, anyway &#8211; and I&#8217;ll be glad to have it in my collection.</p>
+
+<p>By my count, RWX will be the 15th conference or non-trivial event I attend in 2010, including two that I&#8217;ve organized and eight that I&#8217;ve spoken at:</p>
+
+<h2>Organizer</h2>
+
+<ul>
+<li><a href="http://texasjavascript.com">TXJS</a> (Austin, TX)</li>
+<li>NCJS (Durham, NC)</li>
+</ul>
+
+
+<h2>Speaker</h2>
+
+<ul>
+<li>JSConf EU (Berlin, Germany; &#8221;<a href="http://www.slideshare.net/rmurphey/the-jquery-divide-5287573">The jQuery Divide</a>&#8221;)</li>
+<li>Boston jQuery Conference (Boston, MA; &#8221;<a href="http://www.slideshare.net/rmurphey/functionality-basedorg">Functionality Focused Code Organization</a>&#8221;)</li>
+<li>jQuery Summit (Online; &#8221;<a href="http://www.slideshare.net/rmurphey/functionality-basedorg">Functionality Focused Code Organization</a>&#8221;)</li>
+<li>Indieconf (Raleigh, NC; &#8221;<a href="http://www.slideshare.net/rmurphey/retooling-your-workflow">Retooling Your Workflow</a>&#8221;)</li>
+<li>Refresh the Triangle (Durham, NC; &#8221;<a href="http://www.slideshare.net/rmurphey/delivering-a-responsive-ui">Delivering a Responsive UI</a>&#8221;)</li>
+<li>Triangle JavaScript Meetup (Durham, NC; &#8221;<a href="http://www.slideshare.net/rmurphey/building-large-jquery-applications">Building Large jQuery Applications</a>&#8221;)</li>
+<li>Rich Web Experience (Ft. Lauderdale, FL; &#8220;Cleaner, Leaner, Meaner: Refactoring Your jQuery&#8221;)</li>
+<li>Durham Developer Day (Durham, NC; &#8221;<a href="http://www.slideshare.net/rmurphey/dojo-confessions">Dojo Confessions</a>&#8221;)</li>
+</ul>
+
+
+<h2>Attendee</h2>
+
+<ul>
+<li>SXSW (Austin, TX)</li>
+<li>Bay Area jQuery Conference (Mountain View, CA)</li>
+<li>JSConf US (Washington, DC)</li>
+<li>CouchCamp (Walker Creek Ranch, CA)</li>
+<li>Dojo Developer Days (Mountain View, CA)</li>
+</ul>
+
+
+<p>(For what it&#8217;s worth, and because I was curious enough to count: I&#8217;ve also participated in 11 episodes of <a href="http://yayquery.com">yayQuery</a>, written a half-dozen in-depth blog posts, organized at least six local web women meetups, and published an open <a href="http://jqfundamentals.com/book/book.html">jQuery training curriculum</a>.)</p>
+
+<p>It was sometime in early 2009 that I decided to make a point of speaking at more events. I&#8217;d always enjoyed the challenge and the thrill of public speaking, but I also wanted to be part of the solution to the dearth of women speakers in JavaScript land. Something like 18 months later, it seems I might be sort of good at it, if my SpeakerRate is to be believed. This fall I found myself actually turning down requests to speak.</p>
+
+<p>It turns out that they forgot to remind me in work-for-yourself school that at the end of the day or week or month, I&#8217;ve still gotta make some money now and then. Putting together presentations and traveling to conferences and meeting the expectations that come along with being a Vaguely Important Person &#8230; it&#8217;s fucking hard work, and when there&#8217;s no company to pay you for it, it&#8217;s also fucking expensive, even if it theoretically brings in work in the long run. While every non-local event I spoke at paid for my hotel and accommodations, I was not otherwise compensated. The events that I organized ended up being pretty much a wash, financially.</p>
+
+<p>I spent untold hundreds of hours &#8211; I&#8217;m not making that up &#8211; preparing presentations, traveling to conferences, and speaking this year. Looking back at my calendar since late August, when all of this got really and truly insane (most of my speaking has happened since then), the sad size of my business bank account makes stunning sense. We&#8217;ll leave aside the toll that working all the time and then being gone all the rest of the time takes on one&#8217;s home life, but suffice to say that the toll is, also, not trivial.</p>
+
+<p>Over the last few weeks, it&#8217;s become pretty clear that I need to take a break. I&#8217;m mostly over pre-talk jitters, but these days I find myself thinking &#8220;for the love of all that&#8217;s good, do I really have to get on a plane again?&#8221; People ask me about 2011 events and I find myself on the verge of losing my shit, which really isn&#8217;t fair to anyone. People tell me how they want to be invited to speak at stuff like I am, and I let loose a heavy sigh. People come up to me at events or email me randomly because they think that I&#8217;m an &#8220;expert&#8221; on this thing or that, and can they just ask me a little question? &#8211; and I wonder what, exactly, I have wrought with all of this effort. Worst of all: potential clients ask me about taking on lucrative work, and I must tell them: &#8220;Not now, I can&#8217;t, I&#8217;m sorry. I&#8217;ve got this presentation to prepare &#8230;&#8221;</p>
+
+<p>I might be a terrible person entirely too full of herself, or a drama queen, or whatever else you want to think. You might be certain that if I&#8217;d just think about it, there would be lots of efficiencies I could realize, and really I just make this harder than it is. That&#8217;s OK, and you might be right.</p>
+
+<p>I want to be clear that I realize that two years ago I was nobody, and to the extent that I am anybody now, it is largely because I have been afforded so many opportunities to make a name for myself. I am grateful for them. It becomes clear, though, that I&#8217;ve let the pendulum swing way too far.</p>
+
+<p>And so as I sit here, about to finish off the last slides of the year, I fantasize about deleting Keynote from my computer. But I also find myself thinking how I&#8217;m deciding not to do this thing that I&#8217;m kind of good at because I simply can&#8217;t afford to, and it makes me sad. It kills me to think about missing out on that warm fuzzy it-was-all-worth-it moment when everyone claps at the end. And more than anything, I feel like walking away, for however long, means yet one less woman on stage in a field that is desperate for them, and that makes me saddest of all.</p>
+
+<p>There is no point to this post, really, except for me to get some of my thoughts out of my head and for you to know where I&#8217;ve gone if you don&#8217;t see or hear from me as much. It is, alas, time for me to actually do some of that work that all this effort has brought in. We&#8217;ll see when I emerge &#8211; maybe I will feel rejuvenated in the new year, who knows! &#8211; and whenever that is, I hope to see you there.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/10/19/jquery-breakout-women-and-conferences/">jQuery Conference Breakout Session: Women & Conferences</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-19T00:00:00-05:00" pubdate data-updated="true">Oct 19<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/10/19/jquery-breakout-women-and-conferences/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I decided to organize a breakout session about women and conferences at the
+<a href="http://events.jquery.org/2010/boston/">jQuery Conference in Boston</a> this past
+weekend, and I couldn&#8217;t be happier about how it went &#8211; it was probably one of
+the more productive sessions of its sort that I&#8217;ve participated in.</p>
+
+<p>My best guess, with the help of some t-shirt size numbers from the most-amazing
+<a href="http://twitter.com/#!/wifelette">Leah Silber</a>, is that the conference
+attendees were about 10% women. This sounds a bit terrible, but on the
+contrary, looking around the room, I felt like women were in fact more
+represented than I&#8217;m accustomed to at other JavaScript-centric conferences.</p>
+
+<p>In setting up the breakout session, I wanted to do two things: one, applaud the
+women who did show up, because they are already part of the solution; two, (at
+the risk of sounding a bit lame), call upon them to be the change that so many
+of us want to see at tech conferences.</p>
+
+<p>I started the session with a small intro/lecture/rant: when we have these
+conversations, we&#8217;re talking about a conference for an open-source project, and
+this means that we &#8211; community members &#8211; need to take some ownership of the
+problem if we want to see more diversity on stage; it shouldn&#8217;t just be up to
+the project or the conference organizers. I&#8217;ve talked to plenty of jQuery team
+members, and the problem is certainly not that they are seeking to exclude
+non-white-male speakers, nor that they are insensitive to the issue; to the
+contrary, they are incredibly interested in diversifying their lineup, but
+they&#8217;re somewhat at a loss as to where to find people who would be good
+speakers. My call to action to the people in attendance was to be part of the
+solution.</p>
+
+<p>My favorite part about the session was that it didn&#8217;t turn into a big bitchfest
+&#8211; I think there was actually some productive discussion that took place. While
+the attendees were mostly women, there was a solid contingent of men. Menno van
+Slooten, in particular, was great &#8211; he talked about his experience as a
+relative outsider whose boss pressured him into submitting a talk to the Bay
+Area jQuery Conference earlier this year. His talk at that conference ended up
+being so well received that he was back to speak in Boston.</p>
+
+<p>At some point during the session, I realized that John Resig was sitting across
+from me. I don&#8217;t want sound like a giddy schoolgirl here &#8211; John&#8217;s just a
+person, and I don&#8217;t want to sound like he graced us with his benevolent
+presence &#8211; but I can&#8217;t tell you how much I think it changed the dynamic of the
+discussion to know that it was being heard by such an influential
+representative. John answered questions directly and honestly, and there was a
+serious sense that he was hearing feedback too &#8211; we weren&#8217;t just talking
+amongst ourselves. His presence dispelled any sense that the project wasn&#8217;t
+interested in the topic; I&#8217;d encourage other prominent people who care about
+these things to make time to take part in similar conversations.</p>
+
+<p>I was kind of amazed to hear how simple the questions were about speaking at a
+jQuery conference. I have given great credence to issues of anxiety, shyness,
+and perceived inadequacy &#8211; and I don&#8217;t think these issues have gone away &#8211;
+but it never occurred to me that people had really basic questions about the
+process of speaking at a conference. This was actually sort of great &#8211; while I
+can&#8217;t singlehandedly get a potential speaker to overcome a sense of anxiety or
+inadequacy, there were so many questions that could be answered simply and
+directly.</p>
+
+<p>To that end, I&#8217;m working on a FAQ for potential speakers at future jQuery
+conferences, addressing basic questions about process, etc., that I hope the
+project will incorporate into future calls for speakers. As a decently
+connected member of the jQuery community, I know who to ask when I have these
+questions, but I naively didn&#8217;t realize how inaccessible the answers could seem
+to &#8220;outsiders.&#8221; Explaining the answers to basic questions is the sort of easy
+but meaningful effort that a conference can make to lower the barriers to new
+speakers, women or men. This should be a no-brainer for any conference that
+wants to its lineup to be interesting,  fresh, and diverse.</p>
+
+<p>Another idea that we talked about was pairing accepted speakers up with a buddy
+of sorts. I have tried to be this buddy, informally, to people who are speaking
+for the first time, but I think it could be worthwhile to formalize the
+process. New speakers could ask their &#8220;buddy&#8221; questions about what it&#8217;s like to
+speak, how to prepare, what to expect from the audience, etc. The speaker would
+be more prepared and comfortable, and the audience would get a better
+presentation.</p>
+
+<p>There was a tremendous lack of clarity surrounding what&#8217;s actually involved in
+submitting a talk to a conference. While I&#8217;m by no means a grizzled veteran of
+the conference circuit &#8211; my first major talk was just a year ago &#8211; my
+experience so far is that submitting a talk is mostly about having a
+well-articulated idea and some semblance of evidence that you can pull it off.
+This, perhaps, is where the process becomes most subjective and biased toward
+&#8220;insiders&#8221; &#8211; people known to give good talks are likely to get the opportunity
+to give talks again &#8211; but I think there&#8217;s plenty of room to overcome any bias.
+People who have made a point of participating in the community, people who have
+made a point of contributing useful content about their chosen topic, will
+generally get the benefit of the doubt. Reaching out to a past speaker, or to
+an established community member, can be a great help in shepherding your talk
+through the process. Again, I&#8217;m hoping that the FAQ can address some of this
+low-hanging fruit.</p>
+
+<p>Regarding jQuery conferences in particular, John made the very good point that
+there is a lot of room for talks that aren&#8217;t specifically about jQuery. There
+were actually lots of these sorts of talks at the conference this weekend &#8211;
+talks about TDD, HTML5, object-oriented CSS, CouchDB, and more. One of the
+lovely things about the jQuery and JavaScript community is that community
+members have a potentially wide area of interest &#8211; any topic related to
+front-end development is likely to be relevant to the audience. John pointed
+out that talks about these tangential topics may be one of the greatest
+opportunities for newcomers to the world of speaking: the speaker is likely to
+be the only one presenting on the topic, and can potentially establish
+themselves as something of a subject matter expert on the topic.</p>
+
+<p>Again, this was one of the more productive conversations I&#8217;ve participated in
+on this topic. If you&#8217;d like to talk to me about it more, don&#8217;t hesitate to
+drop me an email or a tweet or a comment. If you&#8217;re considering venturing into
+the speaking world, I&#8217;m happy to talk with you about that too. Thanks to
+everyone who came, and especially to <a href="http://twitter.com/#!/unruthless">Ruthie BenDor</a> for her support, and I look forward
+to continued discussion.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/10/17/functionality-focused-code-organization/">Functionality-Focused Code Organization</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-17T00:00:00-05:00" pubdate data-updated="true">Oct 17<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/10/17/functionality-focused-code-organization/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I spoke yesterday at the 2010 Boston jQuery Conference about
+&#8220;Functionality-Focused Code Organization.&#8221; It was a presentation that
+summarized a year of thinking about organizing JavaScript applications, and I
+think it went fairly well. It was a treat to see so many people nodding in
+understanding and agreement out in the audience, and to talk to people
+afterwards who have thought about and struggled with these same problems.</p>
+
+<ul>
+<li><a href="http://www.slideshare.net/rmurphey/functionality-basedorg">Slides</a> (Note
+that you can download a PDF there if you&#8217;d prefer not to view the slides on
+SlideShare)</li>
+</ul>
+
+
+<p>I had one person come up to me afterwards who really left an impression &#8211; I
+don&#8217;t recall his name (I am perfectly terrible with names), but what he said
+was that he came from a background of developing desktop applications, and that
+the concepts I talked about in fact made perfect sense to him. I think this is
+important to remember &#8211; the ideas that I talked about aren&#8217;t new or novel at
+all, but really just long-established patterns of developing applications,
+adapted to fit in the world of JavaScript and the browser. I don&#8217;t come from a
+CS background at all &#8211; I came to this whole JavaScript thing via HTML and CSS,
+with a tiny smattering of programming mixed in &#8211; and so I&#8217;ve arrived at a lot
+of this things the hard way. It&#8217;s gratifying to hear people tell me I&#8217;ve gotten
+it right, and if anything, it makes me want to get the word out to all the
+people who are in the same shoes as I was not that long ago.</p>
+
+<p>Finally: A big thanks to the jQuery team, and especially Leah Silber, for
+putting on the conference. I know it&#8217;s hard work, and I know there were some
+bumps (there always are!), but as a speaker, I feel like I&#8217;ve been treated very
+well, which means a lot. Thanks, guys.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/15/in-search-of-javascript-developers-a-gist/">In Search of JavaScript Developers: A Gist</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-15T00:00:00-05:00" pubdate data-updated="true">Sep 15<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/09/15/in-search-of-javascript-developers-a-gist/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I posted a <a href="http://gist.github.com/576723">gist</a> the other day in an attempt to locate some JavaScript help. I&rsquo;m finding, lately, that I&rsquo;m being asked to do more work than I can comfortably take on without having some overflow capacity, but I&rsquo;ve been a little lax at actually identifying people who can provide that capacity up until now. That meant I was turning down work, and that&rsquo;s not a good thing.</p>
+
+
+
+
+<p>I had a great time the last couple of days watching people come up with solutions, and was especially gratified that so many people who weren&rsquo;t looking for work thought that answering JavaScript questions sounded like fun.</p>
+
+
+
+
+<p>A lot of people have asked if I&rsquo;d be providing &ldquo;answers&rdquo; to the questions I posed in the gist, so I wanted to try to do that, mixed in with a bit of commentary about what I was looking for.</p>
+
+
+
+
+<h2>Question 1: Writing Readable but Terse Code</h2>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 1: how could you rewrite the following to make it shorter?</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">bar</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">bar</span><span class="p">.</span><span class="nx">doSomethingElse</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Answers to this question told me whether to keep reading; I was looking for something like:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">bar</span><span class="p">[</span><span class="nx">foo</span> <span class="o">?</span> <span class="s1">&#39;doSomething&#39;</span> <span class="o">:</span> <span class="s1">&#39;doSomethingElse&#39;</span><span class="p">](</span><span class="nx">el</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// OR</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">bar</span><span class="p">[</span><span class="s1">&#39;doSomething&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">foo</span> <span class="o">?</span> <span class="s1">&#39;&#39;</span> <span class="o">:</span> <span class="s1">&#39;Else&#39;</span><span class="p">)](</span><span class="nx">el</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>To be honest, the second one is maybe a little too clever. But generally, I wanted to see submissions that understood using the ternary operator instead of an if statement to create shorter but still-readable code when all that is different is a method name.</p>
+
+
+
+
+<p>Some people submitted an answer that used a ternary operator, but didn&rsquo;t take advantage of it to just switch the method name:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">foo</span> <span class="o">?</span> <span class="nx">bar</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="o">:</span> <span class="nx">bar</span><span class="p">.</span><span class="nx">doSomethingElse</span><span class="p">(</span><span class="nx">el</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>This is an improvement, definitely, but there&rsquo;s room for more.</p>
+
+
+
+
+<h2>Question 2: Understanding Variable Scope</h2>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">foo</span> <span class="o">||</span> <span class="s1">&#39;world&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>This was a question where, in hindsight, what I was looking for may not have been super-clear. I got a lot of right-enough answers, but really what I wanted to hear was that the <code>||</code> statement was absurd, because <code>foo</code> would always evaluate to <code>'world'</code> due to <a href="http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting">variable hoisting</a>.</p>
+
+
+
+
+<p>This can be sort of a sort of crazy thing to wrap your head around, but basically JavaScript scans the contents of a function for <code>var</code> statements <em>before</em> it runs the function. Any variable initialized with a <code>var</code> statement inside the function will become local to the function, <em>even if the variable is &ldquo;used&rdquo; before it is initialized</em>. Changing the order of the two lines inside the function shows this readily:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span> <span class="c1">// undefined!</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">foo</span> <span class="o">||</span> <span class="s1">&#39;world&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Some submissions thought I wanted access to the external <code>foo</code> inside the closure &mdash; not an unreasonable interpretation of the question.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">f</span> <span class="o">||</span> <span class="s1">&#39;world&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">foo</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Anyway, there were lots of right-enough answers, but anyone who talked about hoisting definitely caught my eye.</p>
+
+
+
+
+<h2>Question 3: Working with Objects and Prototypes</h2>
+
+
+
+
+<p>This question was looking for really basic understanding of prototypes. It also was written to be a tad hard to follow, lumping all the questions into a single paragraph, to simulate a not-atypical client request.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 3: given the following code, how would you override the value of the</span>
+</span><span class='line'><span class="c1">// bar property for the variable foo without affecting the value of the</span>
+</span><span class='line'><span class="c1">// bar property for the variable bim? how would you affect the value of</span>
+</span><span class='line'><span class="c1">// the bar property for both foo and bim? how would you add a method to</span>
+</span><span class='line'><span class="c1">// foo and bim to console.log the value of each object&#39;s bar property? how</span>
+</span><span class='line'><span class="c1">// would you tell if the object&#39;s bar property had been overridden for the</span>
+</span><span class='line'><span class="c1">// particular object?</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">Thinger</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">Thinger</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">bar</span> <span class="o">:</span> <span class="s1">&#39;baz&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Thinger</span><span class="p">(),</span>
+</span><span class='line'>    <span class="nx">bim</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Thinger</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>The good submissions broke the question down into separate comments, and then showed the answers:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// override the bar prop for foo w/o affecting bim</span>
+</span><span class='line'><span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="s1">&#39;new value&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// change the bar prop for both foo and bim</span>
+</span><span class='line'><span class="c1">// (*if* it hasn&#39;t been overridden locally!)</span>
+</span><span class='line'><span class="nx">Thinger</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="s1">&#39;another new value&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// we could delete foo.bar now and it would get</span>
+</span><span class='line'><span class="c1">// the prototype value instead</span>
+</span><span class='line'><span class="c1">// delete foo.bar;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// add a method to foo and bim to log bar</span>
+</span><span class='line'><span class="nx">Thinger</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">logger</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">bar</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// check if bar has been overridden</span>
+</span><span class='line'><span class="nx">foo</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span> <span class="c1">// true</span>
+</span><span class='line'><span class="nx">bim</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span> <span class="c1">// false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Question 4: Iterating over Objects</h2>
+
+
+
+
+<p>This one was pretty basic:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 4: given the following code, and assuming that each defined object has</span>
+</span><span class='line'><span class="c1">// a &#39;destroy&#39; method, how would you destroy all of the objects contained</span>
+</span><span class='line'><span class="c1">// in the myObjects object?</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">myObjects</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">thinger</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">myApp</span><span class="p">.</span><span class="nx">Thinger</span><span class="p">(),</span>
+</span><span class='line'>  <span class="nx">gizmo</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">myApp</span><span class="p">.</span><span class="nx">Gizmo</span><span class="p">(),</span>
+</span><span class='line'>  <span class="nx">widget</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">myApp</span><span class="p">.</span><span class="nx">Widget</span><span class="p">()</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Really I just wanted to see people iterate over an object without the use of a helper like <code>jQuery.each</code>. The <code>hasOwnProperty</code> check may seem like overkill, but I was glad when people didn&rsquo;t leave it out. Adding in the delete statement was another nice touch, though not strictly required by the question.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">myObjects</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">myObjects</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">myObjects</span><span class="p">[</span><span class="nx">obj</span><span class="p">].</span><span class="nx">destroy</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">delete</span> <span class="nx">myObjects</span><span class="p">[</span><span class="nx">obj</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Question 5: Solving Deceptively Simple Problems</h2>
+
+
+
+
+<p>This question was probably the most fun, because even though it was a dead-simple task, the answers were all over the map. This was the question:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 5: given the following array, create an array that contains the</span>
+</span><span class='line'><span class="c1">// contents of each array item repeated three times, with a space between</span>
+</span><span class='line'><span class="c1">// each item. so, for example, if an array item is &#39;foo&#39; then the new</span>
+</span><span class='line'><span class="c1">// array should contain an array item &#39;foo foo foo&#39;. (you can assume the</span>
+</span><span class='line'><span class="c1">// library of your choice is available)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span> <span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Rather than going through the different answers one at a time, I&rsquo;m just going to tell you to visit this <a href="http://jsperf.com/rmurphey-foo-foo-foo/9">JSPerf test page</a> to see some of the variations, and their relative performance.</p>
+
+
+
+
+<p>This brings up a good question <a href="http://twitter.com/ryanflorence/status/24505624622">tweeted by Ryan Florence</a>:</p>
+
+
+
+
+<blockquote><p>T | F &ndash; In #JavaScript, 90% of the time we do stuff only a few times, maybe hundreds. Therefore, 90% of the time Readability > Performance.</p></blockquote>
+
+
+
+
+<p>I tend to come down on the side of readability and compression over straight-up perf, precisely because we&rsquo;re rarely doing anything that&rsquo;s actually that intensive. On the other hand, we should avoid doing things that are outright stupid; where the line gets drawn depends a lot, I think, on experience.</p>
+
+
+
+
+<p>Here&rsquo;s the thing, though: Something that seems like a gratuitous and obscure optimization to a less experienced developer might seem completely readable and obvious to a more experienced developer. How to balance this? Can comments bridge the gap? Should the gap be bridged? I dunno.</p>
+
+
+
+
+<h2>Question 6: Basic jQuery Best Practices and DRY</h2>
+
+
+
+
+<p>I see way too much code in real life that looks like this question.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 6: how could you improve the following code?</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.foo #bar&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.foo #bar&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;border&#39;</span><span class="p">,</span> <span class="s1">&#39;1px solid blue&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.foo #bar&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;new text!&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.foo #bar&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;new title&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">width</span><span class="p">(</span><span class="s1">&#39;100px&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.foo #bar&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>There are a slew of things wrong in this tiny snippet. First and foremost, making the same selection repeatedly suggests that the author fundamentally doesn&rsquo;t understand what their code is doing, or the expense they&rsquo;re incurring in doing it; the selection should be made once, and then the selection should be cached and/or the methods should be chained.</p>
+
+
+
+
+<p>While it wasn&rsquo;t imperative, submitters did well to point out that CSS changes should be made via class names instead of hard-coded CSS in JavaScript; they also did well to put the click handler in a named function. Finally, while there may be cases where an ID selector needs to be prefixed by a class, i.e. <code>.foo #bar</code>, I appreciated it if people questioned this.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">el</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;new title&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="s1">&#39;100px&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">bar</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#bar&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="c1">// ideally: use a class for this</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">css</span><span class="p">({</span>
+</span><span class='line'>          <span class="nx">color</span> <span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">border</span> <span class="o">:</span> <span class="s1">&#39;1px solid blue&#39;</span>
+</span><span class='line'>        <span class="p">})</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;new text!&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">handleClick</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">));</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">handleClick</span><span class="p">(</span><span class="nx">bar</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Question 7: Asynchronicity</h2>
+
+
+
+
+<p>This is a pretty newby thing, but I wanted to make sure people understood the basic concept of async requests &mdash; that is, you can&rsquo;t set the value of a variable inside an XHR&rsquo;s callback and expect that value to be available immediately.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">foo</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">foo</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">foo</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// run this important code</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Fixing this just involves waiting for the XHR to complete before running the code that expects <code>foo</code> to be set. (Alternately, you could make the request run synchronously by setting <code>sync : true</code> in the XHR config object.)</p>
+
+
+
+
+<p>There was one other issue with this code as well: Dojo needs to know the response should be handled as JSON, else it will handle it as text. If a submitter missed this, I didn&rsquo;t hold it against them &mdash; Pete Higgins actually had to point it out to me :) That said, it would become pretty obvious pretty quickly in real code.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">handleAs</span> <span class="o">:</span> <span class="s1">&#39;json&#39;</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">addCallback</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">resp</span> <span class="o">&amp;&amp;</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// do stuff</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Note that the callback function could also be specified in the XHR config object using the <code>load</code> property; Dojo&rsquo;s XHRs are great in that while you can specify everything in a config object, you can also attach callbacks to the return value of the XHR methods. You should <a href="http://docs.dojocampus.org/dojo/Deferred">read more about this</a> because it is very pleasant.</p>
+
+
+
+
+<h2>Question 8: DRY</h2>
+
+
+
+
+<p>Repetitive code is dumb.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 8: how could you rewrite the following code to make it shorter?</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">$</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.foo a&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;i am foo&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.bar a&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;i am bar&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.baz a&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;i am baz&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.bop a&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;i am bop&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">dojo</span><span class="p">,</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">query</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>How far you want to go with DRYing this out is debatable, but to me this cries out for improvement. Here&rsquo;s what I&rsquo;d do:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">$</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">d</span><span class="p">.</span><span class="nx">forEach</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;bop&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li.&#39;</span> <span class="o">+</span> <span class="nx">c</span> <span class="o">+</span> <span class="s1">&#39; a&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;i am &#39;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">dojo</span><span class="p">,</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">query</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>I&rsquo;d be lying if I didn&rsquo;t mention that I also wanted to show here how easy it is to make Dojo look like jQuery. After all, it&rsquo;s just JavaScript, right?</p>
+
+
+
+
+<h2>Question 9: DOM Manipulation Best Practices &amp; DRY</h2>
+
+
+
+
+<p>I thought it was well-known that we don&rsquo;t append 202 things to the DOM one at a time; the good news is, most people did know this. The bad news is, some people did not.</p>
+
+
+
+
+<p>In addition to doing 202 appends, this code also does 202 selections. To top it off, the iterator <code>i</code> is global because we didn&rsquo;t prefix it with <code>var</code>.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 9: how would you improve the following code?</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#thinger&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+</span><span class='line'>    <span class="s1">&#39;&lt;p&gt;&lt;span class=&quot;thinger&quot;&gt;i am thinger &#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;&lt;/span&gt;&lt;/p&gt;&#39;</span>
+</span><span class='line'>  <span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#gizmo&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span>
+</span><span class='line'>    <span class="s1">&#39;&lt;p&gt;&lt;span class=&quot;gizmo&quot;&gt;i am gizmo &#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;&lt;/span&gt;&lt;/p&gt;&#39;</span>
+</span><span class='line'>  <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Here&rsquo;s a fix:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">thingerDom</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">gizmoDom</span> <span class="o">=</span> <span class="p">[],</span>
+</span><span class='line'>    <span class="nx">tpl</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;&lt;span class=&quot;%s&quot;&gt;i am %s %i&lt;/span&gt;&lt;/p&gt;&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tplFn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">tpl</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/%s/g</span><span class="p">,</span> <span class="nx">str</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/%i/g</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nx">i</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">thingerDom</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">tplFn</span><span class="p">(</span><span class="s1">&#39;thinger&#39;</span><span class="p">,</span> <span class="nx">i</span><span class="p">));</span>
+</span><span class='line'>  <span class="nx">gizmoDom</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">tplFn</span><span class="p">(</span><span class="s1">&#39;gizmo&#39;</span><span class="p">,</span> <span class="nx">i</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#thinger&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">thingerDom</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#gizmo&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">gizmoDom</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>There&rsquo;s more that could be done here to DRY this out a bit more, but the fix addresses the main problem of excessive DOM manipulation.</p>
+
+
+
+
+<h2>Question 10: Loose Typing</h2>
+
+
+
+
+<p>Numbers in JavaScript suck, especially when the user enters them.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 10: a user enters their desired tip into a text box; the baseTotal,</span>
+</span><span class='line'><span class="c1">// tax, and fee values are provided by the application. what are some</span>
+</span><span class='line'><span class="c1">// potential issues with the following function for calculating the total?</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">calculateTotal</span><span class="p">(</span><span class="nx">baseTotal</span><span class="p">,</span> <span class="nx">tip</span><span class="p">,</span> <span class="nx">tax</span><span class="p">,</span> <span class="nx">fee</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">baseTotal</span> <span class="o">+</span> <span class="nx">tip</span> <span class="o">+</span> <span class="nx">tax</span> <span class="o">+</span> <span class="nx">fee</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>How you&rsquo;d actually deal with this problem would probably depend on the business logic of your application; you may be well-advised to convert everything to integers instead of trying to deal with decimals, because math with floats in JavaScript can have issues.</p>
+
+
+
+
+<p>What I wanted to see in submissions, though, was an awareness that the tip would come to us as a string, and we couldn&rsquo;t just add it to the other arguments and expect a useful result. I was more interested in the discussion of this problem, and other problems that could arise, but here&rsquo;s at least the beginning of a solution:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">calculateTotal</span><span class="p">(</span><span class="nx">baseTotal</span><span class="p">,</span> <span class="nx">tip</span><span class="p">,</span> <span class="nx">tax</span><span class="p">,</span> <span class="nx">fee</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// convert the tip to a number using base 10;</span>
+</span><span class='line'>  <span class="c1">// allow for a NaN result from parseFloat</span>
+</span><span class='line'>  <span class="nx">tip</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">tip</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// don&#39;t allow a negative tip</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">tip</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="nx">tip</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">baseTotal</span> <span class="o">+</span> <span class="nx">tip</span> <span class="o">+</span> <span class="nx">tax</span> <span class="o">+</span> <span class="nx">fee</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Question 11: Array Mapping</h2>
+
+
+
+
+<p>For this question, I was looking for code that used a <code>map</code> method to return an array by running a function on each item in the array. Some people used a <code>forEach</code> method to iterate over the array instead, and then push the results to a new array they created. I guess this is OK, but it&rsquo;s not my preference.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// 11: given the following data, write code that returns an array</span>
+</span><span class='line'><span class="c1">// containing the name of each item, followed by a comma-separated list of</span>
+</span><span class='line'><span class="c1">// the item&#39;s extras, if it has any. e.g.</span>
+</span><span class='line'><span class="c1">//</span>
+</span><span class='line'><span class="c1">//    [ &quot;Salad (Chicken, Steak, Shrimp)&quot;, ... ]</span>
+</span><span class='line'><span class="c1">//</span>
+</span><span class='line'><span class="c1">// (you can assume the library of your choice is available)</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">menuItems</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nx">id</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;Salad&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">extras</span> <span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s1">&#39;Chicken&#39;</span><span class="p">,</span> <span class="s1">&#39;Steak&#39;</span><span class="p">,</span> <span class="s1">&#39;Shrimp&#39;</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nx">id</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;Potato&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">extras</span> <span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s1">&#39;Bacon&#39;</span><span class="p">,</span> <span class="s1">&#39;Sour Cream&#39;</span><span class="p">,</span> <span class="s1">&#39;Shrimp&#39;</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nx">id</span> <span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;Sandwich&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">extras</span> <span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s1">&#39;Turkey&#39;</span><span class="p">,</span> <span class="s1">&#39;Bacon&#39;</span>
+</span><span class='line'>    <span class="p">]</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="nx">id</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;Bread&#39;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Here&rsquo;s an answer:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">newArray</span> <span class="o">=</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">menuItems</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">extras</span> <span class="o">&amp;&amp;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">extras</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">ret</span> <span class="o">+=</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">extras</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Bonus 1: Functional Programming 101</h2>
+
+
+
+
+<p>This was a late addition, courtesy of <a href="http://andrew.hedges.name/">Andrew Hedges</a>, so not everyone saw it:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// BONUS: write code such that the following alerts &quot;Hello World&quot;</span>
+</span><span class='line'><span class="nx">say</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)(</span><span class="s1">&#39;World&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>I wanted to see people understand that functions could return other functions, and that the returned function has access to the scope of the wrapper function:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">say</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">first</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">second</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">first</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">second</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Some people got pleasantly carried away with this question; check out this <a href="http://jsfiddle.net/t8cAK/">JSFiddle</a> from Colin Snover.</p>
+
+
+
+
+<h2>Bonus 2: Attention to Detail</h2>
+
+
+
+
+<p>This last bonus was riddled with errors, including some that I made accidentally when I wrote it at 2 a.m.</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// BONUS: what is the faulty logic in the following code?</span>
+</span><span class='line'><span class="c1">// how would you fix it?</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span>
+</span><span class='line'>    <span class="nx">day</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">(),</span>
+</span><span class='line'>    <span class="nx">month</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">(),</span>
+</span><span class='line'>    <span class="nx">dates</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dates</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">month</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">day</span> <span class="o">+</span> <span class="nx">i</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The next five days are &#39;</span><span class="p">,</span> <span class="nx">dates</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Here&rsquo;s what you should see:</p>
+
+
+
+
+<ul>
+<li>The <code>for</code> loop will return 6 dates, not 5.</li>
+<li>The method for calculating the date for each successive date could end up with nonexistent dates (32, 33, etc.), and it doesn&rsquo;t change the month when it should.</li>
+<li>The <code>getMonth</code> method on the date object returns a zero-indexed month.</li>
+</ul>
+
+
+
+
+<p>Here&rsquo;s a fix:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">otherDate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">day</span> <span class="o">=</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">future</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">dates</span> <span class="o">=</span> <span class="p">[],</span>
+</span><span class='line'>      <span class="nx">i</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">future</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">otherDate</span><span class="p">.</span><span class="nx">setDate</span><span class="p">(</span><span class="nx">day</span> <span class="o">+</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">newMonth</span> <span class="o">=</span> <span class="nx">otherDate</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">newDay</span> <span class="o">=</span> <span class="nx">otherDate</span><span class="p">.</span><span class="nx">getDate</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">dates</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newMonth</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">newDay</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Postscript</h2>
+
+
+
+
+<p>I want to be really clear that I&rsquo;m not some super-awesome and infallible JavaScript developer, and more to the point, there was a time in the not-too-distant past where I would have failed my own quiz miserably. While my main goal in putting this together was to find some skilled developers to help me out, I also wanted to provide a tool for exposing up-and-coming developers to some slightly more advanced concepts of JavaScript. I hope that, whatever your skill level, you found it to be at least entertaining, and at best, useful. I also hope you&rsquo;ll forgive any gross errors I&rsquo;ve made in the answers above, though I tried <em>really</em> hard to test them all.</p>
+
+
+
+
+<h2>Post-Postscript</h2>
+
+
+
+
+<ul>
+<li>To the person who complained that I included code from a library other than jQuery, and who helpfully illustrated their point with the graph that shows jQuery is obviously better than anything that ever was: I&rsquo;m not sure whether to laugh or cry or just be really snarky. I&rsquo;m looking for JavaScript developers. If you don&rsquo;t see the value in knowing more than just jQuery, and if you can&rsquo;t find your way through relatively trivial non-jQuery code, you need not apply.</li>
+<li>If you found the questions vague and requiring a lot of assumptions or guesswork, well, welcome to consulting &mdash; if such things make you uncomfortable, we&rsquo;re not going to be a good fit. I was looking for people to tell me what they know, to impress me, to point out where they saw holes in the questions, to take initiative. This was not a multiple choice test; it was an interview.</li>
+</ul>
+
+
+
+
+<h2>License</h2>
+
+
+
+
+<p>If you think the quiz would be useful to you as you&rsquo;re looking for a JavaScript developer to call your own, it&rsquo;s licensed under the <a href="http://sam.zoy.org/wtfpl/">WTFPL</a>, which you should read just because it&rsquo;s funny.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/">Making Sense of dojo.when: A Simple XHR Caching Example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-29T00:00:00-05:00" pubdate data-updated="true">Aug 29<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/29/making-sense-of-dojo-when-a-simple-xhr-caching-example/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Right before Dojo 1.5 came out, the Sitepen blog had <a href="http://www.sitepen.com/blog/2010/05/03/robust-promises-with-dojo-deferred-1-5/">a great post</a> about the improvements 1.5 would bring for <code>dojo.Deferred</code>. The part that really caught my eye was <a href="http://docs.dojocampus.org/dojo/when"><code>dojo.when</code></a>, a method that lets you pass a value to a function whether that value is available now or as the result of some asynchronous operation. Either way, you get a &ldquo;promise&rdquo; that <em>when</em> the value is available, the function you provided will run.</p>
+
+
+
+
+<p>This is one of those things that was super-neat when I read about it, but it took me a while to incorporate it into my code &mdash; it&rsquo;s only in the last couple of weeks that I&rsquo;ve had that wonderful moment when I&rsquo;ve said &ldquo;oh, I could totally use <code>dojo.when</code> for that!&rdquo; Moments like these make me very happy.</p>
+
+
+
+
+<p>It&rsquo;s pretty common that an application makes an Ajax request for some data, and then caches that data so the request won&rsquo;t have to happen again; the pattern might look something like this:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]);</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
+</span><span class='line'>    <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">handleResponse</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Here we have a function that takes an ID; the function looks in the cache to see if there&rsquo;s a value stored for the ID, and if so, it passes the stored value to a <code>handleResponse</code> function. If not, it does an XHR to get the data; when the XHR succeeds, it stores the data in the cache and, again, passes the value to the <code>handleResponse</code> function.</p>
+
+
+
+
+<p>There&rsquo;s nothing strictly wrong with this, but I discovered that some neat abstraction opportunities became more clear when I switched to using <code>dojo.when</code> instead:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">myCache</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">getSomeStuff</span><span class="p">(</span><span class="nx">stuffId</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span>
+</span><span class='line'>    <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">||</span> <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;foo.php&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">content</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">stuffId</span> <span class="p">},</span>
+</span><span class='line'>      <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">myCache</span><span class="p">[</span><span class="nx">stuffId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}),</span>
+</span><span class='line'>    <span class="nx">handleResponse</span>
+</span><span class='line'>  <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Now we&rsquo;re telling our <code>getSomeStuff</code> function to look for a cached value; if it finds one, <code>dojo.when</code> will immediately pass that value to the <code>handleResponse</code> function. If it doesn&rsquo;t find one, it will run the XHR, and <code>dojo.when</code> will magically pass the XHR&rsquo;s response to the <code>handleResponse</code> function instead. This is hot.</p>
+
+
+
+
+<p>This works because <code>dojo.xhrGet</code> returns a &ldquo;promise&rdquo; object with a <code>then</code> method. <code>dojo.when</code> looks to see whether it got a promise object as its first argument; if so, it uses the <code>then</code> method of the promise object to attach the callback provided as the second argument to <code>dojo.when</code>. If not, it simply calls the callback immediately on the first argument. The real magic is actually in <code>dojo.Deferred</code>, not in <code>dojo.when</code> itself. Since all of Dojo&rsquo;s XHR methods return a <code>dojo.Deferred</code> promise, <code>dojo.when</code> will &ldquo;just work.&rdquo;</p>
+
+
+
+
+<p>I found that I was going through my application and ripping out instances of the old code, replacing it with the new. And then I had that &ldquo;oh sh*t I&rsquo;m copying and pasting, aren&rsquo;t I &hellip;&rdquo; moment, and saw my way to an abstraction.</p>
+
+
+
+
+<p>In my application, I was actually caching the responses using the URL from which I&rsquo;d requested them, which works out to be a perfectly unique ID for the data. (This particular part may or may not work in your application.) My abstraction was an essentially drop-in replacement for <code>dojo.xhrGet</code> calls:</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">cacheableXhrGet</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">req</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">||</span>
+</span><span class='line'>            <span class="nx">dojo</span><span class="p">.</span><span class="nx">xhrGet</span><span class="p">(</span><span class="nx">dojo</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
+</span><span class='line'>              <span class="c1">// override the load handler</span>
+</span><span class='line'>              <span class="nx">load</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">cache</span><span class="p">[</span><span class="nx">url</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">;</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>            <span class="p">},</span> <span class="nx">settings</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">dojo</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">load</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">req</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>I can pass a settings object to <code>cacheableXhrGet</code> that looks exactly like the object I&rsquo;d pass to <code>dojo.xhrGet</code>, but replace the <code>load</code> function before actually passing it to <code>dojo.xhrGet</code>. But before the XHR even has a chance to get set up, I check my cache for a stored response; if I find one, I store it in the <code>req</code> variable, but otherwise I store the XHR there.</p>
+
+
+
+
+<p>In either case, the function defined at <code>settings.load</code> gets the proper response value via <code>dojo.when</code>. For bonus points, I then return either the cached value or the XHR &mdash; which means <em>other code can use the return value of <code>cacheableXhrGet</code> for its own <code>dojo.when</code></em>. How neat is that?</p>
+
+
+
+
+<h2>Conclusion</h2>
+
+
+
+
+<p>Promises and deferred&rsquo;s are a really pleasant tool to have in your JavaScript arsenal once you get the hang of them, and <code>dojo.when</code> seems like a great place to start understanding them.</p>
+
+
+
+
+<p>Out of the box, Dojo makes use of deferreds for all of its XHR functionality, meaning that you can pass around the return value of any Dojo XHR method and do fun things you can&rsquo;t do with jQuery&rsquo;s <code>$.ajax</code>, like add more callbacks to a request after you&rsquo;ve set it up.</p>
+
+
+
+
+<p>I&rsquo;ve just recently started realizing when I could incorporate <a href="http://docs.dojocampus.org/dojo/Deferred"><code>dojo.Deferred</code></a> functionality into my own code &mdash; again, now that I&rsquo;ve got the hang of it, I&rsquo;m pretty sure it&rsquo;s going to dramatically change how I write asynchronous code.</p>
+
+
+
+
+<p><em>Disclaimer: This post contains sample code for illustration purposes. In reality it&rsquo;s all namespaced and these naked functions are actually methods in classes and stuff, and the real code doesn&rsquo;t even look much like the code you see here. I&rsquo;ve also completely ignored questions of when to clear or invalidate the cache. You&rsquo;ve been warned.</em></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/">Code Org, Take 2: Structuring JavaScript Applications</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-27T00:00:00-05:00" pubdate data-updated="true">Aug 27<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d been thinking for a few months about how to improve my own code and give it more structure, and how to give advice to others about how to do the same.</p>
+
+
+
+
+<p>My talk was about code organization, but really I was talking about how you might organize a single piece of functionality; I didn&rsquo;t even begin to answer the larger question of how to structure a bona fide JavaScript application. Really, that question is almost perpendicular to the one I was tackling at the time; it&rsquo;s a question of strategy, not tactics.</p>
+
+
+
+
+<p>A year later, I&rsquo;d like to share my thoughts on how I&rsquo;m answering it these days.</p>
+
+
+
+
+<h2>First Things First: What&rsquo;s a JavaScript Application?</h2>
+
+
+
+
+<p>GMail is a JavaScript application; this Posterous blog, while it makes use of JavaScript a bit, is probably not, but the admin interface most certainly is. The line can be frustratingly fuzzy, but at the same time it&rsquo;s pretty important to realize when you&rsquo;ve crossed it.</p>
+
+
+
+
+<p><strong>To me, the defining characteristic of a JavaScript application is that the heavy lifting of manipulating and displaying data falls to the browser</strong>, with most communication with the server happening via XHR.</p>
+
+
+
+
+<p>If you find yourself in application land, welcome. Now what?</p>
+
+
+
+
+<h2>My Building Blocks</h2>
+
+
+
+
+<p>My approach to organizing an application is really just an MVC variant, so I don&rsquo;t want to sound as though I&rsquo;ve discovered something novel or new. However, there are a couple of things to note: For one, the term &ldquo;controller&rdquo; has a couple of different meanings to me, as explained below; for two, there are two distinct flavors of &ldquo;views,&rdquo; though I&rsquo;m not sure exactly how important the distinction is.</p>
+
+
+
+
+<p>I also want to be super-clear that I don&rsquo;t tout this as The One and Only Way; it is just a way that has worked for me, a way that I evolve and adapt with every project I work on, and a way that I&rsquo;ve run by a few people and they haven&rsquo;t laughed at me. My point in dissecting it isn&rsquo;t that you&rsquo;ll try to follow it word-for-word; rather, I hope it might get you thinking about  JavaScript applications beyond the DOM.</p>
+
+
+
+
+<h3>Models</h3>
+
+
+
+
+<p>There&rsquo;s nothing particularly unique to models in a JavaScript application. They are responsible for fetching and storing application data and maintaining its integrity in the browser. They fetch data, store data, and provide an API for other application components to get access to that data. There may be more than one destination for the data: memory, the server, or some type of local storage. But if it has to do with managing data, it&rsquo;s the model&rsquo;s job.</p>
+
+
+
+
+<p>Models stay out of the way when it comes to displaying data or responding (at least directly) to user interaction. Those tasks are left up to other pieces of the application, as we&rsquo;ll see below.</p>
+
+
+
+
+<h4>Example</h4>
+
+
+
+
+<p>A simple search application would likely have a search results model, responsible for receiving the current search term, fetching the data for the term, and broadcasting it to the rest of the application. It might also allow for manipulating individual search results, such as indicating that a particular result was a favorite or a dud, though that task might also fall to an individual search result model depending on the needs.</p>
+
+
+
+
+<h3>Widgets and Data Views</h3>
+
+
+
+
+<p>Views comprise HTML (generally in the form of client-side templates) and CSS for a component, and are generally accompanied by a view controller (the  JavaScript related to interacting with the vew; see below for an explanation). The HTML for a view consists of a single parent node with an arbitrary internal structure; the parent node will optionally have one or more classes on it that can be used to target CSS.</p>
+
+
+
+
+<p>There are two flavors of views, in my mind: widgets, which are responsible for supporting user interaction with the application but don&rsquo;t render any application data; and data views that are responsible for displaying and allowing interaction with application data.</p>
+
+
+
+
+<p>Data views are instantiated with the initial data required to populate them; then, their view controllers listen for messages from other pieces of the application to tell them when new or updated data needs to be rendered.</p>
+
+
+
+
+<h4>Examples</h4>
+
+
+
+
+<p>A basic search input box would be considered a widget &mdash; when it is created, it doesn&rsquo;t need any application data in order to render properly. The widget is strictly responsible for allowing the basic interaction of typing a search term and hitting enter; that is, it&rsquo;s not responsible for actually performing the search.</p>
+
+
+
+
+<p>A search results list is an example of a data view; it renders application data <em>and</em>, potentially, allows for interaction with it. Again, though, it&rsquo;s not responsible for performing the search; it just renders data and then allows for interaction with it.</p>
+
+
+
+
+<h3>View Controllers</h3>
+
+
+
+
+<p>View controllers manage interaction with a data view or widget &mdash; interaction by the user, and interaction with the rest of the application. They are responsible for binding and handling events, for broadcasting user interactions with the widget to the rest of the application, and for listening to other pieces of the application to tell them they have new data to render.</p>
+
+
+
+
+<p>View controllers <em>never</em> handle server communication directly; their role is solely to provide a user interface to the application. When something interesting happens to a view or widget, the view controller announces it. When new data is available for a view, the view controller should know how to handle it. But, again, the view controller itself should focus on providing a user interface, not on interfacing with the server.</p>
+
+
+
+
+<h4>Examples</h4>
+
+
+
+
+<p>The view controller for a search box might listen for the user to focus on the search box, hiding placeholder text for the input. Then, it might listen for the user to hit Enter inside the search box; when that happens, it would broadcast to the rest of the application that the user had submitted a search, along with the term that was searched.</p>
+
+
+
+
+<p>The view controller for a search results list might listen for another piece of the application to announce that new search results are available to be displayed. If the results were for the currently displayed search term, it could add them to the list; if they were for a new term, the results list could empty itself and display the new results.</p>
+
+
+
+
+<h3>Application-Level Controllers</h3>
+
+
+
+
+<p>Application-level controllers are the glue of an application. Loosely, there may be one per &ldquo;page&rdquo; of the application, or one per feature. For example, an application that includes a search feature and a checkout feature might have a controller for each feature, even though the checkout feature might spread across multiple pages.</p>
+
+
+
+
+<p>These controllers are responsible for getting the models and views/widgets for a feature in place and talking to each other. So, a controller might first make sure the required models are in place, then tell them to fetch the appropriate data; once the data is available, the controller would instantiate the views for displaying the data. Finally, the controller would broker future interactions between the views and the models.</p>
+
+
+
+
+<h4>Examples</h4>
+
+
+
+
+<p>On a search results page, a user might click a Favorite button on a search result. The search results list&rsquo;s view controller would handle the click, broadcasting a message about the user&rsquo;s action to the rest of the application. The controller would observe this message and pass it, along with any other relevant information, to the search results model, which would in turn pass the information to the server, or store it locally.</p>
+
+
+
+
+<h2>Notes on Enablers</h2>
+
+
+
+
+<p>I&rsquo;ve glossed over a few implementation details that are somewhat tangential to the organization question, but I want to touch on them briefly:</p>
+
+
+
+
+<h3>Pubsub and Friends</h3>
+
+
+
+
+<p>I didn&rsquo;t want to get too specific about how all of this &ldquo;announcing&rdquo; and &ldquo;broadcasting&rdquo; and &ldquo;listening&rdquo; happens, because there are lots of ways to accomplish it. One could use pubsub, custom events, or any number of other solutions. I don&rsquo;t think the actual implementation is important, though personally I lean heavily on pubsub &mdash; what is important is the notion of broadcasting and listening for announcements that something has happened, allowing other components of the application to react appropriately.</p>
+
+
+
+
+<h3>Templating</h3>
+
+
+
+
+<p>If you aren&rsquo;t using a toolkit with templating built in (or, heck, even if you are), I&rsquo;ve kind of fallen in love with <a href="http://github.com/janl/mustache.js/">mustache.js</a> lately. It&rsquo;s a great client-side templating companion, making it dead-simple to turn data into markup without ending up with templates that look more like JavaScript than HTML.</p>
+
+
+
+
+<p>Figuring out how to maintain templates can be tricky &mdash; do you store them in your page&rsquo;s markup? Do you maintain them as separate files requested via XHR and then cached? Or do you put them in your JavaScript? Dojo&rsquo;s <code>dojo.cache()</code> method provides a handy way to keep your templates in separate files and load them via XHR, while interning them into your JavaScript for you if you use Dojo&rsquo;s build tool. I like this.</p>
+
+
+
+
+<h3>Attaching Events to Views</h3>
+
+
+
+
+<p>Another shameless Dojo plug: <code>dijit.\_Templated</code> provides some serious hotness when it comes to attaching events to views. Read up on <a href="http://docs.dojocampus.org/dijit/_Templated"><code>dojoAttachPoint</code> and <code>dojoAttachEvent</code></a>; together with dijit._Widget&rsquo;s <code>connect</code> and <code>subscribe</code> methods, which provide automatic cleanup for you, there&rsquo;s some real power here, which has me writing hardly any selector-based code these days.</p>
+
+
+
+
+<h3>File Structure</h3>
+
+
+
+
+<p>I hesitate to make any particular recommendations here, because the needs of an application can vary widely. However, I tend to have a directory each for models, views (for view controllers and templates), and controllers (for application-level controllers). Those directories &mdash; especially the views directory &mdash; may contain subdirectories, for instance if there&rsquo;s more than one view for a certain type of data.</p>
+
+
+
+
+<h2>Why Go To All This Trouble, Again?</h2>
+
+
+
+
+<p>So this is the part where you might say &ldquo;OMG, srsly, what happened to &lsquo;get some elements, do something with them?!?&rsquo;&rdquo; Let me be clear, that approach may be <em>entirely appropriate</em> for your particular needs; I&rsquo;m not here to convince you otherwise.</p>
+
+
+
+
+<p>But: if your application is complex enough to warrant considering an approach like this, I&rsquo;ve found that in the long run it actually simplifies my code by cleanly separating concerns and providing a decent roadmap for building new features. I can build and test a solid model for some Thinger, and then use that model throughout my code; I can build and test a user interface component for editing a Thinger long before the data exists to support it. I can map &ldquo;pages&rdquo; of my application to application-level controllers, providing a high-level view of what&rsquo;s happening where.</p>
+
+
+
+
+<p>Best of all, paths to code reuse become clear and entanglements become fewer when I keep this division of responsibilities in mind as I code. A search results data view, for example, can be made to accept search results from any model that provides them in the proper format; a search can be initiated and the results displayed without depending on a user entering text into a search input widget.</p>
+
+
+
+
+<p>Dividing the responsibilities into well-defined sections leads to components that are truly pluggable, often in ways you may not have even imagined when you wrote them. In an application that evolves over time, it&rsquo;s hard to overstate the benefits of this.</p>
+
+
+
+
+<h2>In Conclusion &amp; A Plea</h2>
+
+
+
+
+<p>If you find yourself working on a JavaScript application, I can&rsquo;t recommend enough that you consider, at length, what underlying structure makes the most sense; it&rsquo;s almost inevitably more complex than you can manage via the DOM alone. Again, my answer isn&rsquo;t the right answer, it&rsquo;s just an answer, but I hope it helps you start thinking about what the right answer might be for your project.</p>
+
+
+
+
+<p>If you&rsquo;re interested in this stuff, I&rsquo;d encourage you to check out <a href="http://javascriptmvc.com/">JavaScriptMVC</a>, if only to see how they approach these problems; <a href="http://cujojs.com/">Cujo.js</a> is another framework, built on top of Dojo, that aims to enter this space, but you&rsquo;ll have to wait until mid-September to see it.</p>
+
+
+
+
+<p>Finally: If you have your own thoughts to share about how to approach these large application questions, I&rsquo;m pleading with you to write your own blog post(s) about them. If you have other reference material on the topic, I beg you to share it. As more and more people transition from simple JavaScript enhancements to non-trivial applications, the need for education is huge.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/24/dear-conference-organizer/">Dear Conference Organizer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-24T00:00:00-05:00" pubdate data-updated="true">Aug 24<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/24/dear-conference-organizer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+<p>Thank you for the invitation to speak at your conference, and your offer to pay my hotel and airfare in exchange.&nbsp;I notice that you are selling tickets for upwards of $1,500, in addition to hotel and travel costs. In exchange, you are hosting a three-day event, meals, a USB drive, a shirt, and a binder.</p>
+<p>We need to talk, and not about the binder.</p>
+<p>TXJS was a one-day conference with approximately a $30k budget &#8211; some tickets cost a whopping $29, and the most expensive tickets were $109 &#8211; and yet it managed to offer exactly what you&#8217;re offering to me to its out-of-town speakers: hotel and travel. It had two nights of open-bar parties; a shuttle bus to get people to and from the amazing, eclectic, venue; catered breakfast and lunch; an open bar at the event itself; and a speaker and VIP brunch the following day. It also had some of the best JavaScript minds in the business on stage and in the audience, drawing people from around the country and beyond.&nbsp;</p>
+<p>I hope you can appreciate the disconnect here. It&#8217;s not so much that I want to get paid &#8211; I have gladly and eagerly spoken at lower-cost conferences without even getting my hotel compensated &#8211; as the fact that I know now that conferences just don&#8217;t have to cost that much. When they do, it&#8217;s hard to get on board with lending my name for free when the conference stands to have revenue of <em>hundreds of thousands of dollars</em> and I know I only needed revenue tens of thousands to put on an amazing event.&nbsp;</p>
+<p>As a self-employed consultant, speaking at a conference has, at best, intangible benefit to me, and non-trivial costs. You and many other organizers can seem as though you assume the benefit is obvious, and the costs negligible. In fact, agreeing to a speaking engagement &#8211; one that requires two non-working days for travel, a non-working day for speaking, and whatever prep time is required to actually put together my talk &#8211; is a tough decision regardless of how much tickets cost, especially for someone without corporate backing or a product to promote. Call me selfish, but I need to be very clear that there&#8217;s a benefit to me. A high-dollar conference likely to attract almost exclusively corporate-backed attendees with at best a peripheral relationship to my area of expertise is exactly the kind of conference where it&#8217;s <em>not</em> clear what the benefit will be. Being away from home and work for three days, even in a nice hotel, just doesn&#8217;t count.&nbsp;</p>
+<p>&#8211;</p>
+<p>Finally: To all of the TXJS speakers, we heart you unbelievably and stand in awe that when we asked you to present at an event that had never existed before, each and every one of you said yes without batting an eye. I hope you know that we know that even with the open bar and the parties and the shuttle and the venue and all of it, we couldn&#8217;t have had a conference without you.&nbsp;</p>
+</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/21/enterprisedojo-com-uses-jquery/">EnterpriseDojo.com Uses jQuery!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-21T00:00:00-05:00" pubdate data-updated="true">Aug 21<span>st</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/21/enterprisedojo-com-uses-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>And you should too &#8230; for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
+
+
+<p>Here&#8217;s an idea: Let&#8217;s have an honest discussion about when a given solution makes sense and when it doesn&#8217;t, rather than mocking a contributor to that discussion for choosing a perfectly appropriate tool for a perfectly mundane task. <a href="http://enterprisedojo.com">EnterpriseDojo.com</a> is a blog about using Dojo in the enterprise, not a blog about using Dojo on blogs.&nbsp;Snickering at its use of jQuery is approximately as useful as pointing to <a href="http://www.google.com/trends?q=jquery%2Cdojo%2Cyui">this graph</a> and saying case closed, leaving more reasonable, thoughtful people to explain <a href="http://stackoverflow.com/questions/2450696/what-happened-to-dojo-in-2008/2451785#2451785">all the ways that graph doesn&#8217;t tell us a&nbsp;damn thing</a>.&nbsp;</p>
+
+
+<p>I want to be very clear, as the dust settles around my several recent rants: jQuery has its place, and it is a very, very big place. It is a lovely DOM, Ajax, and events library, and a great way to get certain things done quickly, especially for people who may not have the luxury of learning the inner workings of JavaScript (noble a goal as that is).&nbsp;There was a time when DOM and Ajax and events questions felt like&nbsp;<em>the</em> questions of the day, and jQuery showed us how to answer those questions using a simple, easy-to-learn API that suddenly made JavaScript accessible to the masses. Other libraries solved the same questions but those solutions felt ugly and clunky and goshdarnit, <em>hard</em>, and I give jQuery the utmost credit for making JavaScript suck so much less when all I wanted to do was show or hide or slide a thing or load some content onto my page. I&#8217;ll even grant that it can be used as a piece of a large application solution, though I question the wisdom of doing so for reasons outlined in <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">another post</a>. Heck, I&#8217;ll even grant that &#8220;enterprises&#8221; aren&#8217;t off their rockers to use it &#8211; for the things it was meant to be used for.&nbsp;</p>
+
+
+<p>What upsets me is when smart people seem to say that jQuery&#8217;s victory in an internet-wide popularity contest suggests, well, anything at all when it comes to more complex needs. It upsets me because my clients hear those suggestions, look at that same well-marketed graph, and I am left explaining to them that, yes, jQuery is popular, but it&#8217;s popular because it answers a small set of questions easily and well &#8211; even for people who don&#8217;t even know JavaScript! &#8211; and you, dear client, have vastly larger questions than that.</p>
+
+
+<p>At the end of the day, these toolkit decisions ought to be about more than a popularity contest; jQuery may be the right answer, or part of the right answer, but it&#8217;s imperative, to me, that my clients understand the scope of the question first. It&#8217;s imperative that they make their decisions based on a full understanding of pros and cons, risk and reward, cost and benefit &#8211; not based on a graph, not based on a popularity contest.</p>
+
+
+<p>So again I say: we, as a community, and especially the influential ones among us, do well when we elevate the conversation beyond that contest and acknowledge that choosing the right toolkit depends on first understanding what you&#8217;re choosing the toolkit for. We do well when we educate teams and decisionmakers on the lessons we&#8217;ve learned in the time since DOM, Ajax, and events were the big question of the day, on the best practices that have emerged, on the situations where we&#8217;ve, gasp, had to look beyond jQuery &#8211; either to other tools or other toolkits &#8211; for the answers. And we do well when we start showing them how they can do the same.</p>
+
+
+<p><em>An aside: Some people I like a lot have pointed out that in the midst of all of my complaining, I have not come out and offered a solution. This is fair. Two things: One, I have not wanted this conversation to collapse into Dojo vs. jQuery vs. YUI vs. Ext vs. MooTools vs. whatever, because if it does, I think we&#8217;ve missed the crux of the matter: that different tools do different things, that some set out to answer complex questions and some do not. If anyone has been unclear, which I rather doubt, my personal preference of late has been to use Dojo. I do not recommend using Dojo for everything under the sun, but I find it offers a lot of utility when writing non-trivial applications. I cannot make a compelling argument for using it vs. YUI, simply because I don&#8217;t know YUI well enough. I can&#8217;t even make a compelling argument for using it vs. Ext, except for licensing issues that may or may not be relevant in a given scenario. Two, if you&#8217;re disappointed that I haven&#8217;t offered a solution, especially a jQuery-based one, I apologize. However, I feel there are too many viable existing solutions out there already, and I haven&#8217;t come up with a good reason to promote a jQuery-based solution besides jQuery&#8217;s popularity. And, well, see above for my thoughts on that.</em></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Notes on handing off a design to a front-end developer - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I&#8217;ve been spending a lot of time lately turning other people&#8217;s designs into working websites, and often there are a few rounds of back- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Notes on Handing Off a Design to a Front-end Developer</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-22T00:00:00-05:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve been spending a lot of time lately turning other people&#8217;s designs into working websites, and often there are a few rounds of back-and-forth before I have everything I need. Some notes on must-have pieces before I can begin work:</p>
+
+<p><strong>Design</strong></p>
+
+<ul>
+    <li>
+<strong>Custom fonts. </strong>If the design includes fonts that aren&#8217;t on <a href="http://www.ampsoft.net/webdesign-l/WindowsMacFonts.html">this list</a>, then either the designer needs to provide a PSD that has all instances of the font being used in the design, or else I&#8217;m going to need the font file in order to create them. (There may be <a href="http://clagnut.com/blog/1798/">licensing</a> <a href="http://www.fsf.org/blogs/licensing/20050425novalis">issues</a> here, which I leave as an exercise for the reader. In print land, we were allowed to provide the print shop with the fonts required to produce a printed piece, and the print shop was not supposed to retain them once the print run was complete. I imagine something similar applies to web production.)</li>
+    <li>
+<strong>Navigation state information. </strong>What should navigation elements look like in the up, over, and current states? Ideally I&#8217;d like to see all of the buttons in each state, but if the variations are simple then I can probably make them myself.</li>
+    <li>
+<strong>Link state information.</strong> What color should links be? Should they be underlined all the time, or only on hover? What color should they be when they are hovered? When they&#8217;ve already been visited?</li>
+    <li>
+<strong>Form treatment.</strong> If the site has any forms on it, what should form elements &#8211; text inputs, submit buttons and input labels &#8211; look like?</li>
+    <li>
+<strong>Typography specifications.</strong> Decisions about these can dramatically affect the feel of the site, and you may not want to leave them up to me. Specifically:
+<ul>
+    <li>How big should body copy be?</li>
+    <li>How much space should there be between body copy lines? (Normally the &#8220;line-height&#8221; is set at 1.2 times the size of the font; increasing this can make body copy more legible.)</li>
+    <li>How much space should there be between body copy paragraphs?</li>
+    <li>How should headings be styled? How big should primary and secondary headlines be relative to the body copy?</li>
+    <li>How should lists (ordered and bulleted) be styled?</li>
+</ul>
+</li>
+    <li>
+<strong>Imagery specifications.</strong> Like typography specifications, these considerations should be made carefully, as they affect the feel of the site. Specifically:
+<ul>
+    <li>How should text wrap around an image? Should the image float to the left, with copy wrapping around the right? Float to the right, copy on the left? Leave it up to the user?</li>
+    <li>If an image is floated to the left or right, how much space should be between it and the text?</li>
+</ul>
+</li>
+</ul>
+
+
+<p><strong>Documentation</strong></p>
+
+<ul>
+    <li>
+<strong>Approved content documents.</strong> Personally I prefer a single content document per static page that needs to be created, and a content sample for any dynamic pages that will need to be created. If there are any repeating elements in the design that require content, I&#8217;d enjoy getting a document that contains their text as well. Lastly, if there are any dynamically generated content items &#8211; for example, a list of latest posts &#8211; I&#8217;d like a document that shows me how these should be formatted. This will help me:
+<ul>
+    <li>Make sure I&#8217;ve accounted for the pieces of the content and how they fit together.</li>
+    <li>Know that all content has been considered, reviewed and approved, so there shouldn&#8217;t be too many surprises later.</li>
+    <li>Reconcile the content documents with any other documentation I&#8217;ve received.</li>
+</ul>
+</li>
+    <li>
+<strong>Functional spec document. </strong>Let me know what should happen when someone fills out a form. Let me know how the items in the sidebar should be gathered. Let me know where that video&#8217;s going to come from. Basically, anytime I ask &#8220;Where does that come from?&#8221; or &#8220;What does this do?&#8221;, the functional spec should answer that question. While a functional spec should be initiated long before the design is complete, it is good to review the design and make sure those questions are answered. A functional spec should also include a sitemap.</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-22T00:00:00-05:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/freelancing-/'>freelancing,</a>, <a class='category' href='/blog/categories/front-end/'>front-end</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/09/21/planning-a-wordpress-cms-site/" title="Previous Post: Planning a Wordpress CMS site">&laquo; Planning a Wordpress CMS site</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/11/16/solution-for-google-map-contents-not-showing/" title="Next Post: Solution for Google Map contents not showing">Solution for Google Map contents not showing &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/';
+        var disqus_url = 'http://rmurphey.com/blog/2008/09/22/notes-on-handing-off-a-design-to-a-front-end-developer/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: form | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/form/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jQuery validation: Indicate that at least one element in a group is required]]></title>
+    <link href="http://rmurphey.com/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required/"/>
+    <updated>2009-04-15T00:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2009/04/15/jquery-validation-indicate-that-at-least-one-element-in-a-group-is-required</id>
+    <content type="html"><![CDATA[<p>I had a need today to indicate that at least one of a set of input fields was required. I was hoping there was a direct way to do this in the <a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">jQuery validation plugin</a>; while the method isn't quite as straightforward as I was wishing for, it's still fairly simple.</p>
+
+<p>To start with, I put <code>class="required_group"</code> on each of the elements in the group. Then, I added a custom validation method:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">addMethod</span><span class="p">(</span><span class="s1">&#39;required_group&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">$module</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">&#39;div.panel&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="k">return</span> <span class="nx">$module</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.required_group:filled&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>... a custom class rule to take advantage of the new method:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">addClassRules</span><span class="p">(</span><span class="s1">&#39;required_group&#39;</span><span class="p">,</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="s1">&#39;required_group&#39;</span> <span class="o">:</span> <span class="kc">true</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>... and finally a custom message for the new method:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">jQuery</span><span class="p">.</span><span class="nx">validator</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">required_group</span> <span class="o">=</span> <span class="s1">&#39;Please fill out at least one of these fields.&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>What I'd love to see is a way to specify a dependent group without using a custom class rule, but I'm not sure what this would look like, as all validation rules are either keyed off an element's class or the presence of the element's name in the rules object. Thoughts? I'm open to the possibility that there's a far better way to solve this --</p>
+]]></content>
+  </entry>
+  
+</feed>

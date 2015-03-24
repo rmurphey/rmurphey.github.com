@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CSS vs. Tables: Maybe the design is to blame? - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="There&#8217;s been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CSS vs. Tables: Maybe the Design Is to Blame?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T00:00:00-06:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There&#8217;s been some backlash lately against CSS, and some of it seems so well reasoned that even I find myself wondering if tables are really so bad after all. From <a href="http://giveupandusetables.com/">giveupandusetables.com</a>, which says the maximum time to spend before abandoning CSS is 47 minutes, to the <a href="http://www.flownet.com/ron/css-rant.html">well-illustrated blog post by Ron Garret</a>, the general argument is that CSS isn&#8217;t up to the task of faithfully reproducing elaborate designs cross-browser in an acceptable amount of developer time.</p>
+
+<p>In his post about Garret&#8217;s article, <a href="http://ajaxian.com/archives/css-for-layout-another-rant">Dion Almaer at Ajaxian</a> opines:</p>
+
+<blockquote class="posterous_medium_quote">CSS purist[s] may poo poo him and say &#8220;he is just dumb and doesn&#8217;t REALLY know CSS.&#8221; The problem though is that most developers run into exactly the pain that he describes. We’ve all been there. It drives you nuts and when frustrated what do you do? You fluster about and change CSS like a mad man until it kinda looks right. And, you never learn what the real problem was, and thus destined to make the same mistake again.</blockquote>
+
+
+<p>It seems that while developers are thinking about sacrificing web standards for the perceived simplicity of tables, the viability of the design rarely enters the debate, and that&#8217;s a shame. In my experience, some of the most difficult designs to produce using CSS were fundamentally flawed from the get-go, created by designers who failed to grasp that the web is not like print.</p>
+
+<p><strong>The web is not like print.</strong> In print, designers have near-total control over the output, because the number of new &#8220;pages&#8221; &#8211; items of content &#8211; is limited by the cost of printing. If a print designer wants text vertically centered in a fixed-height column, or two columns that are exactly the same height, or rounded corners with drop shadows on top of gradients, there&#8217;s no reason they can&#8217;t have that. The cost of printing is sufficiently high, and print graphics programs are sufficiently sophisticated, that making those design decisions has no impact on the marginal cost of production.</p>
+
+<p>On the web, the marginal cost of creating a new page of content can be approximately zero, but to achieve that we <em>must</em> build pages that adapt to unpredictable content and unpredictable users. If we don&#8217;t, we won&#8217;t realize the economies of scale that the web has to offer. The tradeoff for that infinitesimally small marginal cost is that the rules have to be different, because the cost of implementing those print-centric design decisions is inordinately high. Instead of sophisticated graphics programs, the web has mere humans to turn PSDs into working pages; instead of content created by experts and pored over by editors, the web has volumes of user-generated content, and the ability to change it on a whim.</p>
+
+<p>On the web, equal-height columns will cease to be equal height when the content changes; vertically centered content will outgrow its fixed-height bounds; and rounded corners with drop shadows on gradients can&#8217;t possibly be worth the cost of producing them. These are not problems with CSS that should be solved with tables. They are, fundamentally, problems with the design.</p>
+
+<p>When I talk about this to other developers (and any designers who are willing to give me the time of day after I&#8217;m done pointing out how costly their design will be to produce), I make the analogy that it&#8217;s just as absurd to impose these print-centric design conventions on the web as it would be to use holograms for every picture in a magazine. Sure, you <em>can</em>, but that doesn&#8217;t mean you <em>should</em>.</p>
+
+<p><strong>So what&#8217;s a web developer to do?</strong> When designs reach the desk of the CSS developer, more often than not they&#8217;ve been through so many rounds of review, revision, and approval &#8211; by people far-removed from the realities of the web &#8211; that the developer has little choice but to toil away at reproducing them faithfully.</p>
+
+<p>The best defense may be a good offense, which is to say, the burden is on you, dear developer, to educate the misguided designers. Here are some tactics I&#8217;ve used:</p>
+
+<ul>
+<li>Impose yourself early in the process, insisting on wireframes and information architecture documents (even if they&#8217;re just sketches and an outline). Identify potential problems early on, but don&#8217;t become a naysayer &#8211; make sure you offer ideas, not just criticism.</li>
+<li>Push back &#8211; gently but firmly &#8211; on design decisions that have the potential to cause problems down the road. Ask lots of &#8220;what if&#8221; questions and insist on answers.</li>
+<li>Be honest about how long it will take you to accomplish a design &#8211; with yourself and with your boss or client &#8211; and identify opportunities to make cost-saving changes to the specifics of the design without changing its spirit.</li>
+<li>Have examples at the ready of similar problems solved in more web-centric ways. The <a href="http://developer.yahoo.com/ypatterns/">Yahoo! Design Patterns Library</a> can be an excellent resource for this, but look also to other sites in your industry or genre.</li>
+</ul>
+
+
+<p>The burden&#8217;s also on you to get better at CSS. I am lucky in that, when I first started playing around with web production, I was a little intimidated by tables. A background in print production steeped in templates and stylesheets made tables seem awkward and strange to me; CSS, temperamental as it was, at least bore some resemblance to the cascading style sheets of print production programs like Quark and InDesign.</p>
+
+<p>These days, it&#8217;s rarer and rarer (but not unheard of) that I find myself beating my head against the wall over a CSS problem. I&#8217;ve learned HTML and CSS patterns that I reuse often, and I&#8217;ve learned to spot &#8211; and speak up about &#8211; design-induced ratholes. If you&#8217;re finding yourself sucked in by the latest round of CSS vs. tables debate, take heart, stand firm, and reconsider the source of your frustration.</p>
+
+<h3>Useful things:</h3>
+
+
+<ul>
+<li><a href="http://blog.rebeccamurphey.com/2007/12/24/learning-css-web-design/">How I learned CSS</a></li>
+<li><a href="http://www.stubbornella.org/content/2009/02/12/css-doesn%E2%80%99t-suck-you%E2%80%99re-just-doing-it-wrong/">CSS doesn&#8217;t suck, you&#8217;re just doing it wrong</a></li>
+<li><a href="http://www.slideshare.net/stubbornella/object-oriented-css">Object-oriented CSS</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-14T00:00:00-06:00" pubdate data-updated="true">Feb 14<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/css-/'>css,</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/front-end/'>front-end</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/01/12/jquery-validation-and-tinymce/" title="Previous Post: jQuery validation and TinyMCE">&laquo; jQuery validation and TinyMCE</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/04/13/on-gaining-respect-as-a-front-end-developer/" title="Next Post: On gaining respect as a front-end developer">On gaining respect as a front-end developer &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/01/austin/">Austin</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/rmurphey">@rmurphey</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'rmurphey',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rmurphey", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rmurphey" class="twitter-follow-button" data-show-count="false">Follow @rmurphey</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/';
+        var disqus_url = 'http://rmurphey.com/blog/2009/02/14/css-vs-tables-maybe-the-design-is-to-blame/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

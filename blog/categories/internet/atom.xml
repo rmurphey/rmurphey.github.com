@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: internet | Adventures in JavaScript Development]]></title>
+  <link href="http://rmurphey.com/blog/categories/internet/atom.xml" rel="self"/>
+  <link href="http://rmurphey.com/"/>
+  <updated>2015-03-23T21:12:12-05:00</updated>
+  <id>http://rmurphey.com/</id>
+  <author>
+    <name><![CDATA[Rebecca Murphey]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Solved: AJAX returns bad results in Internet Explorer]]></title>
+    <link href="http://rmurphey.com/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/"/>
+    <updated>2008-01-10T00:00:00-06:00</updated>
+    <id>http://rmurphey.com/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer</id>
+    <content type="html"><![CDATA[<p>Note to self: IE6 likes to cache AJAX requests, and this can be a bad thing if other data on the page that will affect the result of the request has changed.</p>
+
+<p>You'll see this if you have two fields on a page that both contribute to a result, but only send them to the server when one of them has changed.</p>
+
+<p>Let's say field1 and field2 get multiplied on the server side, and both start out with values of 1. So, in IE6:</p>
+
+<ul>
+<li>Set field1 to 1000: Response is 1000.</li>
+<li>Set field1 to 100: Response is 100.</li>
+<li>Set field2 to 123: Response is 12300</li>
+<li>Set field 1 back to 1000: <strong>Uh oh! Response is 1000 again!</strong>
+</li>
+</ul>
+
+
+<p>IE6 has decided that the result from the first time you set field1 to 1000 was good enough, and it doesn't look to see that the new result is different.</p>
+
+<p>The solution? Add a timestamp to your requests, so each one will look different to IE even if the real data is the same:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// just an example; you&#39;d</span>
+</span><span class='line'><span class="c1">// obviously build this from</span>
+</span><span class='line'><span class="c1">// the field itself</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;field1=1000&#39;</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// build the timestamp</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
+</span><span class='line'><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;&amp;amp;&#39;</span> <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// now you can send your data</span>
+</span><span class='line'><span class="c1">// using ajax</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Thankfully, when this happened to me yesterday, I had a coworker who only needed a couple of minutes with the server logs to figure out what was happening. After he figured it out here, I found <a href="http://groups.google.com/group/jquery-en/browse_thread/thread/a40b6fb572232e3b">this thread</a>, which verified the cause, and I was able to solve it in a few minutes.</p>
+]]></content>
+  </entry>
+  
+</feed>
