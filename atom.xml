@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2015-03-23T21:12:12-05:00</updated>
+  <updated>2015-03-28T19:40:10-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -41,7 +41,7 @@
 
 <p>Do you need to be an ES6/ES2015 expert? Probably not today, but you should know at least as much about it as your peers, and possibly more. It&#8217;s also worth at least entertaining the possibility of writing your next greenfield project using ES6; the future will be here before you know it.</p>
 
-<p>New language features aside, you should be able to speak fluently about the asynchronicity of JavaScript, and using callbacks and promises to manage it. You should have well-formed opinions about strategies for loading applications in the browser and communicating between pieces of an application. You should maybe have a favorite application development framework, but not at the expense of having a general understanding of how other frameworks operate, and the tradeoffs you accept when you chooose one.</p>
+<p>New language features aside, you should be able to speak fluently about the asynchronicity of JavaScript, and using callbacks and promises to manage it. You should have well-formed opinions about strategies for loading applications in the browser and communicating between pieces of an application. You should maybe have a favorite application development framework, but not at the expense of having a general understanding of how other frameworks operate, and the tradeoffs you accept when you choose one.</p>
 
 <h2>Modules &amp; Build Tools</h2>
 
@@ -61,7 +61,7 @@
 
 <p>The main blocker to testing is the code that front-end devs tend to write. I gave a talk toward the end of 2012 about <a href="https://www.youtube.com/watch?v=OzjogCFO4Zo">writing testable JavaScript</a>, and followed up with an <a href="http://alistapart.com/article/writing-testable-javascript">article</a> on the topic a few months later.</p>
 
-<p>The second biggest blocker to testing remains the tooling. Webdriver is still a huge pain to work with. Continuous automated testing of a complex UI across all supported browsers continues to be either impossible, or so practically expensive that it might as well be impossible &#8211; and nevermind mobile. We&#8217;re still largely stuck doing lightweight automated functional tests on a small subset of supported browser/device/OS combinations, and leaning as hard as we can on lower-level tests that can run quickly and inexpensively. This is a bummer.</p>
+<p>The second biggest blocker to testing remains the tooling. Webdriver is still a huge pain to work with. Continuous automated testing of a complex UI across all supported browsers continues to be either impossible, or so practically expensive that it might as well be impossible &#8211; and never mind mobile. We&#8217;re still largely stuck doing lightweight automated functional tests on a small subset of supported browser/device/OS combinations, and leaning as hard as we can on lower-level tests that can run quickly and inexpensively. This is a bummer.</p>
 
 <p>If you&#8217;re interested in improving the problem of untested &#8211; or untestable &#8211; code, the single most valuable book you can read is <a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a>. The author, Michael Feathers, defines &#8220;legacy code&#8221; as any code that does not have tests. On the topic of testing, the baseline is to accept the truth of that statement, even if other constraints are preventing you from addressing it.</p>
 
@@ -77,7 +77,7 @@
 
 <h2>Code Quality</h2>
 
-<p>If you, like me, start to twitch when you see code that violates a project&#8217;s well-documented style guide, then tools like <a href="http://jscs.info/">JSCS</a> and <a href="http://eslint.org/">ESLint</a> are godsends, and neither of them existed for you to know about them back in 2012. They both provide a means to document your style guide rules, and then verify your code against those rules automatically, before it ever makes it into a pull request. Which brings me to &#8230;</p>
+<p>If you, like me, start to twitch when you see code that violates a project&#8217;s well-documented style guide, then tools like <a href="http://jscs.info/">JSCS</a> and <a href="http://eslint.org/">ESLint</a> are godsends, and neither of them existed for you to know about them back in 2012. They both provide a means to document your style guide rules, and then verify your code against those rules automatically, before it ever makes it into a pull request. Which brings me to &hellip;</p>
 
 <h2>Git</h2>
 
@@ -87,9 +87,9 @@
 
 <h2>Client-Side Templating</h2>
 
-<p>This may be the thing I got the most wrong in my original post, for some definition of &#8220;wrong.&#8221; Client-side templating is still highly valuable, of course &#8211; so valuable that it will be built-in to ES 2015 &#8211; but there can be too much of a good thing. It&#8217;s been a hard-earned lesson for lots of teams that moving all rendering to the browser has high costs when it comes to performance, and thus has the &#8220;generate all the HTML client-side&#8221; approach rightfully fallen out of favor. Smart projects are now generating HTML server-side &#8211; maybe even pre-generating it, and storing it as static files that can be served quickly &#8211; and then &#8220;hydrating&#8221; that HTML client-side, updating it with client-side templates as events warrant.</p>
+<p>This may be the thing I got the most wrong in my original post, for some definition of &#8220;wrong.&#8221; Client-side templating is still highly valuable, of course &#8211; so valuable that it will be built-in to ES2015 &#8211; but there can be too much of a good thing. It&#8217;s been a hard-earned lesson for lots of teams that moving all rendering to the browser has high costs when it comes to performance, and thus has the &#8220;generate all the HTML client-side&#8221; approach rightfully fallen out of favor. Smart projects are now generating HTML server-side &#8211; maybe even pre-generating it, and storing it as static files that can be served quickly &#8211; and then &#8220;hydrating&#8221; that HTML client-side, updating it with client-side templates as events warrant.</p>
 
-<p>The new expectation here &#8211; and I say this to myself as much as to anyone else &#8211; is that you are considering the performance implications of your decisions, and maybe not restricting yourself quite so thoroughly to the realm of the browser. Which, conveniently, leads to &#8230;</p>
+<p>The new expectation here &#8211; and I say this to myself as much as to anyone else &#8211; is that you are considering the performance implications of your decisions, and maybe not restricting yourself quite so thoroughly to the realm of the browser. Which, conveniently, leads to &hellip;</p>
 
 <h2>Node</h2>
 
