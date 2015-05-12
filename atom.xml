@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2015-04-01T12:16:14-05:00</updated>
+  <updated>2015-05-11T21:02:26-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The TTL Podcast]]></title>
+    <link href="http://rmurphey.com/blog/2015/05/11/ttl-podcast/"/>
+    <updated>2015-05-11T21:12:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2015/05/11/ttl-podcast</id>
+    <content type="html"><![CDATA[<p>Over the past several months, I&#8217;ve been on a <a href="https://www.youtube.com/watch?v=1BYeDhvxm4Q">few</a> <a href="https://developertea.com/episodes/9413">different</a> <a href="http://www.motherboardpodcast.com/episode-11-rebecca-murphey/">podcasts</a>, plus I&#8217;ve been having a lot of fun doing <a href="http://rmurphey.com/blog/2015/01/11/office-hours/">office hours</a>, and generally talking a lot with other people who do the kind of work that I do. I&#8217;ve particulary enjoyed talking about a subject that Alex Sexton dubbed <a href="http://www.smashingmagazine.com/2013/06/11/front-end-ops/">Front-End Ops</a>.</p>
+
+<p>It has occurred to me that a) I&#8217;m really super fortunate to get to have conversations about this stuff with super-smart people; b) there aren&#8217;t yet a lot of great sources of information about front-end ops in the real world; and c) I used to be on a <a href="http://yayquery.com">podcast</a> and that sure was fun.</p>
+
+<p>To that end, I threw a tweet out into the world to see who might be willing to talk to me and let me record the conversation. I got enough great responses that I decided to don my podcasting hat again for a little bit, and the result is the <a href="http://ttlpodcast.com">TTL Podcast</a>.</p>
+
+<p><img src="http://rmurphey.com/images/ttl-podcast.png" alt="ttlpodcast.com" /></p>
+
+<p>If you&#8217;re a mid-level front-end dev looking to level up, I&#8217;d humbly suggest that this is very much a show for you &#8211; you&#8217;ll get to listen in on the thought process of some of the best front-end devs I know. That said, it&#8217;s not just a show for those aspiring to take the front-end world by storm; it&#8217;s also a chance for those who are already in the trenches, doing daily battle with WebDriver and trying to shave 10 more milliseconds off page load, to commiserate asynchronously. I know I personally have learned a ton &#8211; in some cases I&#8217;ve seen a new angle on a problem, and in other cases I&#8217;ve had some serious Developer Guilt assuaged.</p>
+
+<p>I&#8217;ve released three episodes so far &#8211; conversations with Alex, Burak Yiğit Kaya (Disqus), and Daniel Espeset and Seth Walker (Etsy). More episodes are in the pipeline, including developers from Walmart Labs, Yammer, FT Labs, and The Guardian.</p>
+
+<p>While the initial focus has been on front-end ops, I can see the scope widening over time to cover, generally, the tools and challenges of doing front-end dev at significant scale. If you or someone you know would be a good person to talk to about that sort of thing, I hope you&#8217;ll <a href="mailto:rmurphey+ttlpodcast@gmail.com">let me know</a>.</p>
+
+<p>While I&#8217;m here, I want to give huge and sincere thanks to <a href="https://saucelabs.com/">SauceLabs</a> and <a href="https://travis-ci.com/">Travis CI</a> for their support of the show; to <a href="http://una.github.io/">Una Kravets</a> for finding time in her busy life to make me a website; to my sister, who&#8217;s been kind enough to pitch in with the editing; and to <a href="http://bazaarvoice.com">Bazaarvoice</a> for giving me the freedom to take on a project like this.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Baseline for Front-End [JS] Developers: 2015]]></title>
@@ -1995,99 +2018,6 @@ fuller-fledged frameworks that build on top of Backbone, because I think
 there&#8217;s a lot more that can be standardized beyond what Backbone offers. I&#8217;m
 hoping to have a bit more time in April to dig in, and hopefully I can flesh
 out some of these ideas into something useful.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Community Conferences]]></title>
-    <link href="http://rmurphey.com/blog/2012/03/08/community-conferences/"/>
-    <updated>2012-03-08T08:29:00-06:00</updated>
-    <id>http://rmurphey.com/blog/2012/03/08/community-conferences</id>
-    <content type="html"><![CDATA[<p>In 2010, I helped put on the first TXJS. We sold our first tickets for $29, and
-I think the most expensive tickets went for something like $129. We had about
-200 people buy tickets, we had speakers like Douglas Crockford, Paul Irish, and
-John Resig, and we had sponsors like Facebook and Google. Our total budget was
-something like $30,000, and every out-of-town speaker had their travel and
-accommodations paid for.</p>
-
-<p>In May, O&#8217;Reilly Media is holding another JavaScript conference in San
-Francisco, called FluentConf. I recently came to know that they are charging
-$100,000 for top-tier sponsorships, and that they are offering a 10-minute
-keynote as part of the package.</p>
-
-<p>This turned my stomach, and not just because I believe it cheapens the
-experience of attendees, who will pay hundreds of dollars themselves. What
-really upset me was that a few weeks ago, I was approached to be on the speaker
-selection committee of FluentConf, and that conversation led me to discover
-that FluentConf would not be paying for speaker travel and accommodations. And
-so the other day, I tweeted:</p>
-
-<blockquote><p>conference #protip: save your money &#8211; and your speaking skills &#8211; for events that don&#8217;t sell their keynotes for $100k</p></blockquote>
-
-<p>Last night, I was at the Ginger Man in Austin, and I checked the Twitters,
-discovering that Peter Cooper, one of the chairs of FluentConf, had replied to
-a conversation that arose from that tweet:</p>
-
-<blockquote><p>@rmurphey @tomdale If you&#8217;re referring to Fluent, that is news to me.</p></blockquote>
-
-<p>I will accept the weird fact that the co-chair of a conference didn&#8217;t know its
-speaking slots were for sale &#8211; I gather that it is essentially a volunteer
-role, and the co-chairs aren&#8217;t necessarily in the driver&#8217;s seat when it comes
-to decisions like this. I let Peter know that, indeed, I had a PDF that
-outlined all the sponsorship options.</p>
-
-<p>This is the part where, in some alternate reality, a mutual understanding of
-the offensiveness of this fact would have been achieved. What happened instead
-was a whole lot of name-calling, misquoting, and general weirdness.</p>
-
-<p>Here&#8217;s the deal. Conferences can run their event however they want, and they
-can make money hand over fist. They can even claim they are the giving
-JavaScript developers &#8220;an event of their own,&#8221; ignoring the existence of
-the actual community-run JavaScript events that have been around for years now.  I
-probably won&#8217;t go to or speak at an event that makes money hand over fist, but
-I don&#8217;t have any problem with the existence of such events, or with people&#8217;s
-involvement with them.  However, when a conference is making money hand over
-fist &#8211; my back of the napkin calculations would suggest that FluentConf stands
-to have revenues of well over a million dollars &#8211; then that conference has no
-excuse not to pay the relatively paltry costs associated with speaker travel
-and accommodations.</p>
-
-<p>A conference does not exist without its speakers. Those who speak at an event
-&#8211; the good ones, anyway &#8211; spend countless hours preparing and rehearsing, and
-they are away from home and work for days. While I do not discount the benefits
-that accrue to good speakers, the costs of being a speaker are non-trivial &#8211;
-and that&#8217;s <em>before</em> you get into the dollar costs of travel and accommodations.</p>
-
-<p>When an event is unwilling to cover even those hard costs &#8211; nevermind the
-preparation time and time away from work and home &#8211; it materially affects the
-selection of speakers.  It&#8217;s even worse when those same conferences claim to
-desire <a href="http://fluentconf.com/fluent2012/public/content/about#diversity">diversity</a>;
-the people they claim to want so badly are the very people most likely to be
-discouraged when they find out they have to pay their own way to the stage.</p>
-
-<p>In the conversation last night, I made this point:</p>
-
-<blockquote><p>when only the people who can afford to speak can speak, then only the people who can afford to speak will
-speak.</p></blockquote>
-
-<p>Amy Hoy responded with a criticism of community-run conferences:</p>
-
-<blockquote><p>and when only ppl who can order a ticket in 3 seconds can afford to come, only ppl who can order a ticket in 3 seconds can come</p></blockquote>
-
-<p>I know that getting tickets to the actual community-run events is hard, but
-that is because the community-run events flat-out ignore the economics of
-supply and demand, choosing instead to sell tickets at affordable prices even
-if it means they will sell out in a heartbeat, leaving a boatload of potential
-profit on the table. And yet those events &#8211; JSConf, TXJS, and the like &#8211; have
-still figured out how to cover speaker costs and provide attendees and sponsors
-with unforgettable experiences.</p>
-
-<p>When an event with revenues exceeding a million dollars is unwilling to cover
-those costs, while simultaneously selling speaking slots, I do not hesitate for
-a moment to call that event out, and I do not hesitate to call
-on <a href="http://fluentconf.com/fluent2012/public/content/about#commitee">respected members of the community</a> to sever
-their ties with the event. I&#8217;m not embarrassed about it, and you can call me all
-the names you want.</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="About 9 months ago, I released jQuery Fundamentals, a free, online training curriculum for people interested in learning jQuery based on material I& &hellip;">
+  <meta name="description" content="I sense another round of discussion of this is about to begin, and 140 characters isn&#8217;t quite enough to say what I want to say, so: When you&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/">When You&#8217;re Building a Non-trivial JS Application &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-30T00:00:00-05:00" pubdate data-updated="true">Mar 30<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/03/30/when-you-re-building-a-non-trivial-js-application/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I sense another round of discussion of this is <a href="http://twitter.com/slightlylate/status/52924409509445632">about to begin</a>, and 140 characters isn&#8217;t quite enough to say what I want to say, so:</p>
+
+
+<p>When you&#8217;re building a non-trivial JS application, you don&#8217;t want a jQuery developer, or a Dojo developer, or a YUI developer, or, frankly, any developer who chooses their tool before they evaluate the problem. <strong>For god&#8217;s sake, you want a JavaScript developer.</strong> Can you roll your own solution with jQuery as the base? Yes! Should you? I don&#8217;t think so, and I advise my clients against it for reasons I&#8217;ve <a href="http://blog.rebeccamurphey.com/on-rolling-your-own">written about</a> <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">at length</a>, but I&#8217;m open to hearing compelling, articulate, fact-based arguments in favor of it!</p>
+
+
+<p>But do me a favor, OK? Don&#8217;t base your arguments solely on the winner of a popularity contest. Don&#8217;t tell me how easy it is to find developers familiar with one library or another, because I&#8217;ll come right back and ask you just how good those developers will be at solving problems that aren&#8217;t addressed by said library. And please tell me you&#8217;ve at least explored some of the other options besides [insert the library you&#8217;re advocating here].&nbsp;</p>
+
+
+<p>People read what I write about JavaScript libraries and they write me heartfelt tweets and e-mails saying OMG YOU HATE JQUERY NOW WHAT HAPPENEDDDDD? I don&#8217;t hate jQuery! It is a perfectly viable and valuable tool for so many things! But when people argue not just its viability but its absolute <em>supremacy</em>, when people get defensive and possibly even angry that I suggest there are solutions that are vastly better suited to a certain set of problems, when people contort themselves into pretzels to make their case and their case is &#8220;well, it&#8217;s not <em>that</em> bad&#8221; &#8230; well, that smacks of blind loyalty, not a thoughtful weighing of the tradeoffs and challenges we face as developers, and I question how those people would fare if actually confronted with the needs of a non-trivial application.&nbsp;</p>
+
+
+<p>So, please: Tell me what solutions you&#8217;ve looked at for non-trivial application development. Tell me where they work, tell me where they fall short. Tell me what you&#8217;re working on and how you chose the tools. Don&#8217;t tell me why I&#8217;m wrong &#8211; tell me why you&#8217;re right. Deal? Discuss.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -2322,63 +2373,6 @@ well, which means a lot. Thanks, guys.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/21/enterprisedojo-com-uses-jquery/">EnterpriseDojo.com Uses jQuery!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-21T00:00:00-05:00" pubdate data-updated="true">Aug 21<span>st</span>, 2010</time>
-        
-         | <a href="/blog/2010/08/21/enterprisedojo-com-uses-jquery/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>And you should too &#8230; for your WordPress blog that came with jQuery already installed and probably barely even needs JavaScript in the first place.&nbsp;</p>
-
-
-<p>Here&#8217;s an idea: Let&#8217;s have an honest discussion about when a given solution makes sense and when it doesn&#8217;t, rather than mocking a contributor to that discussion for choosing a perfectly appropriate tool for a perfectly mundane task. <a href="http://enterprisedojo.com">EnterpriseDojo.com</a> is a blog about using Dojo in the enterprise, not a blog about using Dojo on blogs.&nbsp;Snickering at its use of jQuery is approximately as useful as pointing to <a href="http://www.google.com/trends?q=jquery%2Cdojo%2Cyui">this graph</a> and saying case closed, leaving more reasonable, thoughtful people to explain <a href="http://stackoverflow.com/questions/2450696/what-happened-to-dojo-in-2008/2451785#2451785">all the ways that graph doesn&#8217;t tell us a&nbsp;damn thing</a>.&nbsp;</p>
-
-
-<p>I want to be very clear, as the dust settles around my several recent rants: jQuery has its place, and it is a very, very big place. It is a lovely DOM, Ajax, and events library, and a great way to get certain things done quickly, especially for people who may not have the luxury of learning the inner workings of JavaScript (noble a goal as that is).&nbsp;There was a time when DOM and Ajax and events questions felt like&nbsp;<em>the</em> questions of the day, and jQuery showed us how to answer those questions using a simple, easy-to-learn API that suddenly made JavaScript accessible to the masses. Other libraries solved the same questions but those solutions felt ugly and clunky and goshdarnit, <em>hard</em>, and I give jQuery the utmost credit for making JavaScript suck so much less when all I wanted to do was show or hide or slide a thing or load some content onto my page. I&#8217;ll even grant that it can be used as a piece of a large application solution, though I question the wisdom of doing so for reasons outlined in <a href="http://blog.rebeccamurphey.com/on-jquery-large-applications">another post</a>. Heck, I&#8217;ll even grant that &#8220;enterprises&#8221; aren&#8217;t off their rockers to use it &#8211; for the things it was meant to be used for.&nbsp;</p>
-
-
-<p>What upsets me is when smart people seem to say that jQuery&#8217;s victory in an internet-wide popularity contest suggests, well, anything at all when it comes to more complex needs. It upsets me because my clients hear those suggestions, look at that same well-marketed graph, and I am left explaining to them that, yes, jQuery is popular, but it&#8217;s popular because it answers a small set of questions easily and well &#8211; even for people who don&#8217;t even know JavaScript! &#8211; and you, dear client, have vastly larger questions than that.</p>
-
-
-<p>At the end of the day, these toolkit decisions ought to be about more than a popularity contest; jQuery may be the right answer, or part of the right answer, but it&#8217;s imperative, to me, that my clients understand the scope of the question first. It&#8217;s imperative that they make their decisions based on a full understanding of pros and cons, risk and reward, cost and benefit &#8211; not based on a graph, not based on a popularity contest.</p>
-
-
-<p>So again I say: we, as a community, and especially the influential ones among us, do well when we elevate the conversation beyond that contest and acknowledge that choosing the right toolkit depends on first understanding what you&#8217;re choosing the toolkit for. We do well when we educate teams and decisionmakers on the lessons we&#8217;ve learned in the time since DOM, Ajax, and events were the big question of the day, on the best practices that have emerged, on the situations where we&#8217;ve, gasp, had to look beyond jQuery &#8211; either to other tools or other toolkits &#8211; for the answers. And we do well when we start showing them how they can do the same.</p>
-
-
-<p><em>An aside: Some people I like a lot have pointed out that in the midst of all of my complaining, I have not come out and offered a solution. This is fair. Two things: One, I have not wanted this conversation to collapse into Dojo vs. jQuery vs. YUI vs. Ext vs. MooTools vs. whatever, because if it does, I think we&#8217;ve missed the crux of the matter: that different tools do different things, that some set out to answer complex questions and some do not. If anyone has been unclear, which I rather doubt, my personal preference of late has been to use Dojo. I do not recommend using Dojo for everything under the sun, but I find it offers a lot of utility when writing non-trivial applications. I cannot make a compelling argument for using it vs. YUI, simply because I don&#8217;t know YUI well enough. I can&#8217;t even make a compelling argument for using it vs. Ext, except for licensing issues that may or may not be relevant in a given scenario. Two, if you&#8217;re disappointed that I haven&#8217;t offered a solution, especially a jQuery-based one, I apologize. However, I feel there are too many viable existing solutions out there already, and I haven&#8217;t come up with a good reason to promote a jQuery-based solution besides jQuery&#8217;s popularity. And, well, see above for my thoughts on that.</em></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -2396,6 +2390,10 @@ well, which means a lot. Thanks, guys.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/05/11/ttl-podcast/">The TTL Podcast</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
       </li>
     
@@ -2409,10 +2407,6 @@ well, which means a lot. Thanks, guys.</p>
     
       <li class="post">
         <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/01/austin/">Austin</a>
       </li>
     
   </ul>
