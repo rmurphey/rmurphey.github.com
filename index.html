@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Over the past several months, I&#8217;ve been on a few different podcasts, plus I&#8217;ve been having a lot of fun doing office hours, and generally &hellip;">
+  <meta name="description" content="We recently set up a new project at Bazaarvoice for centralizing common UI modules. We started by using node-tap for unit tests, but given that these &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,327 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage With Karma, Tape, and Webpack</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-20T14:00:00-05:00" pubdate data-updated="true">Jul 20<span>th</span>, 2015</time>
+        
+         | <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We recently set up a new project at Bazaarvoice for centralizing common UI modules. We started by using <a href="https://github.com/isaacs/node-tap">node-tap</a> for unit tests, but given that these are <em>UI</em> modules, we quickly switched to using <a href="https://github.com/substack/tape">tape</a>, because it has a fairly easy browser testing story with the help of <a href="http://karma-runner.github.io/0.13/index.html">Karma</a>.</p>
+
+<p>One thing that node-tap provided that tape did not provide out of the box was the ability to measure the code coverage of unit tests. Karma <em>does</em> provide this, but getting it hooked up while using <a href="http://webpack.github.io/">Webpack</a> &#8211; which is our build tool of choice these days &#8211; wasn&#8217;t quite as clear as I would have liked. If you&#8217;re looking to use Karma, tape, and Webpack, then hopefully this post will help you spend a bit less time than I did.</p>
+
+<h2>What You&#8217;ll Need</h2>
+
+<p>By the time it was all said and done, I needed to <code>npm install</code> the following modules:</p>
+
+<ul>
+<li>karma</li>
+<li>karma-phantomjs-launcher</li>
+<li>karma-chrome-launcher</li>
+<li>karma-tap</li>
+<li>karma-webpack</li>
+<li>karma-coverage</li>
+<li>istanbul-instrumenter-loader</li>
+<li>tape</li>
+</ul>
+
+
+<p>The directory structure was simple:</p>
+
+<ul>
+<li>a root directory, containing karma.conf.js and package.json</li>
+<li>a lib subdirectory, containing module files</li>
+<li>a test/unit subdirectory, containing the unit tests</li>
+</ul>
+
+
+<p>An example application file at lib/global/index.js looked like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> *  @fileOverview Provides a reference to the global object</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> *  Functions created via the Function constructor in strict mode are sloppy</span>
+</span><span class='line'><span class="cm"> *  unless the function body contains a strict mode pragma. This is a reliable</span>
+</span><span class='line'><span class="cm"> *  way to obtain a reference to the global object in any ES3+ environment.</span>
+</span><span class='line'><span class="cm"> *  see http://stackoverflow.com/a/3277192/46867</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;return this;&#39;</span><span class="p">))();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>An example test in test/unit/global/index.js looked like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tape&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../lib/global&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;Exports window&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">t</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">global</span><span class="p">,</span> <span class="nb">window</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">t</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Testing CommonJS Modules in the Browser</h2>
+
+<p>The applications that consume these UI modules use Webpack, so we author the modules (and their tests) as CommonJS modules. Of course, browsers can&#8217;t consume CommonJS directly, so we need to generate files that browsers <em>can</em> consume. There are several tools we can choose for this task, but since we&#8217;ve otherwise standardized on Webpack, we wanted to use Webpack here as well.</p>
+
+<p>Since our goal is to load the tests in the browser, we use the test file as the &#8220;entry&#8221; file. Webpack processes the dependencies of an entry file to generate a new file that contains the entry file&#8217;s contents as well as the contents of its dependencies. This new file is the one that Karma will load into the browser to run the tests.</p>
+
+<p>Getting this to happen is pretty straightforward with the <code>karma-webpack</code> plugin to Karma. The only catch was the need to tell Webpack how to deal with the <code>fs</code> dependency in tape. Here&#8217;s the initial Karma configuration that got the tests running:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpack&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-webpack&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-tap&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-chrome-launcher&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-phantomjs-launcher&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">basePath</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">frameworks</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;tap&#39;</span> <span class="p">],</span>
+</span><span class='line'>    <span class="nx">files</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;test/**/*.js&#39;</span> <span class="p">],</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">preprocessors</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;test/**/*.js&#39;</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;webpack&#39;</span> <span class="p">]</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">webpack</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">node</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">fs</span><span class="o">:</span> <span class="s1">&#39;empty&#39;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">webpackMiddleware</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">noInfo</span><span class="o">:</span> <span class="kc">true</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">reporters</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;dots&#39;</span> <span class="p">],</span>
+</span><span class='line'>    <span class="nx">port</span><span class="o">:</span> <span class="mi">9876</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">colors</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">logLevel</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">LOG_INFO</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">autoWatch</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">browsers</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Chrome&#39;</span><span class="p">],</span>
+</span><span class='line'>    <span class="nx">singleRun</span><span class="o">:</span> <span class="kc">false</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However, as I mentioned above, I wanted to get code coverage information. Karma offers the <a href="https://github.com/karma-runner/karma-coverage">karma-coverage</a> plugin, but that alone was insufficient in Webpack land: it would end up instrumenting the whole Webpack output &#8211; including the test code itself! &#8211; and thus reporting highly inaccurate coverage numbers.</p>
+
+<p>I ended up reading a <a href="https://github.com/webpack/karma-webpack/issues/21">karma-webpack issue</a> that told me someone else had already solved this exact problem by creating a <a href="https://github.com/deepsweet/istanbul-instrumenter-loader">Webpack loader</a> to instrument modules at build time. By adjusting our Webpack configuration to only apply this loader to application modules &#8211; not to test code or vendor code &#8211; the Webpack output ends up properly instrumented for the karma-coverage plugin to work with it. Our final Karma config ends up looking like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpack&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-webpack&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-tap&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-chrome-launcher&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-phantomjs-launcher&#39;</span><span class="p">),</span>
+</span><span class='line'>      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;karma-coverage&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">basePath</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">frameworks</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;tap&#39;</span> <span class="p">],</span>
+</span><span class='line'>    <span class="nx">files</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;test/**/*.js&#39;</span> <span class="p">],</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">preprocessors</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="s1">&#39;test/**/*.js&#39;</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;webpack&#39;</span> <span class="p">]</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">webpack</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">node</span> <span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">fs</span><span class="o">:</span> <span class="s1">&#39;empty&#39;</span>
+</span><span class='line'>      <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// Instrument code that isn&#39;t test or vendor code.</span>
+</span><span class='line'>      <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">postLoaders</span><span class="o">:</span> <span class="p">[{</span>
+</span><span class='line'>          <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/(test|node_modules)\//</span><span class="p">,</span>
+</span><span class='line'>          <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;istanbul-instrumenter&#39;</span>
+</span><span class='line'>        <span class="p">}]</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">webpackMiddleware</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">noInfo</span><span class="o">:</span> <span class="kc">true</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">reporters</span><span class="o">:</span> <span class="p">[</span>
+</span><span class='line'>      <span class="s1">&#39;dots&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s1">&#39;coverage&#39;</span>
+</span><span class='line'>    <span class="p">],</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">coverageReporter</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">dir</span><span class="o">:</span> <span class="s1">&#39;coverage/&#39;</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">port</span><span class="o">:</span> <span class="mi">9876</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">colors</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">logLevel</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">LOG_INFO</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">autoWatch</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">browsers</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;Chrome&#39;</span><span class="p">],</span>
+</span><span class='line'>    <span class="nx">singleRun</span><span class="o">:</span> <span class="kc">false</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Even with the coverage hiccup, the speed with which I was able to get Karma set up the way I wanted &#8211; and working with <a href="http://travis-ci.org/">TravisCI</a> &#8211; was nothing short of breathtaking. I&#8217;m late to the Karma party, but I had no idea it could be this easy. If you haven&#8217;t checked it out yet, you should.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1677,48 +1998,6 @@ end you will be glad.</em></p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/09/this-is-the-cigarette/">This Is the Cigarette</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-09T19:40:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/rdmey/8259827572/" title="Untitled by rdmey, on Flickr"><img src="http://farm9.staticflickr.com/8212/8259827572_73b5a4e269.jpg" width="200"></a></p>
-
-<p>This is the cigarette I smoked* on Wednesday after I got out of a meeting in Boston and went to my desk and read my messages and learned that our birthmother &#8220;match&#8221; had fallen through.</p>
-
-<p>The last three weeks have been among the happiest, most exciting, most terrifying times I can remember. Saying that we are sad and disappointed and et cetera doesn&#8217;t really cover it, but, well, there it is. Our search will continue.</p>
-
-<p><small>* Don&#8217;t worry, Mom, I don&#8217;t usually smoke. Desperate times, desperate measures.</small></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1734,6 +2013,10 @@ end you will be glad.</em></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/05/11/ttl-podcast/">The TTL Podcast</a>
       </li>
     
@@ -1747,10 +2030,6 @@ end you will be glad.</em></p>
     
       <li class="post">
         <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/07/13/unit-tests/">Writing Unit Tests for Existing JavaScript</a>
       </li>
     
   </ul>
