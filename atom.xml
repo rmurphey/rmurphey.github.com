@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2015-07-20T13:12:14-05:00</updated>
+  <updated>2015-07-26T22:07:00-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[So You're Going on a Podcast]]></title>
+    <link href="http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips/"/>
+    <updated>2015-07-27T21:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips</id>
+    <content type="html"><![CDATA[<p>I got a fair bit of experience recording a podcast back in the <a href="http://yayquery.com">yayQuery</a> days; when I decided to start another one, the technical side of it felt pretty familiar, minus the part where yayQuery was crazy enough to also record video. Back then, we mostly were talking to each other, so it was easy for us to all be on the same page about the technical requirements: headphones always, typing never (at least when you&#8217;re also talking), and buy a good microphone. We also had 20-some episodes to get good at working with each other.</p>
+
+<p>I&#8217;ve been recording the <a href="http://ttlpodcast.com">TTL Podcast</a> for a few months now; it&#8217;s a show with a different guest every week, so the tech challenges are different, and each show is completely different from the last. It has been great fun, and I can&#8217;t believe how lucky I am to get to ask all of these people to talk to me and they keep saying yes.</p>
+
+<p>I&#8217;ve learned a few things about how to be a good podcast guest along the way, but I haven&#8217;t always been good at sharing them ahead of time with guests. This, then, is really just an attempt to write them down in a single place, with the added benefit that maybe they will be useful to others. This is mostly focused on being a guest of a show; I have lots to say about being a host, but I feel like that&#8217;s a lot more complicated than this.</p>
+
+<h2>Technical</h2>
+
+<ul>
+<li>Wear headphones, preferably the best ones you own. The iPhone headphones aren&#8217;t nice, and actually leak noise like crazy. I alternate between using <a href="http://www.klipsch.com/R6i">Klipsch</a> and Shure (sorry, not sure of the model, so no link) in-ear headphones, both of which have a nice silicone seal to keep the sound I&#8217;m hearing in my ears and out of my microphone.</li>
+<li>Use the best microphone you can. A MacBook&#8217;s built-in microphone is decent enough in a pinch, but it&#8217;s probably worth springing for an external microphone. I used the <a href="http://www.audio-technica.com/cms/wired_mics/a0933a662b5ed0e2/">AT2020</a> for most of the yayQuery episodes, but I stepped up to a <a href="http://www.shure.com/americas/products/microphones/sm/sm7b-vocal-microphone">Shure SM7B</a> to record TTL at the suggest of Alex Sexton. The USB mic is just fine and very reasonably priced; the Shure sounds absolutely lovely but is a bit more of an investment. If you don&#8217;t want to spring for a mic, see if someone in your office has one you can borrow. If you have questions about audio gear, I am mostly clueless beyond what I&#8217;ve written above.</li>
+<li>If you&#8217;re a guest, always plan to record your side of the conversation. (If you&#8217;re a host, always plan to record <em>all</em> sides of the conversation; I&#8217;ve lost an episode by failing to do this.) On a Mac, Quicktime has a simple audio recording feature. There&#8217;s also plenty of other software that will do the same.</li>
+</ul>
+
+
+<h2>Preparation</h2>
+
+<ul>
+<li>Listen to at least one episode of the show before you go on (and possibly before you even agree to go on).</li>
+<li>Ask the host what they want to talk to you about, and try to have a decent sense of the outline of the conversation before you start. If the host doesn&#8217;t have great guidance &#8211; she&#8217;s almost certainly less familiar with your work than you are &#8211; it&#8217;s generally very welcome for you to propose an outline yourself.</li>
+<li>If you have access to a soundproofed room, consider using it. Avoid large, echo-y rooms, or rooms that will be subject to a lot of hallway or construction noise.</li>
+</ul>
+
+
+<h2>The Show</h2>
+
+<ul>
+<li>Consider your biological needs before you start recording :) Except for a live show, you&#8217;re always welcome to pause if you need to step away, but you may find yourself distracted in the meantime. Make sure you have water nearby!</li>
+<li>Silence phone notifications (no vibrating phones; silence means <em>silent</em>); on your computer, close Twitter, your mail client, etc.; option-click the Notification Center icon in your Mac toolbar to put it in do-not-disturb mode (thanks Ralph Holzmann for that tip).</li>
+<li>Unless it&#8217;s a live show, feel free to pause and try again if you make a mistake or say something wrong. It&#8217;s important that you announce that you&#8217;re starting over, then pause, then start over &#8211; that way it&#8217;s easy to fix in post-production.</li>
+<li>Remember that a podcast is a conversation, not a presentation. Unlike a presentation, you&#8217;re conversing with a host who knows the audience and can ask you the questions that will help that audience connect with you. Use a video chat so you can watch the host for visual cues that she might want to interject.</li>
+</ul>
+
+
+<p>That&#8217;s my list, though undoubtedly I&#8217;ve left things out. If you have stuff to add, please share in the comments —</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Browser Testing and Code Coverage with Karma, Tape, and Webpack]]></title>
@@ -2096,130 +2139,6 @@ way back home in time to start with Bocoup on May 1.</p>
 forward to hearing news of your continued success. To Bocoup: Thanks for
 welcoming me to the family. It&#8217;s been a long time coming, and I&#8217;m glad the day
 is finally here.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Girls and Computers]]></title>
-    <link href="http://rmurphey.com/blog/2012/03/25/girls-and-computers/"/>
-    <updated>2012-03-25T12:00:00-05:00</updated>
-    <id>http://rmurphey.com/blog/2012/03/25/girls-and-computers</id>
-    <content type="html"><![CDATA[<p>After a week that seemed just chock full of
-<a href="http://storify.com/ireneros/sexist-language-earns-sqoot-lots-of-fury">people</a>
-being <a href="http://storify.com/charlesarthur/oh-hai-sexism">stupid</a> about women in
-technology, I just found myself thinking back on how it was that I ended up
-doing this whole computer thing in the first place.  I recorded a video a while
-back for the <a href="http://highvisibilityproject.org/2011/10/rebecca-murphey/">High Visibility Project</a>, but that
-really just told the story of how I ended up doing web development. The story
-of how I got into computers begain when I was unequivocally a girl. It was
-1982.</p>
-
-<p>Back then, my dad made eyeglasses. My mom stayed at home with me and my
-year-old sister &#8211; which she&#8217;d continue to do til I was a teenager, when my
-brother finally entered kindergarten eight years later. Their mortgage was $79
-&#8211; about $190 in today&#8217;s dollars &#8211; which is a good thing because my dad made
-about $13,000 a year. We lived in Weedsport, New York, a small town just
-outside of Syracuse. We walked to the post office to get our mail. The farmers
-who lived just outside town were the rich people. In the winters the fire
-department filled a small depression behind the elementary school with water
-for a tiny skating rink. There were dish-to-pass suppers in the gym at church.</p>
-
-<p>In 1982, Timex came out with the <a href="http://en.wikipedia.org/wiki/Timex_Sinclair">Timex Sinclair TS-1000</a>,
-selling 500,000 of them in just six months. The computer, a few times thicker
-than the original iPad but with about the same footprint, cost $99.95 &#8211; more
-than that mortgage payment. When everyone else in town was getting cable,
-my parents decided that three channels were good enough for them &#8211; it&#8217;s
-possible they still had a black-and-white TV &#8211; and bought a computer instead.</p>
-
-<p><img src="http://rmurphey.com/images/ts1000.JPG" alt="Timex Sinclair TS-1000" /></p>
-
-<p>I remember tiny snippets of that time &#8211; playing kickball in my best friend
-Beth&#8217;s yard, getting in trouble for tricking my mother into giving us milk that
-we used to make mud pies, throwing sand in the face of my friend Nathan
-because I didn&#8217;t yet appreciate that it really sucks to get sand thrown in your
-face &#8211; but I vividly remember sitting in the living room of our house on
-Horton Street with my father, playing with the computer.</p>
-
-<p>A cassette player was our disk drive, and we had to set the volume just right
-in order to read anything off a tape &#8211; there was actually some semblance of a
-flight simulator program that we&#8217;d play, after listening to the tape player
-screech for minutes on end. Eventually we upgraded the computer with a
-fist-sized brick of RAM that we plugged into the back of the computer, bumping
-our total capacity from 2K to 34K. I wrote programs in BASIC, though for the
-life of me I can&#8217;t remember what any of them did. The programs that were the
-most fun, though, were the ones whose assembly I painstakingly transcribed,
-with my five-year-old fingers, from the back of magazines &#8211; pages and pages of
-letters and numbers I didn&#8217;t understand on any level, and yet they made magic
-happen if I got every single one right.</p>
-
-<p>A string of computers followed. My parents bought a <a href="http://en.wikipedia.org/wiki/Coleco_Adam">Coleco Adam</a> when we moved
-to Horseheads, New York &#8211; apparently the computer came with a certificate
-redeemable for $500 upon my graduation from high school, but Coleco folded long
-before they could cash it in. I made my first real money by typing a crazy
-lady&#8217;s crazy manuscript about crazy food into an Apple IIe that we had plugged
-into our TV, and my uncle and I spent almost the entirety of his visit from
-Oklahoma writing a game of Yahtzee! on that computer, again in BASIC.</p>
-
-<p><img src="http://rmurphey.com/images/rebecca-computer.jpg" alt="Me at a computer fair at the mall with my sister, my mother, and my friend
-Michael" /></p>
-
-<p><em>Above: Me at a computer fair at the mall with my sister, my
-mother, and my friend Michael. &#8220;You were giving us all a tutorial, I can tell,&#8221;
-says my mom. Note the 5-1/4&#8221; external floppy drive.</em></p>
-
-<p>In middle school, I started a school newspaper, and I think we used some
-prehistoric version of PageMaker to lay it out. When high school rolled around,
-I toiled through hand-crafting the perfect letters and lines and arrows in
-Technical Drawing so I could take CAD and CAM classes and make the computer
-draw letters and lines and arrows for me, and quickly proceeded to school just
-about every boy in the class. In my senior year of high school, I oversaw the
-school yearbook&#8217;s transition from laying out pages on paper to laying out pages
-with computers, this time the vaguely portable (it had a handle on the back!)
-<a href="http://en.wikipedia.org/wiki/Macintosh_Classic">Mac Classic</a>.
-We used PageMaker again; the screen was black and white and 9&#8221;, diagonally.</p>
-
-<p><img src="http://rmurphey.com/images/mac-classic.jpg" alt="Macintosh Classic" /></p>
-
-<p>It was around then that a friend gave me a modem and &#8211; to his eventual
-chagrin, when he got the bill &#8211; access to his Delphi account, giving me my
-first taste of the whole Internet thing in the form of telnet, gopher, and IRC.
-When I went to college the following year, I took with me a computer with
-perhaps a 10MB hard drive, and no mouse.</p>
-
-<p>Once again I found myself poring over magazines to discover URIs and,
-eventually, URLs that I could type to discover a whole new world of
-information. In 1995, I spent the summer making my college newspaper&#8217;s web
-site, previewing it in Lynx &#8211; it felt like there wasn&#8217;t much to learn when
-there was so little difference between the markup and what I saw on the screen.
-I would go to the computer lab to use NCSA&#8217;s Mosaic on the powerful RISC 6000
-workstations, because they had a mouse. Yahoo! was about one year old. My
-friend Dave, who lived down the street, installed Windows 95 that summer and
-invited me over to show me. It was amazing. We were living in the future.</p>
-
-<p>My early years with computers seem pretty tame &#8211; I wasn&#8217;t tearing them apart
-or building my own or doing anything particularly interesting with them, but I
-was using them, I was telling them what to do and they were mostly listening,
-and <em>it never made me feel like I was weird</em>. To the contrary, it made me
-feel powerful and empowered. I felt like a part of this ever-growing community
-of people who understood, eventually, that computers were going to change the
-world. It was the people who didn&#8217;t understand this who were weird and beneath
-us. It was the people who understood computers better than me of whom I stood in
-awe.</p>
-
-<p>I can barely remember a time when computers weren&#8217;t a part of my life, and yet
-when they first entered my life, their presence was incredibly exceptional.
-These days, of course, computers are ubiquitous, but interaction with them at
-the copy-assembly-from-the-back-of-a-magazine level is almost nonexistent.
-Parents who can approach a computer with the same awe and wonder and
-determination as a child &#8211; as I must imagine that my dad did in 1982 &#8211; are
-likely equally rare.</p>
-
-<p>In some ways, it is like the very ubiquity of technology has led us back to a
-world where socially normative gender roles take hold all over again, and the
-effort we&#8217;re going to need to put into overcoming that feels overwhelming
-sometimes. Words can&#8217;t express my gratitude for the parents I have, for
-that $99.95 investment they made in me, and for fact that I was lucky enough to
-be 5 and full of wonder in 1982.</p>
 ]]></content>
   </entry>
   

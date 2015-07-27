@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Thank you for the invitation to speak at your conference, and your offer to pay my hotel and airfare in exchange.&nbsp;I notice that you are selling &hellip;">
+  <meta name="description" content="It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,305 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/">Code Org, Take 2: Structuring JavaScript Applications</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-27T00:00:00-05:00" pubdate data-updated="true">Aug 27<span>th</span>, 2010</time>
+        
+         | <a href="/blog/2010/08/27/code-org-take-2-structuring-javascript-applications/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It&rsquo;s hard to believe it was not even a year ago that I spoke at the jQuery Conference in Boston about code organization. At the time, I&rsquo;d been thinking for a few months about how to improve my own code and give it more structure, and how to give advice to others about how to do the same.</p>
+
+
+
+
+<p>My talk was about code organization, but really I was talking about how you might organize a single piece of functionality; I didn&rsquo;t even begin to answer the larger question of how to structure a bona fide JavaScript application. Really, that question is almost perpendicular to the one I was tackling at the time; it&rsquo;s a question of strategy, not tactics.</p>
+
+
+
+
+<p>A year later, I&rsquo;d like to share my thoughts on how I&rsquo;m answering it these days.</p>
+
+
+
+
+<h2>First Things First: What&rsquo;s a JavaScript Application?</h2>
+
+
+
+
+<p>GMail is a JavaScript application; this Posterous blog, while it makes use of JavaScript a bit, is probably not, but the admin interface most certainly is. The line can be frustratingly fuzzy, but at the same time it&rsquo;s pretty important to realize when you&rsquo;ve crossed it.</p>
+
+
+
+
+<p><strong>To me, the defining characteristic of a JavaScript application is that the heavy lifting of manipulating and displaying data falls to the browser</strong>, with most communication with the server happening via XHR.</p>
+
+
+
+
+<p>If you find yourself in application land, welcome. Now what?</p>
+
+
+
+
+<h2>My Building Blocks</h2>
+
+
+
+
+<p>My approach to organizing an application is really just an MVC variant, so I don&rsquo;t want to sound as though I&rsquo;ve discovered something novel or new. However, there are a couple of things to note: For one, the term &ldquo;controller&rdquo; has a couple of different meanings to me, as explained below; for two, there are two distinct flavors of &ldquo;views,&rdquo; though I&rsquo;m not sure exactly how important the distinction is.</p>
+
+
+
+
+<p>I also want to be super-clear that I don&rsquo;t tout this as The One and Only Way; it is just a way that has worked for me, a way that I evolve and adapt with every project I work on, and a way that I&rsquo;ve run by a few people and they haven&rsquo;t laughed at me. My point in dissecting it isn&rsquo;t that you&rsquo;ll try to follow it word-for-word; rather, I hope it might get you thinking about  JavaScript applications beyond the DOM.</p>
+
+
+
+
+<h3>Models</h3>
+
+
+
+
+<p>There&rsquo;s nothing particularly unique to models in a JavaScript application. They are responsible for fetching and storing application data and maintaining its integrity in the browser. They fetch data, store data, and provide an API for other application components to get access to that data. There may be more than one destination for the data: memory, the server, or some type of local storage. But if it has to do with managing data, it&rsquo;s the model&rsquo;s job.</p>
+
+
+
+
+<p>Models stay out of the way when it comes to displaying data or responding (at least directly) to user interaction. Those tasks are left up to other pieces of the application, as we&rsquo;ll see below.</p>
+
+
+
+
+<h4>Example</h4>
+
+
+
+
+<p>A simple search application would likely have a search results model, responsible for receiving the current search term, fetching the data for the term, and broadcasting it to the rest of the application. It might also allow for manipulating individual search results, such as indicating that a particular result was a favorite or a dud, though that task might also fall to an individual search result model depending on the needs.</p>
+
+
+
+
+<h3>Widgets and Data Views</h3>
+
+
+
+
+<p>Views comprise HTML (generally in the form of client-side templates) and CSS for a component, and are generally accompanied by a view controller (the  JavaScript related to interacting with the vew; see below for an explanation). The HTML for a view consists of a single parent node with an arbitrary internal structure; the parent node will optionally have one or more classes on it that can be used to target CSS.</p>
+
+
+
+
+<p>There are two flavors of views, in my mind: widgets, which are responsible for supporting user interaction with the application but don&rsquo;t render any application data; and data views that are responsible for displaying and allowing interaction with application data.</p>
+
+
+
+
+<p>Data views are instantiated with the initial data required to populate them; then, their view controllers listen for messages from other pieces of the application to tell them when new or updated data needs to be rendered.</p>
+
+
+
+
+<h4>Examples</h4>
+
+
+
+
+<p>A basic search input box would be considered a widget &mdash; when it is created, it doesn&rsquo;t need any application data in order to render properly. The widget is strictly responsible for allowing the basic interaction of typing a search term and hitting enter; that is, it&rsquo;s not responsible for actually performing the search.</p>
+
+
+
+
+<p>A search results list is an example of a data view; it renders application data <em>and</em>, potentially, allows for interaction with it. Again, though, it&rsquo;s not responsible for performing the search; it just renders data and then allows for interaction with it.</p>
+
+
+
+
+<h3>View Controllers</h3>
+
+
+
+
+<p>View controllers manage interaction with a data view or widget &mdash; interaction by the user, and interaction with the rest of the application. They are responsible for binding and handling events, for broadcasting user interactions with the widget to the rest of the application, and for listening to other pieces of the application to tell them they have new data to render.</p>
+
+
+
+
+<p>View controllers <em>never</em> handle server communication directly; their role is solely to provide a user interface to the application. When something interesting happens to a view or widget, the view controller announces it. When new data is available for a view, the view controller should know how to handle it. But, again, the view controller itself should focus on providing a user interface, not on interfacing with the server.</p>
+
+
+
+
+<h4>Examples</h4>
+
+
+
+
+<p>The view controller for a search box might listen for the user to focus on the search box, hiding placeholder text for the input. Then, it might listen for the user to hit Enter inside the search box; when that happens, it would broadcast to the rest of the application that the user had submitted a search, along with the term that was searched.</p>
+
+
+
+
+<p>The view controller for a search results list might listen for another piece of the application to announce that new search results are available to be displayed. If the results were for the currently displayed search term, it could add them to the list; if they were for a new term, the results list could empty itself and display the new results.</p>
+
+
+
+
+<h3>Application-Level Controllers</h3>
+
+
+
+
+<p>Application-level controllers are the glue of an application. Loosely, there may be one per &ldquo;page&rdquo; of the application, or one per feature. For example, an application that includes a search feature and a checkout feature might have a controller for each feature, even though the checkout feature might spread across multiple pages.</p>
+
+
+
+
+<p>These controllers are responsible for getting the models and views/widgets for a feature in place and talking to each other. So, a controller might first make sure the required models are in place, then tell them to fetch the appropriate data; once the data is available, the controller would instantiate the views for displaying the data. Finally, the controller would broker future interactions between the views and the models.</p>
+
+
+
+
+<h4>Examples</h4>
+
+
+
+
+<p>On a search results page, a user might click a Favorite button on a search result. The search results list&rsquo;s view controller would handle the click, broadcasting a message about the user&rsquo;s action to the rest of the application. The controller would observe this message and pass it, along with any other relevant information, to the search results model, which would in turn pass the information to the server, or store it locally.</p>
+
+
+
+
+<h2>Notes on Enablers</h2>
+
+
+
+
+<p>I&rsquo;ve glossed over a few implementation details that are somewhat tangential to the organization question, but I want to touch on them briefly:</p>
+
+
+
+
+<h3>Pubsub and Friends</h3>
+
+
+
+
+<p>I didn&rsquo;t want to get too specific about how all of this &ldquo;announcing&rdquo; and &ldquo;broadcasting&rdquo; and &ldquo;listening&rdquo; happens, because there are lots of ways to accomplish it. One could use pubsub, custom events, or any number of other solutions. I don&rsquo;t think the actual implementation is important, though personally I lean heavily on pubsub &mdash; what is important is the notion of broadcasting and listening for announcements that something has happened, allowing other components of the application to react appropriately.</p>
+
+
+
+
+<h3>Templating</h3>
+
+
+
+
+<p>If you aren&rsquo;t using a toolkit with templating built in (or, heck, even if you are), I&rsquo;ve kind of fallen in love with <a href="http://github.com/janl/mustache.js/">mustache.js</a> lately. It&rsquo;s a great client-side templating companion, making it dead-simple to turn data into markup without ending up with templates that look more like JavaScript than HTML.</p>
+
+
+
+
+<p>Figuring out how to maintain templates can be tricky &mdash; do you store them in your page&rsquo;s markup? Do you maintain them as separate files requested via XHR and then cached? Or do you put them in your JavaScript? Dojo&rsquo;s <code>dojo.cache()</code> method provides a handy way to keep your templates in separate files and load them via XHR, while interning them into your JavaScript for you if you use Dojo&rsquo;s build tool. I like this.</p>
+
+
+
+
+<h3>Attaching Events to Views</h3>
+
+
+
+
+<p>Another shameless Dojo plug: <code>dijit.\_Templated</code> provides some serious hotness when it comes to attaching events to views. Read up on <a href="http://docs.dojocampus.org/dijit/_Templated"><code>dojoAttachPoint</code> and <code>dojoAttachEvent</code></a>; together with dijit._Widget&rsquo;s <code>connect</code> and <code>subscribe</code> methods, which provide automatic cleanup for you, there&rsquo;s some real power here, which has me writing hardly any selector-based code these days.</p>
+
+
+
+
+<h3>File Structure</h3>
+
+
+
+
+<p>I hesitate to make any particular recommendations here, because the needs of an application can vary widely. However, I tend to have a directory each for models, views (for view controllers and templates), and controllers (for application-level controllers). Those directories &mdash; especially the views directory &mdash; may contain subdirectories, for instance if there&rsquo;s more than one view for a certain type of data.</p>
+
+
+
+
+<h2>Why Go To All This Trouble, Again?</h2>
+
+
+
+
+<p>So this is the part where you might say &ldquo;OMG, srsly, what happened to &lsquo;get some elements, do something with them?!?&rsquo;&rdquo; Let me be clear, that approach may be <em>entirely appropriate</em> for your particular needs; I&rsquo;m not here to convince you otherwise.</p>
+
+
+
+
+<p>But: if your application is complex enough to warrant considering an approach like this, I&rsquo;ve found that in the long run it actually simplifies my code by cleanly separating concerns and providing a decent roadmap for building new features. I can build and test a solid model for some Thinger, and then use that model throughout my code; I can build and test a user interface component for editing a Thinger long before the data exists to support it. I can map &ldquo;pages&rdquo; of my application to application-level controllers, providing a high-level view of what&rsquo;s happening where.</p>
+
+
+
+
+<p>Best of all, paths to code reuse become clear and entanglements become fewer when I keep this division of responsibilities in mind as I code. A search results data view, for example, can be made to accept search results from any model that provides them in the proper format; a search can be initiated and the results displayed without depending on a user entering text into a search input widget.</p>
+
+
+
+
+<p>Dividing the responsibilities into well-defined sections leads to components that are truly pluggable, often in ways you may not have even imagined when you wrote them. In an application that evolves over time, it&rsquo;s hard to overstate the benefits of this.</p>
+
+
+
+
+<h2>In Conclusion &amp; A Plea</h2>
+
+
+
+
+<p>If you find yourself working on a JavaScript application, I can&rsquo;t recommend enough that you consider, at length, what underlying structure makes the most sense; it&rsquo;s almost inevitably more complex than you can manage via the DOM alone. Again, my answer isn&rsquo;t the right answer, it&rsquo;s just an answer, but I hope it helps you start thinking about what the right answer might be for your project.</p>
+
+
+
+
+<p>If you&rsquo;re interested in this stuff, I&rsquo;d encourage you to check out <a href="http://javascriptmvc.com/">JavaScriptMVC</a>, if only to see how they approach these problems; <a href="http://cujojs.com/">Cujo.js</a> is another framework, built on top of Dojo, that aims to enter this space, but you&rsquo;ll have to wait until mid-September to see it.</p>
+
+
+
+
+<p>Finally: If you have your own thoughts to share about how to approach these large application questions, I&rsquo;m pleading with you to write your own blog post(s) about them. If you have other reference material on the topic, I beg you to share it. As more and more people transition from simple JavaScript enhancements to non-trivial applications, the need for education is huge.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1178,79 +1477,6 @@ function we were using previously when we bound to the click event.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/03/18/txjs-js-bbq-you/">TXJS: JS + BBQ + You</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-18T00:00:00-05:00" pubdate data-updated="true">Mar 18<span>th</span>, 2010</time>
-        
-         | <a href="/blog/2010/03/18/txjs-js-bbq-you/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you follow me on Twitter, you&#8217;ve heard about <a href="http://txjs.eventbrite.com">TXJS</a> by now, but let me tell you: now that we&#8217;ve announced Douglas Crockford and John Resig, there is officially no way you should miss this. TXJS is a full-day conference set for June 5 in Austin, Texas, hosted by the <a href="http://txjs.eventbrite.com">yayQuery</a> team and featuring BBQ and a slew of awesome JavaScripters:</p>
-
-<ul>
-<li>
-<strong>Brandon Aaron</strong>, jQuery team member</li>
-<li>
-<strong>Tim Caswell</strong>, Node.js contributor and founder of <a href="http://howtonode.org">howtonode.org</a>
-</li>
-<li>
-<strong>Douglas Crockford</strong>, JavaScript architect at Yahoo! and author of &#8220;JavaScript: The Good Parts&#8221;</li>
-<li>
-<strong>Andrew Dupont</strong>, Prototype core team member</li>
-<li>
-<strong>Peter Higgins</strong>, Dojo project lead</li>
-<li>
-<strong>Paul Irish</strong>, jQuery team member and yayQuery podcast co-host</li>
-<li>
-<strong>Brian LeRoux</strong>, software architect at Nitobi and PhoneGap hacker/contributor</li>
-<li>
-<strong>Joe McCann</strong>, senior technologist at Frog Design</li>
-<li>
-<strong>John Resig</strong>, creator of the jQuery JavaScript library</li>
-<li>
-<strong>Alex Sexton</strong>, front-end developer and yayQuery podcast co-host</li>
-<li>
-<strong>Kyle Simpson</strong>, <a href="http://twitter.com/AustinJS">Austin JS</a> organizer and author of LABjs</li>
-<li>
-<strong>Adam Sontag</strong>, jQuery UI developer relations team member and yayQuery podcast co-host</li>
-<li>
-<strong>Mike Taylor</strong>, HTML5 aficionado and front-end developer at Tunecore</li>
-<li>
-<strong>Juriy Zaytsev</strong> (aka @kangax), expert JavaScript wrangler and Prototype core developer</li>
-</ul>
-
-
-<p>Earlybird tickets are just $49 while they last, and regular tickets are just $69, which is about as close to free as we could get. See you there!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1268,6 +1494,10 @@ function we were using previously when we bound to the click event.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You&#8217;re Going on a Podcast</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
       </li>
     
@@ -1281,10 +1511,6 @@ function we were using previously when we bound to the click event.</p>
     
       <li class="post">
         <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
       </li>
     
   </ul>

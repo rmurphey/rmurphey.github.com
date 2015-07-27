@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>So You're Going on a Podcast - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I got a fair bit of experience recording a podcast back in the yayQuery days; when I decided to start another one, the technical side of it felt &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">So You're Going on a Podcast</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-27T21:00:00-05:00" pubdate data-updated="true">Jul 27<span>th</span>, 2015</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I got a fair bit of experience recording a podcast back in the <a href="http://yayquery.com">yayQuery</a> days; when I decided to start another one, the technical side of it felt pretty familiar, minus the part where yayQuery was crazy enough to also record video. Back then, we mostly were talking to each other, so it was easy for us to all be on the same page about the technical requirements: headphones always, typing never (at least when you&#8217;re also talking), and buy a good microphone. We also had 20-some episodes to get good at working with each other.</p>
+
+<p>I&#8217;ve been recording the <a href="http://ttlpodcast.com">TTL Podcast</a> for a few months now; it&#8217;s a show with a different guest every week, so the tech challenges are different, and each show is completely different from the last. It has been great fun, and I can&#8217;t believe how lucky I am to get to ask all of these people to talk to me and they keep saying yes.</p>
+
+<p>I&#8217;ve learned a few things about how to be a good podcast guest along the way, but I haven&#8217;t always been good at sharing them ahead of time with guests. This, then, is really just an attempt to write them down in a single place, with the added benefit that maybe they will be useful to others. This is mostly focused on being a guest of a show; I have lots to say about being a host, but I feel like that&#8217;s a lot more complicated than this.</p>
+
+<h2>Technical</h2>
+
+<ul>
+<li>Wear headphones, preferably the best ones you own. The iPhone headphones aren&#8217;t nice, and actually leak noise like crazy. I alternate between using <a href="http://www.klipsch.com/R6i">Klipsch</a> and Shure (sorry, not sure of the model, so no link) in-ear headphones, both of which have a nice silicone seal to keep the sound I&#8217;m hearing in my ears and out of my microphone.</li>
+<li>Use the best microphone you can. A MacBook&#8217;s built-in microphone is decent enough in a pinch, but it&#8217;s probably worth springing for an external microphone. I used the <a href="http://www.audio-technica.com/cms/wired_mics/a0933a662b5ed0e2/">AT2020</a> for most of the yayQuery episodes, but I stepped up to a <a href="http://www.shure.com/americas/products/microphones/sm/sm7b-vocal-microphone">Shure SM7B</a> to record TTL at the suggest of Alex Sexton. The USB mic is just fine and very reasonably priced; the Shure sounds absolutely lovely but is a bit more of an investment. If you don&#8217;t want to spring for a mic, see if someone in your office has one you can borrow. If you have questions about audio gear, I am mostly clueless beyond what I&#8217;ve written above.</li>
+<li>If you&#8217;re a guest, always plan to record your side of the conversation. (If you&#8217;re a host, always plan to record <em>all</em> sides of the conversation; I&#8217;ve lost an episode by failing to do this.) On a Mac, Quicktime has a simple audio recording feature. There&#8217;s also plenty of other software that will do the same.</li>
+</ul>
+
+
+<h2>Preparation</h2>
+
+<ul>
+<li>Listen to at least one episode of the show before you go on (and possibly before you even agree to go on).</li>
+<li>Ask the host what they want to talk to you about, and try to have a decent sense of the outline of the conversation before you start. If the host doesn&#8217;t have great guidance &#8211; she&#8217;s almost certainly less familiar with your work than you are &#8211; it&#8217;s generally very welcome for you to propose an outline yourself.</li>
+<li>If you have access to a soundproofed room, consider using it. Avoid large, echo-y rooms, or rooms that will be subject to a lot of hallway or construction noise.</li>
+</ul>
+
+
+<h2>The Show</h2>
+
+<ul>
+<li>Consider your biological needs before you start recording :) Except for a live show, you&#8217;re always welcome to pause if you need to step away, but you may find yourself distracted in the meantime. Make sure you have water nearby!</li>
+<li>Silence phone notifications (no vibrating phones; silence means <em>silent</em>); on your computer, close Twitter, your mail client, etc.; option-click the Notification Center icon in your Mac toolbar to put it in do-not-disturb mode (thanks Ralph Holzmann for that tip).</li>
+<li>Unless it&#8217;s a live show, feel free to pause and try again if you make a mistake or say something wrong. It&#8217;s important that you announce that you&#8217;re starting over, then pause, then start over &#8211; that way it&#8217;s easy to fix in post-production.</li>
+<li>Remember that a podcast is a conversation, not a presentation. Unlike a presentation, you&#8217;re conversing with a host who knows the audience and can ask you the questions that will help that audience connect with you. Use a video chat so you can watch the host for visual cues that she might want to interject.</li>
+</ul>
+
+
+<p>That&#8217;s my list, though undoubtedly I&#8217;ve left things out. If you have stuff to add, please share in the comments —</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-27T21:00:00-05:00" pubdate data-updated="true">Jul 27<span>th</span>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/07/20/karma-webpack-tape-code-coverage/" title="Previous Post: Browser Testing and Code Coverage with Karma, Tape, and Webpack">&laquo; Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You're Going on a Podcast</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/11/ttl-podcast/">The TTL Podcast</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <p><a href="http://ttlpodcast.com"><img src="/images/logo-600-600.png" alt="TTL Podcast logo" width="100"></a></p>
+  <p>I host the <a href="http://ttlpodcast.com">TTL Podcast</a>, featuring
+  conversations with front-end developers at large organizations talking about how they do their jobs.</p>
+</section>
+<section>
+  <h1>Projects</h1>
+  <p><a href="https://github.com/rmurphey/js-assessment">js-assessment</a>, a test-driven approach to learning, improving, and assessing JavaScript skills.</p>
+  <p><a href="https://github.com/bazaarvoice/scoutfile">scoutfile</a>, an NPM module developed at Bazaarvoice for creating a "scout" file to bootstrap client-side JS applications.</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips/';
+        var disqus_url = 'http://rmurphey.com/blog/2015/07/27/tech-podcast-recording-tips/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

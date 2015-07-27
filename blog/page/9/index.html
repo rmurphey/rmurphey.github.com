@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="There are lots of examples of using CSS to add filetype icons to links, but they all rely on advanced CSS selectors, which Internet Explorer 6 doesn &hellip;">
+  <meta name="description" content="I&#8217;ve written several versions of this functionality, and each time I revisit it, it gets simpler and I feel silly for how complicated I made it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,288 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/08/cycle-through-list-elements-with-jquery/">Cycle Through List Elements With jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-08T00:00:00-06:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/01/08/cycle-through-list-elements-with-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve written several versions of this functionality, and each time I revisit it, it gets simpler and I feel silly for how complicated I made it before. The thing to remember when you&#8217;re working with jQuery is to <strong>always leverage the DOM</strong>. <a href="http://www.christianmontoya.com/2007/12/10/how-i-learned-to-stop-programming-and-love-the-dom/">Christian Montoya has a good writeup</a> about how he came to the same realization, and it&#8217;s worth a read.</p>
+
+<p>In the meantime, here&#8217;s my latest iteration of cycling through items in an unordered list. In the example below, I&#8217;ve just put straight-up text in the list items, but they could contain entire <code>div</code>s of content if you wanted.</p>
+
+<p>First, let&#8217;s assume we have this HTML:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;</span>Item 1<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;</span>Item 2<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;</span>Item 3<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We&#8217;ll start by verifying that there&#8217;s more than one item before we do all the rest of the work. (Of course, if your list length doesn&#8217;t vary, this <code>if</code> isn&#8217;t necessary.)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="p">...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Following the principles of progressive enhancement, we don&#8217;t want to include navigation elements in the HTML if they will only work with Javascript; rather, we want to add them with Javascript:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:last&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;forwardButton.gif&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The comes the fun part: adding the behaviors to the nav buttons. This is where it pays to keep in mind the power of the DOM; in past iterations of this, I&#8217;ve seriously overthought the logic.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the back button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">prev</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the forward button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:last&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;forwardButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">next</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But what happens if there&#8217;s not a next <code>li</code> when you click on the forward button, or a previous <code>li</code> when you click on the back button?</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the back button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">prev</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// if there wasn&#39;t a previous li,</span>
+</span><span class='line'>      <span class="c1">// show the last li in the list</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span><span class="nx">length</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One last thing: we need to hide all the list items and then show the first one:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">$list</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myList&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">$list</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// hide all the list items and show the first one</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// put the nav before the list</span>
+</span><span class='line'>  <span class="nx">$list</span><span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// style the nav as needed</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">textAlign</span><span class="o">:</span> <span class="s1">&#39;right&#39;</span><span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img&#39;</span><span class="p">).</span><span class="nx">css</span><span class="p">({</span><span class="nx">cursor</span><span class="o">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// add the back button behavior</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#nav img:first&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span><span class="s1">&#39;backButton.gif&#39;</span><span class="p">).</span>
+</span><span class='line'>    <span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span>
+</span><span class='line'>        <span class="nx">hide</span><span class="p">().</span>
+</span><span class='line'>        <span class="nx">prev</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">).</span>
+</span><span class='line'>          <span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// if there wasn&#39;t a previous li,</span>
+</span><span class='line'>      <span class="c1">// show the last li in the list</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;li:visible&#39;</span><span class="p">,</span><span class="nx">$list</span><span class="p">).</span><span class="nx">length</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For extra fun:</p>
+
+<ul>
+<li>
+<a href="http://blog.rebeccamurphey.com/2007/12/11/jquery-plugin-randomly-reorder-children-elements/">Randomly reorder</a> the list items before you add the rest of the code</li>
+<li>Instead of <code>show()</code> and <code>hide()</code>, try <code>fadeIn()</code> and <code>fadeOut()</code>
+</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -952,55 +1234,6 @@ another element in the DOM.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/">Insert jQuery Into Any Page Using a Bookmarklet</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-10T00:00:00-06:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/10/insert-jquery-into-any-page-using-a-bookmarklet/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ever wish you could use jQuery on a page at the drop of a hat, without having access to the page itself? Well I&#8217;ll be damned, <a href="http://simonwillison.net/2007/Aug/15/jquery/">you can</a>.</p>
-
-<p>(This is one of those things that in hindsight seems so painfully obvious that I&#8217;m almost embarrassed to admit that it never occurred to me, but admit it I will.)</p>
-
-<p>For those working with jQuery 1.2.1, here is an <a>updated Insert jQuery 1.2.1 bookmarket</a>, and here is the code for the bookmarklet in its entirety:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="k">void</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">s</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">s</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://code.jquery.com/jquery-1.2.1.js&#39;</span><span class="p">;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">s</span><span class="p">);}())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I came across this in a recent post at <a href="http://morethanseven.net/posts/debug-web-pages-with-jquery-and-jash">Morethanseven</a>, but the Simon Willison post is from August, so this is probably a bit of old news. I&#8217;m still excited though.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -1018,6 +1251,10 @@ another element in the DOM.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You&#8217;re Going on a Podcast</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
       </li>
     
@@ -1031,10 +1268,6 @@ another element in the DOM.</p>
     
       <li class="post">
         <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/11/office-hours/">Office Hours for Aspiring Speakers</a>
       </li>
     
   </ul>
