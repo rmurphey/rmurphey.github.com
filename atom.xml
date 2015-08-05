@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2015-07-26T22:07:00-05:00</updated>
+  <updated>2015-08-04T22:21:27-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pausing Office Hours]]></title>
+    <link href="http://rmurphey.com/blog/2015/08/04/pausing-office-hours/"/>
+    <updated>2015-08-04T21:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2015/08/04/pausing-office-hours</id>
+    <content type="html"><![CDATA[<p>I started doing <a href="http://rmurphey.com/blog/2015/01/11/office-hours/">office hours</a> at the beginning of the year; it&#8217;s been tremendous fun, super eye-opening, and just generally quite rewarding. I won&#8217;t lie: it&#8217;s also been a lot of time, especially the first few weeks when I terribly underestimated how many people would sign up.</p>
+
+<p>I was out for dinner with a friend tonight and she asked me how it was going, and I had to pause for a second when I realized that we might not be sitting there, right then, if she hadn&#8217;t signed up for a slot. Things like that &#8211; and getting to see, on stage, speakers who trusted me with their talk idea months ago &#8211; make me super-glad that I let (mostly) strangers put 30 minutes on my calendar a couple-few dozen times these last few months. Hopefully I helped a few people along the way too.</p>
+
+<p>In the last couple of weeks I&#8217;ve started a new role at Bazaarvoice: after a few months of working on some fairly independent projects, I&#8217;m back to leading a team. I used to get a kick out of being the female lead of an otherwise-all-male team; now I&#8217;m honored and humbled to get to work with a team where I am one of <em>five</em> women. The ratio isn&#8217;t quite 50-50, but it&#8217;s closer than any team I&#8217;ve worked on before. It&#8217;s also the first lead role I&#8217;ve had where my responsibilities span beyond the front end, a prospect both exciting and daunting.</p>
+
+<p>Which is to say: My hands seem a bit fuller than they did back when I started office hours, so for now, it&#8217;s time to hit the pause button while I focus on my new team. If you&#8217;re interested in picking up where I left off, hit me up and I&#8217;m happy to spread the word.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[So You're Going on a Podcast]]></title>
@@ -503,7 +518,9 @@
     <link href="http://rmurphey.com/blog/2015/01/11/office-hours/"/>
     <updated>2015-01-11T21:00:00-06:00</updated>
     <id>http://rmurphey.com/blog/2015/01/11/office-hours</id>
-    <content type="html"><![CDATA[<p>I&#8217;m expecting that my 2015 is going to include a bit less speaking than in years past, so I&#8217;m hoping I can use some of that newly available time to help new speakers find their way to the stage. To that end, I&#8217;m kicking off &#8220;office hours&#8221; this week: a few slots a week where aspiring and up-and-coming speakers can borrow my ear for a bit to talk about their ideas, their fears, their questions, and their ambitions.</p>
+    <content type="html"><![CDATA[<p><em>Update: Office hours are <a href="http://rmurphey.com/blog/2015/08/04/pausing-office-hours/">on hold</a> for now while I settle into a new role at Bazaarvoice.</em></p>
+
+<p>I&#8217;m expecting that my 2015 is going to include a bit less speaking than in years past, so I&#8217;m hoping I can use some of that newly available time to help new speakers find their way to the stage. To that end, I&#8217;m kicking off &#8220;office hours&#8221; this week: a few slots a week where aspiring and up-and-coming speakers can borrow my ear for a bit to talk about their ideas, their fears, their questions, and their ambitions.</p>
 
 <p>This idea isn&#8217;t mine; I was inspired by a similar effort by <a href="http://jenmyers.net/mentoring/">Jen Myers</a>, who has been offering mentoring sessions to aspiring speakers since 2013. I&#8217;m forever indebted to the folks who helped me get through my first talk, and I&#8217;ve been honored to give a gentle nudge to several other speakers in the years since.</p>
 
@@ -2095,50 +2112,6 @@ Shocker, I know.</p>
 contributions are required to include information about their employer. The
 inclusion of this information does not indicate that the employer supports &#8211;
 or is even aware of &#8211; the contribution.</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bocoup]]></title>
-    <link href="http://rmurphey.com/blog/2012/03/26/bocoup/"/>
-    <updated>2012-03-26T10:00:00-05:00</updated>
-    <id>http://rmurphey.com/blog/2012/03/26/bocoup</id>
-    <content type="html"><![CDATA[<p><img src="http://rmurphey.com/images/bocoup.png" alt="bocoup" /></p>
-
-<p>It wasn&#8217;t so long ago that I was giving my first talk about JavaScript at the
-2009 jQuery Conference, and it was there that Bocoup&#8217;s Boaz Sender and Rick
-Waldron created the (now-defunct) objectlateral.com, a celebration of an
-unfortunate typo in the conference program&#8217;s listing of my talk.</p>
-
-<p>A bond was forged, and ever since I&#8217;ve watched as <a href="http://bocoup.com">Bocoup</a>
-has grown and prospered. I&#8217;ve watched them do mind-boggling work for the likes
-of Mozilla, The Guardian, Google, and others, all while staying true to their
-mission of embracing, contributing to, and evangelizing open-web technologies.</p>
-
-<p>Today, I&#8217;m beyond excited &#8211; and also a wee bit humbled &#8211; to announce that
-<a href="http://weblog.bocoup.com/welcome-rebecca-murphey">I&#8217;m joining their consulting team</a>.
-As part of that role, I look forward to spending even more time working on and
-talking about patterns and best practices for developing client-side JavaScript
-applications. I also hope to work on new <a href="http://training.bocoup.com/">training offerings</a>
-aimed at helping people make great client-side applications with web technology.</p>
-
-<p>New beginnings have a terrible tendency to be accompanied by endings, and while
-the Bocoup opportunity is one I couldn&#8217;t refuse, it&#8217;s with a heavy heart that I
-bid farewell to the team at Toura. I&#8217;m proud of what we&#8217;ve built together, and
-that we&#8217;ve shared so much of it with the developer community in the form of
-<a href="http://github.com/Toura/mulberry">Mulberry</a>. The beauty of open source means
-that I fully expect to continue working on and with Mulberry once I leave
-Toura, but I know it won&#8217;t be the same.</p>
-
-<p>I&#8217;ll be spending the next few days tying up loose ends at Toura, and then I&#8217;m
-taking a break in April to hit JSConf, spend some time in Berlin, and head to
-Warsaw to speak at <a href="http://2012.front-trends.com/">FrontTrends</a>. I&#8217;ll make my
-way back home in time to start with Bocoup on May 1.</p>
-
-<p>And so. To my teammates at Toura: I wish you nothing but the best, and look
-forward to hearing news of your continued success. To Bocoup: Thanks for
-welcoming me to the family. It&#8217;s been a long time coming, and I&#8217;m glad the day
-is finally here.</p>
 ]]></content>
   </entry>
   

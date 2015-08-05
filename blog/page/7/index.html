@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Just wanted to call attention to two excellent posts by Benjamin Sterling: Better jQuery Code 1 and Better jQuery Code 2. He offers some must-have &hellip;">
+  <meta name="description" content="Just solved a problem where the jQuery validation plugin wasn&#8217;t playing so nicely with TinyMCE &#8211; the validation plugin was trying to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/01/12/jquery-validation-and-tinymce/">jQuery Validation and TinyMCE</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-12T00:00:00-06:00" pubdate data-updated="true">Jan 12<span>th</span>, 2009</time>
+        
+         | <a href="/blog/2009/01/12/jquery-validation-and-tinymce/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just solved a problem where the <a href="http://docs.jquery.com/Plugins/Validation">jQuery validation plugin</a> wasn&#8217;t playing so nicely with <a href="http://wiki.moxiecode.com/index.php/TinyMCE:Index">TinyMCE</a> &#8211; the validation plugin was trying to validate the textarea before TinyMCE had a chance to copy the editor contents back to the textarea. I was about to yank TinyMCE out of the page but a little reading through the TinyMCE docs led me to try this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mySubmitButton&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">tinyMCE</span><span class="p">.</span><span class="nx">activeEditor</span><span class="p">.</span><span class="nx">getContent</span><span class="p">();</span> <span class="c1">// get the content</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myTextarea&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">content</span><span class="p">);</span> <span class="c1">// put it in the textarea</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And what do you know, it works. One note: it&#8217;s important to bind the content replacement to the click event of the submit button, not to the actual form submission, or else the validation may try to run before the content gets copied back to the textarea.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -676,52 +731,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/06/skipping-photoshop-for-web-design/">Skipping Photoshop for Web Design</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-06T00:00:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
-        
-         | <a href="/blog/2008/06/06/skipping-photoshop-for-web-design/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Occasionally the folks at 37signals write a blog post that seems to channel thoughts that I&#8217;ve just never put to paper [blog]. This week they did it twice, with <a href="http://www.37signals.com/svn/posts/1061-why-we-skip-photoshop">two</a> <a href="http://www.37signals.com/svn/posts/1066-web-designers-should-do-their-own-htmlcss">posts</a> about how they prefer to skip Photoshop and work with HTML and CSS when it comes to designing a web site.</p>
-
-<p>I&#8217;ve found it incredibly pleasant to work with designers who have demonstrated knowledge and skill when it comes to CSS and HTML &#8211; at my last job, our lead designer was also the guy you went to if you were stumped by a CSS issue. Knowing the tools means that production considerations become an active part of the design process: you don&#8217;t create an element without giving some thought to how it will be built. In the best of worlds, you weigh the cost of building the element &#8211; in time, in HTTP requests, in excessive markup &#8211; against the benefit of having it on the site, and make educated decisions about what is &#8220;worth it.&#8221;</p>
-
-<p>I&#8217;ve never found Photoshop to be an adequate tool for mocking up a design &#8211; it just doesn&#8217;t &#8220;think&#8221; the way the web does, it just doesn&#8217;t observe the constraints that the web imposes, and it just doesn&#8217;t make accessible the parts of CSS that are truly powerful.</p>
-
-<p>While I am no designer, I play one sometimes for freelance clients. When I haven&#8217;t wanted to go straight to code, I&#8217;ve found that another Adobe product, InDesign, can be incredibly powerful. It&#8217;s an application intended for print layout (and some of its related assumptions can be a little frustrating, such as its lack of a hex-based color picker/setter), but generally it is exponentially closer to the realities of the web than Photoshop. It thinks in boxes, not pixels, and offers paragraph-, character- and object-level stylesheets that can &#8230; cascade! Just like with CSS, you can rapidly and dramatically alter the appearance of a page once you establish the base, semantic elements of it. It steers you to think about a page&#8217;s structure, not just its presentation.</p>
-
-<p>I&#8217;m hoping that the number of web designers who think that Photoshop is a sufficient tool will dwindle, but I&#8217;m not sure what the route is to get to that point. Photoshop&#8217;s inadequacy in this regard is so clear to me &#8211; and to people like the 37signals folks &#8211; that I&#8217;m not sure how you persuade someone who still believes otherwise.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -739,6 +748,10 @@ We have a framework that allows rapid prototyping of new features, letting devel
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/04/pausing-office-hours/">Pausing Office Hours</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You&#8217;re Going on a Podcast</a>
       </li>
     
@@ -752,10 +765,6 @@ We have a framework that allows rapid prototyping of new features, letting devel
     
       <li class="post">
         <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="It sounds like TechCrunch got burnt yesterday by some remote Javascript appearing too high in their pages&#8217; HTML. Visitors&#8217; browsers were &hellip;">
+  <meta name="description" content="Occasionally the folks at 37signals write a blog post that seems to channel thoughts that I&#8217;ve just never put to paper [blog]. This week they &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/06/skipping-photoshop-for-web-design/">Skipping Photoshop for Web Design</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-06T00:00:00-05:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+        
+         | <a href="/blog/2008/06/06/skipping-photoshop-for-web-design/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Occasionally the folks at 37signals write a blog post that seems to channel thoughts that I&#8217;ve just never put to paper [blog]. This week they did it twice, with <a href="http://www.37signals.com/svn/posts/1061-why-we-skip-photoshop">two</a> <a href="http://www.37signals.com/svn/posts/1066-web-designers-should-do-their-own-htmlcss">posts</a> about how they prefer to skip Photoshop and work with HTML and CSS when it comes to designing a web site.</p>
+
+<p>I&#8217;ve found it incredibly pleasant to work with designers who have demonstrated knowledge and skill when it comes to CSS and HTML &#8211; at my last job, our lead designer was also the guy you went to if you were stumped by a CSS issue. Knowing the tools means that production considerations become an active part of the design process: you don&#8217;t create an element without giving some thought to how it will be built. In the best of worlds, you weigh the cost of building the element &#8211; in time, in HTTP requests, in excessive markup &#8211; against the benefit of having it on the site, and make educated decisions about what is &#8220;worth it.&#8221;</p>
+
+<p>I&#8217;ve never found Photoshop to be an adequate tool for mocking up a design &#8211; it just doesn&#8217;t &#8220;think&#8221; the way the web does, it just doesn&#8217;t observe the constraints that the web imposes, and it just doesn&#8217;t make accessible the parts of CSS that are truly powerful.</p>
+
+<p>While I am no designer, I play one sometimes for freelance clients. When I haven&#8217;t wanted to go straight to code, I&#8217;ve found that another Adobe product, InDesign, can be incredibly powerful. It&#8217;s an application intended for print layout (and some of its related assumptions can be a little frustrating, such as its lack of a hex-based color picker/setter), but generally it is exponentially closer to the realities of the web than Photoshop. It thinks in boxes, not pixels, and offers paragraph-, character- and object-level stylesheets that can &#8230; cascade! Just like with CSS, you can rapidly and dramatically alter the appearance of a page once you establish the base, semantic elements of it. It steers you to think about a page&#8217;s structure, not just its presentation.</p>
+
+<p>I&#8217;m hoping that the number of web designers who think that Photoshop is a sufficient tool will dwindle, but I&#8217;m not sure what the route is to get to that point. Photoshop&#8217;s inadequacy in this regard is so clear to me &#8211; and to people like the 37signals folks &#8211; that I&#8217;m not sure how you persuade someone who still believes otherwise.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -587,88 +633,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/">Solved: AJAX Returns Bad Results in Internet Explorer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-10T00:00:00-06:00" pubdate data-updated="true">Jan 10<span>th</span>, 2008</time>
-        
-         | <a href="/blog/2008/01/10/solved-ajax-returns-bad-results-in-internet-explorer/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Note to self: IE6 likes to cache AJAX requests, and this can be a bad thing if other data on the page that will affect the result of the request has changed.</p>
-
-<p>You&#8217;ll see this if you have two fields on a page that both contribute to a result, but only send them to the server when one of them has changed.</p>
-
-<p>Let&#8217;s say field1 and field2 get multiplied on the server side, and both start out with values of 1. So, in IE6:</p>
-
-<ul>
-<li>Set field1 to 1000: Response is 1000.</li>
-<li>Set field1 to 100: Response is 100.</li>
-<li>Set field2 to 123: Response is 12300</li>
-<li>Set field 1 back to 1000: <strong>Uh oh! Response is 1000 again!</strong>
-</li>
-</ul>
-
-
-<p>IE6 has decided that the result from the first time you set field1 to 1000 was good enough, and it doesn&#8217;t look to see that the new result is different.</p>
-
-<p>The solution? Add a timestamp to your requests, so each one will look different to IE even if the real data is the same:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// just an example; you&#39;d</span>
-</span><span class='line'><span class="c1">// obviously build this from</span>
-</span><span class='line'><span class="c1">// the field itself</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;field1=1000&#39;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// build the timestamp</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">timestamp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
-</span><span class='line'><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span> <span class="o">+</span> <span class="s1">&#39;&amp;amp;&#39;</span> <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// now you can send your data</span>
-</span><span class='line'><span class="c1">// using ajax</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Thankfully, when this happened to me yesterday, I had a coworker who only needed a couple of minutes with the server logs to figure out what was happening. After he figured it out here, I found <a href="http://groups.google.com/group/jquery-en/browse_thread/thread/a40b6fb572232e3b">this thread</a>, which verified the cause, and I was able to solve it in a few minutes.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -686,6 +650,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/04/pausing-office-hours/">Pausing Office Hours</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You&#8217;re Going on a Podcast</a>
       </li>
     
@@ -699,10 +667,6 @@
     
       <li class="post">
         <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
       </li>
     
   </ul>

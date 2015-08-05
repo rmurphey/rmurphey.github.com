@@ -9,7 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Since 1999, the World Wide Web Consortium (W3C) &#8211; a standards body that tells the world how the web should work &#8211; has urged web sites to &hellip;">
+  <meta name="description" content="I love trac, and I&#8217;ve been doing lots of work lately to customize it so our clients can use it to send us requests. With the configurable &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +75,111 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/03/remixing-trac-with-jquery/">Remixing Trac With jQuery</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-03T00:00:00-06:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/03/remixing-trac-with-jquery/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I love <a href="http://trac.edgewall.org/">trac</a>, and I&#8217;ve been doing lots of work lately to customize it so our clients can use it to send us requests. With the configurable workflow option offered in <a href="http://trac.edgewall.org/milestone/0.11">version 0.11</a>, it became the perfect way for us to manage and track client requests. By connecting it to the subversion repository we use for version control of client files, we&#8217;ve virtually eliminated the need for back-and-forth emails &#8211; everything is in one place.</p>
+
+<p>Since trac is intended more for managing a development project than for managing an ongoing client relationship, I&#8217;ve had to make some changes to the out-of-the-box version. I don&#8217;t know Python, and I was having a hard time getting a developer to dive in at the level I needed on a non-billable project. Lucky for me, version 0.11 also includes jQuery (version 1.1.3.1). After a couple of chats with a developer and a few &#8220;duh&#8221; moments, it became clear that I could do most of what I needed without messing around under the hood.</p>
+
+<p>The story so far:</p>
+
+<ul>
+<li>Our clients use trac for internal approval of a request before it gets sent to us &#8211; a content provider can enter a request, which then gets reviewed by a manager. We needed a way to assign this manager to the ticket, without the manager becoming the &#8220;owner&#8221; of the ticket. Initially, we had content providers entering their manager&#8217;s email address into the Cc: field, but that didn&#8217;t go over well. Now, jQuery reuses the existing Assign to menu to build a manager dropdown, with the usernames of our employees removed. When the ticket is submitted, the manager is added to the Cc: field automatically.
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// build the new dropdown</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">custom_cc_select</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-form&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">custom_cc_select</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-owner option&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">excludedManagers</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-cc&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// add the selected manager to the cc field on ticket submit</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div.ticket form&#39;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">oldCc</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">manager</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#custom-cc option:selected&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">oldCc</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">oldCC</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">manager</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span> <span class="p">{</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-cc&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">manager</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</li>
+
+<li>The standard trac ticket fields were exactly what we needed, but the labels for them were a little confusing to client users. Plus, the form was ugly. A few lines of jQuery created a new section in the form, moved the fields to that section without their table-based layout, reordered the fields and and relabeled them. For example:
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#field-component&#39;</span><span class="p">).</span> <span class="c1">// get the component dropdown</span>
+</span><span class='line'><span class="nx">remove</span><span class="p">().</span> <span class="c1">// remove it from the DOM but maintain access to it</span>
+</span><span class='line'><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;#custom-form&#39;</span><span class="p">).</span> <span class="c1">// put it at the end of the #custom-form div</span>
+</span><span class='line'><span class="nx">before</span><span class="p">(</span><span class="s1">&#39;Request Type&#39;</span><span class="p">);</span> <span class="c1">// put a new label before it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+The new form makes more sense to the client users, reduces errors and omissions, and looks better too.</li>
+
+<li>For certain client requests, a more complex form is required. Trac offers custom fields, but that solution seemed too limiting. With a few more lines of jQuery, I set up a system that watches the Component dropdown. When certain components are chosen, the standard submission form is hidden, and a new form is put in its place using jQuery&#8217;s load() method. The replacement content can include HTML, standard form elements and javascript; when the form is submitted, javascript assembles the field values into a well-formatted description.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -168,6 +273,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/04/pausing-office-hours/">Pausing Office Hours</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You&#8217;re Going on a Podcast</a>
       </li>
     
@@ -181,10 +290,6 @@
     
       <li class="post">
         <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/01/26/writing-conference-proposals/">Writing Conference Proposals</a>
       </li>
     
   </ul>
