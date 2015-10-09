@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Five Questions - Adventures in JavaScript Development</title>
+  <meta name="author" content="Rebecca Murphey">
+
+  
+  <meta name="description" content="I recently started in a new role: I&#8217;m the dev lead of a project that was
+already in the hands of a group of skilled developers before I showed &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rmurphey.com/blog/2015/10/08/five-questions/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Adventures in JavaScript Development" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-143877-10']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Adventures in JavaScript Development</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rmurphey.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Five Questions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-08T23:00:00-05:00" pubdate data-updated="true">Oct 8<span>th</span>, 2015</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I recently started in a new role: I&#8217;m the dev lead of a project that was
+already in the hands of a group of skilled developers before I showed up, a
+project whose scope and technologies extend far beyond the experiences I&#8217;ve had
+up until now.</p>
+
+<p>As you might imagine, there have been a lot of challenges, but one that&#8217;s been
+particularly interesting has been figuring out how to meaningfully contribute
+to decisions about systems I don&#8217;t intimately understand. It&#8217;s easy to be
+inclined to sit those conversations out: I really don&#8217;t yet know enough to
+participate, and the &#8220;who am I to have a say?&#8221; instinct is strong.</p>
+
+<p>The problem: that attitude will ensure that I <em>never</em> know enough to
+participate, and though I am definitely out of my comfort zone, my job &#8211; the
+job I asked to do, and the job I have been asked to do &#8211; is to participate,
+to learn, and to change the definition of my comfort zone.</p>
+
+<p>While I may not have the project-specific experience to lean on, I&#8217;m finding
+that there are a few questions that help me understand, discuss, and &#8211; ultimately &#8211; consent or object to a technical plan. They&#8217;re questions that
+seem to work well across a spectrum of discussions; they work whether we&#8217;re
+talking about a wholly new system, a migration from an old system, or a
+solution to a particularly prickly problem.</p>
+
+<p>These questions don&#8217;t just help me gain a better understanding of a topic, or
+help me make better decisions; they&#8217;ve also helped me reframe my understanding
+of my role as a lead.</p>
+
+<h2>Question 1: What are we doing and why?</h2>
+
+<p>When I hear the answer, I&#8217;m listening for whether the developer is clearly
+articulating the problem and the solution. Do we clearly understand the
+problem? Is the solution magical, or can we explain why it works? Are we
+solving more than the problem, and thereby incurring unnecessary risk? Does the
+developer agree that the work is necessary?</p>
+
+<h2>Question 2: How could it go wrong?</h2>
+
+<p>A developer who says nothing can go wrong probably hasn&#8217;t been a developer
+for very long. I want to hear far-fetched scenarios, and an explanation for
+why they&#8217;re far-fetched. I want to hear worst-case scenarios; good developers
+have already thought about these plenty, they&#8217;ve worked to avoid them, and
+yet they acknowledge their existence. The goal of this question isn&#8217;t to plan
+for everything; rather, the answers provide context for poking at assumptions.</p>
+
+<h2>Question 3: How will we know if it&#8217;s going wrong?</h2>
+
+<p>This is probably my favorite question. If we&#8217;re talking about developing a new
+system or project, it&#8217;s a question of how we&#8217;ll know we&#8217;re off track, which
+leads to clear milestones and check-in points. If it&#8217;s a migration to a new
+system, or a solution to a bad bug, it&#8217;s a question of how we&#8217;ll know that
+the new state is less good than we thought it would be. If the answer is
+&#8220;customers will tell us,&#8221; we&#8217;re in dangerous territory. For services, I hope to hear answers about automated monitoring, but manual checks will suffice. For
+new projects, I hope to hear near-term goals that will help us gauge progress.</p>
+
+<h2>Question 4: What will we do if it goes wrong?</h2>
+
+<p>The answer to this may not always be knowable &#8211; obviously we won&#8217;t always know
+the ways in which things will go wrong &#8211; but it&#8217;s a useful exercise
+nonetheless. The answer may be &#8220;we&#8217;ll have to revert back to the old system
+and that will be very hard,&#8221; but that at least helps me understand the stakes
+of the decision. For new projects, this is a great way to identify the point
+of no return &#8211; that is, the point in the project where starting over or
+changing course becomes prohibitive.</p>
+
+<h2>Question 5: Is there an &#8220;undo&#8221; button?</h2>
+
+<p>Sometimes, the worst happens. Do we have an escape hatch? How hard will it be
+to add one later vs. adding one now? Again, it may be OK if we don&#8217;t have a
+rollback plan, but knowing that answer should help guide the decision
+about whether to proceed.</p>
+
+<hr />
+
+<p>I&#8217;m learning that a lot of what makes me kind of OK (I hope!) at this dev lead
+thing isn&#8217;t a deep knowledge of the specific technologies that are the
+underpinning of the project (though it&#8217;s certainly important that I be able to
+find my way around). Rather, it&#8217;s my ability to ask these questions, and to
+hear and understand the answers, and interpret them into action. I&#8217;m thankful
+to the team that is giving me the chance.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Rebecca Murphey</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-10-08T23:00:00-05:00" pubdate data-updated="true">Oct 8<span>th</span>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rmurphey.com/blog/2015/10/08/five-questions/" data-via="rmurphey" data-counturl="http://rmurphey.com/blog/2015/10/08/five-questions/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/04/pausing-office-hours/" title="Previous Post: Pausing Office Hours">&laquo; Pausing Office Hours</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/10/08/five-questions/">Five Questions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/04/pausing-office-hours/">Pausing Office Hours</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/27/tech-podcast-recording-tips/">So You're Going on a Podcast</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/11/ttl-podcast/">The TTL Podcast</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <p><a href="http://ttlpodcast.com"><img src="/images/logo-600-600.png" alt="TTL Podcast logo" width="100"></a></p>
+  <p>I host the <a href="http://ttlpodcast.com">TTL Podcast</a>, featuring
+  conversations with front-end developers at large organizations talking about how they do their jobs.</p>
+</section>
+<section>
+  <h1>Projects</h1>
+  <p><a href="https://github.com/rmurphey/js-assessment">js-assessment</a>, a test-driven approach to learning, improving, and assessing JavaScript skills.</p>
+  <p><a href="https://github.com/bazaarvoice/scoutfile">scoutfile</a>, an NPM module developed at Bazaarvoice for creating a "scout" file to bootstrap client-side JS applications.</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Rebecca Murphey -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'rmurphey';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://rmurphey.com/blog/2015/10/08/five-questions/';
+        var disqus_url = 'http://rmurphey.com/blog/2015/10/08/five-questions/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

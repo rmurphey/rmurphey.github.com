@@ -9,8 +9,25 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="My friend IM&#8217;d me a link the other day to a document he and a colleague wrote
-at the end of 2011, listing all the things they wanted to make &hellip;">
+  <meta name="description" content="I came across some code that looked something like this the other day, give or take a few details. 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +93,234 @@ at the end of 2011, listing all the things they wanted to make &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/04/refactoring-setInterval-polling/">Refactoring setInterval-based Polling</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-04T15:30:00-06:00" pubdate data-updated="true">Feb 4<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/02/04/refactoring-setInterval-polling/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I came across some code that looked something like this the other day, give or take a few details.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">checkSyncStatus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">App</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/sync_status&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;done&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">reloadUser</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">App</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">));</span>
+</span><span class='line'>            <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">});</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">check</span><span class="p">,</span> <span class="mi">1000</span><span class="p">));</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The code comes from an app whose server-side code queries a third-party service for new data every now and then. When the server is fetching that new data, certain actions on the front-end are forbidden. The code above was responsible for determining when the server-side sync is complete, and putting the app back in a state where those front-end interactions could be allowed again.</p>
+
+<p>You might have heard that <code>setInterval</code> can be a dangerous thing when it comes to polling a server*, and, looking at the code above, it&#8217;s easy to see why. The polling happens every 1000 seconds, <em>whether the request was successful or not</em>. If the request results in an error, or fails, or takes more than 1000 milliseconds, <code>setInterval</code> doesn&#8217;t care &#8211; it will blindly kick off another request. The interval only gets cleared when the request succeeds and the sync is done.</p>
+
+<p>The first refactoring for this is easy: switch to using <code>setTimeout</code>, and only enqueue another request once we know what happened with the previous one.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">checkSyncStatus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">App</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/sync_status&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;done&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">reloadUser</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+</span><span class='line'>          <span class="p">});</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">check</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, if the request fails, or takes more than 1000 milliseconds, at least we won&#8217;t be perpetrating a mini-DOS attack on our own server.</p>
+
+<p>Our code still has some shortcomings, though. For one thing, we aren&#8217;t handling the failure case. Additionally, the rest of our application is stuck looking at the <code>syncCheck</code> property of our <code>App</code> object to figure out when the sync has completed.</p>
+
+<p>We can use a promise to make our function a whole lot more powerful. We&#8217;ll return the promise from the function, and also store it as the value of our <code>App</code> object&#8217;s <code>syncCheck</code> property. This will let other pieces of code respond to the outcome of the request, whether it succeeds or fails. With a simple guard statement at the beginning of our function, we can also make it so that the <code>checkSyncStatus</code> function will return the promise immediately if a status check is already in progress.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">checkSyncStatus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">syncCheck</span> <span class="o">=</span> <span class="nx">App</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">syncCheck</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">syncCheck</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">dfd</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="s1">&#39;done&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">reloadUser</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">dfd</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">check</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">fail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">dfd</span><span class="p">.</span><span class="nx">reject</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">App</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;syncCheck&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/sync_status&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span> <span class="p">});</span>
+</span><span class='line'>    <span class="nx">req</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span> <span class="nx">success</span><span class="p">,</span> <span class="nx">fail</span> <span class="p">);</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">check</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">dfd</span><span class="p">.</span><span class="nx">promise</span><span class="p">();</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we can call our new function, and use the returned promise to react to the <em>eventual outcome</em> of the sync:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">Helpers</span><span class="p">.</span><span class="nx">checkSyncStatus</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span>
+</span><span class='line'>  <span class="c1">// this will run if the sync was successful,</span>
+</span><span class='line'>  <span class="c1">// once the user has been reloaded</span>
+</span><span class='line'>  <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;it worked&#39;</span><span class="p">);</span> <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// this will run if the sync failed</span>
+</span><span class='line'>  <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;it failed&#39;</span><span class="p">);</span> <span class="p">}</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With a few more lines of code, we&#8217;ve made our function safer &#8211; eliminating the possibility of an out-of-control <code>setInterval</code> &#8211; and also made it vastly more useful to other pieces of the application that care about the outcome of the sync.</p>
+
+<p>While the example above used <a href="http://api.jquery.com/deferred.promise/">jQuery&#8217;s promises implementation</a>, there are plenty of other implementations as well, including Sam Breed&#8217;s <a href="https://github.com/wookiehangover/underscore.Deferred">underscore.Deferred</a>, which mimics the behavior of jQuery&#8217;s promises without the dependency on jQuery.</p>
+
+<p><small>* <a href="http://www.html5rocks.com/en/tutorials/websockets/basics/">Websockets</a> are a great way to eliminate polling all together, but in the case of this application, they weren&#8217;t an option.</small></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -972,97 +1217,6 @@ to run just one test at a time in the browser, but all in all, discovering Mocha
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/04/javascript-a-language-not-a-religion/">JavaScript: It&#8217;s a Language, Not a Religion</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-04T11:18:00-05:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have six things to say:</p>
-
-<ol>
-<li><p>I am in a committed relationship with my partner Melissa. We will celebrate
-six years together on Sunday. We contribute frequently to political causes.</p></li>
-<li><p>I was deeply saddened yesterday to learn that Brendan Eich contributed money
-in support of a <a href="http://en.wikipedia.org/wiki/California_Proposition_8">political initiative</a> that
-sought to <em>rescind the court-established right for same-sex couples to
-marry</em> in the state of California. It has changed my view of him as a
-person, despite the fact that we have had a positive and professional
-relationship and he has been a great supporter of my JavaScript career. I
-think he is on the wrong side of history, and I hope that courts will
-continue to agree with me.</p></li>
-<li><p>I had a frank, private, and face-to-face conversation with Brendan about the
-issue during JSConf. I shared my disappointment, sadness, and disagreement.</p></li>
-<li><p>I have been dismayed to see this incident interpreted as a statement about
-the JavaScript community as a whole. This community is made up of so many
-people who believe so many different things, and yesterday I was reminded
-that they are all just people, and JavaScript is just a language, not a
-religion.  I shudder to think of a world where there is a political litmus
-test for entry into the community.  Indeed, I am extremely torn about
-introducing personal politics into my professional life*, as I fear it will
-encourage professional colleagues to opine about personal beliefs that are
-frankly none of their business. One of the great joys of working with
-computers is that they <a href="http://raganwald.posterous.com/a-womans-story">do not care who I am or what I believe</a>;
-I realize that to ask the same of people is unreasonable, but inviting
-politics into the workplace is a treacherously slippery slope. Unless my
-personal belief system presents an <em>imminent danger</em> to my colleagues, I am
-loath to welcome discussion of it by people who otherwise have no
-substantial or personal relationship with me.</p></li>
-<li><p>I believe individual companies must determine how best to address these
-issues, as their attitude toward them can have a significant impact on their
-ability to hire and retain talented people. I support <em>constructive
-pressure</em> on companies to align themselves with or distance themselves from
-political causes, but I would not support a company that prohibited its
-employees from participating in the political process. I urge anyone who is
-hurt or offended by this incident to engage with Brendan and Mozilla
-personally and professionally. Brendan is wrong on this issue, but he is a
-thoughtful and intelligent person, and he is also a human being.</p></li>
-<li><p>Finally: If this incident has made you angry or sad or disappointed, the most effective
-thing you can do is follow in Brendan&#8217;s footsteps by <strong>putting your money
-where your mouth is</strong>. Money speaks volumes in the American political
-system, and there are campaigns in progress right now that will <a href="http://www.protectncfamilies.org/">impact the rights of gays and lesbians</a>.
-Your <a href="https://protectallncfamilies.ngpvanhost.com/crmapi/contribute">contribution</a>
-of $50, $100, or $1,000 &#8211; or, in lieu of money, your time &#8211; will have far
-more impact than yet another angry tweet.</p></li>
-</ol>
-
-
-<p>And now I shall turn off the internet for a bit. Comments are disabled.
-Shocker, I know.</p>
-
-<p>* <em>It bears mentioning that, in certain cases, people making political
-contributions are required to include information about their employer. The
-inclusion of this information does not indicate that the employer supports &#8211;
-or is even aware of &#8211; the contribution.</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1080,6 +1234,10 @@ or is even aware of &#8211; the contribution.</em></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/10/08/five-questions/">Five Questions</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/04/pausing-office-hours/">Pausing Office Hours</a>
       </li>
     
@@ -1093,10 +1251,6 @@ or is even aware of &#8211; the contribution.</em></p>
     
       <li class="post">
         <a href="/blog/2015/05/11/ttl-podcast/">The TTL Podcast</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/23/a-baseline-for-front-end-developers-2015/">A Baseline for Front-End [JS] Developers: 2015</a>
       </li>
     
   </ul>

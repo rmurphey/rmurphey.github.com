@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2015-08-04T22:21:27-05:00</updated>
+  <updated>2015-10-08T22:03:33-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Five Questions]]></title>
+    <link href="http://rmurphey.com/blog/2015/10/08/five-questions/"/>
+    <updated>2015-10-08T23:00:00-05:00</updated>
+    <id>http://rmurphey.com/blog/2015/10/08/five-questions</id>
+    <content type="html"><![CDATA[<p>I recently started in a new role: I&#8217;m the dev lead of a project that was
+already in the hands of a group of skilled developers before I showed up, a
+project whose scope and technologies extend far beyond the experiences I&#8217;ve had
+up until now.</p>
+
+<p>As you might imagine, there have been a lot of challenges, but one that&#8217;s been
+particularly interesting has been figuring out how to meaningfully contribute
+to decisions about systems I don&#8217;t intimately understand. It&#8217;s easy to be
+inclined to sit those conversations out: I really don&#8217;t yet know enough to
+participate, and the &#8220;who am I to have a say?&#8221; instinct is strong.</p>
+
+<p>The problem: that attitude will ensure that I <em>never</em> know enough to
+participate, and though I am definitely out of my comfort zone, my job &#8211; the
+job I asked to do, and the job I have been asked to do &#8211; is to participate,
+to learn, and to change the definition of my comfort zone.</p>
+
+<p>While I may not have the project-specific experience to lean on, I&#8217;m finding
+that there are a few questions that help me understand, discuss, and &#8211; ultimately &#8211; consent or object to a technical plan. They&#8217;re questions that
+seem to work well across a spectrum of discussions; they work whether we&#8217;re
+talking about a wholly new system, a migration from an old system, or a
+solution to a particularly prickly problem.</p>
+
+<p>These questions don&#8217;t just help me gain a better understanding of a topic, or
+help me make better decisions; they&#8217;ve also helped me reframe my understanding
+of my role as a lead.</p>
+
+<h2>Question 1: What are we doing and why?</h2>
+
+<p>When I hear the answer, I&#8217;m listening for whether the developer is clearly
+articulating the problem and the solution. Do we clearly understand the
+problem? Is the solution magical, or can we explain why it works? Are we
+solving more than the problem, and thereby incurring unnecessary risk? Does the
+developer agree that the work is necessary?</p>
+
+<h2>Question 2: How could it go wrong?</h2>
+
+<p>A developer who says nothing can go wrong probably hasn&#8217;t been a developer
+for very long. I want to hear far-fetched scenarios, and an explanation for
+why they&#8217;re far-fetched. I want to hear worst-case scenarios; good developers
+have already thought about these plenty, they&#8217;ve worked to avoid them, and
+yet they acknowledge their existence. The goal of this question isn&#8217;t to plan
+for everything; rather, the answers provide context for poking at assumptions.</p>
+
+<h2>Question 3: How will we know if it&#8217;s going wrong?</h2>
+
+<p>This is probably my favorite question. If we&#8217;re talking about developing a new
+system or project, it&#8217;s a question of how we&#8217;ll know we&#8217;re off track, which
+leads to clear milestones and check-in points. If it&#8217;s a migration to a new
+system, or a solution to a bad bug, it&#8217;s a question of how we&#8217;ll know that
+the new state is less good than we thought it would be. If the answer is
+&#8220;customers will tell us,&#8221; we&#8217;re in dangerous territory. For services, I hope to hear answers about automated monitoring, but manual checks will suffice. For
+new projects, I hope to hear near-term goals that will help us gauge progress.</p>
+
+<h2>Question 4: What will we do if it goes wrong?</h2>
+
+<p>The answer to this may not always be knowable &#8211; obviously we won&#8217;t always know
+the ways in which things will go wrong &#8211; but it&#8217;s a useful exercise
+nonetheless. The answer may be &#8220;we&#8217;ll have to revert back to the old system
+and that will be very hard,&#8221; but that at least helps me understand the stakes
+of the decision. For new projects, this is a great way to identify the point
+of no return &#8211; that is, the point in the project where starting over or
+changing course becomes prohibitive.</p>
+
+<h2>Question 5: Is there an &#8220;undo&#8221; button?</h2>
+
+<p>Sometimes, the worst happens. Do we have an escape hatch? How hard will it be
+to add one later vs. adding one now? Again, it may be OK if we don&#8217;t have a
+rollback plan, but knowing that answer should help guide the decision
+about whether to proceed.</p>
+
+<hr />
+
+<p>I&#8217;m learning that a lot of what makes me kind of OK (I hope!) at this dev lead
+thing isn&#8217;t a deep knowledge of the specific technologies that are the
+underpinning of the project (though it&#8217;s certainly important that I be able to
+find my way around). Rather, it&#8217;s my ability to ask these questions, and to
+hear and understand the answers, and interpret them into action. I&#8217;m thankful
+to the team that is giving me the chance.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pausing Office Hours]]></title>
@@ -2048,70 +2134,6 @@ to run just one test at a time in the browser, but all in all, discovering Mocha
 <h2>The End</h2>
 
 <p>The master branch of the <a href="https://github.com/rmurphey/srchr-demo">repo for the project</a> should be mostly stable (if incomplete) if you want to check it out. I&#8217;m going to close comments on this post in the hopes that you&#8217;ll write your own post about what you&#8217;ve been learning instead :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JavaScript: It's a language, not a religion]]></title>
-    <link href="http://rmurphey.com/blog/2012/04/04/javascript-a-language-not-a-religion/"/>
-    <updated>2012-04-04T11:18:00-05:00</updated>
-    <id>http://rmurphey.com/blog/2012/04/04/javascript-a-language-not-a-religion</id>
-    <content type="html"><![CDATA[<p>I have six things to say:</p>
-
-<ol>
-<li><p>I am in a committed relationship with my partner Melissa. We will celebrate
-six years together on Sunday. We contribute frequently to political causes.</p></li>
-<li><p>I was deeply saddened yesterday to learn that Brendan Eich contributed money
-in support of a <a href="http://en.wikipedia.org/wiki/California_Proposition_8">political initiative</a> that
-sought to <em>rescind the court-established right for same-sex couples to
-marry</em> in the state of California. It has changed my view of him as a
-person, despite the fact that we have had a positive and professional
-relationship and he has been a great supporter of my JavaScript career. I
-think he is on the wrong side of history, and I hope that courts will
-continue to agree with me.</p></li>
-<li><p>I had a frank, private, and face-to-face conversation with Brendan about the
-issue during JSConf. I shared my disappointment, sadness, and disagreement.</p></li>
-<li><p>I have been dismayed to see this incident interpreted as a statement about
-the JavaScript community as a whole. This community is made up of so many
-people who believe so many different things, and yesterday I was reminded
-that they are all just people, and JavaScript is just a language, not a
-religion.  I shudder to think of a world where there is a political litmus
-test for entry into the community.  Indeed, I am extremely torn about
-introducing personal politics into my professional life*, as I fear it will
-encourage professional colleagues to opine about personal beliefs that are
-frankly none of their business. One of the great joys of working with
-computers is that they <a href="http://raganwald.posterous.com/a-womans-story">do not care who I am or what I believe</a>;
-I realize that to ask the same of people is unreasonable, but inviting
-politics into the workplace is a treacherously slippery slope. Unless my
-personal belief system presents an <em>imminent danger</em> to my colleagues, I am
-loath to welcome discussion of it by people who otherwise have no
-substantial or personal relationship with me.</p></li>
-<li><p>I believe individual companies must determine how best to address these
-issues, as their attitude toward them can have a significant impact on their
-ability to hire and retain talented people. I support <em>constructive
-pressure</em> on companies to align themselves with or distance themselves from
-political causes, but I would not support a company that prohibited its
-employees from participating in the political process. I urge anyone who is
-hurt or offended by this incident to engage with Brendan and Mozilla
-personally and professionally. Brendan is wrong on this issue, but he is a
-thoughtful and intelligent person, and he is also a human being.</p></li>
-<li><p>Finally: If this incident has made you angry or sad or disappointed, the most effective
-thing you can do is follow in Brendan&#8217;s footsteps by <strong>putting your money
-where your mouth is</strong>. Money speaks volumes in the American political
-system, and there are campaigns in progress right now that will <a href="http://www.protectncfamilies.org/">impact the rights of gays and lesbians</a>.
-Your <a href="https://protectallncfamilies.ngpvanhost.com/crmapi/contribute">contribution</a>
-of $50, $100, or $1,000 &#8211; or, in lieu of money, your time &#8211; will have far
-more impact than yet another angry tweet.</p></li>
-</ol>
-
-
-<p>And now I shall turn off the internet for a bit. Comments are disabled.
-Shocker, I know.</p>
-
-<p>* <em>It bears mentioning that, in certain cases, people making political
-contributions are required to include information about their employer. The
-inclusion of this information does not indicate that the employer supports &#8211;
-or is even aware of &#8211; the contribution.</em></p>
 ]]></content>
   </entry>
   
