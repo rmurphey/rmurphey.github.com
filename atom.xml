@@ -4,7 +4,7 @@
   <title><![CDATA[Adventures in JavaScript Development]]></title>
   <link href="http://rmurphey.com/atom.xml" rel="self"/>
   <link href="http://rmurphey.com/"/>
-  <updated>2015-10-08T22:40:48-05:00</updated>
+  <updated>2015-10-09T08:51:04-05:00</updated>
   <id>http://rmurphey.com/</id>
   <author>
     <name><![CDATA[Rebecca Murphey]]></name>
@@ -96,6 +96,14 @@ underpinning of the project (though it&#8217;s certainly important that I be abl
 find my way around). Rather, it&#8217;s my ability to ask these questions, and to
 hear and understand the answers, and interpret them into action. I&#8217;m thankful
 to the team that is giving me the chance.</p>
+
+<p><em>Addendum: A few people have pointed out that these questions seem to focus
+on the negative: &#8220;what&#8217;s going to go wrong?&#8221; I think this has a lot to do with
+the particular project I&#8217;m on right now: we&#8217;re in the midst of a lot of
+changes to our underlying systems, so these sorts of questions are especially
+relevant. On a project that is more focused on new development, the questions
+might be focused more on the flip side: how do we know if things are going
+<strong>right</strong>?</em></p>
 ]]></content>
   </entry>
   
