@@ -9,25 +9,7 @@
   <meta name="author" content="Rebecca Murphey">
 
   
-  <meta name="description" content="Given data like: 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-var data = { &quot;GUEST&quot; : { &#39;visits&#39; : 1734070, &#39;visits_pct&#39; : &hellip;">
+  <meta name="description" content="I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,6 +75,50 @@ var data = { &quot;GUEST&quot; : { &#39;visits&#39; : 1734070, &#39;visits_pct&#
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/">jQuery IE7 &#8220;Operation Aborted&#8221; Error</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-14T00:00:00-06:00" pubdate data-updated="true">Dec 14<span>th</span>, 2007</time>
+        
+         | <a href="/blog/2007/12/14/jquery-ie7-operation-aborted-error/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just got done troubleshooting an issue with a page with some jQuery on it. The jQuery was in a script called from the head of the document, and its job was to rearrange some elements into tabs once the page was loaded.</p>
+
+<p>In unpredictable cases (sequential reloads had different results), loading the page in IE7 would lead to an &#8220;Operation aborted&#8221; error that provided no additional information. Through some googling, I found out that this was probably related to IE choking when some script was run against the DOM before the DOM was fully loaded.</p>
+
+<p>What puzzled me was that I was using <code>$.ready()</code> to wrap my jQuery, which was supposed to wait for the DOM, but it didn&#8217;t seem to matter. Then I found <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=215410#215410">this</a> &#8211; it turns out that interacting with the DOM via javascript from within a table can make IE all sorts of angry, while interacting with the DOM via javascript from within a div is just fine.</p>
+
+<p>While my case doesn&#8217;t directly match the example above, it seems very possible that the table-based template I was writing for was the source of the headaches. Changing the base HTML template for the page I was working on wasn&#8217;t immediately in the cards, so I split the offending js file into two pieces &#8211; one in the head of the document that contains some basic functions but didn&#8217;t actually do anything, and another right before the closing body tag that does the actual talking to the DOM &#8211; and that seemed to fix it.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -580,74 +606,6 @@ var data = { &quot;GUEST&quot; : { &#39;visits&#39; : 1734070, &#39;visits_pct&#
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/">13 Seconds: Attribute vs. ID Selectors in jQuery</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-05T00:00:00-06:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
-        
-         | <a href="/blog/2007/12/05/13-seconds-attribute-vs-id-selectors-in-jquery/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Before:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// select all elements with an id or name attribute of fieldName;</span>
-</span><span class='line'><span class="c1">// some are inputs (name attribute), some are td&#39;s (id attribute)</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span> <span class="o">+</span> <span class="s1">&#39;, [name=&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// give inputs both a name and an id attribute,</span>
-</span><span class='line'><span class="c1">// and then just select fields and td&#39;s via id</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">$field</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">fieldName</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Savings: 13 seconds over the course of selecting &gt; 100 elements. Thank god for Firebug&#8217;s profiler, which pointed me to the problem in a few seconds. Attribute selectors in jQuery are handy, OK, but they don&#8217;t seem to work for large-scale selections.</p>
-
-<p>A side note: vim made the HTML change easy, once I worked through its quirky regexp syntax which requires you to escape the +:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>s/name="\([^"]\+\)" /name="\1" id="\1" /g</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -665,6 +623,10 @@ var data = { &quot;GUEST&quot; : { &#39;visits&#39; : 1734070, &#39;visits_pct&#
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/11/25/building-for-http2/">Building for HTTP/2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/10/08/five-questions/">Five Questions</a>
       </li>
     
@@ -678,10 +640,6 @@ var data = { &quot;GUEST&quot; : { &#39;visits&#39; : 1734070, &#39;visits_pct&#
     
       <li class="post">
         <a href="/blog/2015/07/20/karma-webpack-tape-code-coverage/">Browser Testing and Code Coverage with Karma, Tape, and Webpack</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/11/ttl-podcast/">The TTL Podcast</a>
       </li>
     
   </ul>
